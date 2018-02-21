@@ -91,6 +91,13 @@
                                     <action selector="btnAddOrder:" destination="uQm-LB-eNr" eventType="touchUpInside" id="ZiS-Ia-aRU"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zp4-nv-Zjq">
+                                <rect key="frame" x="140" y="486" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchExtraMeatToggled:" destination="uQm-LB-eNr" eventType="valueChanged" id="oDK-fk-8Of"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -114,6 +121,7 @@
                         <outlet property="itemImage" destination="wlB-em-UBK" id="lXR-Si-6Y6"/>
                         <outlet property="priceLabel" destination="HUR-59-dC0" id="mSh-i9-DSv"/>
                         <outlet property="quantity" destination="eG6-QW-55y" id="lpT-Qg-orH"/>
+                        <outlet property="switchExtraMeat" destination="Zp4-nv-Zjq" id="gRw-37-Hp5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoS-in-F5K" userLabel="First Responder" sceneMemberID="firstResponder"/>

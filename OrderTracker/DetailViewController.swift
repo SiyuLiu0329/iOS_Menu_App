@@ -11,35 +11,10 @@ import UIKit
 class DetailViewController: UIViewController {
     var orderList: OrderList!
     var itemNumber: Int?
-    
-    @IBAction func btnAddOrder(_ sender: Any) {
-        guard itemNumber != nil,
-            orderList.menuItems[itemNumber!]!.totalPrice != 0 else { return }
-        orderList.addItem(itemNumber: itemNumber!)
-        item = orderList.menuItems[itemNumber!]
-    }
-    
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
-    
-    @IBAction func btnIncrementQuantity(_ sender: Any) {
-        guard item != nil,
-            orderList.menuItems[item!.number] != nil,
-            itemNumber != nil else { return }
-        orderList.incrementQuantity(forItem: itemNumber!, by: 1)
-        quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
-        priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
-    }
-    
-    @IBAction func btnDecrementQuantity(_ sender: Any) {
-        guard item != nil,
-            orderList.menuItems[item!.number] != nil,
-            itemNumber != nil else { return }
-        orderList.incrementQuantity(forItem: itemNumber!, by: -1)
-        quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
-        priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
-    }
+    @IBOutlet weak var switchExtraMeat: UISwitch!
     
     var item: MenuItem? {
         didSet {
@@ -78,6 +53,41 @@ class DetailViewController: UIViewController {
     }
     */
 
+}
+
+extension DetailViewController {
+    // Toggle actions
+    @IBAction func switchExtraMeatToggled(_ sender: Any) {
+        print(switchExtraMeat.isOn)
+    }
+}
+
+extension DetailViewController {
+    // Button actions
+    @IBAction func btnIncrementQuantity(_ sender: Any) {
+        guard item != nil,
+            orderList.menuItems[item!.number] != nil,
+            itemNumber != nil else { return }
+        orderList.incrementQuantity(forItem: itemNumber!, by: 1)
+        quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
+        priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
+    }
+    
+    @IBAction func btnDecrementQuantity(_ sender: Any) {
+        guard item != nil,
+            orderList.menuItems[item!.number] != nil,
+            itemNumber != nil else { return }
+        orderList.incrementQuantity(forItem: itemNumber!, by: -1)
+        quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
+        priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
+    }
+    
+    @IBAction func btnAddOrder(_ sender: Any) {
+        guard itemNumber != nil,
+            orderList.menuItems[itemNumber!]!.totalPrice != 0 else { return }
+        orderList.addItem(itemNumber: itemNumber!)
+        item = orderList.menuItems[itemNumber!]
+    }
 }
 
 extension DetailViewController: ItemSelectedDelegate {
