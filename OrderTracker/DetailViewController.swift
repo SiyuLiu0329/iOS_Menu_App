@@ -89,10 +89,3 @@ extension DetailViewController {
         item = orderList.menuItems[itemNumber!]
     }
 }
-
-extension DetailViewController: ItemSelectedDelegate {
-    func itemSelected(_ newItem: MenuItem) {
-        item = newItem
-    }
-    
-}

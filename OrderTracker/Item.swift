@@ -31,6 +31,17 @@ struct MenuItem {
         self.quantity = 0
         self.totalPrice = 0
     }
+    // decides which properties will be displayed and toggled
+    var extraMeatAvailable: Bool = true
+    var extraNoodlesAvailable: Bool = true
+    
+    var extraCorianderAvailable: Bool = true
+    var extraSpringOnionAvailable: Bool = true
+    
+    var noCorianderAvailable: Bool = true
+    var noSpringOnionAvailable: Bool = true
+    
+    var mildAvailable: Bool = true
     
     // change prices using property inspectors
     var extraMeat: Bool = false

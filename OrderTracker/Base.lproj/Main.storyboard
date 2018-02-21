@@ -126,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoS-in-F5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="795.703125" y="67.96875"/>
+            <point key="canvasLocation" x="829" y="280"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="XSQ-jd-nL9">
@@ -153,6 +153,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="XwL-Ed-rAD" kind="showDetail" identifier="segue1" id="Nv8-v3-uwX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -211,7 +214,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1j-fr-RYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="66.796875" y="67.96875"/>
+            <point key="canvasLocation" x="154" y="281"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Nv8-v3-uwX"/>
+    </inferredMetricsTieBreakers>
 </document>

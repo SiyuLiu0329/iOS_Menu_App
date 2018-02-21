@@ -21,15 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let rightNavController = splitViewController.viewControllers.last as? UINavigationController,
             let detailViewController = rightNavController.topViewController as? DetailViewController
             else { fatalError() }
+        
         let firstItem = masterViewController.orderList.menuItems[1]
         leftNavController.navigationBar.topItem?.title = "Menu"
         splitViewController.maximumPrimaryColumnWidth = 200
         detailViewController.item = firstItem
         masterViewController.tableView.rowHeight = 100
-        masterViewController.delegate = detailViewController
-        detailViewController.navigationItem.leftItemsSupplementBackButton = true
-        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        detailViewController.orderList = masterViewController.orderList
+        // detailViewController.navigationItem.leftItemsSupplementBackButton = true
+        // detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+
         return true
     }
 

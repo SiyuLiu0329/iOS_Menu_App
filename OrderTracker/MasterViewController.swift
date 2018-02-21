@@ -16,7 +16,6 @@ protocol ItemSelectedDelegate: class {
 
 class MasterViewController: UITableViewController {
     let orderList = OrderList()
-    weak var delegate: ItemSelectedDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +46,18 @@ class MasterViewController: UITableViewController {
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        guard let cellIndexPath = tableView.indexPath(for: cell) else { fatalError() }
+        if segue.identifier == "segue1" {
+            let controller = segue.destination as! UINavigationController
+            let detailViewController = controller.topViewController as! DetailViewController
+            detailViewController.item = self.orderList.menuItems[cellIndexPath.row + 1]
+            detailViewController.orderList = orderList
+        }
+    }
+        
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        // Push the detailViewController onto the stack
-        // Only works on iPhones
-        if let detailViewController = delegate as? DetailViewController,
-            let detailNavigationController = detailViewController.navigationController {
-            splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-        }
-        
-        if let item = self.orderList.menuItems[indexPath.row + 1] {
-            delegate?.itemSelected(item)
-        }
     }
 
 
