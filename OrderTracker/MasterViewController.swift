@@ -54,11 +54,22 @@ class MasterViewController: UITableViewController {
             let detailViewController = controller.topViewController as! DetailViewController
             detailViewController.item = self.orderList.menuItems[cellIndexPath.row + 1]
             detailViewController.orderList = orderList
+        } else if segue.identifier == "segue2" {
+            let controller = segue.destination as! UINavigationController
+            let detailViewController = controller.topViewController as! DetailViewController // change this
+            detailViewController.item = self.orderList.menuItems[cellIndexPath.row + 1]
+            detailViewController.orderList = orderList
         }
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if [0, 1, 2, 5, 6].contains(indexPath.row) {
+            performSegue(withIdentifier: "segue1", sender: tableView.cellForRow(at: indexPath))
+        } else {
+            performSegue(withIdentifier: "segue2", sender: tableView.cellForRow(at: indexPath))
+        }
     }
+    
 
 
     /*
