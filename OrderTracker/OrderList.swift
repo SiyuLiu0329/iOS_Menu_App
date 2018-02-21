@@ -16,6 +16,8 @@ class OrderList {
         var orderTotal: Double = 0
     }
     
+    var allOrders: [CurrentOrder] = []
+    
     var menuItems: [Int: MenuItem] = [:]
     private var currentOrder: CurrentOrder = CurrentOrder()
     
@@ -23,10 +25,9 @@ class OrderList {
         resetTamplateItem(itemNumber: 0)
     }
     
-    func addItem(itemNumber number: Int, forTable tableNumber: Int) {
+    func addItem(itemNumber number: Int) {
         guard let tmpItem = menuItems[number] else { return }
         currentOrder.items.append(tmpItem)
-        currentOrder.tableNumber = tableNumber
         currentOrder.orderTotal += tmpItem.totalPrice
         resetTamplateItem(itemNumber: number)
         print(currentOrder)
@@ -70,9 +71,4 @@ class OrderList {
             menuItems[number]!.quantity >= -amount else { return } // negative number??
         menuItems[number]!.quantity += amount
     }
-    
-    func setCurrentOrderTableNumber(table number: Int) {
-        currentOrder.tableNumber = number
-    }
-    
 }

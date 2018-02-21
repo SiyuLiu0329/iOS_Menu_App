@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     @IBAction func btnAddOrder(_ sender: Any) {
         guard itemNumber != nil,
             orderList.menuItems[itemNumber!]!.totalPrice != 0 else { return }
-        orderList.addItem(itemNumber: itemNumber!, forTable: 0)
+        orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
     }
     

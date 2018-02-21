@@ -33,8 +33,16 @@ struct MenuItem {
     }
     
     // change prices using property inspectors
-    var moreMeat: Bool = false
-    var moreNoodles: Bool = false
+    var extraMeat: Bool = false
+    var extraNoodles: Bool = false
+    
+    var extraCoriander: Bool = false
+    var extraSpringOnion: Bool = false
+    
+    var noCoriander: Bool = false
+    var noSpringOnion: Bool = false
+    
+    var mild: Bool = false
     
 
 }
