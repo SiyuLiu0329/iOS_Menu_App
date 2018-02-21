@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F200203BB8250047E0D9 /* AppDelegate.swift */; };
+		2223F206203BB8250047E0D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2223F204203BB8250047E0D9 /* Main.storyboard */; };
+		2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2223F207203BB8250047E0D9 /* Assets.xcassets */; };
+		2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */; };
+		2223F216203BB8260047E0D9 /* OrderTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */; };
+		2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */; };
+		22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */; };
+		22F6E9F4203BCE17001F78CA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F3203BCE17001F78CA /* DetailViewController.swift */; };
+		22F6E9F6203BD9E5001F78CA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F5203BD9E5001F78CA /* Item.swift */; };
+		22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F7203BEA4B001F78CA /* OrderList.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2223F212203BB8260047E0D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2223F1F5203BB8250047E0D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2223F1FC203BB8250047E0D9;
+			remoteInfo = OrderTracker;
+		};
+		2223F21D203BB8260047E0D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2223F1F5203BB8250047E0D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2223F1FC203BB8250047E0D9;
+			remoteInfo = OrderTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2223F1FD203BB8250047E0D9 /* OrderTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2223F200203BB8250047E0D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2223F205203BB8250047E0D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2223F207203BB8250047E0D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2223F20A203BB8250047E0D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2223F20C203BB8250047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2223F211203BB8260047E0D9 /* OrderTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrderTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackerTests.swift; sourceTree = "<group>"; };
+		2223F217203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2223F21C203BB8260047E0D9 /* OrderTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrderTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackerUITests.swift; sourceTree = "<group>"; };
+		2223F222203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		22F6E9F3203BCE17001F78CA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		22F6E9F5203BD9E5001F78CA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		22F6E9F7203BEA4B001F78CA /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2223F1FA203BB8250047E0D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2223F20E203BB8260047E0D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2223F219203BB8260047E0D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2223F1F4203BB8250047E0D9 = {
+			isa = PBXGroup;
+			children = (
+				2223F1FF203BB8250047E0D9 /* OrderTracker */,
+				2223F214203BB8260047E0D9 /* OrderTrackerTests */,
+				2223F21F203BB8260047E0D9 /* OrderTrackerUITests */,
+				2223F1FE203BB8250047E0D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2223F1FE203BB8250047E0D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2223F1FD203BB8250047E0D9 /* OrderTracker.app */,
+				2223F211203BB8260047E0D9 /* OrderTrackerTests.xctest */,
+				2223F21C203BB8260047E0D9 /* OrderTrackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2223F1FF203BB8250047E0D9 /* OrderTracker */ = {
+			isa = PBXGroup;
+			children = (
+				22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */,
+				2223F200203BB8250047E0D9 /* AppDelegate.swift */,
+				2223F204203BB8250047E0D9 /* Main.storyboard */,
+				22F6E9F5203BD9E5001F78CA /* Item.swift */,
+				22F6E9F7203BEA4B001F78CA /* OrderList.swift */,
+				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
+				2223F207203BB8250047E0D9 /* Assets.xcassets */,
+				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
+				2223F20C203BB8250047E0D9 /* Info.plist */,
+			);
+			path = OrderTracker;
+			sourceTree = "<group>";
+		};
+		2223F214203BB8260047E0D9 /* OrderTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */,
+				2223F217203BB8260047E0D9 /* Info.plist */,
+			);
+			path = OrderTrackerTests;
+			sourceTree = "<group>";
+		};
+		2223F21F203BB8260047E0D9 /* OrderTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */,
+				2223F222203BB8260047E0D9 /* Info.plist */,
+			);
+			path = OrderTrackerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2223F1FC203BB8250047E0D9 /* OrderTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2223F225203BB8260047E0D9 /* Build configuration list for PBXNativeTarget "OrderTracker" */;
+			buildPhases = (
+				2223F1F9203BB8250047E0D9 /* Sources */,
+				2223F1FA203BB8250047E0D9 /* Frameworks */,
+				2223F1FB203BB8250047E0D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrderTracker;
+			productName = OrderTracker;
+			productReference = 2223F1FD203BB8250047E0D9 /* OrderTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2223F210203BB8260047E0D9 /* OrderTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2223F228203BB8260047E0D9 /* Build configuration list for PBXNativeTarget "OrderTrackerTests" */;
+			buildPhases = (
+				2223F20D203BB8260047E0D9 /* Sources */,
+				2223F20E203BB8260047E0D9 /* Frameworks */,
+				2223F20F203BB8260047E0D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2223F213203BB8260047E0D9 /* PBXTargetDependency */,
+			);
+			name = OrderTrackerTests;
+			productName = OrderTrackerTests;
+			productReference = 2223F211203BB8260047E0D9 /* OrderTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2223F21B203BB8260047E0D9 /* OrderTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2223F22B203BB8260047E0D9 /* Build configuration list for PBXNativeTarget "OrderTrackerUITests" */;
+			buildPhases = (
+				2223F218203BB8260047E0D9 /* Sources */,
+				2223F219203BB8260047E0D9 /* Frameworks */,
+				2223F21A203BB8260047E0D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2223F21E203BB8260047E0D9 /* PBXTargetDependency */,
+			);
+			name = OrderTrackerUITests;
+			productName = OrderTrackerUITests;
+			productReference = 2223F21C203BB8260047E0D9 /* OrderTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2223F1F5203BB8250047E0D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = macOS;
+				TargetAttributes = {
+					2223F1FC203BB8250047E0D9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					2223F210203BB8260047E0D9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2223F1FC203BB8250047E0D9;
+					};
+					2223F21B203BB8260047E0D9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2223F1FC203BB8250047E0D9;
+					};
+				};
+			};
+			buildConfigurationList = 2223F1F8203BB8250047E0D9 /* Build configuration list for PBXProject "OrderTracker" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2223F1F4203BB8250047E0D9;
+			productRefGroup = 2223F1FE203BB8250047E0D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2223F1FC203BB8250047E0D9 /* OrderTracker */,
+				2223F210203BB8260047E0D9 /* OrderTrackerTests */,
+				2223F21B203BB8260047E0D9 /* OrderTrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2223F1FB203BB8250047E0D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */,
+				2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */,
+				2223F206203BB8250047E0D9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2223F20F203BB8260047E0D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2223F21A203BB8260047E0D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2223F1F9203BB8250047E0D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22F6E9F6203BD9E5001F78CA /* Item.swift in Sources */,
+				22F6E9F4203BCE17001F78CA /* DetailViewController.swift in Sources */,
+				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
+				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
+				22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2223F20D203BB8260047E0D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2223F216203BB8260047E0D9 /* OrderTrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2223F218203BB8260047E0D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2223F213203BB8260047E0D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2223F1FC203BB8250047E0D9 /* OrderTracker */;
+			targetProxy = 2223F212203BB8260047E0D9 /* PBXContainerItemProxy */;
+		};
+		2223F21E203BB8260047E0D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2223F1FC203BB8250047E0D9 /* OrderTracker */;
+			targetProxy = 2223F21D203BB8260047E0D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2223F204203BB8250047E0D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2223F205203BB8250047E0D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2223F20A203BB8250047E0D9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2223F223203BB8260047E0D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2223F224203BB8260047E0D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2223F226203BB8260047E0D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HXW27E4TDZ;
+				INFOPLIST_FILE = OrderTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		2223F227203BB8260047E0D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HXW27E4TDZ;
+				INFOPLIST_FILE = OrderTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		2223F229203BB8260047E0D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OrderTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrderTracker.app/OrderTracker";
+			};
+			name = Debug;
+		};
+		2223F22A203BB8260047E0D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OrderTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrderTracker.app/OrderTracker";
+			};
+			name = Release;
+		};
+		2223F22C203BB8260047E0D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OrderTrackerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OrderTracker;
+			};
+			name = Debug;
+		};
+		2223F22D203BB8260047E0D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OrderTrackerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OrderTracker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2223F1F8203BB8250047E0D9 /* Build configuration list for PBXProject "OrderTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2223F223203BB8260047E0D9 /* Debug */,
+				2223F224203BB8260047E0D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2223F225203BB8260047E0D9 /* Build configuration list for PBXNativeTarget "OrderTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2223F226203BB8260047E0D9 /* Debug */,
+				2223F227203BB8260047E0D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2223F228203BB8260047E0D9 /* Build configuration list for PBXNativeTarget "OrderTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2223F229203BB8260047E0D9 /* Debug */,
+				2223F22A203BB8260047E0D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2223F22B203BB8260047E0D9 /* Build configuration list for PBXNativeTarget "OrderTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2223F22C203BB8260047E0D9 /* Debug */,
+				2223F22D203BB8260047E0D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2223F1F5203BB8250047E0D9 /* Project object */;
+}
