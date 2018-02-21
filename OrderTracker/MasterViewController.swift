@@ -63,7 +63,7 @@ class MasterViewController: UITableViewController {
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if [0, 1, 2, 5, 6].contains(indexPath.row) {
+        if [0, 1, 2, 3, 4, 5, 6].contains(indexPath.row) {
             performSegue(withIdentifier: "segue1", sender: tableView.cellForRow(at: indexPath))
         } else {
             performSegue(withIdentifier: "segue2", sender: tableView.cellForRow(at: indexPath))
