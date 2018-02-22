@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol optionButtonDelegate: class {
+    func optionaButtonPressed(_ sender: Any)
+}
+
 class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var optionSwitch: UISwitch!
+    weak var delegate: optionButtonDelegate?
+    
     @IBOutlet weak var itemDescription: UITextView!
     
-    @IBAction func optionSwtichToggled(_ sender: Any) {
-        print(optionSwitch.isOn)
+    @IBAction func buttonPressed(_ sender: Any) {
+        delegate?.optionaButtonPressed(self)
     }
 }

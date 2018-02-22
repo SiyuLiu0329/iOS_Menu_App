@@ -70,7 +70,8 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! CollectionViewCell
         if let currentItem = item {
             cell.itemDescription.text = currentItem.options[indexPath.row].description
-            cell.optionSwitch.isOn = currentItem.options[indexPath.row].value
+            cell.itemDescription.isEditable = false
+            cell.delegate = self
         }
         
         return cell
@@ -85,6 +86,14 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: dim, height: dim)
     }
     
+}
+
+extension DetailViewController: optionButtonDelegate {
+    func optionaButtonPressed(_ sender: Any) {
+        let cell = sender as! CollectionViewCell
+        let indexPath = collectionView.indexPath(for: cell)
+        print(indexPath)
+    }
 }
 
 
