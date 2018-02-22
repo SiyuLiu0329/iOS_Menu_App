@@ -91,8 +91,11 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 extension DetailViewController: optionButtonDelegate {
     func optionaButtonPressed(_ sender: Any) {
         let cell = sender as! CollectionViewCell
-        let indexPath = collectionView.indexPath(for: cell)
-        print(indexPath)
+        if let indexPath = collectionView.indexPath(for: cell),
+            var currentItem = item {
+            // use orderList and itemNumber!
+            print(String(describing: currentItem.options[indexPath.row].description))
+        }
     }
 }
 
