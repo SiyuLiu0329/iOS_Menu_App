@@ -14,6 +14,7 @@
 		2223F216203BB8260047E0D9 /* OrderTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */; };
 		2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */; };
 		223572BF203E9ACB000C42FD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223572BE203E9ACB000C42FD /* CollectionViewCell.swift */; };
+		22D4194A203EE58800674660 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D41949203EE58800674660 /* Option.swift */; };
 		22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */; };
 		22F6E9F4203BCE17001F78CA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F3203BCE17001F78CA /* DetailViewController.swift */; };
 		22F6E9F6203BD9E5001F78CA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F5203BD9E5001F78CA /* Item.swift */; };
@@ -51,6 +52,7 @@
 		2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackerUITests.swift; sourceTree = "<group>"; };
 		2223F222203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223572BE203E9ACB000C42FD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		22D41949203EE58800674660 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		22F6E9F3203BCE17001F78CA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		22F6E9F5203BD9E5001F78CA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -105,13 +107,10 @@
 		2223F1FF203BB8250047E0D9 /* OrderTracker */ = {
 			isa = PBXGroup;
 			children = (
-				22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */,
+				22D4194B203EE59500674660 /* Models */,
+				22D4194C203EE5B300674660 /* Controllers */,
 				2223F200203BB8250047E0D9 /* AppDelegate.swift */,
 				2223F204203BB8250047E0D9 /* Main.storyboard */,
-				22F6E9F5203BD9E5001F78CA /* Item.swift */,
-				22F6E9F7203BEA4B001F78CA /* OrderList.swift */,
-				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
-				223572BE203E9ACB000C42FD /* CollectionViewCell.swift */,
 				2223F207203BB8250047E0D9 /* Assets.xcassets */,
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				2223F20C203BB8250047E0D9 /* Info.plist */,
@@ -135,6 +134,26 @@
 				2223F222203BB8260047E0D9 /* Info.plist */,
 			);
 			path = OrderTrackerUITests;
+			sourceTree = "<group>";
+		};
+		22D4194B203EE59500674660 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22F6E9F5203BD9E5001F78CA /* Item.swift */,
+				22F6E9F7203BEA4B001F78CA /* OrderList.swift */,
+				22D41949203EE58800674660 /* Option.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22D4194C203EE5B300674660 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */,
+				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
+				223572BE203E9ACB000C42FD /* CollectionViewCell.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +292,7 @@
 			files = (
 				22F6E9F6203BD9E5001F78CA /* Item.swift in Sources */,
 				22F6E9F4203BCE17001F78CA /* DetailViewController.swift in Sources */,
+				22D4194A203EE58800674660 /* Option.swift in Sources */,
 				223572BF203E9ACB000C42FD /* CollectionViewCell.swift in Sources */,
 				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,

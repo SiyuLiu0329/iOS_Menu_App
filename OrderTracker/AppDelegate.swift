@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let firstItem = masterViewController.orderList.menuItems[1]
         leftNavController.navigationBar.topItem?.title = "Items"
-        splitViewController.maximumPrimaryColumnWidth = 125
-        masterViewController.tableView.rowHeight = 100
+        splitViewController.maximumPrimaryColumnWidth = 150
+        masterViewController.tableView.rowHeight = 110
         detailViewController.orderList = masterViewController.orderList
         detailViewController.item = firstItem
         // detailViewController.navigationItem.leftItemsSupplementBackButton = true
