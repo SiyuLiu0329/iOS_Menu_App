@@ -116,30 +116,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="237" height="237"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Q3i-1A-p41">
-                                                    <rect key="frame" x="180" y="198" width="51" height="31"/>
-                                                </switch>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="PlaceHolder" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2JM-F8-vXZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="237" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="p7i-de-w62"/>
                                                     </constraints>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esa-8l-Auv">
+                                                    <rect key="frame" x="180" y="198" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="optionSwtichToggled:" destination="QRQ-5O-JHY" eventType="valueChanged" id="3HR-f3-1oo"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="esa-8l-Auv" secondAttribute="trailing" id="0gr-oz-vU9"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="esa-8l-Auv" secondAttribute="bottom" id="3S5-vT-pKz"/>
                                             <constraint firstAttribute="trailing" secondItem="2JM-F8-vXZ" secondAttribute="trailing" id="6Gd-dY-28z"/>
                                             <constraint firstItem="2JM-F8-vXZ" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leading" id="OAD-Im-tud"/>
-                                            <constraint firstItem="Q3i-1A-p41" firstAttribute="trailing" secondItem="QRQ-5O-JHY" secondAttribute="trailingMargin" id="bY4-Zx-cu2"/>
-                                            <constraint firstItem="Q3i-1A-p41" firstAttribute="bottom" secondItem="QRQ-5O-JHY" secondAttribute="bottomMargin" id="kGg-SZ-1ud"/>
                                             <constraint firstItem="2JM-F8-vXZ" firstAttribute="top" secondItem="QRQ-5O-JHY" secondAttribute="top" id="xSh-oG-dak"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="itemDescription" destination="2JM-F8-vXZ" id="uyD-3C-Ia9"/>
+                                            <outlet property="optionSwitch" destination="esa-8l-Auv" id="2JH-uo-4vZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -70,6 +70,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! CollectionViewCell
         if let currentItem = item {
             cell.itemDescription.text = currentItem.options[indexPath.row].description
+            cell.optionSwitch.isOn = currentItem.options[indexPath.row].value
         }
         
         return cell

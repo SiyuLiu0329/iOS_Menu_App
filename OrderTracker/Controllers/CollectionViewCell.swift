@@ -9,7 +9,10 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-
+    @IBOutlet weak var optionSwitch: UISwitch!
     @IBOutlet weak var itemDescription: UITextView!
     
+    @IBAction func optionSwtichToggled(_ sender: Any) {
+        print(optionSwitch.isOn)
+    }
 }
