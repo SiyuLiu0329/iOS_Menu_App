@@ -8,13 +8,14 @@
 
 import UIKit
 
+
 class DetailViewController: UIViewController {
     var orderList: OrderList!
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
-    @IBOutlet weak var switchExtraMeat: UISwitch!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var item: MenuItem? {
         didSet {
@@ -34,8 +35,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,12 +56,22 @@ class DetailViewController: UIViewController {
 
 }
 
-extension DetailViewController {
-    // Toggle actions
-    @IBAction func switchExtraMeatToggled(_ sender: Any) {
-        print(switchExtraMeat.isOn)
+extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 100
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! CollectionViewCell
+        cell.label.text = String(describing: indexPath)
+        return cell
     }
 }
+
 
 extension DetailViewController {
     // Button actions

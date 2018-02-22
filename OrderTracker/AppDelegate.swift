@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
         guard let splitViewController = window?.rootViewController as? UISplitViewController,
             let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
             let masterViewController = leftNavController.topViewController as? MasterViewController,
@@ -23,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else { fatalError() }
         
         let firstItem = masterViewController.orderList.menuItems[1]
-        leftNavController.navigationBar.topItem?.title = "Menu"
-        splitViewController.maximumPrimaryColumnWidth = 200
+        leftNavController.navigationBar.topItem?.title = "Items"
+        splitViewController.maximumPrimaryColumnWidth = 125
         masterViewController.tableView.rowHeight = 100
         detailViewController.orderList = masterViewController.orderList
         detailViewController.item = firstItem

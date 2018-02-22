@@ -8,6 +8,14 @@
 
 import UIKit
 
+class MenuCell: UITableViewCell {
+    
+    @IBOutlet weak var itemNumber: UILabel!
+    @IBOutlet weak var itemImg: UIImageView!
+    @IBOutlet weak var overlay: UIImageView!
+    
+}
+
 
 protocol ItemSelectedDelegate: class {
     func itemSelected(_ newItem: MenuItem)
@@ -19,6 +27,7 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.selectRow(at: [0, 0], animated: true, scrollPosition: .top)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -38,11 +47,15 @@ class MasterViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MenuCell
         if let item = orderList.menuItems[indexPath.row + 1] {
-            cell.textLabel?.text = String(describing: item.number)
-            cell.imageView?.image = UIImage(named: item.imageURL)
+            cell.itemNumber.text = String(describing: item.number)
+            cell.itemImg.image = UIImage(named: item.imageURL)
         }
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.orange
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
     
@@ -63,6 +76,7 @@ class MasterViewController: UITableViewController {
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         if [0, 1, 2, 3, 4, 5, 6].contains(indexPath.row) {
             performSegue(withIdentifier: "segue1", sender: tableView.cellForRow(at: indexPath))
         } else {
