@@ -62,12 +62,15 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard item != nil else { return 0 }
+        return item!.options.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! CollectionViewCell
-        cell.label.text = String(describing: indexPath)
+        if let currentItem = item {
+            cell.itemDescription.text = currentItem.options[indexPath.row].description
+        }
         
         return cell
     }
