@@ -72,9 +72,19 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.itemDescription.text = currentItem.options[indexPath.row].description
             cell.itemDescription.isEditable = false
             cell.delegate = self
+            cell.toggleState = currentItem.options[indexPath.row].value
         }
         
         return cell
+    }
+    
+    func dimAllCells() {
+        let cells = collectionView.visibleCells
+        for cell in cells {
+            let collectionViewCell = cell as! CollectionViewCell
+            collectionViewCell.dim()
+            collectionViewCell.toggleState = false
+        }
     }
     
 }
@@ -94,6 +104,12 @@ extension DetailViewController: optionButtonDelegate {
         if let indexPath = collectionView.indexPath(for: cell){
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
             priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
+            cell.toggleState = !cell.toggleState
+            if cell.toggleState == true {
+                cell.light()
+            } else {
+                cell.dim()
+            }
         }
     }
 }
@@ -124,6 +140,8 @@ extension DetailViewController {
             orderList.menuItems[itemNumber!]!.totalPrice != 0 else { return }
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
+        dimAllCells()
     }
+
 }
 

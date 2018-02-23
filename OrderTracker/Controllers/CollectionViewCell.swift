@@ -17,7 +17,26 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var itemDescription: UITextView!
     
+    @IBOutlet weak var toggleButton: UIButton!
     @IBAction func buttonPressed(_ sender: Any) {
         delegate?.optionaButtonPressed(self)
+    }
+    
+    var toggleState: Bool = false {
+        willSet {
+            if newValue == true {
+                light()
+            } else {
+                dim()
+            }
+        }
+    }
+    
+    func dim() {
+        toggleButton.alpha = 0.65
+    }
+    
+    func light() {
+        toggleButton.alpha = 0.05
     }
 }

@@ -124,8 +124,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0c-nf-bTe">
+                                                <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0c-nf-bTe">
                                                     <rect key="frame" x="0.0" y="0.0" width="237" height="237"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
                                                         <action selector="buttonPressed:" destination="QRQ-5O-JHY" eventType="touchUpInside" id="eMf-j9-VRd"/>
                                                     </connections>
@@ -144,6 +145,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="itemDescription" destination="2JM-F8-vXZ" id="uyD-3C-Ia9"/>
+                                            <outlet property="toggleButton" destination="e0c-nf-bTe" id="QnG-Ym-ung"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
