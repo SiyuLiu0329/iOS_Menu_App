@@ -10,12 +10,25 @@ import UIKit
 
 
 class DetailViewController: UIViewController {
-    var orderList: OrderList!
+
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var totalPrice: UILabel!
+    
+    var orderList: OrderList! {
+        willSet {
+            if totalPrice != nil {
+                totalPrice.text = twoDigitPriceText(of: newValue.getTotalPrice())
+            }
+        }
+    }
+    
+    private func twoDigitPriceText(of price: Double) -> String {
+        return String(format: "$%.2f", price)
+    }
     
     var item: MenuItem? {
         didSet {
@@ -30,7 +43,8 @@ class DetailViewController: UIViewController {
         itemImage.image = UIImage(named: currentItem.imageURL)
         navigationController?.navigationBar.topItem?.title = currentItem.name
         quantity.text = String(describing: currentItem.quantity)
-        priceLabel.text = "$" + String(describing: currentItem.totalPrice)
+        priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
+        
     }
     
     override func viewDidLoad() {
@@ -103,7 +117,7 @@ extension DetailViewController: optionButtonDelegate {
         let cell = sender as! CollectionViewCell
         if let indexPath = collectionView.indexPath(for: cell){
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
-            priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
+            priceLabel.text = twoDigitPriceText(of: orderList.menuItems[itemNumber!]!.totalPrice)
             cell.toggleState = !cell.toggleState
             if cell.toggleState == true {
                 cell.light()
@@ -123,7 +137,7 @@ extension DetailViewController {
             itemNumber != nil else { return }
         orderList.incrementQuantity(forItem: itemNumber!, by: 1)
         quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
-        priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
+        priceLabel.text = twoDigitPriceText(of: orderList.menuItems[itemNumber!]!.totalPrice)
     }
     
     @IBAction func btnDecrementQuantity(_ sender: Any) {
@@ -132,7 +146,7 @@ extension DetailViewController {
             itemNumber != nil else { return }
         orderList.incrementQuantity(forItem: itemNumber!, by: -1)
         quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
-        priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
+        priceLabel.text = twoDigitPriceText(of: orderList.menuItems[itemNumber!]!.totalPrice)
     }
     
     @IBAction func btnAddOrder(_ sender: Any) {
@@ -141,6 +155,7 @@ extension DetailViewController {
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
+        totalPrice.text = twoDigitPriceText(of: orderList.getTotalPrice())
     }
 
 }

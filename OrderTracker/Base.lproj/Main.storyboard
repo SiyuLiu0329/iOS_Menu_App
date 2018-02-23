@@ -75,22 +75,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUR-59-dC0">
-                                <rect key="frame" x="624" y="700" width="71" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUR-59-dC0">
+                                <rect key="frame" x="570" y="564" width="125.5" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="IjG-7B-G7U"/>
+                                    <constraint firstAttribute="height" constant="60" id="4AZ-Ao-Txc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD6-YL-UQ6">
-                                <rect key="frame" x="635" y="632" width="60" height="60"/>
+                                <rect key="frame" x="570" y="700" width="125.5" height="60"/>
+                                <color key="backgroundColor" red="0.3718922006" green="0.68808156249999997" blue="0.31794128389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="t10-RN-CNC"/>
+                                    <constraint firstAttribute="height" constant="60" id="uyn-09-A9A"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="Add"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="btnAddOrder:" destination="uQm-LB-eNr" eventType="touchUpInside" id="ZiS-Ia-aRU"/>
                                 </connections>
@@ -150,26 +153,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4p-RN-X2U">
+                                <rect key="frame" x="570" y="632" width="125" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Bl0-gg-mgU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="5TF-FO-UP0" secondAttribute="bottom" constant="8" id="3Bd-9f-977"/>
                             <constraint firstItem="E7M-o6-pzV" firstAttribute="top" secondItem="djv-E6-Voe" secondAttribute="bottom" constant="8" id="51R-fQ-sjG"/>
                             <constraint firstItem="eG6-QW-55y" firstAttribute="top" secondItem="1Nv-xp-nJ5" secondAttribute="bottom" id="Bc8-dg-A2M"/>
-                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="UD6-YL-UQ6" secondAttribute="trailing" constant="8" id="Jda-mW-GKB"/>
-                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="UD6-YL-UQ6" secondAttribute="trailing" constant="8" id="Pfe-py-7Qp"/>
+                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="UD6-YL-UQ6" secondAttribute="trailing" constant="8" id="HjY-8y-KNh"/>
+                            <constraint firstItem="UD6-YL-UQ6" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="HpV-m6-9Sg"/>
+                            <constraint firstItem="D4p-RN-X2U" firstAttribute="top" secondItem="HUR-59-dC0" secondAttribute="bottom" constant="8" id="Oh3-2G-hvA"/>
                             <constraint firstItem="1Nv-xp-nJ5" firstAttribute="top" secondItem="4gm-LM-8Va" secondAttribute="top" constant="8" id="U6J-bI-NBI"/>
                             <constraint firstItem="1Nv-xp-nJ5" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" constant="8" id="Ve1-7Y-KC2"/>
                             <constraint firstItem="wlB-em-UBK" firstAttribute="leading" secondItem="4gm-LM-8Va" secondAttribute="leading" constant="8" id="XRd-Vt-g36"/>
                             <constraint firstItem="E7M-o6-pzV" firstAttribute="leading" secondItem="wlB-em-UBK" secondAttribute="trailing" constant="8" id="Y9T-42-8rF"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="eG6-QW-55y" secondAttribute="trailing" constant="8" id="YlY-1g-JWZ"/>
-                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="HUR-59-dC0" secondAttribute="trailing" constant="8" id="Z4s-60-Iao"/>
+                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="HUR-59-dC0" secondAttribute="trailing" constant="8" id="ZmR-Tr-LfD"/>
+                            <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="UD6-YL-UQ6" secondAttribute="bottom" constant="8" id="aLi-7j-aez"/>
+                            <constraint firstItem="D4p-RN-X2U" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="c4d-tf-S1f"/>
                             <constraint firstItem="wlB-em-UBK" firstAttribute="top" secondItem="4gm-LM-8Va" secondAttribute="top" constant="8" id="ckv-at-wjQ"/>
                             <constraint firstItem="eG6-QW-55y" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" constant="8" id="dRU-Ye-Ngk"/>
-                            <constraint firstItem="HUR-59-dC0" firstAttribute="top" secondItem="UD6-YL-UQ6" secondAttribute="bottom" constant="8" id="dgJ-Dh-DdE"/>
-                            <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="HUR-59-dC0" secondAttribute="bottom" constant="8" id="iHU-gy-BIz"/>
+                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="D4p-RN-X2U" secondAttribute="trailing" constant="8" id="pK8-Q0-Bdk"/>
+                            <constraint firstItem="UD6-YL-UQ6" firstAttribute="top" secondItem="D4p-RN-X2U" secondAttribute="bottom" constant="8" id="pPd-sz-s6U"/>
+                            <constraint firstItem="HUR-59-dC0" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="puh-zP-SSv"/>
                             <constraint firstItem="5TF-FO-UP0" firstAttribute="leading" secondItem="4gm-LM-8Va" secondAttribute="leading" constant="8" id="pvy-vn-j3X"/>
-                            <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="HUR-59-dC0" secondAttribute="trailing" constant="8" id="sxj-j7-XBX"/>
                             <constraint firstItem="djv-E6-Voe" firstAttribute="leading" secondItem="wlB-em-UBK" secondAttribute="trailing" constant="8" id="uwp-wr-CVL"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="1Nv-xp-nJ5" secondAttribute="trailing" constant="8" id="vrF-0T-nUh"/>
                             <constraint firstItem="5TF-FO-UP0" firstAttribute="top" secondItem="wlB-em-UBK" secondAttribute="bottom" constant="8" id="vxE-Wz-4PZ"/>
@@ -177,12 +193,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4gm-LM-8Va"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8"/>
+                    <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8">
+                        <barButtonItem key="rightBarButtonItem" title="Order Summary" id="s77-lx-rco"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="5TF-FO-UP0" id="Ltu-9W-3pO"/>
                         <outlet property="itemImage" destination="wlB-em-UBK" id="lXR-Si-6Y6"/>
                         <outlet property="priceLabel" destination="HUR-59-dC0" id="mSh-i9-DSv"/>
                         <outlet property="quantity" destination="eG6-QW-55y" id="lpT-Qg-orH"/>
+                        <outlet property="totalPrice" destination="D4p-RN-X2U" id="Gxh-wK-PKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoS-in-F5K" userLabel="First Responder" sceneMemberID="firstResponder"/>

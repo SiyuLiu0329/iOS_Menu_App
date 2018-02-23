@@ -32,6 +32,10 @@ class OrderList {
         print(currentOrder)
     }
     
+    func getTotalPrice() -> Double {
+        return currentOrder.orderTotal
+    }
+    
     
     private func resetTamplateItem(itemNumber number: Int) {
         menuItems = resetToDefault(forItem: number, in: menuItems)
