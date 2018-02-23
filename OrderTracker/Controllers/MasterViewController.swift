@@ -60,7 +60,7 @@ class MasterViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
+        let cell = sender as! MenuCell
         guard let cellIndexPath = tableView.indexPath(for: cell) else { fatalError() }
         if segue.identifier == "segue1" {
             let controller = segue.destination as! UINavigationController

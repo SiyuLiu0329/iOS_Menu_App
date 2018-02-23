@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     var orderList: OrderList! {
         willSet {
             if totalPrice != nil {
-                totalPrice.text = twoDigitPriceText(of: newValue.getTotalPrice())
+                totalPrice.text = "Total: " + twoDigitPriceText(of: newValue.getTotalPrice())
             }
         }
     }
@@ -106,7 +106,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let dim = collectionView.bounds.width / 3 - 5
+        let dim = collectionView.bounds.width / 4 - 5
         return CGSize(width: dim, height: dim)
     }
     
@@ -155,7 +155,7 @@ extension DetailViewController {
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
-        totalPrice.text = twoDigitPriceText(of: orderList.getTotalPrice())
+        totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
     }
 
 }
