@@ -93,8 +93,7 @@ extension DetailViewController: optionButtonDelegate {
         let cell = sender as! CollectionViewCell
         if let indexPath = collectionView.indexPath(for: cell){
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
-            print(orderList.menuItems[itemNumber!]!.options[indexPath.row].description)
-            print(orderList.menuItems[itemNumber!]!.options[indexPath.row].value)
+            priceLabel.text = "$" + String(describing: orderList.menuItems[itemNumber!]!.totalPrice)
         }
     }
 }

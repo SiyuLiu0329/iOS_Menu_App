@@ -32,18 +32,19 @@ class OrderList {
         print(currentOrder)
     }
     
-    private func newOrder() {
-        currentOrder = CurrentOrder()
-    }
-
     
     private func resetTamplateItem(itemNumber number: Int) {
         menuItems = resetToDefault(forItem: number, in: menuItems)
-
     }
     
     func toggleOptionValue(ofOption optionNumber: Int, forItem itemNumber: Int) {
         menuItems[itemNumber]!.options[optionNumber].value = !menuItems[itemNumber]!.options[optionNumber].value
+        
+        if menuItems[itemNumber]!.options[optionNumber].value == true {
+            menuItems[itemNumber]!.price += menuItems[itemNumber]!.options[optionNumber].price
+        } else {
+            menuItems[itemNumber]!.price -= menuItems[itemNumber]!.options[optionNumber].price
+        }
     }
     
     func incrementQuantity(forItem number: Int, by amount: Int) {
