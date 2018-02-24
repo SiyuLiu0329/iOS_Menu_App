@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         splitViewController.maximumPrimaryColumnWidth = 140
         detailViewController.orderList = masterViewController.orderList
         detailViewController.item = firstItem
+        
         // detailViewController.navigationItem.leftItemsSupplementBackButton = true
         // detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
 

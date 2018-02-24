@@ -99,12 +99,12 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return orderList.getItemsInCurrentOrder().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        print(indexPath.row)
+        cell.textLabel?.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].number)
         return cell
     }
     
@@ -200,6 +200,7 @@ extension DetailViewController {
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
         totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
+        dropDownView.tableView.reloadData()
     }
 
 }
