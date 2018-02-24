@@ -32,6 +32,11 @@ class DropDownView: UIView {
         super.init(frame: frame)
         height = heightAnchor.constraint(equalToConstant: 0)
         addBlur()
+        setupTableView()
+
+    }
+    
+    private func setupTableView() {
         addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.clear
@@ -39,6 +44,7 @@ class DropDownView: UIView {
         tableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        tableView.separatorColor = UIColor.clear
     }
     
     private func addBlur() {

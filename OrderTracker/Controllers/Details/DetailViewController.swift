@@ -12,7 +12,6 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var itemNumber: Int?
-    var dropDownView: DropDownView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
@@ -54,8 +53,6 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkText]
         collectionView.delegate = self
         collectionView.dataSource = self
-        setUpDropDownMenu()
-        
     }
     
 
@@ -85,6 +82,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.toggleState = currentItem.options[indexPath.row].value
         }
         
+        
         return cell
     }
     
@@ -97,47 +95,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
-}
-
-extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderList.getItemsInCurrentOrder().count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.textColor = UIColor.white
-        cell.textLabel?.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].number)
-        cell.backgroundColor = UIColor.clear
-        return cell
-    }
-    
-    
-    private func setUpDropDownMenu() {
-        addBarButton()
-        addDropDownView()
-    }
-    
-    func addBarButton() {
-        let button = UIBarButtonItem(title: "Order Summary", style: .plain, target: self, action: #selector(barButtonPressed(sender:)))
-        button.tintColor = UIColor.darkText
-        self.navigationItem.rightBarButtonItem = button
-    }
-    
-    @objc func barButtonPressed(sender: UIBarButtonItem) {
-        dropDownView.changeDropViewState()
-    }
-    
-    func addDropDownView() {
-        dropDownView = DropDownView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.addSubview(dropDownView)
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
-        dropDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        dropDownView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        dropDownView.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        dropDownView.tableView.delegate = self
-        dropDownView.tableView.dataSource = self
-    }
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
@@ -201,7 +158,6 @@ extension DetailViewController {
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
         totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
-        dropDownView.tableView.reloadData()
     }
 
 }

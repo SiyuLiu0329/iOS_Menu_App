@@ -24,6 +24,12 @@
                                     <constraint firstAttribute="height" constant="300" id="HCG-2x-t4O"/>
                                     <constraint firstAttribute="width" constant="400" id="kCE-I5-xHz"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7M-o6-pzV">
                                 <rect key="frame" x="416" y="226" width="146" height="146"/>
@@ -36,6 +42,11 @@
                                 <state key="normal" title="−">
                                     <color key="titleColor" red="0.89252752589999995" green="0.89252752589999995" blue="0.89252752589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnDecrementQuantity:" destination="uQm-LB-eNr" eventType="touchUpInside" id="npY-vB-YlH"/>
                                 </connections>
@@ -51,6 +62,11 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnIncrementQuantity:" destination="uQm-LB-eNr" eventType="touchUpInside" id="PJ2-v3-APE"/>
                                 </connections>
@@ -232,7 +248,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4gm-LM-8Va"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8"/>
+                    <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="nGa-aV-aw5"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="5TF-FO-UP0" id="Ltu-9W-3pO"/>
                         <outlet property="itemImage" destination="wlB-em-UBK" id="lXR-Si-6Y6"/>
