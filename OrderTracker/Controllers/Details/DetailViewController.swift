@@ -56,10 +56,10 @@ class DetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "summarySegue" {
+        if segue.identifier == "segueSummary" {
             guard let navController = segue.destination as? UINavigationController else { return }
-            guard let summaryTableViewController = navController.viewControllers.first as? SummaryTableViewController else { return }
-            summaryTableViewController.orderList = orderList
+            guard let summaryController = navController.viewControllers.first as? SummaryTableViewController else { return }
+            summaryController.orderList = orderList
         }
     }
     
