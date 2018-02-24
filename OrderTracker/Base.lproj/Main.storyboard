@@ -86,7 +86,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD6-YL-UQ6">
-                                <rect key="frame" x="570" y="700" width="125.5" height="60"/>
+                                <rect key="frame" x="638" y="700" width="57.5" height="60"/>
                                 <color key="backgroundColor" red="0.3718922006" green="0.68808156249999997" blue="0.31794128389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="uyn-09-A9A"/>
@@ -180,15 +180,32 @@
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4J-UL-DPq">
+                                <rect key="frame" x="570" y="700" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="AGj-7W-vTg"/>
+                                    <constraint firstAttribute="width" constant="60" id="fwB-U1-8Wi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="CL">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnClearPressed:" destination="uQm-LB-eNr" eventType="touchUpInside" id="B8p-2n-tYb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="5TF-FO-UP0" secondAttribute="bottom" constant="8" id="3Bd-9f-977"/>
+                            <constraint firstItem="UD6-YL-UQ6" firstAttribute="leading" secondItem="P4J-UL-DPq" secondAttribute="trailing" constant="8" id="470-eO-apF"/>
                             <constraint firstItem="E7M-o6-pzV" firstAttribute="top" secondItem="djv-E6-Voe" secondAttribute="bottom" constant="8" id="51R-fQ-sjG"/>
+                            <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="P4J-UL-DPq" secondAttribute="bottom" constant="8" id="8t1-zq-zCP"/>
                             <constraint firstItem="HUR-59-dC0" firstAttribute="top" secondItem="Shm-ta-cfK" secondAttribute="bottom" constant="8" id="9eN-hY-iti"/>
                             <constraint firstItem="eG6-QW-55y" firstAttribute="top" secondItem="1Nv-xp-nJ5" secondAttribute="bottom" id="Bc8-dg-A2M"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="UD6-YL-UQ6" secondAttribute="trailing" constant="8" id="HjY-8y-KNh"/>
-                            <constraint firstItem="UD6-YL-UQ6" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="HpV-m6-9Sg"/>
+                            <constraint firstItem="P4J-UL-DPq" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="N5E-oJ-u6B"/>
                             <constraint firstItem="D4p-RN-X2U" firstAttribute="top" secondItem="HUR-59-dC0" secondAttribute="bottom" constant="8" id="Oh3-2G-hvA"/>
                             <constraint firstItem="1Nv-xp-nJ5" firstAttribute="top" secondItem="4gm-LM-8Va" secondAttribute="top" constant="8" id="U6J-bI-NBI"/>
                             <constraint firstItem="1Nv-xp-nJ5" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" constant="8" id="Ve1-7Y-KC2"/>
@@ -200,6 +217,7 @@
                             <constraint firstItem="D4p-RN-X2U" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="c4d-tf-S1f"/>
                             <constraint firstItem="wlB-em-UBK" firstAttribute="top" secondItem="4gm-LM-8Va" secondAttribute="top" constant="8" id="ckv-at-wjQ"/>
                             <constraint firstItem="eG6-QW-55y" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" constant="8" id="dRU-Ye-Ngk"/>
+                            <constraint firstItem="P4J-UL-DPq" firstAttribute="top" secondItem="D4p-RN-X2U" secondAttribute="bottom" constant="8" id="nuS-aT-YfB"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="D4p-RN-X2U" secondAttribute="trailing" constant="8" id="pK8-Q0-Bdk"/>
                             <constraint firstItem="UD6-YL-UQ6" firstAttribute="top" secondItem="D4p-RN-X2U" secondAttribute="bottom" constant="8" id="pPd-sz-s6U"/>
                             <constraint firstItem="HUR-59-dC0" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="puh-zP-SSv"/>

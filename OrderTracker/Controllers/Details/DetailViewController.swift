@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var totalPrice: UILabel!
+
     
     var orderList: OrderList! {
         willSet {
@@ -168,6 +169,14 @@ extension DetailViewController: optionButtonDelegate {
 
 extension DetailViewController {
     // Button actions
+    @IBAction func btnClearPressed(_ sender: Any) {
+        guard itemNumber != nil else { return }
+        orderList.resetTamplateItem(itemNumber: itemNumber!)
+        item = orderList.menuItems[itemNumber!]
+        dimAllCells()
+        totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
+    }
+    
     @IBAction func btnIncrementQuantity(_ sender: Any) {
         guard item != nil,
             orderList.menuItems[item!.number] != nil,

@@ -37,7 +37,7 @@ class OrderList {
     }
     
     
-    private func resetTamplateItem(itemNumber number: Int) {
+    func resetTamplateItem(itemNumber number: Int) {
         menuItems = resetToDefault(forItem: number, in: menuItems)
     }
     
