@@ -13,7 +13,6 @@ class DetailViewController: UIViewController {
 
     var itemNumber: Int?
     var dropDownView: DropDownView!
-    var dropDownButton: DropDownButton!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
@@ -51,9 +50,12 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor.orange
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkText]
         collectionView.delegate = self
         collectionView.dataSource = self
         setUpDropDownMenu()
+        
     }
     
 
@@ -104,7 +106,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].number)
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -112,19 +116,16 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     private func setUpDropDownMenu() {
         addBarButton()
         addDropDownView()
-        dropDownButton.delegate = dropDownView
     }
     
     func addBarButton() {
-        dropDownButton = DropDownButton()
-        dropDownButton.frame = CGRect(x: 0, y: 0, width: 150, height: 40)
-        dropDownButton.translatesAutoresizingMaskIntoConstraints = false
-        dropDownButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        dropDownButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        dropDownButton.setTitle("Order Summary", for: .normal)
-        dropDownButton.backgroundColor = UIColor.darkGray
-        let item = UIBarButtonItem(customView: dropDownButton)
-        self.navigationItem.setRightBarButtonItems([item, item], animated: true)
+        let button = UIBarButtonItem(title: "Order Summary", style: .plain, target: self, action: #selector(barButtonPressed(sender:)))
+        button.tintColor = UIColor.darkText
+        self.navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc func barButtonPressed(sender: UIBarButtonItem) {
+        dropDownView.changeDropViewState()
     }
     
     func addDropDownView() {
@@ -133,7 +134,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         dropDownView.translatesAutoresizingMaskIntoConstraints = false
         dropDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         dropDownView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        dropDownView.leftAnchor.constraint(equalTo: collectionView.rightAnchor).isActive = true
+        dropDownView.widthAnchor.constraint(equalToConstant: 400).isActive = true
         dropDownView.tableView.delegate = self
         dropDownView.tableView.dataSource = self
     }

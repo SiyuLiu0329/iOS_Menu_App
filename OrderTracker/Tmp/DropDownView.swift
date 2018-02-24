@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DropDownView: UIView, DropDownButtonPressedDelegate {
+class DropDownView: UIView {
     
     var tableView = UITableView()
     var isOn = false
@@ -31,13 +31,22 @@ class DropDownView: UIView, DropDownButtonPressedDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         height = heightAnchor.constraint(equalToConstant: 0)
+        addBlur()
         addSubview(tableView)
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor.clear
         tableView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    }
+    
+    private func addBlur() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blurEffectView)
     }
     
     required init?(coder aDecoder: NSCoder) {

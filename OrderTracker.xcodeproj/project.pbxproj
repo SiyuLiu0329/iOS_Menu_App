@@ -14,7 +14,6 @@
 		2223F216203BB8260047E0D9 /* OrderTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */; };
 		2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */; };
 		222AEA342040014200F81074 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AEA332040014200F81074 /* Utils.swift */; };
-		222AEA392040F0AD00F81074 /* DropDownbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AEA382040F0AD00F81074 /* DropDownbutton.swift */; };
 		222AEA3B2040F99D00F81074 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AEA3A2040F99D00F81074 /* DropDownView.swift */; };
 		223572BF203E9ACB000C42FD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223572BE203E9ACB000C42FD /* CollectionViewCell.swift */; };
 		22D4194A203EE58800674660 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D41949203EE58800674660 /* Option.swift */; };
@@ -55,7 +54,6 @@
 		2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackerUITests.swift; sourceTree = "<group>"; };
 		2223F222203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		222AEA332040014200F81074 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		222AEA382040F0AD00F81074 /* DropDownbutton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownbutton.swift; sourceTree = "<group>"; };
 		222AEA3A2040F99D00F81074 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		223572BE203E9ACB000C42FD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		22D41949203EE58800674660 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 		222AEA372040F04700F81074 /* Tmp */ = {
 			isa = PBXGroup;
 			children = (
-				222AEA382040F0AD00F81074 /* DropDownbutton.swift */,
 				222AEA3A2040F99D00F81074 /* DropDownView.swift */,
 			);
 			path = Tmp;
@@ -330,7 +327,6 @@
 				223572BF203E9ACB000C42FD /* CollectionViewCell.swift in Sources */,
 				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
-				222AEA392040F0AD00F81074 /* DropDownbutton.swift in Sources */,
 				22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 			);
