@@ -28,6 +28,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.selectRow(at: [0, 0], animated: true, scrollPosition: .top)
+        tableView.backgroundColor = UIColor.darkGray
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -67,11 +69,6 @@ class MasterViewController: UITableViewController {
             let detailViewController = controller.topViewController as! DetailViewController
             detailViewController.item = self.orderList.menuItems[cellIndexPath.row + 1]
             detailViewController.orderList = orderList
-        } else if segue.identifier == "segue2" {
-            let controller = segue.destination as! UINavigationController
-            let detailViewController = controller.topViewController as! DetailViewController // change this
-            detailViewController.item = self.orderList.menuItems[cellIndexPath.row + 1]
-            detailViewController.orderList = orderList
         }
     }
         
@@ -79,8 +76,6 @@ class MasterViewController: UITableViewController {
 
         if [0, 1, 2, 3, 4, 5, 6].contains(indexPath.row) {
             performSegue(withIdentifier: "segue1", sender: tableView.cellForRow(at: indexPath))
-        } else {
-            performSegue(withIdentifier: "segue2", sender: tableView.cellForRow(at: indexPath))
         }
     }
     

@@ -12,6 +12,8 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var itemNumber: Int?
+    var dropDownView: DropDownView!
+    var dropDownButton: DropDownButton!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
@@ -51,23 +53,15 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        setUpDropDownMenu()
     }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -101,6 +95,49 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+}
+
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        print(indexPath.row)
+        return cell
+    }
+    
+    
+    private func setUpDropDownMenu() {
+        addBarButton()
+        addDropDownView()
+        dropDownButton.delegate = dropDownView
+    }
+    
+    func addBarButton() {
+        dropDownButton = DropDownButton()
+        dropDownButton.frame = CGRect(x: 0, y: 0, width: 150, height: 40)
+        dropDownButton.translatesAutoresizingMaskIntoConstraints = false
+        dropDownButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        dropDownButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        dropDownButton.setTitle("Order Summary", for: .normal)
+        dropDownButton.backgroundColor = UIColor.darkGray
+        let item = UIBarButtonItem(customView: dropDownButton)
+        self.navigationItem.setRightBarButtonItems([item, item], animated: true)
+    }
+    
+    func addDropDownView() {
+        dropDownView = DropDownView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        view.addSubview(dropDownView)
+        dropDownView.translatesAutoresizingMaskIntoConstraints = false
+        dropDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        dropDownView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        dropDownView.leftAnchor.constraint(equalTo: collectionView.rightAnchor).isActive = true
+        dropDownView.tableView.delegate = self
+        dropDownView.tableView.dataSource = self
+//        dropDownView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+    }
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
