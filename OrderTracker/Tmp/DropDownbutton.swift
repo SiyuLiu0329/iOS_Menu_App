@@ -20,31 +20,6 @@ class DropDownButton: UIButton {
     }
     
     weak var delegate: DropDownButtonPressedDelegate?
-
-    
-//    var isOpen = false
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let contraintHeight = height else { return }
-//        if !isOpen {
-//            NSLayoutConstraint.deactivate([contraintHeight])
-//            contraintHeight.constant = 150
-//            NSLayoutConstraint.activate([contraintHeight])
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-//                self.dropDownView.layoutIfNeeded()
-//            }, completion: nil)
-//            isOpen = true
-//            
-//        } else {
-//            NSLayoutConstraint.deactivate([contraintHeight])
-//            contraintHeight.constant = 0
-//            NSLayoutConstraint.activate([contraintHeight])
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-//                self.dropDownView.layoutIfNeeded()
-//            }, completion: nil)
-//            isOpen = false
-//            
-//        }
-//    }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if delegate != nil {

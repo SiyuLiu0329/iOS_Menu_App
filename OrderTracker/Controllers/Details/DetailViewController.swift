@@ -20,7 +20,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var totalPrice: UILabel!
 
-    
     var orderList: OrderList! {
         willSet {
             if totalPrice != nil {
@@ -137,7 +136,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         dropDownView.leftAnchor.constraint(equalTo: collectionView.rightAnchor).isActive = true
         dropDownView.tableView.delegate = self
         dropDownView.tableView.dataSource = self
-//        dropDownView.heightAnchor.constraint(equalToConstant: 500).isActive = true
     }
 }
 
@@ -155,7 +153,7 @@ extension DetailViewController: optionButtonDelegate {
         let cell = sender as! CollectionViewCell
         if let indexPath = collectionView.indexPath(for: cell){
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
-            priceLabel.text = twoDigitPriceText(of: orderList.menuItems[itemNumber!]!.totalPrice)
+            priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
             cell.toggleState = !cell.toggleState
             if cell.toggleState == true {
                 cell.light()
@@ -172,32 +170,32 @@ extension DetailViewController {
     @IBAction func btnClearPressed(_ sender: Any) {
         guard itemNumber != nil else { return }
         orderList.resetTamplateItem(itemNumber: itemNumber!)
-        item = orderList.menuItems[itemNumber!]
+        item = orderList.getItem(numbered: itemNumber!)
         dimAllCells()
         totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
     }
     
     @IBAction func btnIncrementQuantity(_ sender: Any) {
         guard item != nil,
-            orderList.menuItems[item!.number] != nil,
+            orderList.getItem(numbered: itemNumber!) != nil,
             itemNumber != nil else { return }
         orderList.incrementQuantity(forItem: itemNumber!, by: 1)
-        quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
-        priceLabel.text = twoDigitPriceText(of: orderList.menuItems[itemNumber!]!.totalPrice)
+        quantity.text = String(describing: orderList.getQuantity(ofItem: itemNumber!))
+        priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
     }
     
     @IBAction func btnDecrementQuantity(_ sender: Any) {
         guard item != nil,
-            orderList.menuItems[item!.number] != nil,
+            orderList.getItem(numbered: itemNumber!) != nil,
             itemNumber != nil else { return }
         orderList.incrementQuantity(forItem: itemNumber!, by: -1)
-        quantity.text = String(describing: orderList.menuItems[itemNumber!]!.quantity)
-        priceLabel.text = twoDigitPriceText(of: orderList.menuItems[itemNumber!]!.totalPrice)
+        quantity.text = String(describing: orderList.getQuantity(ofItem: itemNumber!))
+        priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
     }
     
     @IBAction func btnAddOrder(_ sender: Any) {
         guard itemNumber != nil,
-            orderList.menuItems[itemNumber!]!.totalPrice != 0 else { return }
+            orderList.getSubTotal(ofItem: itemNumber!) != 0 else { return }
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
         dimAllCells()

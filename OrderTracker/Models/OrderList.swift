@@ -32,6 +32,24 @@ class OrderList {
         print(currentOrder)
     }
     
+    func getItem(numbered number: Int) -> MenuItem? {
+        return menuItems[number]
+    }
+    
+    func getSubTotal(ofItem number: Int) -> Double {
+        guard let item = menuItems[number] else { return 0 }
+        return item.totalPrice
+    }
+    
+    func getQuantity(ofItem number: Int) -> Int {
+        guard let item = menuItems[number] else { return 0 }
+        return item.quantity
+    }
+    
+    func getItemsInCurrentOrder() -> [MenuItem] {
+        return currentOrder.items
+    }
+    
     func getTotalPrice() -> Double {
         return currentOrder.orderTotal
     }
