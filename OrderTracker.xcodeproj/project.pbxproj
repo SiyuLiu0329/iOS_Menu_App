@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		221735FE204189E3006170F8 /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221735FD204189E3006170F8 /* SummaryTableViewController.swift */; };
 		2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F200203BB8250047E0D9 /* AppDelegate.swift */; };
 		2223F206203BB8250047E0D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2223F204203BB8250047E0D9 /* Main.storyboard */; };
 		2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2223F207203BB8250047E0D9 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		221735FD204189E3006170F8 /* SummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
 		2223F1FD203BB8250047E0D9 /* OrderTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2223F200203BB8250047E0D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2223F205203BB8250047E0D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
 				223572BE203E9ACB000C42FD /* CollectionViewCell.swift */,
+				221735FD204189E3006170F8 /* SummaryTableViewController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */,
+				221735FE204189E3006170F8 /* SummaryTableViewController.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,7 +29,6 @@ class OrderList {
         currentOrder.items.append(tmpItem)
         currentOrder.orderTotal += tmpItem.totalPrice
         resetTamplateItem(itemNumber: number)
-        print(currentOrder)
     }
     
     func getItem(numbered number: Int) -> MenuItem? {

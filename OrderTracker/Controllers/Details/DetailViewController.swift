@@ -55,7 +55,13 @@ class DetailViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "summarySegue" {
+            guard let navController = segue.destination as? UINavigationController else { return }
+            guard let summaryTableViewController = navController.viewControllers.first as? SummaryTableViewController else { return }
+            summaryTableViewController.orderList = orderList
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
