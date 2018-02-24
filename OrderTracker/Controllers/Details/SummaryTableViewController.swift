@@ -16,6 +16,7 @@ class SummaryTableViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 60
         tableView.delegate = self
         tableView.dataSource = self
         addBlur()
@@ -65,6 +66,7 @@ class SummaryTableViewController: UIViewController, UITableViewDataSource, UITab
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
         cell.selectedBackgroundView = bgColorView
+        cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size:20)
         return cell
     }
 
