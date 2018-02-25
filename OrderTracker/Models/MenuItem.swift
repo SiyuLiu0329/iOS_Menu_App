@@ -17,6 +17,13 @@ enum ItemType {
     case type3
 }
 
+enum PaymentStatus {
+    case cash
+    case card
+    case notPaid
+    
+}
+
 struct MenuItem {
     var number: Int
     var unitPrice: Double {
@@ -29,6 +36,7 @@ struct MenuItem {
     var imageURL: String
     var tableNumber: Int?
     var itemType: ItemType
+    var paymentStatus: PaymentStatus = .notPaid
     
     var quantity: Int {
         willSet {
@@ -56,5 +64,9 @@ struct MenuItem {
     
     mutating func addOption(_ option: Option) {
         options.append(option)
+    }
+    
+    mutating func changePaymentStatus(to status: PaymentStatus) {
+        paymentStatus = status
     }
 }

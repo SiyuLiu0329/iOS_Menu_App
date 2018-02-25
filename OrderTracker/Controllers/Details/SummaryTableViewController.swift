@@ -54,7 +54,13 @@ class SummaryTableViewController: UIViewController {
 extension SummaryTableViewController {
     // submit button functions
     @IBAction func btnSubmitPressed(_ sender: Any) {
-        print("submit")
+        orderList.submitCurrentOrder(asTable: 1, withPaymentStatus: .card)
+        disableSubmitIfEmpty()
+        updateLabelOnSubmitButton()
+        tableView.reloadData()
+        if delegate != nil {
+            delegate!.updateNavBarPrice()
+        }
     }
     
     private func disableSubmitIfEmpty() {
