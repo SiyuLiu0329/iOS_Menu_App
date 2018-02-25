@@ -12,22 +12,27 @@ protocol SummaryViewControllerDelegate: class {
     func updateNavBarPrice()
 }
 
-class SummaryTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SummaryTableViewController: UIViewController {
 
     var orderList: OrderList!
     weak var delegate: SummaryViewControllerDelegate?
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var btnSubmit: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredContentSize = CGSize(width: 500, height: 700)
         tableView.rowHeight = 60
         tableView.delegate = self
         tableView.dataSource = self
+        disableSubmitIfEmpty()
+        updateLabelOnSubmitButton()
+        btnSubmit.setTitle("Order is Empty", for: .disabled)
         addBlur()
-    }
 
+    }
+    
     private func addBlur() {
 
         tableView.backgroundColor = UIColor.clear
@@ -44,13 +49,38 @@ class SummaryTableViewController: UIViewController, UITableViewDataSource, UITab
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Order Summary"
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-        // Dispose of any resources that can be recreated.
+extension SummaryTableViewController {
+    // submit button functions
+    @IBAction func btnSubmitPressed(_ sender: Any) {
+        print("submit")
     }
+    
+    private func disableSubmitIfEmpty() {
+        if orderList.getItemsInCurrentOrder().isEmpty {
+            btnSubmit.isEnabled = false // may dim it down a bit in the future
+            btnSubmit.backgroundColor = UIColor.gray
+        } else {
+            btnSubmit.backgroundColor = UIColor(red: 50/255, green: 205/255, blue: 50/255, alpha: 1)
+        }
+    }
+    
+    func updateLabelOnSubmitButton() {
+        let updatedText = "Submit(" + String(describing: twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())) + ")"
+        btnSubmit.setTitle(updatedText, for: .normal)
+    }
+}
 
+extension SummaryTableViewController {
+    // helper functions
+    private func twoDigitPriceText(of price: Double) -> String {
+        return String(format: "$%.2f", price)
+    }
+}
+    
+extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -80,6 +110,8 @@ class SummaryTableViewController: UIViewController, UITableViewDataSource, UITab
         if editingStyle == .delete {
             self.orderList.removeItemInCurrentOrder(numbered: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            disableSubmitIfEmpty()
+            updateLabelOnSubmitButton()
         }
         
         if delegate != nil {
