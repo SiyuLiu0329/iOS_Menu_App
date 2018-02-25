@@ -111,7 +111,6 @@
 		2223F1FF203BB8250047E0D9 /* OrderTracker */ = {
 			isa = PBXGroup;
 			children = (
-				222AEA372040F04700F81074 /* Tmp */,
 				22D4194B203EE59500674660 /* Models */,
 				22D4194C203EE5B300674660 /* Controllers */,
 				2223F200203BB8250047E0D9 /* AppDelegate.swift */,
@@ -157,13 +156,6 @@
 				222AEA332040014200F81074 /* Utils.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		222AEA372040F04700F81074 /* Tmp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tmp;
 			sourceTree = "<group>";
 		};
 		22D4194B203EE59500674660 /* Models */ = {

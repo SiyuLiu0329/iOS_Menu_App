@@ -12,7 +12,7 @@ class OrderList {
     struct CurrentOrder {
         var items: [MenuItem] = []
         var tableNumber = 0
-        var orderTotal: Double = 0
+        var orderTotalPrice: Double = 0
     }
     
     var allOrders: [CurrentOrder] = []
@@ -27,7 +27,7 @@ class OrderList {
     func addItem(itemNumber number: Int) {
         guard let tmpItem = menuItems[number] else { return }
         currentOrder.items.append(tmpItem)
-        currentOrder.orderTotal += tmpItem.totalPrice
+        currentOrder.orderTotalPrice += tmpItem.totalPrice
         resetTamplateItem(itemNumber: number)
     }
     
@@ -45,12 +45,20 @@ class OrderList {
         return item.quantity
     }
     
+    
+    // current order functions
     func getItemsInCurrentOrder() -> [MenuItem] {
         return currentOrder.items
     }
     
-    func getTotalPrice() -> Double {
-        return currentOrder.orderTotal
+    func getTotalPriceOfCurrentOrder() -> Double {
+        return currentOrder.orderTotalPrice
+    }
+    
+    func removeItemInCurrentOrder(numbered number: Int) {
+        let priceToSubtract = currentOrder.items[number].totalPrice
+        currentOrder.items.remove(at: number)
+        currentOrder.orderTotalPrice -= priceToSubtract
     }
     
     
@@ -62,9 +70,9 @@ class OrderList {
         menuItems[itemNumber]!.options[optionNumber].value = !menuItems[itemNumber]!.options[optionNumber].value
         
         if menuItems[itemNumber]!.options[optionNumber].value == true {
-            menuItems[itemNumber]!.price += menuItems[itemNumber]!.options[optionNumber].price
+            menuItems[itemNumber]!.unitPrice += menuItems[itemNumber]!.options[optionNumber].price
         } else {
-            menuItems[itemNumber]!.price -= menuItems[itemNumber]!.options[optionNumber].price
+            menuItems[itemNumber]!.unitPrice -= menuItems[itemNumber]!.options[optionNumber].price
         }
     }
     

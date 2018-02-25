@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol SummaryViewControllerDelegate: class {
+    func updateNavBarPrice()
+}
+
 class SummaryTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var orderList: OrderList!
+    weak var delegate: SummaryViewControllerDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        preferredContentSize = CGSize(width: 500, height: 700)
         tableView.rowHeight = 60
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,7 +75,16 @@ class SummaryTableViewController: UIViewController, UITableViewDataSource, UITab
         cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size:20)
         return cell
     }
-
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.orderList.removeItemInCurrentOrder(numbered: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        if delegate != nil {
+            delegate!.updateNavBarPrice()
+        }
+    }
 }
 

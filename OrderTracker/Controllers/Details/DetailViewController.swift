@@ -9,21 +9,25 @@
 import UIKit
 
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, SummaryViewControllerDelegate {
 
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var totalPrice: UILabel!
-
+    @IBOutlet weak var rightNavBarItem: UIBarButtonItem!
+    
     var orderList: OrderList! {
-        willSet {
-            if totalPrice != nil {
-                totalPrice.text = "Total: " + twoDigitPriceText(of: newValue.getTotalPrice())
-            }
+        didSet {
+            updateNavBarPrice()
         }
+
+    }
+    
+    func updateNavBarPrice() {
+        guard orderList != nil else { return }
+        rightNavBarItem.title = twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())
     }
     
     private func twoDigitPriceText(of price: Double) -> String {
@@ -37,11 +41,12 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func refreshUI() {
+    private func refreshUI() {
         loadViewIfNeeded()
         guard let currentItem = item else { return }
         itemImage.image = UIImage(named: currentItem.imageURL)
-        navigationController?.navigationBar.topItem?.title = currentItem.name
+        navigationController?.navigationBar.topItem?.title = String(describing: currentItem.number) + ". " + currentItem.name
+        updateNavBarPrice()
         quantity.text = String(describing: currentItem.quantity)
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
         
@@ -60,6 +65,8 @@ class DetailViewController: UIViewController {
             guard let navController = segue.destination as? UINavigationController else { return }
             guard let summaryController = navController.viewControllers.first as? SummaryTableViewController else { return }
             summaryController.orderList = orderList
+            summaryController.delegate = self
+            
         }
     }
     
@@ -136,7 +143,6 @@ extension DetailViewController {
         orderList.resetTamplateItem(itemNumber: itemNumber!)
         item = orderList.getItem(numbered: itemNumber!)
         dimAllCells()
-        totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
     }
     
     @IBAction func btnIncrementQuantity(_ sender: Any) {
@@ -163,7 +169,7 @@ extension DetailViewController {
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
-        totalPrice.text = "Total: " + twoDigitPriceText(of: orderList.getTotalPrice())
+        updateNavBarPrice()
     }
 
 }

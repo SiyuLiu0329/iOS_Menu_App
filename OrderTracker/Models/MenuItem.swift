@@ -19,7 +19,7 @@ enum ItemType {
 
 struct MenuItem {
     var number: Int
-    var price: Double {
+    var unitPrice: Double {
         willSet {
             totalPrice = newValue * Double(quantity)
         }
@@ -32,7 +32,7 @@ struct MenuItem {
     
     var quantity: Int {
         willSet {
-            totalPrice = Double(newValue) * price
+            totalPrice = Double(newValue) * unitPrice
         }
     }
     
@@ -42,7 +42,7 @@ struct MenuItem {
     init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double, image imageName: String) {
         self.name = name
         self.number = number
-        self.price =  price
+        self.unitPrice =  price
         self.imageURL = imageName
         self.quantity = 0
         self.totalPrice = 0
