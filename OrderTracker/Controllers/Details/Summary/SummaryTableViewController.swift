@@ -13,23 +13,25 @@ protocol SummaryViewControllerDelegate: class {
 }
 
 class SummaryTableViewController: UIViewController {
-
+    private var expandedArr: [Bool]!
     var orderList: OrderList!
     weak var delegate: SummaryViewControllerDelegate?
-
+    var expanded = false
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSubmit: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredContentSize = CGSize(width: 500, height: 700)
-        tableView.rowHeight = 60
+//        tableView.rowHeight = 60
         tableView.delegate = self
         tableView.dataSource = self
         disableSubmitIfEmpty()
         updateLabelOnSubmitButton()
         btnSubmit.setTitle("Order is Empty", for: .disabled)
         addBlur()
+        
+        expandedArr = Array(repeating: false, count: orderList.getItemsInCurrentOrder().count)
 
     }
     
@@ -93,11 +95,11 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return orderList.getItemsInCurrentOrder().count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SummaryTableViewCell
 
         cell.textLabel?.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
@@ -118,11 +120,33 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
             tableView.deleteRows(at: [indexPath], with: .fade)
             disableSubmitIfEmpty()
             updateLabelOnSubmitButton()
+            expandedArr.remove(at: indexPath.row)
         }
         
         if delegate != nil {
             delegate!.updateNavBarPrice()
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if expandedArr[indexPath.row] == true {
+            return 250
+        } else {
+            return 60
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        for index in 0...expandedArr.count - 1 {
+            if index == indexPath.row {
+                expandedArr[index] = !expandedArr[index]
+            } else {
+                expandedArr[index] = false
+            }
+        }
+        print(expandedArr)
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
 
