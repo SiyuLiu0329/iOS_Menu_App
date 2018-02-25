@@ -73,7 +73,7 @@ extension SummaryTableViewController {
     }
     
     func updateLabelOnSubmitButton() {
-        let updatedText = "Submit(" + String(describing: twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())) + ")"
+        let updatedText = "Submit All (" + String(describing: twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())) + ")"
         btnSubmit.setTitle(updatedText, for: .normal)
     }
 }
@@ -98,7 +98,7 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SummaryTableViewCell
 
         cell.textLabel?.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
             orderList.getItemsInCurrentOrder()[indexPath.row].name
