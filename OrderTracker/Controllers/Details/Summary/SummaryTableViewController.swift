@@ -13,6 +13,9 @@ protocol SummaryViewControllerDelegate: class {
 }
 
 class SummaryTableViewController: UIViewController {
+    var defaultRowHeight: Int = 80
+    var expandedRowHeight: Int = 250
+    
     private var expandedArr: [Bool]!
     var orderList: OrderList!
     weak var delegate: SummaryViewControllerDelegate?
@@ -102,10 +105,10 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SummaryTableViewCell
 
-        cell.textLabel?.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
+        cell.title.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
             orderList.getItemsInCurrentOrder()[indexPath.row].name
         cell.backgroundColor = UIColor.clear
-        cell.textLabel?.textColor = UIColor.white
+        cell.title.textColor = UIColor.white
 
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
@@ -130,9 +133,9 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandedArr[indexPath.row] == true {
-            return 250
+            return CGFloat(expandedRowHeight)
         } else {
-            return 60
+            return CGFloat(defaultRowHeight)
         }
     }
 
@@ -144,7 +147,6 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
                 expandedArr[index] = false
             }
         }
-        print(expandedArr)
         tableView.beginUpdates()
         tableView.endUpdates()
     }
