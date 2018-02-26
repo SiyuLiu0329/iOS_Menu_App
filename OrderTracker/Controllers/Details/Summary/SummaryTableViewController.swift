@@ -117,25 +117,34 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
         cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size:20)
         
         if expanded[indexPath.row] {
-            cell.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+            cell.backgroundColor = UIColor(red: 50/255, green: 200/255, blue: 50/255, alpha: 1).withAlphaComponent(0.4)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.orderList.removeItemInCurrentOrder(numbered: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
             disableSubmitIfEmpty()
             updateLabelOnSubmitButton()
         }
-        
-        // if expanded, unexpand
         
         if delegate != nil {
             delegate!.updateNavBarPrice()
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            self.orderList.removeItemInCurrentOrder(numbered: indexPath.row)
+            self.expanded.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        return [delete]
+    }
+    
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expanded[indexPath.row] {

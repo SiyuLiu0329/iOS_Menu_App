@@ -284,10 +284,10 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="9Ke-xM-B4M" secondAttribute="trailing" id="Cnt-Tr-s8E"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="9Ke-xM-B4M" secondAttribute="bottom" id="PZe-6t-nLa"/>
-                                                <constraint firstItem="9Ke-xM-B4M" firstAttribute="top" secondItem="VUS-mt-epZ" secondAttribute="topMargin" id="Q3m-2r-3ZC"/>
-                                                <constraint firstItem="9Ke-xM-B4M" firstAttribute="leading" secondItem="VUS-mt-epZ" secondAttribute="leadingMargin" id="bTa-7A-rda"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9Ke-xM-B4M" secondAttribute="bottom" id="a81-Xb-z0t"/>
+                                                <constraint firstItem="9Ke-xM-B4M" firstAttribute="leading" secondItem="VUS-mt-epZ" secondAttribute="leadingMargin" id="d5O-JF-h1J"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9Ke-xM-B4M" secondAttribute="trailing" id="mjZ-vT-Q4Y"/>
+                                                <constraint firstItem="9Ke-xM-B4M" firstAttribute="top" secondItem="VUS-mt-epZ" secondAttribute="topMargin" id="u5H-d8-sk4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
