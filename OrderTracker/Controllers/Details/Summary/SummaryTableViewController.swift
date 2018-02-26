@@ -13,15 +13,20 @@ protocol SummaryViewControllerDelegate: class {
 }
 
 class SummaryTableViewController: UIViewController {
-    var defaultRowHeight: Int = 80
-    var expandedRowHeight: Int = 250
-    
-    private var expandedArr: [Bool]!
-    var orderList: OrderList!
+    var orderList: OrderList! {
+        didSet {
+            prepareDataForTableView()
+        }
+    }
+    var backgroundView = UIView()
     weak var delegate: SummaryViewControllerDelegate?
-    var expanded = false
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSubmit: UIButton!
+    private var expanded: [Bool]!
+
+    private func prepareDataForTableView() {
+        expanded = Array(repeating: false, count: orderList.getItemsInCurrentOrder().count)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,22 +38,24 @@ class SummaryTableViewController: UIViewController {
         updateLabelOnSubmitButton()
         btnSubmit.setTitle("Order is Empty", for: .disabled)
         addBlur()
-        
-        expandedArr = Array(repeating: false, count: orderList.getItemsInCurrentOrder().count)
 
     }
     
     private func addBlur() {
-
+        view.addSubview(backgroundView)
+        
+        backgroundView.center = view.center
+        backgroundView.backgroundColor = UIColor.black
+        backgroundView.frame = view.bounds
+        backgroundView.alpha = 0.65
+        
+        view.sendSubview(toBack: backgroundView)
         tableView.backgroundColor = UIColor.clear
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        tableView.backgroundView = blurEffectView
+
         if let popover = navigationController?.popoverPresentationController {
             popover.backgroundColor = UIColor.clear
         }
-        
-        view.backgroundColor = UIColor.clear
+
         tableView.separatorColor = UIColor.clear
         navigationController?.navigationBar.barTintColor = UIColor.clear
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -109,11 +116,16 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
             orderList.getItemsInCurrentOrder()[indexPath.row].name
         cell.backgroundColor = UIColor.clear
         cell.title.textColor = UIColor.white
+        
 
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
         cell.selectedBackgroundView = bgColorView
         cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size:20)
+        
+        if expanded[indexPath.row] {
+            cell.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+        }
         return cell
     }
     
@@ -123,8 +135,9 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
             tableView.deleteRows(at: [indexPath], with: .fade)
             disableSubmitIfEmpty()
             updateLabelOnSubmitButton()
-            expandedArr.remove(at: indexPath.row)
         }
+        
+        // if expanded, unexpand
         
         if delegate != nil {
             delegate!.updateNavBarPrice()
@@ -132,22 +145,19 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if expandedArr[indexPath.row] == true {
-            return CGFloat(expandedRowHeight)
-        } else {
-            return CGFloat(defaultRowHeight)
+        if expanded[indexPath.row] {
+            return 250
         }
+        
+        return 60
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        for index in 0...expandedArr.count - 1 {
-            if index == indexPath.row {
-                expandedArr[index] = !expandedArr[index]
-            } else {
-                expandedArr[index] = false
-            }
-        }
+        expanded[indexPath.row] = !expanded[indexPath.row]
+    
         tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         tableView.endUpdates()
     }
 }
