@@ -18,7 +18,7 @@ class SummaryTableViewController: UIViewController {
             prepareDataForTableView()
         }
     }
-    var backgroundView = UIView()
+    
     weak var delegate: SummaryViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSubmit: UIButton!
@@ -42,15 +42,8 @@ class SummaryTableViewController: UIViewController {
     }
     
     private func addBlur() {
-        view.addSubview(backgroundView)
-        
-        backgroundView.center = view.center
-        backgroundView.backgroundColor = UIColor.black
-        backgroundView.frame = view.bounds
-        backgroundView.alpha = 0.65
-        
-        view.sendSubview(toBack: backgroundView)
         tableView.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
 
         if let popover = navigationController?.popoverPresentationController {
             popover.backgroundColor = UIColor.clear

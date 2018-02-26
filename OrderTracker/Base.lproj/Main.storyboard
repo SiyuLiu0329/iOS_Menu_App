@@ -269,14 +269,14 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sCell" rowHeight="248" id="PWW-qL-H01" customClass="SummaryTableViewCell" customModule="OrderTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sCell" rowHeight="248" id="PWW-qL-H01" customClass="SummaryTableViewCell" customModule="OrderTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="248"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PWW-qL-H01" id="VUS-mt-epZ">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PWW-qL-H01" id="VUS-mt-epZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="247.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ke-xM-B4M">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ke-xM-B4M">
                                                     <rect key="frame" x="15" y="11" width="345" height="226"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
@@ -287,7 +287,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="9Ke-xM-B4M" secondAttribute="trailing" id="Cnt-Tr-s8E"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="9Ke-xM-B4M" secondAttribute="bottom" id="PZe-6t-nLa"/>
                                                 <constraint firstItem="9Ke-xM-B4M" firstAttribute="top" secondItem="VUS-mt-epZ" secondAttribute="topMargin" id="Q3m-2r-3ZC"/>
-                                                <constraint firstItem="9Ke-xM-B4M" firstAttribute="leading" secondItem="VUS-mt-epZ" secondAttribute="leadingMargin" id="kXn-60-yVm"/>
+                                                <constraint firstItem="9Ke-xM-B4M" firstAttribute="leading" secondItem="VUS-mt-epZ" secondAttribute="leadingMargin" id="bTa-7A-rda"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
