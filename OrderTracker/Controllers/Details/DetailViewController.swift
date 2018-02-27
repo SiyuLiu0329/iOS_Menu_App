@@ -63,7 +63,7 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueSummary" {
             guard let navController = segue.destination as? UINavigationController else { return }
-            guard let summaryController = navController.viewControllers.first as? SummaryTableViewController else { return }
+            guard let summaryController = navController.viewControllers.first as? SummaryViewController else { return }
             summaryController.orderList = orderList
             summaryController.delegate = self
             
