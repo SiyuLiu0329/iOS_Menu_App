@@ -101,34 +101,47 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        if expanded[indexPath.row] {
+            return createExpandedCell(atIndexPath: indexPath)
+        } else {
+            return createContractedCell(atIndexPath: indexPath)
+        }
+    }
+    
+    private func createExpandedCell(atIndexPath indexPath: IndexPath) -> SummaryExpandedTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "seCell", for: indexPath) as! SummaryExpandedTableViewCell
+        cell.backgroundColor = UIColor.clear
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
+        cell.selectedBackgroundView = bgColorView
+        cell.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
+        return cell
+    }
+    
+    private func createContractedCell(atIndexPath indexPath: IndexPath) -> SummaryTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SummaryTableViewCell
-
+        
         cell.title.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
             orderList.getItemsInCurrentOrder()[indexPath.row].name
         cell.backgroundColor = UIColor.clear
         cell.title.textColor = UIColor.white
         
-
         let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
         cell.selectedBackgroundView = bgColorView
-        cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size:20)
-        
-        if expanded[indexPath.row] {
-            cell.backgroundColor = UIColor(red: 50/255, green: 200/255, blue: 50/255, alpha: 1).withAlphaComponent(0.4)
-        }
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
             self.orderList.removeItemInCurrentOrder(numbered: indexPath.row)
             self.expanded.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.disableSubmitIfEmpty()
             self.updateLabelOnSubmitButton()
+            
             if self.delegate != nil {
                 self.delegate!.updateNavBarPrice()
             }
@@ -149,8 +162,8 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
         expanded[indexPath.row] = !expanded[indexPath.row]
     
         tableView.beginUpdates()
-        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-        tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
+        tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.left)
         tableView.endUpdates()
     }
 }
