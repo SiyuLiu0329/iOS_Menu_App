@@ -90,7 +90,6 @@ extension SummaryTableViewController {
 }
     
 extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -107,31 +106,6 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
             return createContractedCell(atIndexPath: indexPath)
         }
     }
-    
-    private func createExpandedCell(atIndexPath indexPath: IndexPath) -> SummaryExpandedTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "seCell", for: indexPath) as! SummaryExpandedTableViewCell
-        cell.backgroundColor = UIColor.clear
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
-        cell.selectedBackgroundView = bgColorView
-        cell.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
-        return cell
-    }
-    
-    private func createContractedCell(atIndexPath indexPath: IndexPath) -> SummaryTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SummaryTableViewCell
-        
-        cell.title.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
-            orderList.getItemsInCurrentOrder()[indexPath.row].name
-        cell.backgroundColor = UIColor.clear
-        cell.title.textColor = UIColor.white
-        
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
-        cell.selectedBackgroundView = bgColorView
-        return cell
-    }
-    
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
@@ -165,6 +139,32 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
         tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
         tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.left)
         tableView.endUpdates()
+    }
+    
+    // table view delegate utils
+    private func createExpandedCell(atIndexPath indexPath: IndexPath) -> SummaryExpandedTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "seCell", for: indexPath) as! SummaryExpandedTableViewCell
+        cell.backgroundColor = UIColor.clear
+
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
+        cell.selectedBackgroundView = bgColorView
+        cell.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
+        return cell
+    }
+    
+    private func createContractedCell(atIndexPath indexPath: IndexPath) -> SummaryTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SummaryTableViewCell
+        
+        cell.title.text = String(describing: orderList.getItemsInCurrentOrder()[indexPath.row].quantity) + " X " +
+            orderList.getItemsInCurrentOrder()[indexPath.row].name
+        cell.backgroundColor = UIColor.clear
+        cell.title.textColor = UIColor.white
+
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
+        cell.selectedBackgroundView = bgColorView
+        return cell
     }
 }
 

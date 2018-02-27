@@ -157,8 +157,8 @@
 		222AEA35204044B300F81074 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				221735FF204292A8006170F8 /* Summary */,
 				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
+				221735FF204292A8006170F8 /* Summary */,
 				223572BE203E9ACB000C42FD /* CollectionViewCell.swift */,
 			);
 			path = Details;

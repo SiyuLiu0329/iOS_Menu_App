@@ -9,6 +9,7 @@
 import UIKit
 
 class SummaryTableViewCell: UITableViewCell {
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -276,7 +276,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ke-xM-B4M">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ke-xM-B4M">
                                                     <rect key="frame" x="15" y="11" width="345" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
@@ -294,11 +294,11 @@
                                             <outlet property="title" destination="9Ke-xM-B4M" id="Bg8-Vt-Oue"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="seCell" rowHeight="118" id="zRR-VU-fvJ" customClass="SummaryExpandedTableViewCell" customModule="OrderTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="94" width="375" height="118"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="seCell" rowHeight="351" id="zRR-VU-fvJ" customClass="SummaryExpandedTableViewCell" customModule="OrderTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="94" width="375" height="351"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zRR-VU-fvJ" id="WGO-2V-niw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="117.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="350.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -343,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-qd-u5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1501.7578125" y="861.71875"/>
+            <point key="canvasLocation" x="1482.421875" y="861.71875"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="XSQ-jd-nL9">

@@ -9,7 +9,10 @@
 import UIKit
 
 class SummaryExpandedTableViewCell: UITableViewCell {
+    @IBOutlet weak var orderNumberLabel: UILabel!
+    
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
