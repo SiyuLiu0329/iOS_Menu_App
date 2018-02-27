@@ -31,7 +31,6 @@ class SummaryTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredContentSize = CGSize(width: 500, height: 700)
-//        tableView.rowHeight = 60
         tableView.delegate = self
         tableView.dataSource = self
         disableSubmitIfEmpty()
@@ -122,24 +121,17 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            disableSubmitIfEmpty()
-            updateLabelOnSubmitButton()
-        }
-        
-        if delegate != nil {
-            delegate!.updateNavBarPrice()
-        }
-    }
-    
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
             self.orderList.removeItemInCurrentOrder(numbered: indexPath.row)
             self.expanded.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            self.disableSubmitIfEmpty()
+            self.updateLabelOnSubmitButton()
+            if self.delegate != nil {
+                self.delegate!.updateNavBarPrice()
+            }
         }
         
         return [delete]
@@ -150,7 +142,6 @@ extension SummaryTableViewController: UITableViewDataSource, UITableViewDelegate
         if expanded[indexPath.row] {
             return 250
         }
-        
         return 60
     }
 

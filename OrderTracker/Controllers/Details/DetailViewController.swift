@@ -89,8 +89,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.delegate = self
             cell.toggleState = currentItem.options[indexPath.row].value
         }
-        
-        
         return cell
     }
     
