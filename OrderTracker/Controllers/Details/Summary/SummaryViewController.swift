@@ -24,7 +24,7 @@ class SummaryViewController: UIViewController {
     
     weak var delegate: SummaryViewControllerDelegate?
     private var expanded: [Bool]!
-    var panGestureRecogniser: UIPanGestureRecognizer!
+    
     
     private func prepareDataForTableView() {
         expanded = Array(repeating: false, count: orderList.getItemsInCurrentOrder().count)
@@ -37,7 +37,6 @@ class SummaryViewController: UIViewController {
         disableSubmitIfEmpty()
         updateLabelOnSubmitButton()
         btnSubmit.setTitle("Order is Empty", for: .disabled)
-        addGuestureRecogniser()
         addBlur()
 
     }
@@ -57,42 +56,6 @@ class SummaryViewController: UIViewController {
     }
 }
 
-extension SummaryViewController: UIGestureRecognizerDelegate {
-    private func addGuestureRecogniser() {
-        panGestureRecogniser = UIPanGestureRecognizer(target: self, action: #selector(self.panCell(_:)))
-        panGestureRecogniser.delegate = self
-        summaryCollectionView.addGestureRecognizer(panGestureRecogniser)
-    }
-    
-    @objc private func panCell(_ recogniser: UIPanGestureRecognizer) {
-        guard recogniser == self.panGestureRecogniser else { return }
-        let point = panGestureRecogniser.location(in: summaryCollectionView)
-        guard let indexPath = summaryCollectionView.indexPathForItem(at: point) else { return }
-        guard let cell = summaryCollectionView.cellForItem(at: indexPath) as? SummaryCollectionViewCell else { return }
-        
-        if panGestureRecogniser.state == UIGestureRecognizerState.began {
-
-        } else if panGestureRecogniser.state == UIGestureRecognizerState.changed {
-            let translation = panGestureRecogniser.translation(in: summaryCollectionView)
-            cell.center.x += translation.x
-//            print(translation)
-            print(cell.originalCentre)
-            panGestureRecogniser.setTranslation(CGPoint.zero, in: summaryCollectionView)
-            
-        } else {
-            if abs(panGestureRecogniser.velocity(in: summaryCollectionView).x) > 500 {
-                
-            } else {
-                UIView.animate(withDuration: 0.2, animations: {
-                    cell.setNeedsLayout()
-                    cell.layoutIfNeeded()
-                })
-            }
-        }
-
-        
-    }
-}
 
 extension SummaryViewController {
     // submit button functions
@@ -146,7 +109,7 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
 
         let cell = summaryCollectionView.dequeueReusableCell(withReuseIdentifier: "sCell", for: indexPath) as! SummaryCollectionViewCell
         cell.setUpCell()
-
+        cell.delegate = self
         return cell
     }
     
@@ -158,6 +121,19 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return 20
     }
     
+}
+
+extension SummaryViewController: SummaryCellDelegate {
+    
+    func deleteItemAt(_ cell: SummaryCollectionViewCell) {
+        if let indexPath = summaryCollectionView.indexPath(for: cell) {
+            orderList.removeItemInCurrentOrder(numbered: indexPath.row)
+            summaryCollectionView.deleteItems(at: [indexPath])
+            summaryCollectionView.reloadData()
+            updateLabelOnSubmitButton()
+            disableSubmitIfEmpty()
+        }
+    }
 }
 
 
