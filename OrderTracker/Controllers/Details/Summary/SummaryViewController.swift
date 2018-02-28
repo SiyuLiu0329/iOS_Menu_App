@@ -20,11 +20,12 @@ class SummaryViewController: UIViewController {
     }
     
     @IBOutlet weak var summaryCollectionView: UICollectionView!
-    weak var delegate: SummaryViewControllerDelegate?
-
     @IBOutlet weak var btnSubmit: UIButton!
+    
+    weak var delegate: SummaryViewControllerDelegate?
     private var expanded: [Bool]!
-
+    var panGestureRecogniser: UIPanGestureRecognizer!
+    
     private func prepareDataForTableView() {
         expanded = Array(repeating: false, count: orderList.getItemsInCurrentOrder().count)
     }
@@ -36,6 +37,7 @@ class SummaryViewController: UIViewController {
         disableSubmitIfEmpty()
         updateLabelOnSubmitButton()
         btnSubmit.setTitle("Order is Empty", for: .disabled)
+        addGuestureRecogniser()
         addBlur()
 
     }
@@ -52,6 +54,43 @@ class SummaryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.clear
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Order Summary"
+    }
+}
+
+extension SummaryViewController: UIGestureRecognizerDelegate {
+    private func addGuestureRecogniser() {
+        panGestureRecogniser = UIPanGestureRecognizer(target: self, action: #selector(self.panCell(_:)))
+        panGestureRecogniser.delegate = self
+        summaryCollectionView.addGestureRecognizer(panGestureRecogniser)
+    }
+    
+    @objc private func panCell(_ recogniser: UIPanGestureRecognizer) {
+        guard recogniser == self.panGestureRecogniser else { return }
+        let point = panGestureRecogniser.location(in: summaryCollectionView)
+        guard let indexPath = summaryCollectionView.indexPathForItem(at: point) else { return }
+        guard let cell = summaryCollectionView.cellForItem(at: indexPath) as? SummaryCollectionViewCell else { return }
+        
+        if panGestureRecogniser.state == UIGestureRecognizerState.began {
+
+        } else if panGestureRecogniser.state == UIGestureRecognizerState.changed {
+            let translation = panGestureRecogniser.translation(in: summaryCollectionView)
+            cell.center.x += translation.x
+//            print(translation)
+            print(cell.originalCentre)
+            panGestureRecogniser.setTranslation(CGPoint.zero, in: summaryCollectionView)
+            
+        } else {
+            if abs(panGestureRecogniser.velocity(in: summaryCollectionView).x) > 500 {
+                
+            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    cell.setNeedsLayout()
+                    cell.layoutIfNeeded()
+                })
+            }
+        }
+
+        
     }
 }
 
@@ -106,11 +145,8 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = summaryCollectionView.dequeueReusableCell(withReuseIdentifier: "sCell", for: indexPath) as! SummaryCollectionViewCell
-        cell.backgroundColor = UIColor.white
         cell.setUpCell()
-//        let bgColorView = UIView()
-//        bgColorView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
-//        cell.selectedBackgroundView = bgColorView
+
         return cell
     }
     
@@ -123,4 +159,5 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     }
     
 }
+
 

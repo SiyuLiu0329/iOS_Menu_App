@@ -235,7 +235,7 @@
                         <viewLayoutGuide key="safeArea" id="4gm-LM-8Va"/>
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="PpN-QA-xH1">
+                        <barButtonItem key="rightBarButtonItem" title="Order Summary" id="PpN-QA-xH1">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <segue destination="C3r-e8-Mu4" kind="popoverPresentation" identifier="segueSummary" popoverAnchorBarButtonItem="PpN-QA-xH1" id="WMT-oQ-ICW">

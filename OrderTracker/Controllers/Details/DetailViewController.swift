@@ -27,7 +27,7 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
     
     func updateNavBarPrice() {
         guard orderList != nil else { return }
-        rightNavBarItem.title = twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())
+        // update labels if needed
     }
     
     private func twoDigitPriceText(of price: Double) -> String {

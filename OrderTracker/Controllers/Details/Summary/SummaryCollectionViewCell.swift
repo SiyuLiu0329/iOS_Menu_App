@@ -9,9 +9,16 @@
 import UIKit
 
 class SummaryCollectionViewCell: UICollectionViewCell {
+    var deleteLabel1: UILabel!
+    var deleteLabel2: UILabel!
+    var cellLabel: UILabel!
+    var originalCentre: CGPoint!
     
     func setUpCell() {
-        layer.cornerRadius = 10
+        originalCentre = center
+        layer.cornerRadius = 20
         layer.masksToBounds = true
+        backgroundColor = UIColor.white
     }
+    
 }
