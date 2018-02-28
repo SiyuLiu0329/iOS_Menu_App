@@ -22,7 +22,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var summaryCollectionView: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
     private var panRecogniser: UIPanGestureRecognizer!
-    
+
     weak var delegate: SummaryViewControllerDelegate?
     private var expanded: [Bool]!
     private var displacement: CGFloat!
@@ -138,23 +138,28 @@ extension SummaryViewController: UIGestureRecognizerDelegate {
         guard let indexPath = summaryCollectionView.indexPathForItem(at: point) else { return }
         guard let cell = summaryCollectionView.cellForItem(at: indexPath) as? SummaryCollectionViewCell else { return }
         
-        print(recogniser.state.rawValue)
         switch recogniser.state {
         case .changed:
             let translation = recogniser.translation(in: summaryCollectionView)
             let width = cell.frame.width
             let height = cell.frame.height
             displacement = cell.deleteLabel.center.x - cell.originalCentreX
-            print(displacement)
             if displacement < -300 {
+                cell.delete = true
                 UIView.animate(withDuration: 0.2, animations: {
                     cell.deleteLabel.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
                 })
+                
             } else {
                 cell.deleteLabel.frame = CGRect(x: width + translation.x, y: 0, width: width, height: height)
+                cell.delete = false
             }
             break
         case .ended:
+            if cell.delete == true {
+                removeItemAt(indexPath)
+                break
+            }
             UIView.animate(withDuration: 0.2, animations: {
                 cell.deleteLabel.frame = CGRect(x: cell.frame.width, y: 0, width: cell.frame.width, height: cell.frame.height)
             })
@@ -166,6 +171,11 @@ extension SummaryViewController: UIGestureRecognizerDelegate {
                 cell.deleteLabel.frame = CGRect(x: cell.frame.width, y: 0, width: cell.frame.width, height: cell.frame.height)
             })
         }
+    }
+    
+    private func removeItemAt(_ indexPath: IndexPath) {
+        orderList.removeItemInCurrentOrder(numbered: indexPath.row)
+        summaryCollectionView.deleteItems(at: [indexPath])
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {

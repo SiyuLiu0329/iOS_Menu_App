@@ -12,6 +12,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     var originalCentreX: CGFloat!
     var panGestureRecogniser: UIPanGestureRecognizer!
     var deleteThreashold: CGFloat = 300
+    var delete = false
     
     @IBOutlet weak var deleteLabel: UILabel!
     func setUpCell() {
