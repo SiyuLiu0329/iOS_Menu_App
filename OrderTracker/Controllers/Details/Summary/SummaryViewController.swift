@@ -129,11 +129,13 @@ extension SummaryViewController: SummaryCellDelegate {
         if let indexPath = summaryCollectionView.indexPath(for: cell) {
             orderList.removeItemInCurrentOrder(numbered: indexPath.row)
             summaryCollectionView.deleteItems(at: [indexPath])
-            summaryCollectionView.reloadData()
             updateLabelOnSubmitButton()
             disableSubmitIfEmpty()
         }
     }
+    
+    
 }
+
 
 

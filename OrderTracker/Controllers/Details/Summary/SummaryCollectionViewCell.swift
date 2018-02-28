@@ -14,13 +14,13 @@ protocol SummaryCellDelegate: class {
 
 class SummaryCollectionViewCell: UICollectionViewCell {
     weak var delegate: SummaryCellDelegate?
-    var deleteLabel1: UILabel!
-    var deleteLabel2: UILabel!
-    var cellLabel: UILabel!
     private var displacement: CGFloat = 0
     var originalCentreX: CGFloat!
     var panGestureRecogniser: UIPanGestureRecognizer!
+    
+    @IBOutlet weak var deleteLabel: UILabel!
     func setUpCell() {
+        deleteLabel.alpha = 0
         originalCentreX = center.x
         layer.cornerRadius = 20
         layer.masksToBounds = true
@@ -45,7 +45,6 @@ extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
     
     @objc private func panCell(_ recogniser: UIPanGestureRecognizer) {
         guard recogniser == self.panGestureRecogniser else { return }
-        print(panGestureRecogniser.state.rawValue)
         switch panGestureRecogniser.state {
         case .began:
             break
@@ -56,20 +55,23 @@ extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
             } else {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.center.x = self.originalCentreX
+                    self.deleteLabel.alpha = 0
                 })
             }
             break
         case .changed:
             let translation = panGestureRecogniser.translation(in: self)
             center.x += translation.x
-            //            print(translation)
             displacement = center.x - originalCentreX
             panGestureRecogniser.setTranslation(CGPoint.zero, in: self)
+            deleteLabel.alpha = min(1, abs(displacement/250))
             break
         default:
             UIView.animate(withDuration: 0.2, animations: {
                 self.center.x = self.originalCentreX
+                self.deleteLabel.alpha = 0
             })
+            break
         }
     }
 }
