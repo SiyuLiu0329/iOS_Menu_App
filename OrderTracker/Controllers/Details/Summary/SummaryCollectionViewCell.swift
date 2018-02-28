@@ -17,9 +17,11 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     private var displacement: CGFloat = 0
     var originalCentreX: CGFloat!
     var panGestureRecogniser: UIPanGestureRecognizer!
+    var deleteThreashold: CGFloat = 300
     
     @IBOutlet weak var deleteLabel: UILabel!
     func setUpCell() {
+        deleteLabel.backgroundColor = UIColor.gray
         deleteLabel.alpha = 0
         originalCentreX = center.x
         layer.cornerRadius = 20
@@ -50,7 +52,7 @@ extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
             break
             
         case .ended:
-            if abs(displacement) > 400 && delegate != nil {
+            if abs(displacement) > deleteThreashold && delegate != nil {
                 delegate!.deleteItemAt(self)
             } else {
                 UIView.animate(withDuration: 0.2, animations: {
@@ -65,6 +67,11 @@ extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
             displacement = center.x - originalCentreX
             panGestureRecogniser.setTranslation(CGPoint.zero, in: self)
             deleteLabel.alpha = min(1, abs(displacement/250))
+            if abs(displacement) > deleteThreashold {
+                deleteLabel.backgroundColor = UIColor.red
+            } else  {
+                deleteLabel.backgroundColor = UIColor.gray
+            }
             break
         default:
             UIView.animate(withDuration: 0.2, animations: {
