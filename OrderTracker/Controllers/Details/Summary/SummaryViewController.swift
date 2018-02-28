@@ -21,9 +21,11 @@ class SummaryViewController: UIViewController {
     
     @IBOutlet weak var summaryCollectionView: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
+    private var panRecogniser: UIPanGestureRecognizer!
     
     weak var delegate: SummaryViewControllerDelegate?
     private var expanded: [Bool]!
+    private var displacement: CGFloat!
     
     
     private func prepareDataForTableView() {
@@ -37,6 +39,7 @@ class SummaryViewController: UIViewController {
         disableSubmitIfEmpty()
         updateLabelOnSubmitButton()
         btnSubmit.setTitle("Order is Empty", for: .disabled)
+        setUpPanRecogniser()
         addBlur()
 
     }
@@ -109,7 +112,6 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
 
         let cell = summaryCollectionView.dequeueReusableCell(withReuseIdentifier: "sCell", for: indexPath) as! SummaryCollectionViewCell
         cell.setUpCell()
-        cell.delegate = self
         return cell
     }
     
@@ -123,17 +125,52 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     
 }
 
-extension SummaryViewController: SummaryCellDelegate {
+extension SummaryViewController: UIGestureRecognizerDelegate {
+    private func setUpPanRecogniser() {
+        panRecogniser = UIPanGestureRecognizer(target: self, action: #selector(self.pan(_:)))
+        panRecogniser.delegate = self
+        summaryCollectionView.addGestureRecognizer(panRecogniser)
+    }
     
-    func deleteItemAt(_ cell: SummaryCollectionViewCell) {
-        if let indexPath = summaryCollectionView.indexPath(for: cell) {
-            orderList.removeItemInCurrentOrder(numbered: indexPath.row)
-            summaryCollectionView.deleteItems(at: [indexPath])
-            updateLabelOnSubmitButton()
-            disableSubmitIfEmpty()
+    @objc private func pan(_ recogniser: UIPanGestureRecognizer) {
+        guard recogniser == panRecogniser else { return }
+        let point = recogniser.location(in: summaryCollectionView)
+        guard let indexPath = summaryCollectionView.indexPathForItem(at: point) else { return }
+        guard let cell = summaryCollectionView.cellForItem(at: indexPath) as? SummaryCollectionViewCell else { return }
+        
+        print(recogniser.state.rawValue)
+        switch recogniser.state {
+        case .changed:
+            let translation = recogniser.translation(in: summaryCollectionView)
+            let width = cell.frame.width
+            let height = cell.frame.height
+            displacement = cell.deleteLabel.center.x - cell.originalCentreX
+            print(displacement)
+            if displacement < -300 {
+                UIView.animate(withDuration: 0.2, animations: {
+                    cell.deleteLabel.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
+                })
+            } else {
+                cell.deleteLabel.frame = CGRect(x: width + translation.x, y: 0, width: width, height: height)
+            }
+            break
+        case .ended:
+            UIView.animate(withDuration: 0.2, animations: {
+                cell.deleteLabel.frame = CGRect(x: cell.frame.width, y: 0, width: cell.frame.width, height: cell.frame.height)
+            })
+            break
+        case .began:
+            break
+        default:
+            UIView.animate(withDuration: 0.2, animations: {
+                cell.deleteLabel.frame = CGRect(x: cell.frame.width, y: 0, width: cell.frame.width, height: cell.frame.height)
+            })
         }
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
 }
 
