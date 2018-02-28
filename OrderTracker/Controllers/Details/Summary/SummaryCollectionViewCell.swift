@@ -8,11 +8,18 @@
 
 import UIKit
 
+protocol SummaryCellDelegate: class {
+    func removeItemAt(_ cell: SummaryCollectionViewCell)
+}
+
 class SummaryCollectionViewCell: UICollectionViewCell {
     var originalCentreX: CGFloat!
     var panGestureRecogniser: UIPanGestureRecognizer!
     var deleteThreashold: CGFloat = 300
     var delete = false
+    private var displacement: CGFloat!
+    var panRecogniser: UIPanGestureRecognizer!
+    weak var delegate: SummaryCellDelegate?
     
     @IBOutlet weak var deleteLabel: UILabel!
     func setUpCell() {
@@ -22,58 +29,66 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 20
         layer.masksToBounds = true
         backgroundColor = UIColor.white
+        addGuestureRecogniser()
         
     }
     
 }
 
-//extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
-//    private func addGuestureRecogniser() {
-//        panGestureRecogniser = UIPanGestureRecognizer(target: self, action: #selector(self.panCell(_:)))
-//        panGestureRecogniser.delegate = self
-//        addGestureRecognizer(panGestureRecogniser)
-//    }
-//
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-//
-//
-//    @objc private func panCell(_ recogniser: UIPanGestureRecognizer) {
-//        guard recogniser == self.panGestureRecogniser else { return }
-//        switch panGestureRecogniser.state {
-//        case .began:
-//            break
-//
-//        case .ended:
-//            if abs(displacement) > deleteThreashold && delegate != nil {
-//                delegate!.deleteItemAt(self)
-//            } else {
-//                UIView.animate(withDuration: 0.2, animations: {
-//                    self.center.x = self.originalCentreX
-//                    self.deleteLabel.alpha = 0
-//                })
-//            }
-//            break
-//        case .changed:
-//            let translation = panGestureRecogniser.translation(in: self)
-//            center.x += translation.x
-//            displacement = center.x - originalCentreX
-//            panGestureRecogniser.setTranslation(CGPoint.zero, in: self)
-//            deleteLabel.alpha = min(1, abs(displacement/250))
-//            if abs(displacement) > deleteThreashold {
-//                deleteLabel.backgroundColor = UIColor.red
-//            } else  {
-//                deleteLabel.backgroundColor = UIColor.gray
-//            }
-//            break
-//        default:
-//            UIView.animate(withDuration: 0.2, animations: {
-//                self.center.x = self.originalCentreX
-//                self.deleteLabel.alpha = 0
-//            })
-//            break
-//        }
-//    }
-//}
+extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
+    private func addGuestureRecogniser() {
+        panGestureRecogniser = UIPanGestureRecognizer(target: self, action: #selector(self.panCell(_:)))
+        panGestureRecogniser.delegate = self
+        addGestureRecognizer(panGestureRecogniser)
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+
+    @objc private func panCell(_ recogniser: UIPanGestureRecognizer) {
+        guard recogniser == self.panGestureRecogniser else { return }
+        switch panGestureRecogniser.state {
+        case .began:
+            break
+
+        case .ended:
+            if delete == true {
+                guard delegate != nil else { return }
+                delegate!.removeItemAt(self)
+            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.deleteLabel.frame = CGRect(x: self.frame.width, y: 0, width: self.frame.width, height: self.frame.height)
+                })
+            }
+            break
+        case .changed:
+            let translation = recogniser.translation(in: self)
+            let width = frame.width
+            let height = frame.height
+            displacement = deleteLabel.center.x - originalCentreX
+            if displacement < -300 {
+                delete = true
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.deleteLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                })
+                
+            } else {
+                deleteLabel.frame = CGRect(x: width + translation.x, y: 0, width: width, height: height)
+                delete = false
+            }
+            break
+        default:
+            UIView.animate(withDuration: 0.2, animations: {
+                self.deleteLabel.frame = CGRect(x: self.frame.width, y: 0, width: self.frame.width, height: self.frame.height)
+            })
+        }
+    }
+}
+
+
+
+
+
 
