@@ -22,10 +22,8 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     weak var delegate: SummaryCellDelegate?
     var deleteThreashold: CGFloat = -250
     private let optionSize = 32
-    
     private var deleteLabel = UILabel()
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var submitItemButton: UIButton!
     @IBOutlet weak var priceNumber: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
@@ -33,6 +31,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     var menuItem: MenuItem! {
         willSet {
             scrollView.subviews.forEach { $0.removeFromSuperview() }
+
             var i = 0
             for option in newValue.options {
                 if option.value {
@@ -46,14 +45,28 @@ class SummaryCollectionViewCell: UICollectionViewCell {
                     i += 1
                 }
             }
-            scrollView.contentSize.height = CGFloat(optionSize * (i + 1))
+            
+            if i == 0 {
+                let label = UILabel()
+                label.font = label.font.withSize(60)
+                label.text = "N/A"
+                label.textColor = UIColor.lightGray
+                let yPosition = 0
+                label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: 80)
+                scrollView.addSubview(label)
+                scrollView.contentSize.height = 80
+            } else {
+                scrollView.contentSize.height = CGFloat(optionSize * (i + 1))
+            }
         }
         
         didSet {
             setUpCell()
             loadCellData()
+            setCellColour(withSeed: menuItem.number)
         }
     }
+    
     
     private func setUpCell() {
         
@@ -82,7 +95,6 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         priceNumber.text = "$\(menuItem.totalPrice)"
         quantityLabel.text = "X\(menuItem.quantity)"
         itemNumberLabel.text = "#\(menuItem.number)"
-        setCellColour(withSeed: menuItem.number)
         
     }
     
@@ -99,10 +111,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         }
         
         colourView.backgroundColor = colour
-        submitItemButton.titleLabel?.textColor = colour
-        
     }
-    
 }
 
 extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
