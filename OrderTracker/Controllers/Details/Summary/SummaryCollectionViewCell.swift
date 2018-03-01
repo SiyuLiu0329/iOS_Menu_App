@@ -13,41 +13,64 @@ protocol SummaryCellDelegate: class {
 }
 
 class SummaryCollectionViewCell: UICollectionViewCell {
-    var originalCentreX: CGFloat!
-    var panGestureRecogniser: UIPanGestureRecognizer!
-    var deleteThreashold: CGFloat = -250
-    var delete = false
+    private var originalCentreX: CGFloat!
+    private var panGestureRecogniser: UIPanGestureRecognizer!
+    private var delete = false
     private var displacement: CGFloat!
-    var menuItem: MenuItem!
-    var panRecogniser: UIPanGestureRecognizer!
+    private var panRecogniser: UIPanGestureRecognizer!
+    private let colourView = UIView()
     weak var delegate: SummaryCellDelegate?
-    let colourView = UIView()
-
+    var deleteThreashold: CGFloat = -250
+    
+    private var deleteLabel = UILabel()
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var priceNumber: UILabel!
-    @IBOutlet weak var deleteLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
     
+    var menuItem: MenuItem! {
+        willSet {
+            var i = 0
+            for option in newValue.options {
+                if option.value {
+                    let label = UILabel()
+                    label.font = label.font.withSize(20)
+                    label.text = "\(i + 1). " + option.description
+                    let yPosition = i * 32
+                    label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: 32)
+                    
+                    scrollView.addSubview(label)
+                    i += 1
+                }
+            }
+            scrollView.contentSize.height = 32 * CGFloat(i + 1)
+        }
+    }
+    
     func setUpCell() {
-        
-        contentView.addSubview(colourView)
+
         colourView.frame = CGRect(x: 0, y: 0, width: 120, height: frame.height)
+        contentView.addSubview(colourView)
+        setUpDeleteLabel()
         contentView.sendSubview(toBack: colourView)
-        contentView.bringSubview(toFront: deleteLabel)
-        
-        deleteLabel.frame = CGRect(x: frame.width, y: 0, width: frame.width, height: frame.height)
-        deleteLabel.backgroundColor = UIColor.red
         originalCentreX = deleteLabel.center.x
         layer.cornerRadius = 20
         layer.masksToBounds = true
         backgroundColor = UIColor.white
         addGuestureRecogniser()
-
-        
+    }
+    
+    private func setUpDeleteLabel() {
+        deleteLabel.text = "Delete"
+        deleteLabel.backgroundColor = UIColor.red
+        deleteLabel.textAlignment = NSTextAlignment.center
+        deleteLabel.textColor = UIColor.white
+        deleteLabel.frame = CGRect(x: frame.width, y: 0, width: frame.width, height: frame.height)
+        deleteLabel.backgroundColor = UIColor.red
+        contentView.addSubview(deleteLabel)
     }
     
     func loadCellData() {
-        
         priceNumber.text = "$\(menuItem.totalPrice)"
         quantityLabel.text = "X\(menuItem.quantity)"
         itemNumberLabel.text = "#\(menuItem.number)"

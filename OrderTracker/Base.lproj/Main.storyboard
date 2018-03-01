@@ -344,14 +344,6 @@
                                                         <constraint firstItem="Ztb-yR-f7H" firstAttribute="top" secondItem="p4c-BK-QUb" secondAttribute="top" id="xMd-D5-YhV"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Tk-E5-aS6">
-                                                    <rect key="frame" x="314" y="185" width="23" height="5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p4K-jm-mdN">
                                                     <rect key="frame" x="20" y="184" width="90" height="60"/>
                                                     <subviews>
@@ -392,22 +384,29 @@
                                                     <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-mx-0ON">
+                                                    <rect key="frame" x="160" y="34" width="165" height="176"/>
+                                                </scrollView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="Hzn-Pu-33y" secondAttribute="trailing" constant="100" id="3A6-ei-Ira"/>
                                             <constraint firstItem="p4K-jm-mdN" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="58j-kH-e00"/>
+                                            <constraint firstItem="ha2-mx-0ON" firstAttribute="top" secondItem="Hzn-Pu-33y" secondAttribute="bottom" id="9IC-A8-d8z"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="A8s-DS-CIT"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="OZ5-vo-XaD"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="30" id="QHC-BL-DVo"/>
+                                            <constraint firstAttribute="trailing" secondItem="ha2-mx-0ON" secondAttribute="trailing" constant="12" id="VU1-c5-BOT"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="p4K-jm-mdN" secondAttribute="bottom" constant="8" id="fmg-Vl-5n4"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="mLZ-Ej-9UF"/>
+                                            <constraint firstItem="ha2-mx-0ON" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="50" id="pMR-K4-7bh"/>
+                                            <constraint firstAttribute="bottom" secondItem="ha2-mx-0ON" secondAttribute="bottom" constant="50" id="v2n-rf-HNT"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="deleteLabel" destination="3Tk-E5-aS6" id="Mb6-k4-GZB"/>
                                             <outlet property="itemNumberLabel" destination="6Mp-F4-nup" id="BYD-g6-eec"/>
                                             <outlet property="priceNumber" destination="Ztb-yR-f7H" id="SKK-Vj-qF0"/>
                                             <outlet property="quantityLabel" destination="a8f-HT-aMD" id="SJF-2M-jdK"/>
+                                            <outlet property="scrollView" destination="ha2-mx-0ON" id="rUd-mT-Lkr"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
