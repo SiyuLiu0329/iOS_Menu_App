@@ -21,8 +21,8 @@ class SummaryViewController: UIViewController {
     
     @IBOutlet weak var summaryCollectionView: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
-
-
+    
+    
     weak var delegate: SummaryViewControllerDelegate?
     private var expanded: [Bool]!
 
@@ -110,13 +110,15 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = summaryCollectionView.dequeueReusableCell(withReuseIdentifier: "sCell", for: indexPath) as! SummaryCollectionViewCell
+        cell.menuItem =  orderList.getItemsInCurrentOrder()[indexPath.row]
         cell.setUpCell()
         cell.delegate = self
+        cell.loadCellData()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 440, height: 200)
+        return CGSize(width: 440, height: 220)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

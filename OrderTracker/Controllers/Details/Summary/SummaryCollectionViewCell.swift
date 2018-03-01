@@ -15,14 +15,26 @@ protocol SummaryCellDelegate: class {
 class SummaryCollectionViewCell: UICollectionViewCell {
     var originalCentreX: CGFloat!
     var panGestureRecogniser: UIPanGestureRecognizer!
-    var deleteThreashold: CGFloat = 300
+    var deleteThreashold: CGFloat = -250
     var delete = false
     private var displacement: CGFloat!
+    var menuItem: MenuItem!
     var panRecogniser: UIPanGestureRecognizer!
     weak var delegate: SummaryCellDelegate?
-    
+    let colourView = UIView()
+
+    @IBOutlet weak var priceNumber: UILabel!
     @IBOutlet weak var deleteLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var itemNumberLabel: UILabel!
+    
     func setUpCell() {
+        
+        contentView.addSubview(colourView)
+        colourView.frame = CGRect(x: 0, y: 0, width: 120, height: frame.height)
+        contentView.sendSubview(toBack: colourView)
+        contentView.bringSubview(toFront: deleteLabel)
+        
         deleteLabel.frame = CGRect(x: frame.width, y: 0, width: frame.width, height: frame.height)
         deleteLabel.backgroundColor = UIColor.red
         originalCentreX = deleteLabel.center.x
@@ -30,7 +42,29 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
         backgroundColor = UIColor.white
         addGuestureRecogniser()
+
         
+    }
+    
+    func loadCellData() {
+        
+        priceNumber.text = "$\(menuItem.totalPrice)"
+        quantityLabel.text = "X\(menuItem.quantity)"
+        itemNumberLabel.text = "#\(menuItem.number)"
+        setCellColour(withSeed: menuItem.number)
+        
+    }
+    
+    private func setCellColour(withSeed number: Int) {
+        if number % 4 == 0 {
+            colourView.backgroundColor = UIColor.darkGray
+        } else if number % 4 == 1 {
+            colourView.backgroundColor = UIColor.purple
+        } else if number % 4 == 2 {
+            colourView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+        } else if number % 4 == 3 {
+            colourView.backgroundColor = UIColor(red: 7/255, green: 87/255, blue: 152/255, alpha: 1)
+        }
     }
     
 }
@@ -68,11 +102,12 @@ extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
             let width = frame.width
             let height = frame.height
             displacement = deleteLabel.center.x - originalCentreX
-            if displacement < -300 {
-                delete = true
+            if displacement < deleteThreashold {
+                
                 UIView.animate(withDuration: 0.2, animations: {
                     self.deleteLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 })
+                delete = true
                 
             } else {
                 deleteLabel.frame = CGRect(x: width + translation.x, y: 0, width: width, height: height)
