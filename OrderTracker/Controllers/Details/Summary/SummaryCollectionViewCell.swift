@@ -25,6 +25,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     
     private var deleteLabel = UILabel()
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var submitItemButton: UIButton!
     @IBOutlet weak var priceNumber: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
@@ -47,10 +48,15 @@ class SummaryCollectionViewCell: UICollectionViewCell {
             }
             scrollView.contentSize.height = CGFloat(optionSize * (i + 1))
         }
+        
+        didSet {
+            setUpCell()
+            loadCellData()
+        }
     }
     
-    func setUpCell() {
-
+    private func setUpCell() {
+        
         colourView.frame = CGRect(x: 0, y: 0, width: 120, height: frame.height)
         contentView.addSubview(colourView)
         setUpDeleteLabel()
@@ -72,7 +78,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(deleteLabel)
     }
     
-    func loadCellData() {
+    private func loadCellData() {
         priceNumber.text = "$\(menuItem.totalPrice)"
         quantityLabel.text = "X\(menuItem.quantity)"
         itemNumberLabel.text = "#\(menuItem.number)"
@@ -81,15 +87,20 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     }
     
     private func setCellColour(withSeed number: Int) {
+        var colour: UIColor
         if number % 4 == 0 {
-            colourView.backgroundColor = UIColor.darkGray
+            colour = UIColor.darkGray
         } else if number % 4 == 1 {
-            colourView.backgroundColor = UIColor.purple
+            colour = UIColor.purple
         } else if number % 4 == 2 {
-            colourView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
-        } else if number % 4 == 3 {
-            colourView.backgroundColor = UIColor(red: 7/255, green: 87/255, blue: 152/255, alpha: 1)
+            colour = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+        } else {
+            colour = UIColor(red: 7/255, green: 87/255, blue: 152/255, alpha: 1)
         }
+        
+        colourView.backgroundColor = colour
+        submitItemButton.titleLabel?.textColor = colour
+        
     }
     
 }

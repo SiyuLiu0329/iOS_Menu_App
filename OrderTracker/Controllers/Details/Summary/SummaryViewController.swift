@@ -111,9 +111,7 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
 
         let cell = summaryCollectionView.dequeueReusableCell(withReuseIdentifier: "sCell", for: indexPath) as! SummaryCollectionViewCell
         cell.menuItem =  orderList.getItemsInCurrentOrder()[indexPath.row]
-        cell.setUpCell()
         cell.delegate = self
-        cell.loadCellData()
         return cell
     }
     
