@@ -21,6 +21,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     private let colourView = UIView()
     weak var delegate: SummaryCellDelegate?
     var deleteThreashold: CGFloat = -250
+    private let optionSize = 32
     
     private var deleteLabel = UILabel()
     @IBOutlet weak var scrollView: UIScrollView!
@@ -30,20 +31,21 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     
     var menuItem: MenuItem! {
         willSet {
+            scrollView.subviews.forEach { $0.removeFromSuperview() }
             var i = 0
             for option in newValue.options {
                 if option.value {
                     let label = UILabel()
                     label.font = label.font.withSize(20)
                     label.text = "\(i + 1). " + option.description
-                    let yPosition = i * 32
-                    label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: 32)
+                    let yPosition = i * optionSize
+                    label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: optionSize)
                     
                     scrollView.addSubview(label)
                     i += 1
                 }
             }
-            scrollView.contentSize.height = 32 * CGFloat(i + 1)
+            scrollView.contentSize.height = CGFloat(optionSize * (i + 1))
         }
     }
     
