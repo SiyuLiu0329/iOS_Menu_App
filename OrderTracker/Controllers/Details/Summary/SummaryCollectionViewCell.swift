@@ -69,7 +69,6 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         }
         
         didSet {
-            setCellColour(withSeed: menuItem.number)
             setUpCell()
             loadCellData()
 
@@ -107,17 +106,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func setCellColour(withSeed number: Int) {
-        var colour: UIColor
-        if number % 4 == 0 {
-            colour = UIColor.darkGray
-        } else if number % 4 == 1 {
-            colour = UIColor.purple
-        } else if number % 4 == 2 {
-            colour = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
-        } else {
-            colour = UIColor(red: 7/255, green: 87/255, blue: 152/255, alpha: 1)
-        }
+    func assignColour(_ colour: UIColor) {
         submitButton.backgroundColor = colour.withAlphaComponent(0.5)
         colourView.backgroundColor = colour
     }

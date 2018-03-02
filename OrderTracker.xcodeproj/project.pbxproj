@@ -16,6 +16,7 @@
 		2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */; };
 		222AEA342040014200F81074 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AEA332040014200F81074 /* Utils.swift */; };
 		223572BF203E9ACB000C42FD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223572BE203E9ACB000C42FD /* CollectionViewCell.swift */; };
+		22B4FC362049958E00E9B808 /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4FC352049958E00E9B808 /* SubmitViewController.swift */; };
 		22D4194A203EE58800674660 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D41949203EE58800674660 /* Option.swift */; };
 		22D7A95C2045703A00D05415 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */; };
 		22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */; };
@@ -57,6 +58,7 @@
 		2223F222203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		222AEA332040014200F81074 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		223572BE203E9ACB000C42FD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		22B4FC352049958E00E9B808 /* SubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
 		22D41949203EE58800674660 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				221735FD204189E3006170F8 /* SummaryViewController.swift */,
 				22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */,
+				22A68D13204978FC00355B53 /* submit */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -167,6 +170,14 @@
 				222AEA332040014200F81074 /* Utils.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		22A68D13204978FC00355B53 /* submit */ = {
+			isa = PBXGroup;
+			children = (
+				22B4FC352049958E00E9B808 /* SubmitViewController.swift */,
+			);
+			path = submit;
 			sourceTree = "<group>";
 		};
 		22D4194B203EE59500674660 /* Models */ = {
@@ -331,6 +342,7 @@
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				22F6E9F2203BBEF1001F78CA /* MasterViewController.swift in Sources */,
 				221735FE204189E3006170F8 /* SummaryViewController.swift in Sources */,
+				22B4FC362049958E00E9B808 /* SubmitViewController.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 				22D7A95C2045703A00D05415 /* SummaryCollectionViewCell.swift in Sources */,
 			);
