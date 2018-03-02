@@ -133,5 +133,10 @@ extension SummaryViewController: SummaryCellDelegate {
         updateLabelOnSubmitButton()
         disableSubmitIfEmpty()
     }
+    
+    func submitItem(inCell cell: SummaryCollectionViewCell) {
+        guard let indexPath = summaryCollectionView.indexPath(for: cell) else { return }
+        guard let item = orderList.getItemInCurrentOrder(numberInOrder: indexPath.row) else { return }
+    }
 }
 

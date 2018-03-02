@@ -387,6 +387,16 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-mx-0ON">
                                                     <rect key="frame" x="160" y="34" width="165" height="176"/>
                                                 </scrollView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-Wz-AzB">
+                                                    <rect key="frame" x="270" y="210" width="47" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="Submit Item ✓">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="submitPressed:" destination="gkq-FC-MFf" eventType="touchUpInside" id="NgM-1t-DDD"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -394,10 +404,14 @@
                                             <constraint firstItem="p4K-jm-mdN" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="58j-kH-e00"/>
                                             <constraint firstItem="ha2-mx-0ON" firstAttribute="top" secondItem="Hzn-Pu-33y" secondAttribute="bottom" id="9IC-A8-d8z"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="A8s-DS-CIT"/>
+                                            <constraint firstItem="0YP-Wz-AzB" firstAttribute="top" secondItem="ha2-mx-0ON" secondAttribute="bottom" id="Ku8-VJ-aUB"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="OZ5-vo-XaD"/>
+                                            <constraint firstItem="0YP-Wz-AzB" firstAttribute="leading" secondItem="p4K-jm-mdN" secondAttribute="trailing" constant="160" id="P7h-c4-j0z"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="30" id="QHC-BL-DVo"/>
                                             <constraint firstAttribute="trailing" secondItem="ha2-mx-0ON" secondAttribute="trailing" constant="12" id="VU1-c5-BOT"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="0YP-Wz-AzB" secondAttribute="trailing" constant="12" id="ZzH-Bx-3VN"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="p4K-jm-mdN" secondAttribute="bottom" constant="8" id="fmg-Vl-5n4"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="0YP-Wz-AzB" secondAttribute="bottom" constant="12" id="jJg-QK-ZS3"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="mLZ-Ej-9UF"/>
                                             <constraint firstItem="ha2-mx-0ON" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="50" id="pMR-K4-7bh"/>
                                             <constraint firstAttribute="bottom" secondItem="ha2-mx-0ON" secondAttribute="bottom" constant="50" id="v2n-rf-HNT"/>
@@ -407,6 +421,7 @@
                                             <outlet property="priceNumber" destination="Ztb-yR-f7H" id="SKK-Vj-qF0"/>
                                             <outlet property="quantityLabel" destination="a8f-HT-aMD" id="SJF-2M-jdK"/>
                                             <outlet property="scrollView" destination="ha2-mx-0ON" id="rUd-mT-Lkr"/>
+                                            <outlet property="submitButton" destination="0YP-Wz-AzB" id="0LV-rh-193"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

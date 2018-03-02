@@ -10,6 +10,7 @@ import UIKit
 
 protocol SummaryCellDelegate: class {
     func removeItemAt(_ cell: SummaryCollectionViewCell)
+    func submitItem(inCell cell: SummaryCollectionViewCell)
 }
 
 class SummaryCollectionViewCell: UICollectionViewCell {
@@ -23,10 +24,17 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     var deleteThreashold: CGFloat = -250
     private let optionSize = 32
     private var deleteLabel = UILabel()
+    private let optionSizeNA = 80
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var priceNumber: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBAction func submitPressed(_ sender: Any) {
+        guard delegate != nil else { return }
+        delegate!.submitItem(inCell: self)
+        
+    }
     
     var menuItem: MenuItem! {
         willSet {
@@ -52,24 +60,25 @@ class SummaryCollectionViewCell: UICollectionViewCell {
                 label.text = "N/A"
                 label.textColor = UIColor.lightGray
                 let yPosition = 0
-                label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: 80)
+                label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: optionSizeNA)
                 scrollView.addSubview(label)
-                scrollView.contentSize.height = 80
+                scrollView.contentSize.height = CGFloat(optionSizeNA)
             } else {
                 scrollView.contentSize.height = CGFloat(optionSize * (i + 1))
             }
         }
         
         didSet {
+            setCellColour(withSeed: menuItem.number)
             setUpCell()
             loadCellData()
-            setCellColour(withSeed: menuItem.number)
+
         }
     }
     
     
     private func setUpCell() {
-        
+        submitButton.layer.cornerRadius = 15
         colourView.frame = CGRect(x: 0, y: 0, width: 120, height: frame.height)
         contentView.addSubview(colourView)
         setUpDeleteLabel()
@@ -109,7 +118,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         } else {
             colour = UIColor(red: 7/255, green: 87/255, blue: 152/255, alpha: 1)
         }
-        
+        submitButton.backgroundColor = colour.withAlphaComponent(0.5)
         colourView.backgroundColor = colour
     }
 }

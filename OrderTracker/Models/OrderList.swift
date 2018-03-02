@@ -68,6 +68,10 @@ class OrderList {
         return currentOrder.items
     }
     
+    func getItemInCurrentOrder(numberInOrder number: Int) -> MenuItem? {
+        return currentOrder.items[number]
+    }
+    
     func getTotalPriceOfCurrentOrder() -> Double {
         return currentOrder.orderTotalPrice
     }
