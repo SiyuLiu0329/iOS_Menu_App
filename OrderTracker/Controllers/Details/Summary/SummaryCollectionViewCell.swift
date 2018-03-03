@@ -10,7 +10,6 @@ import UIKit
 
 protocol SummaryCellDelegate: class {
     func removeItemAt(_ cell: SummaryCollectionViewCell)
-    func submitItem(inCell cell: SummaryCollectionViewCell)
 }
 
 class SummaryCollectionViewCell: UICollectionViewCell {
@@ -30,11 +29,6 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
-    @IBAction func submitPressed(_ sender: Any) {
-        guard delegate != nil else { return }
-        delegate!.submitItem(inCell: self)
-        
-    }
     
     var menuItem: MenuItem! {
         willSet {

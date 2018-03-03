@@ -13,6 +13,7 @@ protocol SummaryViewControllerDelegate: class {
 }
 
 class SummaryViewController: UIViewController {
+    var selectedIndexPath: IndexPath?
     var orderList: OrderList! {
         didSet {
             prepareDataForTableView()
@@ -40,7 +41,6 @@ class SummaryViewController: UIViewController {
         updateLabelOnSubmitButton()
         btnSubmit.setTitle("Order is Empty", for: .disabled)
         addBlur()
-
     }
     
     private func addBlur() {
@@ -146,9 +146,23 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return colour
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let button = sender as? UIButton else { return }
+        guard let cell = button.superview!.superview as? SummaryCollectionViewCell else { return }
+        guard let indexPath = summaryCollectionView.indexPath(for: cell) else { return }
+        guard let item = orderList.getItemInCurrentOrder(numberInOrder: indexPath.row) else { return }
+        
+        if segue.identifier == "submitSegue1" {
+            if let smVC = segue.destination as? SubmitViewController {
+                smVC.itemToDisplay = item
+                smVC.themeColour = getColour(withSeed: item.number)
+            }
+        }
+    }
 }
 
 extension SummaryViewController: SummaryCellDelegate {
+
     func removeItemAt(_ cell: SummaryCollectionViewCell) {
         guard let indexPath = summaryCollectionView.indexPath(for: cell) else { return }
         orderList.removeItemInCurrentOrder(numbered: indexPath.row)
@@ -157,15 +171,4 @@ extension SummaryViewController: SummaryCellDelegate {
         disableSubmitIfEmpty()
     }
     
-    func submitItem(inCell cell: SummaryCollectionViewCell) {
-        guard let indexPath = summaryCollectionView.indexPath(for: cell) else { return }
-        guard let item = orderList.getItemInCurrentOrder(numberInOrder: indexPath.row) else { return }
-        let submitViewController = SubmitViewController()
-        submitViewController.itemToDisplay = item
-        submitViewController.themeColour = getColour(withSeed: item.number)
-        navigationController?.pushViewController(submitViewController, animated: true)
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-    }
 }
-
