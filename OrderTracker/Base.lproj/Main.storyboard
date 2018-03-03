@@ -309,11 +309,11 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="H9r-8S-aMk"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NUMBER:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgP-NZ-dg0">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ITEM #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgP-NZ-dg0">
                                                             <rect key="frame" x="0.0" y="40" width="90" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -385,7 +385,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-mx-0ON">
-                                                    <rect key="frame" x="160" y="34" width="137" height="176"/>
+                                                    <rect key="frame" x="160" y="34" width="147" height="176"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-Wz-AzB">
                                                     <rect key="frame" x="265" y="210" width="60" height="38"/>
@@ -416,7 +416,7 @@
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="OZ5-vo-XaD"/>
                                             <constraint firstItem="0YP-Wz-AzB" firstAttribute="leading" secondItem="p4K-jm-mdN" secondAttribute="trailing" constant="155" id="P7h-c4-j0z"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="30" id="QHC-BL-DVo"/>
-                                            <constraint firstAttribute="trailing" secondItem="ha2-mx-0ON" secondAttribute="trailing" constant="40" id="VU1-c5-BOT"/>
+                                            <constraint firstAttribute="trailing" secondItem="ha2-mx-0ON" secondAttribute="trailing" constant="30" id="VU1-c5-BOT"/>
                                             <constraint firstItem="0YP-Wz-AzB" firstAttribute="top" secondItem="LBi-ZG-8EL" secondAttribute="bottom" constant="105" id="YrI-mP-37c"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="0YP-Wz-AzB" secondAttribute="trailing" constant="4" id="ZzH-Bx-3VN"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="p4K-jm-mdN" secondAttribute="bottom" constant="8" id="fmg-Vl-5n4"/>

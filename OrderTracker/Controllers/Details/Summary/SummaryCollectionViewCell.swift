@@ -44,7 +44,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
             for option in newValue.options {
                 if option.value {
                     let label = UILabel()
-                    label.font = label.font.withSize(20)
+                    label.font = label.font.withSize(19)
                     label.text = "\(i + 1). " + option.description
                     let yPosition = i * optionSize
                     label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: optionSize)
@@ -101,8 +101,8 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     
     private func loadCellData() {
         priceNumber.text = "$\(menuItem.totalPrice)"
-        quantityLabel.text = "X\(menuItem.quantity)"
-        itemNumberLabel.text = "#\(menuItem.number)"
+        quantityLabel.text = "✕\(menuItem.quantity)"
+        itemNumberLabel.text = "NO. \(menuItem.number)"
         
     }
     
