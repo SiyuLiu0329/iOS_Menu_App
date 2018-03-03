@@ -21,6 +21,11 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     private let colourView = UIView()
     weak var delegate: SummaryCellDelegate?
     var deleteThreashold: CGFloat = -250
+    var cellNumber: Int? {
+        willSet {
+            itemNumberInOrder.text = "\(newValue ?? 0)"
+        }
+    }
     private let optionSize = 32
     private var deleteLabel = UILabel()
     private let optionSizeNA = 80
@@ -29,6 +34,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var itemNumberInOrder: UILabel!
     
     var menuItem: MenuItem! {
         willSet {
@@ -50,7 +56,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
             
             if i == 0 {
                 let label = UILabel()
-                label.font = label.font.withSize(60)
+                label.font = label.font.withSize(80)
                 label.text = "N/A"
                 label.textColor = UIColor.lightGray
                 let yPosition = 0
@@ -103,6 +109,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     func assignColour(_ colour: UIColor) {
         submitButton.backgroundColor = colour.withAlphaComponent(0.5)
         colourView.backgroundColor = colour
+        itemNumberInOrder.textColor = colour.withAlphaComponent(0.5)
     }
 }
 

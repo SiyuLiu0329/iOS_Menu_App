@@ -385,18 +385,24 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-mx-0ON">
-                                                    <rect key="frame" x="160" y="34" width="165" height="166"/>
+                                                    <rect key="frame" x="160" y="34" width="137" height="176"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-Wz-AzB">
-                                                    <rect key="frame" x="265" y="200" width="52" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <rect key="frame" x="265" y="210" width="60" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Submit Item ✓">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="fSi-I8-krB" kind="show" identifier="submitSegue1" id="EnD-x2-SHk"/>
+                                                        <segue destination="e0d-CQ-ZYY" kind="show" identifier="submitSegue1" id="hQ6-0J-5XL"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBi-ZG-8EL">
+                                                    <rect key="frame" x="229" y="12" width="92" height="93"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="50"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -404,19 +410,24 @@
                                             <constraint firstItem="p4K-jm-mdN" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="58j-kH-e00"/>
                                             <constraint firstItem="ha2-mx-0ON" firstAttribute="top" secondItem="Hzn-Pu-33y" secondAttribute="bottom" id="9IC-A8-d8z"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="A8s-DS-CIT"/>
+                                            <constraint firstItem="LBi-ZG-8EL" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="4" id="Ceg-NF-3Xa"/>
+                                            <constraint firstItem="LBi-ZG-8EL" firstAttribute="trailing" secondItem="gkq-FC-MFf" secondAttribute="trailingMargin" constant="-8" id="IsO-uD-trj"/>
                                             <constraint firstItem="0YP-Wz-AzB" firstAttribute="top" secondItem="ha2-mx-0ON" secondAttribute="bottom" id="Ku8-VJ-aUB"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="OZ5-vo-XaD"/>
                                             <constraint firstItem="0YP-Wz-AzB" firstAttribute="leading" secondItem="p4K-jm-mdN" secondAttribute="trailing" constant="155" id="P7h-c4-j0z"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="30" id="QHC-BL-DVo"/>
-                                            <constraint firstAttribute="trailing" secondItem="ha2-mx-0ON" secondAttribute="trailing" constant="12" id="VU1-c5-BOT"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="0YP-Wz-AzB" secondAttribute="trailing" constant="12" id="ZzH-Bx-3VN"/>
+                                            <constraint firstAttribute="trailing" secondItem="ha2-mx-0ON" secondAttribute="trailing" constant="40" id="VU1-c5-BOT"/>
+                                            <constraint firstItem="0YP-Wz-AzB" firstAttribute="top" secondItem="LBi-ZG-8EL" secondAttribute="bottom" constant="105" id="YrI-mP-37c"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="0YP-Wz-AzB" secondAttribute="trailing" constant="4" id="ZzH-Bx-3VN"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="p4K-jm-mdN" secondAttribute="bottom" constant="8" id="fmg-Vl-5n4"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="0YP-Wz-AzB" secondAttribute="bottom" constant="12" id="jJg-QK-ZS3"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="0YP-Wz-AzB" secondAttribute="bottom" constant="4" id="jJg-QK-ZS3"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="mLZ-Ej-9UF"/>
                                             <constraint firstItem="ha2-mx-0ON" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="50" id="pMR-K4-7bh"/>
-                                            <constraint firstAttribute="bottom" secondItem="ha2-mx-0ON" secondAttribute="bottom" constant="60" id="v2n-rf-HNT"/>
+                                            <constraint firstItem="LBi-ZG-8EL" firstAttribute="leading" secondItem="Hzn-Pu-33y" secondAttribute="trailing" id="tBn-ZT-CFR"/>
+                                            <constraint firstAttribute="bottom" secondItem="ha2-mx-0ON" secondAttribute="bottom" constant="50" id="v2n-rf-HNT"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="itemNumberInOrder" destination="LBi-ZG-8EL" id="RPw-af-AFZ"/>
                                             <outlet property="itemNumberLabel" destination="6Mp-F4-nup" id="BYD-g6-eec"/>
                                             <outlet property="priceNumber" destination="Ztb-yR-f7H" id="SKK-Vj-qF0"/>
                                             <outlet property="quantityLabel" destination="a8f-HT-aMD" id="SJF-2M-jdK"/>
@@ -447,36 +458,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-qd-u5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1481.8359375" y="860.9375"/>
-        </scene>
-        <!--Submit View Controller-->
-        <scene sceneID="3B9-AG-blO">
-            <objects>
-                <viewController id="fSi-I8-krB" customClass="SubmitViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2ZT-Ro-m7x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-j8-Ww2">
-                                <rect key="frame" x="30" y="74" width="315" height="563"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="VlV-sK-74d" firstAttribute="bottom" secondItem="sP9-j8-Ww2" secondAttribute="bottom" constant="30" id="BrV-Zb-emx"/>
-                            <constraint firstItem="sP9-j8-Ww2" firstAttribute="top" secondItem="VlV-sK-74d" secondAttribute="top" constant="30" id="OfQ-aN-gH4"/>
-                            <constraint firstItem="sP9-j8-Ww2" firstAttribute="leading" secondItem="VlV-sK-74d" secondAttribute="leading" constant="30" id="QZv-mt-lNB"/>
-                            <constraint firstItem="VlV-sK-74d" firstAttribute="trailing" secondItem="sP9-j8-Ww2" secondAttribute="trailing" constant="30" id="Rhu-t7-JGE"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="VlV-sK-74d"/>
-                    </view>
-                    <connections>
-                        <outlet property="contentView" destination="sP9-j8-Ww2" id="Hj6-Tg-Nr9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wxa-BX-eDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2250" y="861"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="XSQ-jd-nL9">
@@ -601,14 +582,62 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <outlet property="delegate" destination="Pjk-Rr-wb0" id="jDs-bi-bwM"/>
                         <segue destination="Wb2-EB-kVa" kind="relationship" relationship="rootViewController" id="mZs-ge-Umq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eO2-dC-YZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Pjk-Rr-wb0" customClass="ZoomTransitioningDelegate" customModule="OrderTracker" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1482" y="158"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="3zs-6T-c1N">
+            <objects>
+                <viewController id="Alq-lB-lWq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6pR-U7-Uk4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8hO-rg-F3Z"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="P8l-dc-bCO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jY1-QE-oDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3027" y="1309"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="XdL-wC-csV">
+            <objects>
+                <viewController id="tpx-Bu-bNl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fkc-NI-ar9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NM8-nN-9QW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="Frq-ln-Pbh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GwE-a6-8wv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3027" y="545"/>
+        </scene>
+        <!--Submit View Controller-->
+        <scene sceneID="1pX-Sz-U8b">
+            <objects>
+                <tabBarController id="e0d-CQ-ZYY" customClass="SubmitViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3wM-hb-ZSZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="tpx-Bu-bNl" kind="relationship" relationship="viewControllers" id="Oxo-CP-M3h"/>
+                        <segue destination="Alq-lB-lWq" kind="relationship" relationship="viewControllers" id="wVg-CA-XPF"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wsf-Wh-HHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2231" y="861"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

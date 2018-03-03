@@ -35,7 +35,7 @@ class SummaryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        preferredContentSize = CGSize(width: 500, height: 700)
+        preferredContentSize = CGSize(width: 480, height: 700)
         setUpCollectionView()
         disableSubmitIfEmpty()
         updateLabelOnSubmitButton()
@@ -114,11 +114,12 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         cell.menuItem = item
         cell.assignColour(getColour(withSeed: item.number))
         cell.delegate = self
+        cell.cellNumber = indexPath.row + 1
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 440, height: 220)
+        return CGSize(width: 420, height: 210)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
