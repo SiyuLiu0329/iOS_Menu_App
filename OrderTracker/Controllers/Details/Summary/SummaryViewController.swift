@@ -52,7 +52,7 @@ class SummaryViewController: UIViewController {
         }
 
 //        collectionVIew.separatorColor = UIColor.clear
-        navigationController?.navigationBar.barTintColor = UIColor.clear
+        navigationController?.navigationBar.barTintColor = UIColor.black.withAlphaComponent(0.65)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Order Summary"
     }
@@ -125,6 +125,10 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return 20
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+    }
+    
     private func getColour(withSeed number: Int) -> UIColor {
         var colour: UIColor
         if number % 5 == 0 {
@@ -156,6 +160,11 @@ extension SummaryViewController: SummaryCellDelegate {
     func submitItem(inCell cell: SummaryCollectionViewCell) {
         guard let indexPath = summaryCollectionView.indexPath(for: cell) else { return }
         guard let item = orderList.getItemInCurrentOrder(numberInOrder: indexPath.row) else { return }
+        let submitViewController = SubmitViewController()
+        submitViewController.itemToDisplay = item
+        submitViewController.themeColour = getColour(withSeed: item.number)
+        navigationController?.pushViewController(submitViewController, animated: true)
+        navigationController?.navigationBar.tintColor = UIColor.white
         
     }
 }
