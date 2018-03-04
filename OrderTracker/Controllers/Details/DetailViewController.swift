@@ -17,6 +17,8 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var rightNavBarItem: UIBarButtonItem!
+    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnDel: UIButton!
     
     var orderList: OrderList! {
         didSet {
@@ -58,6 +60,15 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkText]
         collectionView.delegate = self
         collectionView.dataSource = self
+        btnDel.clipsToBounds = true
+        btnDel.layer.cornerRadius = 10
+        btnDel.layer.maskedCorners = [.layerMinXMaxYCorner]
+        btnAdd.clipsToBounds = true
+        btnAdd.layer.cornerRadius = 10
+        btnAdd.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        priceLabel.layer.cornerRadius = 10
+        priceLabel.clipsToBounds = true
+        priceLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

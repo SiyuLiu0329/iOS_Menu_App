@@ -21,12 +21,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     private let colourView = UIView()
     weak var delegate: SummaryCellDelegate?
     var deleteThreashold: CGFloat = -250
-    var cellNumber: Int? {
-        willSet {
-            itemNumberInOrder.text = "\(newValue ?? 0)"
-        }
-    }
-    private let optionSize = 32
+    private let optionSize = 27
     private var deleteLabel = UILabel()
     private let optionSizeNA = 80
     @IBOutlet weak var scrollView: UIScrollView!
@@ -34,7 +29,6 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var itemNumberInOrder: UILabel!
     
     var menuItem: MenuItem! {
         willSet {
@@ -44,7 +38,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
             for option in newValue.options {
                 if option.value {
                     let label = UILabel()
-                    label.font = label.font.withSize(19)
+                    label.font = label.font.withSize(18)
                     label.text = "\(i + 1). " + option.description
                     let yPosition = i * optionSize
                     label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: optionSize)
@@ -69,14 +63,19 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         }
         
         didSet {
-            setUpCell()
             loadCellData()
+            deleteLabel.frame = CGRect(x: 500, y: 0, width: frame.width, height: frame.height)
 
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setUpCell()
+    }
     
     private func setUpCell() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         submitButton.layer.cornerRadius = 15
         colourView.frame = CGRect(x: 0, y: 0, width: 120, height: frame.height)
         contentView.addSubview(colourView)
@@ -94,7 +93,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
         deleteLabel.backgroundColor = UIColor.red
         deleteLabel.textAlignment = NSTextAlignment.center
         deleteLabel.textColor = UIColor.white
-        deleteLabel.frame = CGRect(x: frame.width, y: 0, width: frame.width, height: frame.height)
+        deleteLabel.frame = CGRect(x: 500, y: 0, width: frame.width, height: frame.height)
         deleteLabel.backgroundColor = UIColor.red
         contentView.addSubview(deleteLabel)
     }
@@ -109,7 +108,6 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     func assignColour(_ colour: UIColor) {
         submitButton.backgroundColor = colour.withAlphaComponent(0.5)
         colourView.backgroundColor = colour
-        itemNumberInOrder.textColor = colour.withAlphaComponent(0.5)
     }
 }
 

@@ -84,6 +84,18 @@ extension SummaryViewController {
         let updatedText = "Submit All (" + String(describing: twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())) + ")"
         btnSubmit.setTitle(updatedText, for: .normal)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            self.view.alpha = 0
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            self.view.alpha = 1
+        }
+    }
 }
 
 extension SummaryViewController {
@@ -114,7 +126,6 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         cell.menuItem = item
         cell.assignColour(getColour(withSeed: item.number))
         cell.delegate = self
-        cell.cellNumber = indexPath.row + 1
         return cell
     }
     
@@ -152,7 +163,6 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         guard let cell = button.superview!.superview as? SummaryCollectionViewCell else { return }
         guard let indexPath = summaryCollectionView.indexPath(for: cell) else { return }
         guard let item = orderList.getItemInCurrentOrder(numberInOrder: indexPath.row) else { return }
-        
         if segue.identifier == "submitSegue1" {
             if let smVC = segue.destination as? SubmitViewController {
                 smVC.itemToDisplay = item

@@ -8,18 +8,18 @@
 
 import UIKit
 
-class SubmitViewController: UITabBarController {
+class SubmitViewController: UIViewController {
     var themeColour: UIColor?
     var itemToDisplay: MenuItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 }
 
