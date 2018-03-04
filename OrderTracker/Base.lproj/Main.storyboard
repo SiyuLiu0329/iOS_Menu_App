@@ -544,20 +544,44 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3x-oe-c2F">
+                                        <rect key="frame" x="0.0" y="408" width="315" height="105"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Options:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50y-x2-dez">
+                                                <rect key="frame" x="12" y="8" width="283" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="FFW-yn-R1f"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="50y-x2-dez" secondAttribute="trailing" constant="20" id="ASP-Bt-Dad"/>
+                                            <constraint firstItem="50y-x2-dez" firstAttribute="leading" secondItem="L3x-oe-c2F" secondAttribute="leading" constant="12" id="Hzl-xr-bdJ"/>
+                                            <constraint firstItem="50y-x2-dez" firstAttribute="top" secondItem="L3x-oe-c2F" secondAttribute="top" constant="8" id="rTc-gw-f65"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="vOT-3w-dKB" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" constant="12" id="3BH-la-NlK"/>
                                     <constraint firstItem="8gQ-Jc-aDB" firstAttribute="top" secondItem="zB7-Yp-1gI" secondAttribute="bottom" id="4xD-00-Xgt"/>
                                     <constraint firstAttribute="trailing" secondItem="8gQ-Jc-aDB" secondAttribute="trailing" id="57x-eS-fa6"/>
+                                    <constraint firstAttribute="bottom" secondItem="L3x-oe-c2F" secondAttribute="bottom" constant="50" id="90I-WD-JbE"/>
                                     <constraint firstItem="zB7-Yp-1gI" firstAttribute="top" secondItem="Ve6-LX-jy1" secondAttribute="top" id="9WC-G3-iZt"/>
                                     <constraint firstItem="zB7-Yp-1gI" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" id="A3H-MJ-u4i"/>
                                     <constraint firstItem="8gQ-Jc-aDB" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" id="APK-G0-ASh"/>
                                     <constraint firstItem="vOT-3w-dKB" firstAttribute="top" secondItem="8gQ-Jc-aDB" secondAttribute="bottom" constant="12" id="BR6-qD-QFM"/>
                                     <constraint firstItem="3r9-WQ-zb0" firstAttribute="leading" secondItem="vOT-3w-dKB" secondAttribute="trailing" constant="20" id="Hkj-HH-H8V"/>
+                                    <constraint firstAttribute="trailing" secondItem="L3x-oe-c2F" secondAttribute="trailing" id="JGN-uc-FOg"/>
                                     <constraint firstAttribute="trailing" secondItem="3r9-WQ-zb0" secondAttribute="trailing" constant="20" id="Qaw-vZ-s1v"/>
+                                    <constraint firstItem="L3x-oe-c2F" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" id="TFA-Bc-DgF"/>
                                     <constraint firstItem="3r9-WQ-zb0" firstAttribute="top" secondItem="8gQ-Jc-aDB" secondAttribute="bottom" constant="12" id="YTV-Il-boX"/>
                                     <constraint firstAttribute="trailing" secondItem="zB7-Yp-1gI" secondAttribute="trailing" id="d7t-gt-Oox"/>
+                                    <constraint firstItem="L3x-oe-c2F" firstAttribute="top" secondItem="3r9-WQ-zb0" secondAttribute="bottom" constant="12" id="snd-k2-xLb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -575,6 +599,8 @@
                         <outlet property="contentViewHeaderBar" destination="zB7-Yp-1gI" id="YBZ-Pr-UbH"/>
                         <outlet property="itemImage" destination="8gQ-Jc-aDB" id="hB6-pm-peY"/>
                         <outlet property="optionDetails" destination="3r9-WQ-zb0" id="BOR-Hf-4bs"/>
+                        <outlet property="paymentOptionLabel" destination="50y-x2-dez" id="Gb0-Pk-H87"/>
+                        <outlet property="paymentView" destination="L3x-oe-c2F" id="6Qj-B0-T3N"/>
                         <outlet property="remainingLabel" destination="b4h-F9-huz" id="wpn-in-5qz"/>
                         <outlet property="remainingNumberLabel" destination="Wis-Xd-A9H" id="WcJ-iD-9aG"/>
                     </connections>

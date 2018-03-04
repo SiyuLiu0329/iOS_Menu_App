@@ -22,17 +22,28 @@ class SubmitViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBOutlet weak var paymentView: UIView!
+    @IBOutlet weak var paymentOptionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
+        addGradientMaskToImageView()
+        addImageCaption()
+        configureRemainingNumber()
+        configureOtherUIElements()
+        
+
+    }
+    
+    private func configureOtherUIElements() {
+        paymentView.backgroundColor = themeColour?.withAlphaComponent(0.3)
         updateOptionsDisplay()
         optionDetails.textColor = themeColour
         view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
-        configureNavBar()
-        addGradientMaskToImageView()
-        addImageCaption()
-        configureRemainingNumber()
+        paymentOptionLabel.textColor = themeColour
         
         if let item = itemToDisplay {
             itemImage.image = UIImage(named: item.imageURL)
@@ -115,7 +126,7 @@ class SubmitViewController: UIViewController {
     private func configureNavBar() {
         contentViewHeaderBar.barTintColor = themeColour
         if let item = itemToDisplay {
-            contentViewHeaderBar.topItem?.title = "NO. \(item.number)"
+            contentViewHeaderBar.topItem?.title = "Item No. \(item.number)"
         }  
         contentViewHeaderBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor : UIColor.white,
@@ -128,5 +139,9 @@ class SubmitViewController: UIViewController {
         guard let grad = gradient else { return }
         grad.frame = itemImage.bounds
     }
+}
+
+extension SubmitViewController {
+    
 }
 
