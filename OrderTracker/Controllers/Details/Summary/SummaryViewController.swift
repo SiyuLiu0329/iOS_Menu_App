@@ -95,6 +95,10 @@ extension SummaryViewController {
         UIView.animate(withDuration: 0.2) {
             self.view.alpha = 1
         }
+        
+        if (navigationController?.isNavigationBarHidden)! {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
 }
 

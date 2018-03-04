@@ -479,9 +479,40 @@
                     <view key="view" contentMode="scaleToFill" id="H1b-of-8DP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ve6-LX-jy1">
+                                <rect key="frame" x="30" y="74" width="315" height="563"/>
+                                <subviews>
+                                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-Yp-1gI">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <items>
+                                            <navigationItem title="Title" id="t0m-wT-PHS">
+                                                <barButtonItem key="leftBarButtonItem" systemItem="stop" id="CFG-NS-rJF">
+                                                    <connections>
+                                                        <action selector="backButtonPressed:" destination="fts-9S-74z" id="wVG-O8-Px1"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="N8V-2z-8ZO" firstAttribute="bottom" secondItem="Ve6-LX-jy1" secondAttribute="bottom" constant="30" id="6nR-GN-UDh"/>
+                            <constraint firstItem="Ve6-LX-jy1" firstAttribute="top" secondItem="N8V-2z-8ZO" secondAttribute="top" constant="30" id="V7o-yz-sXl"/>
+                            <constraint firstItem="N8V-2z-8ZO" firstAttribute="trailing" secondItem="Ve6-LX-jy1" secondAttribute="trailing" constant="30" id="aGX-CI-YHc"/>
+                            <constraint firstItem="Ve6-LX-jy1" firstAttribute="leading" secondItem="N8V-2z-8ZO" secondAttribute="leading" constant="30" id="h9g-dR-4Lq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="N8V-2z-8ZO"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="Ve6-LX-jy1" id="oHo-pu-aMM"/>
+                        <outlet property="contentViewHeaderBar" destination="zB7-Yp-1gI" id="YBZ-Pr-UbH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agy-7r-UGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
