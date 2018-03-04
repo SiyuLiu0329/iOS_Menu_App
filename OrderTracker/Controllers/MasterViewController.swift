@@ -8,14 +8,6 @@
 
 import UIKit
 
-class MenuCell: UITableViewCell {
-    
-    @IBOutlet weak var itemNumber: UILabel!
-    @IBOutlet weak var itemImg: UIImageView!
-    @IBOutlet weak var overlay: UIImageView!
-    
-}
-
 protocol ItemSelectedDelegate: class {
     func itemSelected(_ newItem: MenuItem)
 }

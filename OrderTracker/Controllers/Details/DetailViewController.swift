@@ -49,16 +49,11 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = UIColor.orange
+        navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.darkText,
+            NSAttributedStringKey.foregroundColor: UIColor.white,
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .regular)
         ]
-        rightBarItem.setTitleTextAttributes(
-            [NSAttributedStringKey.foregroundColor: UIColor.darkText,
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .regular)
-            ], for: .normal
-        )
         collectionView.delegate = self
         collectionView.dataSource = self
         priceLabel.textColor = .darkGray
