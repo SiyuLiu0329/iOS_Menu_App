@@ -64,6 +64,7 @@ class DetailViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         priceLabel.textColor = .darkGray
+        collectionView.backgroundColor = DesignConfig.masterNavBarColour
         addRoundedCorners()
     }
     
