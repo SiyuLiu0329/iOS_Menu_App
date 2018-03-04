@@ -23,7 +23,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var minusBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var rightBarItem: UIBarButtonItem!
-    var orderList: OrderList!
+    var orderList: OrderList! {
+        didSet {
+            disableButtonsIfEmpty()
+        }
+    }
     
     
     private func twoDigitPriceText(of price: Double) -> String {
@@ -44,11 +48,14 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = String(describing: currentItem.number) + ". " + currentItem.name
         quantity.text = String(describing: currentItem.quantity)
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnDel.backgroundColor = UIColor.gray
+        btnAdd.backgroundColor = UIColor.gray
+        btnDel.isEnabled = false
+        btnAdd.isEnabled = false
         navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
@@ -58,7 +65,6 @@ class DetailViewController: UIViewController {
         collectionView.dataSource = self
         priceLabel.textColor = .darkGray
         addRoundedCorners()
-        
     }
     
     private func addRoundedCorners() {
@@ -169,6 +175,7 @@ extension DetailViewController {
         orderList.incrementQuantity(forItem: itemNumber!, by: 1)
         quantity.text = String(describing: orderList.getQuantity(ofItem: itemNumber!))
         priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
+        disableButtonsIfEmpty()
     }
     
     @IBAction func btnDecrementQuantity(_ sender: Any) {
@@ -178,6 +185,7 @@ extension DetailViewController {
         orderList.incrementQuantity(forItem: itemNumber!, by: -1)
         quantity.text = String(describing: orderList.getQuantity(ofItem: itemNumber!))
         priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
+        disableButtonsIfEmpty()
     }
     
     @IBAction func btnAddOrder(_ sender: Any) {
@@ -185,7 +193,24 @@ extension DetailViewController {
             orderList.getSubTotal(ofItem: itemNumber!) != 0 else { return }
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
+        disableButtonsIfEmpty()
         dimAllCells()
+    }
+    
+    private func disableButtonsIfEmpty() {
+        guard let selectedItem = item else { return }
+        let quantity = orderList.getQuantity(ofItem: selectedItem.number)
+        if quantity == 0 {
+            btnDel.backgroundColor = UIColor.gray
+            btnAdd.backgroundColor = UIColor.gray
+            btnDel.isEnabled = false
+            btnAdd.isEnabled = false
+        } else {
+            btnDel.backgroundColor = UIColor.red
+            btnAdd.backgroundColor = UIColor(red: 65/255, green: 169/255, blue: 56/255, alpha: 1)
+            btnDel.isEnabled = true
+            btnAdd.isEnabled = true
+        }
     }
 
 }
