@@ -39,7 +39,7 @@ class SummaryCollectionViewCell: UICollectionViewCell {
                 if option.value {
                     let label = UILabel()
                     label.font = label.font.withSize(18)
-                    label.text = "\(i + 1). " + option.description
+                    label.text = "• " + option.description
                     let yPosition = i * optionSize
                     label.frame = CGRect(x: 0, y: yPosition, width: Int(scrollView.frame.width), height: optionSize)
                     
