@@ -33,47 +33,37 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7M-o6-pzV">
-                                <rect key="frame" x="416" y="226" width="146" height="146"/>
-                                <color key="backgroundColor" red="0.4640385844421927" green="0.250564561058367" blue="0.68808156251907349" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="416" y="222" width="146" height="150"/>
+                                <color key="backgroundColor" red="0.46403858440000001" green="0.25056456110000003" blue="0.68808156249999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="146" id="dvk-DV-aet"/>
-                                    <constraint firstAttribute="height" constant="146" id="q5E-MQ-Caz"/>
+                                    <constraint firstAttribute="height" constant="150" id="q5E-MQ-Caz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="120"/>
                                 <state key="normal" title="−">
                                     <color key="titleColor" red="0.89252752589999995" green="0.89252752589999995" blue="0.89252752589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnDecrementQuantity:" destination="uQm-LB-eNr" eventType="touchUpInside" id="npY-vB-YlH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djv-E6-Voe">
-                                <rect key="frame" x="416" y="72" width="146" height="146"/>
+                                <rect key="frame" x="416" y="72" width="146" height="150"/>
                                 <color key="backgroundColor" red="0.4640385844421927" green="0.250564561058367" blue="0.68808156251907349" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="146" id="9Ye-HF-YsJ"/>
+                                    <constraint firstAttribute="height" constant="150" id="9Ye-HF-YsJ"/>
                                     <constraint firstAttribute="width" constant="146" id="bnp-ZB-nAf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="120"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnIncrementQuantity:" destination="uQm-LB-eNr" eventType="touchUpInside" id="PJ2-v3-APE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nv-xp-nJ5">
-                                <rect key="frame" x="570" y="72" width="125.5" height="50"/>
+                                <rect key="frame" x="562" y="72" width="133.5" height="50"/>
                                 <color key="backgroundColor" red="0.052716656057685621" green="0.55169999599456787" blue="0.083566971375890475" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7Xh-UO-HvY"/>
@@ -83,7 +73,7 @@
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG6-QW-55y">
-                                <rect key="frame" x="570" y="122" width="125.5" height="250"/>
+                                <rect key="frame" x="562" y="122" width="133.5" height="250"/>
                                 <color key="backgroundColor" red="0.89252752589999995" green="0.89252752589999995" blue="0.89252752589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="l12-cQ-ufk"/>
@@ -171,6 +161,12 @@
                                             <constraint firstItem="2JM-F8-vXZ" firstAttribute="top" secondItem="QRQ-5O-JHY" secondAttribute="top" id="xSh-oG-dak"/>
                                             <constraint firstAttribute="bottom" secondItem="e0c-nf-bTe" secondAttribute="bottom" id="xTK-II-leh"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="itemDescription" destination="2JM-F8-vXZ" id="uyD-3C-Ia9"/>
                                             <outlet property="overlay" destination="SnJ-lg-TRe" id="cwH-aY-7SU"/>
@@ -178,6 +174,12 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </collectionView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Shm-ta-cfK">
                                 <rect key="frame" x="570" y="380" width="126" height="212"/>
@@ -212,14 +214,14 @@
                         <constraints>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="5TF-FO-UP0" secondAttribute="bottom" constant="8" id="3Bd-9f-977"/>
                             <constraint firstItem="UD6-YL-UQ6" firstAttribute="leading" secondItem="P4J-UL-DPq" secondAttribute="trailing" id="470-eO-apF"/>
-                            <constraint firstItem="E7M-o6-pzV" firstAttribute="top" secondItem="djv-E6-Voe" secondAttribute="bottom" constant="8" id="51R-fQ-sjG"/>
+                            <constraint firstItem="E7M-o6-pzV" firstAttribute="top" secondItem="djv-E6-Voe" secondAttribute="bottom" id="51R-fQ-sjG"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="P4J-UL-DPq" secondAttribute="bottom" constant="8" id="8t1-zq-zCP"/>
                             <constraint firstItem="HUR-59-dC0" firstAttribute="top" secondItem="Shm-ta-cfK" secondAttribute="bottom" constant="8" id="9eN-hY-iti"/>
                             <constraint firstItem="eG6-QW-55y" firstAttribute="top" secondItem="1Nv-xp-nJ5" secondAttribute="bottom" id="Bc8-dg-A2M"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="UD6-YL-UQ6" secondAttribute="trailing" constant="8" id="HjY-8y-KNh"/>
                             <constraint firstItem="P4J-UL-DPq" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="N5E-oJ-u6B"/>
                             <constraint firstItem="1Nv-xp-nJ5" firstAttribute="top" secondItem="4gm-LM-8Va" secondAttribute="top" constant="8" id="U6J-bI-NBI"/>
-                            <constraint firstItem="1Nv-xp-nJ5" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" constant="8" id="Ve1-7Y-KC2"/>
+                            <constraint firstItem="1Nv-xp-nJ5" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" id="Ve1-7Y-KC2"/>
                             <constraint firstItem="UD6-YL-UQ6" firstAttribute="top" secondItem="HUR-59-dC0" secondAttribute="bottom" id="WFI-bc-tFx"/>
                             <constraint firstItem="wlB-em-UBK" firstAttribute="leading" secondItem="4gm-LM-8Va" secondAttribute="leading" constant="8" id="XRd-Vt-g36"/>
                             <constraint firstItem="E7M-o6-pzV" firstAttribute="leading" secondItem="wlB-em-UBK" secondAttribute="trailing" constant="8" id="Y9T-42-8rF"/>
@@ -227,7 +229,7 @@
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="trailing" secondItem="HUR-59-dC0" secondAttribute="trailing" constant="8" id="ZmR-Tr-LfD"/>
                             <constraint firstItem="4gm-LM-8Va" firstAttribute="bottom" secondItem="UD6-YL-UQ6" secondAttribute="bottom" constant="8" id="aLi-7j-aez"/>
                             <constraint firstItem="wlB-em-UBK" firstAttribute="top" secondItem="4gm-LM-8Va" secondAttribute="top" constant="8" id="ckv-at-wjQ"/>
-                            <constraint firstItem="eG6-QW-55y" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" constant="8" id="dRU-Ye-Ngk"/>
+                            <constraint firstItem="eG6-QW-55y" firstAttribute="leading" secondItem="djv-E6-Voe" secondAttribute="trailing" id="dRU-Ye-Ngk"/>
                             <constraint firstItem="HUR-59-dC0" firstAttribute="leading" secondItem="5TF-FO-UP0" secondAttribute="trailing" constant="8" id="puh-zP-SSv"/>
                             <constraint firstItem="5TF-FO-UP0" firstAttribute="leading" secondItem="4gm-LM-8Va" secondAttribute="leading" constant="8" id="pvy-vn-j3X"/>
                             <constraint firstItem="djv-E6-Voe" firstAttribute="leading" secondItem="wlB-em-UBK" secondAttribute="trailing" constant="8" id="uwp-wr-CVL"/>
@@ -255,8 +257,11 @@
                         <outlet property="btnDel" destination="P4J-UL-DPq" id="TYh-7g-lcd"/>
                         <outlet property="collectionView" destination="5TF-FO-UP0" id="Ltu-9W-3pO"/>
                         <outlet property="itemImage" destination="wlB-em-UBK" id="lXR-Si-6Y6"/>
+                        <outlet property="minusBtn" destination="E7M-o6-pzV" id="MTa-7Y-7nI"/>
+                        <outlet property="plusBtn" destination="djv-E6-Voe" id="gBm-cM-YMR"/>
                         <outlet property="priceLabel" destination="HUR-59-dC0" id="mSh-i9-DSv"/>
                         <outlet property="quantity" destination="eG6-QW-55y" id="lpT-Qg-orH"/>
+                        <outlet property="quantityHeader" destination="1Nv-xp-nJ5" id="Wq8-xw-hQk"/>
                         <outlet property="rightNavBarItem" destination="PpN-QA-xH1" id="QkW-0c-scg"/>
                     </connections>
                 </viewController>

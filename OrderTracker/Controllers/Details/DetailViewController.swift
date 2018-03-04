@@ -19,13 +19,17 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
     @IBOutlet weak var rightNavBarItem: UIBarButtonItem!
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
+    @IBOutlet weak var quantityHeader: UILabel!
     
+    @IBOutlet weak var minusBtn: UIButton!
+    @IBOutlet weak var plusBtn: UIButton!
     var orderList: OrderList! {
         didSet {
             updateNavBarPrice()
         }
-
     }
+    
+
     
     func updateNavBarPrice() {
         guard orderList != nil else { return }
@@ -60,6 +64,11 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkText]
         collectionView.delegate = self
         collectionView.dataSource = self
+        addRoundedCorners()
+        
+    }
+    
+    private func addRoundedCorners() {
         btnDel.clipsToBounds = true
         btnDel.layer.cornerRadius = 10
         btnDel.layer.maskedCorners = [.layerMinXMaxYCorner]
@@ -69,6 +78,18 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
         priceLabel.layer.cornerRadius = 10
         priceLabel.clipsToBounds = true
         priceLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        quantityHeader.layer.cornerRadius = 10
+        quantityHeader.clipsToBounds = true
+        quantityHeader.layer.maskedCorners = [.layerMaxXMinYCorner]
+        quantity.layer.cornerRadius = 10
+        quantity.clipsToBounds = true
+        quantity.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        plusBtn.layer.cornerRadius = 10
+        plusBtn.clipsToBounds = true
+        plusBtn.layer.maskedCorners = [.layerMinXMinYCorner]
+        minusBtn.layer.cornerRadius = 10
+        minusBtn.clipsToBounds = true
+        minusBtn.layer.maskedCorners = [.layerMinXMaxYCorner]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
