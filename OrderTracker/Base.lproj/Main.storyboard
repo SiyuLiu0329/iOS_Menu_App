@@ -147,7 +147,7 @@
                                                 </button>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.3718922006" green="0.68808156249999997" blue="0.31794128389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="2JM-F8-vXZ" secondAttribute="trailing" id="6Gd-dY-28z"/>
                                             <constraint firstAttribute="bottom" secondItem="SnJ-lg-TRe" secondAttribute="bottom" id="Grj-4j-XN4"/>
