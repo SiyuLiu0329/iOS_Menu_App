@@ -17,7 +17,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var checkMark: UILabel!
     @IBOutlet weak var itemDescription: UITextView!
-    @IBOutlet weak var overlay: UIImageView!
+    @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var toggleButton: UIButton!
     @IBAction func buttonPressed(_ sender: Any) {
         delegate?.optionaButtonPressed(self)

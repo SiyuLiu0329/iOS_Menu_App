@@ -126,10 +126,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="237" height="237"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SnJ-lg-TRe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="237"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIp-sM-pus">
+                                                    <rect key="frame" x="-0.5" y="0.0" width="237" height="237"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </imageView>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoD-AL-T6i">
                                                     <rect key="frame" x="28" y="195" width="197" height="30"/>
                                                     <constraints>
@@ -158,17 +158,17 @@
                                         </view>
                                         <color key="backgroundColor" red="0.3718922006" green="0.68808156249999997" blue="0.31794128389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
+                                            <constraint firstItem="gIp-sM-pus" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leading" id="28P-3F-aEg"/>
                                             <constraint firstAttribute="trailing" secondItem="2JM-F8-vXZ" secondAttribute="trailing" id="6Gd-dY-28z"/>
-                                            <constraint firstAttribute="bottom" secondItem="SnJ-lg-TRe" secondAttribute="bottom" id="Grj-4j-XN4"/>
+                                            <constraint firstItem="gIp-sM-pus" firstAttribute="top" secondItem="QRQ-5O-JHY" secondAttribute="top" id="EkA-Bo-JSK"/>
                                             <constraint firstItem="2JM-F8-vXZ" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leading" id="OAD-Im-tud"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="NoD-AL-T6i" secondAttribute="bottom" constant="4" id="Ucg-yK-C6n"/>
                                             <constraint firstAttribute="trailing" secondItem="e0c-nf-bTe" secondAttribute="trailing" id="Ycd-Ce-hYT"/>
-                                            <constraint firstItem="SnJ-lg-TRe" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leading" id="Z5j-7J-d6x"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="NoD-AL-T6i" secondAttribute="trailing" constant="4" id="bSG-j5-tM3"/>
                                             <constraint firstItem="e0c-nf-bTe" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leading" id="bkZ-Id-2ve"/>
-                                            <constraint firstAttribute="trailing" secondItem="SnJ-lg-TRe" secondAttribute="trailing" id="elP-RY-Qwa"/>
-                                            <constraint firstItem="SnJ-lg-TRe" firstAttribute="top" secondItem="QRQ-5O-JHY" secondAttribute="top" id="f9v-4e-NZI"/>
+                                            <constraint firstAttribute="trailing" secondItem="gIp-sM-pus" secondAttribute="trailing" id="bvS-c0-CJb"/>
                                             <constraint firstItem="e0c-nf-bTe" firstAttribute="top" secondItem="QRQ-5O-JHY" secondAttribute="top" id="rB6-OK-rfr"/>
+                                            <constraint firstAttribute="bottom" secondItem="gIp-sM-pus" secondAttribute="bottom" id="wug-Hc-huq"/>
                                             <constraint firstItem="2JM-F8-vXZ" firstAttribute="top" secondItem="QRQ-5O-JHY" secondAttribute="top" id="xSh-oG-dak"/>
                                             <constraint firstAttribute="bottom" secondItem="e0c-nf-bTe" secondAttribute="bottom" id="xTK-II-leh"/>
                                             <constraint firstItem="NoD-AL-T6i" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leadingMargin" constant="20" id="ydV-Az-CRR"/>
@@ -182,7 +182,7 @@
                                         <connections>
                                             <outlet property="checkMark" destination="NoD-AL-T6i" id="i0d-cO-GKu"/>
                                             <outlet property="itemDescription" destination="2JM-F8-vXZ" id="uyD-3C-Ia9"/>
-                                            <outlet property="overlay" destination="SnJ-lg-TRe" id="cwH-aY-7SU"/>
+                                            <outlet property="overlay" destination="gIp-sM-pus" id="3iN-n2-Mq0"/>
                                             <outlet property="toggleButton" destination="e0c-nf-bTe" id="QnG-Ym-ung"/>
                                         </connections>
                                     </collectionViewCell>
@@ -194,10 +194,9 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </collectionView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Shm-ta-cfK">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comments Here..." translatesAutoresizingMaskIntoConstraints="NO" id="Shm-ta-cfK">
                                 <rect key="frame" x="570" y="380" width="126" height="172"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -280,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoS-in-F5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="158"/>
+            <point key="canvasLocation" x="795.703125" y="157.8125"/>
         </scene>
         <!--Summary View Controller-->
         <scene sceneID="kYD-ff-94o">
