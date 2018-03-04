@@ -52,9 +52,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnDel.backgroundColor = UIColor.gray
         btnAdd.backgroundColor = UIColor.gray
-        btnDel.isEnabled = false
         btnAdd.isEnabled = false
         navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
         navigationController?.navigationBar.titleTextAttributes = [
@@ -167,6 +165,7 @@ extension DetailViewController {
         orderList.resetTamplateItem(itemNumber: itemNumber!)
         item = orderList.getItem(numbered: itemNumber!)
         dimAllCells()
+        disableButtonsIfEmpty()
     }
     
     @IBAction func btnIncrementQuantity(_ sender: Any) {
@@ -202,14 +201,10 @@ extension DetailViewController {
         guard let selectedItem = item else { return }
         let quantity = orderList.getQuantity(ofItem: selectedItem.number)
         if quantity == 0 {
-            btnDel.backgroundColor = UIColor.gray
             btnAdd.backgroundColor = UIColor.gray
-            btnDel.isEnabled = false
             btnAdd.isEnabled = false
         } else {
-            btnDel.backgroundColor = UIColor.red
             btnAdd.backgroundColor = UIColor(red: 65/255, green: 169/255, blue: 56/255, alpha: 1)
-            btnDel.isEnabled = true
             btnAdd.isEnabled = true
         }
     }

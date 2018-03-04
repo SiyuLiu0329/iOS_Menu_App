@@ -511,14 +511,52 @@
                                             <constraint firstAttribute="height" constant="250" id="Jhv-VK-MY0"/>
                                         </constraints>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vOT-3w-dKB">
+                                        <rect key="frame" x="12" y="306" width="90" height="90"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4h-F9-huz">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="1P1-hp-Z9g"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wis-Xd-A9H">
+                                                <rect key="frame" x="0.0" y="25" width="90" height="65"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="bYC-Gh-Ufc"/>
+                                            <constraint firstAttribute="height" constant="90" id="qBx-xy-yS2"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jkasdlfjds;alfjadsl;fkfjdalfjadlsfjdsalfjasdlfjadslfjadl;fadfa" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3r9-WQ-zb0">
+                                        <rect key="frame" x="122" y="306" width="173" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="aFx-Pm-Z1l"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="vOT-3w-dKB" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" constant="12" id="3BH-la-NlK"/>
                                     <constraint firstItem="8gQ-Jc-aDB" firstAttribute="top" secondItem="zB7-Yp-1gI" secondAttribute="bottom" id="4xD-00-Xgt"/>
                                     <constraint firstAttribute="trailing" secondItem="8gQ-Jc-aDB" secondAttribute="trailing" id="57x-eS-fa6"/>
                                     <constraint firstItem="zB7-Yp-1gI" firstAttribute="top" secondItem="Ve6-LX-jy1" secondAttribute="top" id="9WC-G3-iZt"/>
                                     <constraint firstItem="zB7-Yp-1gI" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" id="A3H-MJ-u4i"/>
                                     <constraint firstItem="8gQ-Jc-aDB" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" id="APK-G0-ASh"/>
+                                    <constraint firstItem="vOT-3w-dKB" firstAttribute="top" secondItem="8gQ-Jc-aDB" secondAttribute="bottom" constant="12" id="BR6-qD-QFM"/>
+                                    <constraint firstItem="3r9-WQ-zb0" firstAttribute="leading" secondItem="vOT-3w-dKB" secondAttribute="trailing" constant="20" id="Hkj-HH-H8V"/>
+                                    <constraint firstAttribute="trailing" secondItem="3r9-WQ-zb0" secondAttribute="trailing" constant="20" id="Qaw-vZ-s1v"/>
+                                    <constraint firstItem="3r9-WQ-zb0" firstAttribute="top" secondItem="8gQ-Jc-aDB" secondAttribute="bottom" constant="12" id="YTV-Il-boX"/>
                                     <constraint firstAttribute="trailing" secondItem="zB7-Yp-1gI" secondAttribute="trailing" id="d7t-gt-Oox"/>
                                 </constraints>
                             </view>
@@ -536,11 +574,14 @@
                         <outlet property="contentView" destination="Ve6-LX-jy1" id="oHo-pu-aMM"/>
                         <outlet property="contentViewHeaderBar" destination="zB7-Yp-1gI" id="YBZ-Pr-UbH"/>
                         <outlet property="itemImage" destination="8gQ-Jc-aDB" id="hB6-pm-peY"/>
+                        <outlet property="optionDetails" destination="3r9-WQ-zb0" id="BOR-Hf-4bs"/>
+                        <outlet property="remainingLabel" destination="b4h-F9-huz" id="wpn-in-5qz"/>
+                        <outlet property="remainingNumberLabel" destination="Wis-Xd-A9H" id="WcJ-iD-9aG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agy-7r-UGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2191.9921875" y="860.9375"/>
+            <point key="canvasLocation" x="2191.800878477306" y="860.7421875"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="XSQ-jd-nL9">

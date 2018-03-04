@@ -14,23 +14,72 @@ class SubmitViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeaderBar: UINavigationBar!
     @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var remainingLabel: UILabel!
+    @IBOutlet weak var remainingNumberLabel: UILabel!
     var gradient: CAGradientLayer?
-    
+    @IBOutlet weak var optionDetails: UILabel!
     @IBAction func backButtonPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateOptionsDisplay()
+        optionDetails.textColor = themeColour
         view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         configureNavBar()
         addGradientMaskToImageView()
         addImageCaption()
+        configureRemainingNumber()
+        
         if let item = itemToDisplay {
             itemImage.image = UIImage(named: item.imageURL)
+            remainingNumberLabel.text = "\(item.quantity)"
         }
+    }
+    
+    private func configureRemainingNumber() {
+        remainingLabel.textColor = UIColor.white
+        remainingLabel.backgroundColor = themeColour
+        remainingLabel.layer.cornerRadius = 10
+        remainingLabel.clipsToBounds = true
+        remainingLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        remainingNumberLabel.layer.cornerRadius = 10
+        remainingNumberLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        remainingNumberLabel.clipsToBounds = true
+        remainingNumberLabel.layer.borderColor = themeColour?.cgColor
+        remainingNumberLabel.layer.borderWidth = 2
+        remainingNumberLabel.textColor = themeColour
+    }
+    
+    func updateOptionsDisplay() {
+        guard let item = itemToDisplay else { return }
+        var displayText = "Options:\n"
+        for option in item.options {
+            if option.value {
+                displayText += option.description + ", "
+            }
+        }
+        
+        if displayText == "Options:\n" {
+            displayText += "Not Applicable."
+        } else {
+            displayText.removeLast()
+            displayText.removeLast()
+            displayText += "."
+        }
+        
+        let text = NSMutableAttributedString.init(string: displayText)
+        text.setAttributes([
+            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17, weight: .bold)
+            ], range: NSRange.init(location: 0, length: 8))
+        
+        text.setAttributes([
+            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17, weight: .light)
+            ], range: NSRange.init(location: 8, length: displayText.count - 8))
+        optionDetails.attributedText = text
     }
     
     private func addGradientMaskToImageView() {
@@ -54,9 +103,6 @@ class SubmitViewController: UIViewController {
         label.text = item.name
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20, weight: .light)
-        
-        
-        
     }
     
     
