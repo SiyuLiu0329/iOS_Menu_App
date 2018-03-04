@@ -8,30 +8,16 @@
 
 import UIKit
 
-protocol SummaryViewControllerDelegate: class {
-    func updateNavBarPrice()
-}
 
 class SummaryViewController: UIViewController {
     var selectedIndexPath: IndexPath?
-    var orderList: OrderList! {
-        didSet {
-            prepareDataForTableView()
-        }
-    }
-
+    var orderList: OrderList!
     @IBOutlet weak var summaryCollectionView: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
-    
-    
-    weak var delegate: SummaryViewControllerDelegate?
-    private var expanded: [Bool]!
 
     
     
-    private func prepareDataForTableView() {
-        expanded = Array(repeating: false, count: orderList.getItemsInCurrentOrder().count)
-    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +52,6 @@ extension SummaryViewController {
         disableSubmitIfEmpty()
         updateLabelOnSubmitButton()
         summaryCollectionView.reloadData()
-        if delegate != nil {
-            delegate!.updateNavBarPrice()
-        }
     }
     
     private func disableSubmitIfEmpty() {

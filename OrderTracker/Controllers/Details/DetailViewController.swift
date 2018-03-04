@@ -9,7 +9,7 @@
 import UIKit
 
 
-class DetailViewController: UIViewController, SummaryViewControllerDelegate {
+class DetailViewController: UIViewController {
 
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
@@ -20,21 +20,11 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
     @IBOutlet weak var quantityHeader: UILabel!
-    
     @IBOutlet weak var minusBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
-    var orderList: OrderList! {
-        didSet {
-            updateNavBarPrice()
-        }
-    }
+    @IBOutlet weak var rightBarItem: UIBarButtonItem!
+    var orderList: OrderList!
     
-
-    
-    func updateNavBarPrice() {
-        guard orderList != nil else { return }
-        // update labels if needed
-    }
     
     private func twoDigitPriceText(of price: Double) -> String {
         return String(format: "$%.2f", price)
@@ -52,7 +42,6 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
         guard let currentItem = item else { return }
         itemImage.image = UIImage(named: currentItem.imageURL)
         navigationController?.navigationBar.topItem?.title = String(describing: currentItem.number) + ". " + currentItem.name
-        updateNavBarPrice()
         quantity.text = String(describing: currentItem.quantity)
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
         
@@ -61,9 +50,18 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.orange
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkText]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.darkText,
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .regular)
+        ]
+        rightBarItem.setTitleTextAttributes(
+            [NSAttributedStringKey.foregroundColor: UIColor.darkText,
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .regular)
+            ], for: .normal
+        )
         collectionView.delegate = self
         collectionView.dataSource = self
+        priceLabel.textColor = .darkGray
         addRoundedCorners()
         
     }
@@ -97,7 +95,6 @@ class DetailViewController: UIViewController, SummaryViewControllerDelegate {
             guard let navController = segue.destination as? UINavigationController else { return }
             guard let summaryController = navController.viewControllers.first as? SummaryViewController else { return }
             summaryController.orderList = orderList
-            summaryController.delegate = self
             
         }
     }
@@ -194,7 +191,6 @@ extension DetailViewController {
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
-        updateNavBarPrice()
     }
 
 }

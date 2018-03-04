@@ -65,12 +65,5 @@ class MasterViewController: UITableViewController {
             detailViewController.orderList = orderList
         }
     }
-//        
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        if [0, 1, 2, 3, 4, 5, 6].contains(indexPath.row) {
-//            performSegue(withIdentifier: "segue1", sender: tableView.cellForRow(at: indexPath))
-//        }
-//    }
 
 }

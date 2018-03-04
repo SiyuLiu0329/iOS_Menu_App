@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else { fatalError() }
         
         let firstItem = masterViewController.orderList.menuItems[1]
-        leftNavController.navigationBar.topItem?.title = "Items"
+        leftNavController.navigationBar.topItem?.title = "Menu"
         leftNavController.navigationBar.barTintColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
         leftNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         masterViewController.tableView.rowHeight = 102
