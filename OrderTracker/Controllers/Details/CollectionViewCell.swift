@@ -15,6 +15,7 @@ protocol optionButtonDelegate: class {
 class CollectionViewCell: UICollectionViewCell {
     weak var delegate: optionButtonDelegate?
     
+    @IBOutlet weak var checkMark: UILabel!
     @IBOutlet weak var itemDescription: UITextView!
     @IBOutlet weak var overlay: UIImageView!
     @IBOutlet weak var toggleButton: UIButton!
@@ -34,9 +35,11 @@ class CollectionViewCell: UICollectionViewCell {
     
     func dim() {
         overlay.alpha = 0.3
+        checkMark.alpha = 0
     }
     
     func light() {
         overlay.alpha = 0.05
+        checkMark.alpha = 1
     }
 }
