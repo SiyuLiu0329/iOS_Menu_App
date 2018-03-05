@@ -179,6 +179,7 @@ extension SubmitViewController: paymentOptionTappedDelegate {
 
         for view in paymentOptionsViews {
             if view.viewID == id {
+                paymentView.bringSubview(toFront: view)
                 view.selected = true
             } else {
                 view.selected = false

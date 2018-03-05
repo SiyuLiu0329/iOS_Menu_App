@@ -23,13 +23,15 @@ class PaymentOptionView: UIView {
         willSet {
             
             if newValue == true {
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.backgroundColor = self.themeColour
                     self.optionLabel.textColor = .white
+                    self.frame = self.superview!.bounds
+                    self.optionLabel.frame = self.bounds
                 })
                 
             } else {
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.backgroundColor = .clear
                     self.optionLabel.textColor = self.themeColour
                 })
