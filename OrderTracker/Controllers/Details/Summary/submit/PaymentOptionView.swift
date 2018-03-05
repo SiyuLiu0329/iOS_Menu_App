@@ -66,11 +66,7 @@ class PaymentOptionView: UIView {
         optionLabel.backgroundColor = .clear
         optionLabel.textAlignment = .center
         optionLabel.font = UIFont.systemFont(ofSize: 40, weight: .light)
-        optionLabel.translatesAutoresizingMaskIntoConstraints = false
-        optionLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        optionLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        optionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
-        optionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        optionLabel.frame = bounds
         
     }
     

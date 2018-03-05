@@ -23,6 +23,7 @@ class SubmitViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    let paymentViewHeight = 80
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
@@ -36,25 +37,7 @@ class SubmitViewController: UIViewController {
         for paymentOption in paymentOptions {
             let view = PaymentOptionView()
             paymentView.addSubview(view)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            if paymentOptionsViews.isEmpty {
-                // this is the left most view
-                view.leftAnchor.constraint(equalTo: paymentView.leftAnchor).isActive = true
-                view.topAnchor.constraint(equalTo: paymentView.topAnchor).isActive = true
-                view.bottomAnchor.constraint(equalTo: paymentView.bottomAnchor).isActive = true
-                view.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
-            } else if paymentOptionsViews.count == paymentOptions.count - 1 {
-                view.leftAnchor.constraint(equalTo: paymentOptionsViews.last!.rightAnchor).isActive = true
-                view.topAnchor.constraint(equalTo: paymentView.topAnchor).isActive = true
-                view.bottomAnchor.constraint(equalTo: paymentView.bottomAnchor).isActive = true
-                view.rightAnchor.constraint(equalTo: paymentView.rightAnchor).isActive = true
-            } else {
-                view.leftAnchor.constraint(equalTo: paymentOptionsViews.last!.rightAnchor).isActive = true
-                view.topAnchor.constraint(equalTo: paymentView.topAnchor).isActive = true
-                view.bottomAnchor.constraint(equalTo: paymentView.bottomAnchor).isActive = true
-                view.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
-                
-            }
+            view.frame = CGRect(x: i * width, y: 0, width: width, height: paymentViewHeight)
             view.viewID = i
             view.delegate = self
             view.configureView()
@@ -76,6 +59,7 @@ class SubmitViewController: UIViewController {
         configureRemainingNumber()
         configureOtherUIElements()
         setUpPaymentOptionViews()
+        paymentView.frame = CGRect(x: 0, y: 442, width: 440, height: paymentViewHeight)
     }
     
     private func configureOtherUIElements() {
