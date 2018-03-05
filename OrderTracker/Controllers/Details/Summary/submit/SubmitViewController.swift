@@ -24,6 +24,7 @@ class SubmitViewController: UIViewController {
     }
     
     let paymentViewHeight = 80
+    let paymentViewWidth = 420
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
@@ -32,7 +33,7 @@ class SubmitViewController: UIViewController {
     private var paymentOptionsViews: [PaymentOptionView] = []
     
     private func setUpPaymentOptionViews() {
-        let width = 420 / paymentOptions.count
+        let width = paymentViewWidth / paymentOptions.count
         var i = 0
         for paymentOption in paymentOptions {
             let view = PaymentOptionView()
@@ -59,7 +60,7 @@ class SubmitViewController: UIViewController {
         configureRemainingNumber()
         configureOtherUIElements()
         setUpPaymentOptionViews()
-        paymentView.frame = CGRect(x: 0, y: 442, width: 440, height: paymentViewHeight)
+        paymentView.frame = CGRect(x: 0, y: 442, width: paymentViewWidth, height: paymentViewHeight)
     }
     
     private func configureOtherUIElements() {
@@ -175,10 +176,7 @@ extension SubmitViewController: paymentOptionTappedDelegate {
     }
     
     private func deselecteAll(exceptViewWithID id: Int) {
-        if paymentOptionsViews[id].selected {
-            return
-        }
-        
+
         for view in paymentOptionsViews {
             if view.viewID == id {
                 view.selected = true

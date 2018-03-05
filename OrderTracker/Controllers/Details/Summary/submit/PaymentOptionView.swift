@@ -21,14 +21,15 @@ class PaymentOptionView: UIView {
     }
     var selected = false {
         willSet {
+            
             if newValue == true {
-                UIView.animate(withDuration: 0.1, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.backgroundColor = self.themeColour
                     self.optionLabel.textColor = .white
                 })
                 
             } else {
-                UIView.animate(withDuration: 0.1, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.backgroundColor = .clear
                     self.optionLabel.textColor = self.themeColour
                 })
@@ -66,7 +67,11 @@ class PaymentOptionView: UIView {
         optionLabel.backgroundColor = .clear
         optionLabel.textAlignment = .center
         optionLabel.font = UIFont.systemFont(ofSize: 40, weight: .light)
-        optionLabel.frame = bounds
+        optionLabel.translatesAutoresizingMaskIntoConstraints = false
+        optionLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        optionLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        optionLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        optionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
     }
     
