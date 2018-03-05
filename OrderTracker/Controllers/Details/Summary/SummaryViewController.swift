@@ -153,6 +153,7 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout, UICollectio
         if segue.identifier == "submitSegue1" {
             if let smVC = segue.destination as? SubmitViewController {
                 smVC.itemToDisplay = item
+                smVC.orderList = orderList
                 smVC.themeColour = getColour(withSeed: item.number)
             }
         }

@@ -145,7 +145,6 @@ extension SummaryCollectionViewCell: UIGestureRecognizerDelegate {
             let height = frame.height
             displacement = deleteLabel.center.x - originalCentreX
             if displacement < deleteThreashold {
-                
                 UIView.animate(withDuration: 0.2, animations: {
                     self.deleteLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 })

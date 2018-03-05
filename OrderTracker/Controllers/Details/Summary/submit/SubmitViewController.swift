@@ -11,6 +11,7 @@ import UIKit
 class SubmitViewController: UIViewController {
     var themeColour: UIColor?
     var itemToDisplay: MenuItem?
+    var orderList: OrderList?
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeaderBar: UINavigationBar!
     @IBOutlet weak var itemImage: UIImageView!
@@ -32,11 +33,11 @@ class SubmitViewController: UIViewController {
         addImageCaption()
         configureRemainingNumber()
         configureOtherUIElements()
-        
-
     }
     
     private func configureOtherUIElements() {
+        itemImage.clipsToBounds = true
+        itemImage.contentMode = .scaleAspectFill
         paymentView.backgroundColor = themeColour?.withAlphaComponent(0.3)
         updateOptionsDisplay()
         optionDetails.textColor = themeColour
