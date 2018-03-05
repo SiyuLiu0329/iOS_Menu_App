@@ -55,6 +55,8 @@ class SubmitViewController: UIViewController {
                 view.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
                 
             }
+            view.viewID = i
+            view.delegate = self
             view.configureView()
             view.themeColour = themeColour
             view.optionTitle = paymentOption
@@ -183,7 +185,23 @@ class SubmitViewController: UIViewController {
     }
 }
 
-extension SubmitViewController {
+extension SubmitViewController: paymentOptionTappedDelegate {
+    func swichView(withID id: Int) {
+        deselecteAll(exceptViewWithID: id)
+    }
     
+    private func deselecteAll(exceptViewWithID id: Int) {
+        if paymentOptionsViews[id].selected {
+            return
+        }
+        
+        for view in paymentOptionsViews {
+            if view.viewID == id {
+                view.selected = true
+            } else {
+                view.selected = false
+            }
+        }
+    }
 }
 

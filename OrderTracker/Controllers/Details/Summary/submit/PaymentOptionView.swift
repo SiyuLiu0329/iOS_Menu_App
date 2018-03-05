@@ -9,12 +9,35 @@
 import Foundation
 import UIKit
 
+protocol paymentOptionTappedDelegate: class {
+    func swichView(withID id: Int)
+}
+
 class PaymentOptionView: UIView {
     var themeColour: UIColor! {
         willSet {
             optionLabel.textColor = newValue
         }
     }
+    var selected = false {
+        willSet {
+            if newValue == true {
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.backgroundColor = self.themeColour
+                    self.optionLabel.textColor = .white
+                })
+                
+            } else {
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.backgroundColor = .clear
+                    self.optionLabel.textColor = self.themeColour
+                })
+                
+            }
+        }
+    }
+    weak var delegate: paymentOptionTappedDelegate?
+    var viewID: Int?
     var optionTitle: String! {
         willSet {
             optionLabel.text = newValue
@@ -33,7 +56,9 @@ class PaymentOptionView: UIView {
     }
     
     @objc private func tapped() {
-        
+        if delegate != nil && viewID != nil {
+            delegate!.swichView(withID: viewID!)
+        }
     }
     
     private func configureOptionLabel() {
