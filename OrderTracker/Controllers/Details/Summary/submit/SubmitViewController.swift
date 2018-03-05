@@ -26,6 +26,46 @@ class SubmitViewController: UIViewController {
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
+    var paymentOptions: [String] = ["Card", "Cash"]
+    
+    private var paymentOptionsViews: [PaymentOptionView] = []
+    
+    private func setUpPaymentOptionViews() {
+        let width = 420 / paymentOptions.count
+        var i = 0
+        for paymentOption in paymentOptions {
+            let view = PaymentOptionView()
+            paymentView.addSubview(view)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            if paymentOptionsViews.isEmpty {
+                // this is the left most view
+                view.leftAnchor.constraint(equalTo: paymentView.leftAnchor).isActive = true
+                view.topAnchor.constraint(equalTo: paymentView.topAnchor).isActive = true
+                view.bottomAnchor.constraint(equalTo: paymentView.bottomAnchor).isActive = true
+                view.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+            } else if paymentOptionsViews.count == paymentOptions.count - 1 {
+                view.leftAnchor.constraint(equalTo: paymentOptionsViews.last!.rightAnchor).isActive = true
+                view.topAnchor.constraint(equalTo: paymentView.topAnchor).isActive = true
+                view.bottomAnchor.constraint(equalTo: paymentView.bottomAnchor).isActive = true
+                view.rightAnchor.constraint(equalTo: paymentView.rightAnchor).isActive = true
+            } else {
+                view.leftAnchor.constraint(equalTo: paymentOptionsViews.last!.rightAnchor).isActive = true
+                view.topAnchor.constraint(equalTo: paymentView.topAnchor).isActive = true
+                view.bottomAnchor.constraint(equalTo: paymentView.bottomAnchor).isActive = true
+                view.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+                
+            }
+            view.configureView()
+            view.themeColour = themeColour
+            view.optionTitle = paymentOption
+            
+            i += 1
+            paymentOptionsViews.append(view)
+        }
+
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
@@ -33,6 +73,7 @@ class SubmitViewController: UIViewController {
         addImageCaption()
         configureRemainingNumber()
         configureOtherUIElements()
+        setUpPaymentOptionViews()
     }
     
     private func configureOtherUIElements() {
