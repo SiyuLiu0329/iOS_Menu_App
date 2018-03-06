@@ -130,6 +130,7 @@
 		2223F1FF203BB8250047E0D9 /* OrderTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2223F20C203BB8250047E0D9 /* Info.plist */,
 				22350400204EE8DD000D0C3A /* Supporting Files */,
 				223503FF204EE8B8000D0C3A /* Views */,
 				22D4194B203EE59500674660 /* Models */,
@@ -192,7 +193,6 @@
 			children = (
 				2223F200203BB8250047E0D9 /* AppDelegate.swift */,
 				2223F207203BB8250047E0D9 /* Assets.xcassets */,
-				2223F20C203BB8250047E0D9 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
