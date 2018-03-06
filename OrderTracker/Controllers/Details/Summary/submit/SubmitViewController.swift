@@ -8,11 +8,26 @@
 
 import UIKit
 
+enum PaymentType {
+    case card
+    case cash
+    case undefined
+}
+
 class SubmitViewController: UIViewController {
     var themeColour: UIColor?
     var itemToDisplay: MenuItem?
     var orderList: OrderList?
-    private var pending = 1
+    private var pending = 1 {
+        willSet {
+            for view in paymentOptionViews {
+                if view.isSelected {
+                    view.optionLabel?.text = self.paymentOptions[view.id!].name + " ✕ \(newValue)"
+                    break
+                }
+            }
+        }
+    }
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeaderBar: UINavigationBar!
     @IBOutlet weak var itemImage: UIImageView!
@@ -32,17 +47,31 @@ class SubmitViewController: UIViewController {
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
-    var paymentOptions: [String] = ["Card", "Cash"]
+    typealias PaymentMethod = (name: String, type: PaymentType)
+    
+    var paymentOptions: [PaymentMethod] = [("Card", PaymentType.card), ("Cash", PaymentType.cash)]
     var paymentOptionViews: [PaymentOption] = []
+    private var selectedPaymentType: PaymentType?
     
+    @IBAction func plusButtonPressed(_ sender: Any) {
+        guard self.pending < itemToDisplay!.quantity else { return }
+        self.pending += 1
+    }
     
+    @IBAction func minusButtonPressed(_ sender: Any) {
+        guard self.pending > 1 else { return }
+        self.pending -= 1
+    }
+    @IBAction func tenderButtonPressed(_ sender: Any) {
+        print(selectedPaymentType)
+    }
     private func setUpPaymentOptions() {
         var i = 0
         let width = paymentViewWidth/paymentOptions.count
         for option in paymentOptions {
             let view = PaymentOption()
             let frame = CGRect(x: i * width , y: 0, width: width, height: paymentViewHeight)
-            view.configureOption(frame: frame, themColour: themeColour!, optionText: option, viewId: i)
+            view.configureOption(frame: frame, themColour: themeColour!, optionText: option.name, viewId: i)
             paymentOptionViews.append(view)
             paymentView.addSubview(view)
             view.delegate = self
@@ -98,7 +127,7 @@ class SubmitViewController: UIViewController {
         tenderButton.tintColor = themeColour
         tenderButton.layer.cornerRadius = 40
         tenderButton.clipsToBounds = true
-        tenderButton.layer.borderWidth = 2
+        tenderButton.layer.borderWidth = 3
         tenderButton.layer.borderColor = themeColour?.cgColor
         tenderButton.backgroundColor = themeColour?.withAlphaComponent(0.3)
         toggleButtonsEnabled(activate: false)
@@ -205,13 +234,14 @@ extension SubmitViewController: PaymentOptionDelegate {
             if view.id == id {
                 if view.isSelected == false {
                     view.isSelected = true
+                    selectedPaymentType = self.paymentOptions[view.id!].type
                     paymentView.bringSubview(toFront: view)
                     UIView.animate(withDuration: 0.3, animations: {
                         view.frame = self.paymentView.bounds
                         view.optionLabel!.transform = CGAffineTransform(translationX: self.paymentView.center.x - view.optionLabel!.center.x, y: 0)
                         view.backgroundColor = view.themeColour
                         view.optionLabel!.textColor = .white
-                        view.optionLabel!.text = self.paymentOptions[view.id!] + " ✕ \(self.pending)"
+                        view.optionLabel!.text = self.paymentOptions[view.id!].name + " ✕ \(self.pending)"
                         self.toggleButtonsEnabled(activate: true)
                         
                     })
@@ -223,7 +253,7 @@ extension SubmitViewController: PaymentOptionDelegate {
                         view.optionLabel!.transform = CGAffineTransform(translationX: 0, y: 0)
                         view.backgroundColor = .clear
                         view.optionLabel!.textColor = view.themeColour
-                        view.optionLabel!.text = self.paymentOptions[view.id!]
+                        view.optionLabel!.text = self.paymentOptions[view.id!].name
                         self.toggleButtonsEnabled(activate: false)
 
                     })

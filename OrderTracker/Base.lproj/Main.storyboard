@@ -421,7 +421,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-Wz-AzB">
                                                     <rect key="frame" x="265" y="210" width="60" height="38"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <state key="normal" title="Submit Item ✓">
+                                                    <state key="normal" title="Tender Item ✓">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -535,7 +535,7 @@
                                             <constraint firstAttribute="height" constant="80" id="qBx-xy-yS2"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Payment Option:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50y-x2-dez">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50y-x2-dez">
                                         <rect key="frame" x="20" y="398" width="283" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="FFW-yn-R1f"/>
@@ -562,6 +562,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
                                         <state key="normal" title="✓"/>
+                                        <connections>
+                                            <action selector="tenderButtonPressed:" destination="fts-9S-74z" eventType="touchUpInside" id="4UY-Yc-6Ra"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NaV-7G-mWc">
                                         <rect key="frame" x="215" y="471" width="80" height="80"/>
@@ -571,6 +574,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="80"/>
                                         <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="plusButtonPressed:" destination="fts-9S-74z" eventType="touchUpInside" id="oia-Kl-CVY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYc-qU-mX6">
                                         <rect key="frame" x="20" y="471" width="80" height="80"/>
@@ -580,6 +586,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="80"/>
                                         <state key="normal" title="−"/>
+                                        <connections>
+                                            <action selector="minusButtonPressed:" destination="fts-9S-74z" eventType="touchUpInside" id="J9G-qa-m7B"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3x-oe-c2F">
                                         <rect key="frame" x="74" y="416" width="147" height="51"/>
