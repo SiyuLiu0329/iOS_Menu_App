@@ -590,11 +590,6 @@
                                             <action selector="minusButtonPressed:" destination="fts-9S-74z" eventType="touchUpInside" id="J9G-qa-m7B"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3x-oe-c2F">
-                                        <rect key="frame" x="74" y="416" width="147" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -637,7 +632,6 @@
                         <outlet property="minusButton" destination="ZYc-qU-mX6" id="WK4-7h-iTd"/>
                         <outlet property="optionDetails" destination="3r9-WQ-zb0" id="BOR-Hf-4bs"/>
                         <outlet property="paymentOptionLabel" destination="50y-x2-dez" id="Gb0-Pk-H87"/>
-                        <outlet property="paymentView" destination="L3x-oe-c2F" id="6Qj-B0-T3N"/>
                         <outlet property="plusButton" destination="NaV-7G-mWc" id="Kfe-KT-med"/>
                         <outlet property="remainingLabel" destination="b4h-F9-huz" id="wpn-in-5qz"/>
                         <outlet property="remainingNumberLabel" destination="Wis-Xd-A9H" id="WcJ-iD-9aG"/>

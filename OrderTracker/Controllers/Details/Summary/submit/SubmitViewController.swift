@@ -44,7 +44,7 @@ class SubmitViewController: UIViewController {
     @IBOutlet weak var tenderButton: UIButton!
     let paymentViewHeight = 95
     let paymentViewWidth = 420
-    @IBOutlet weak var paymentView: UIView!
+    var paymentView = UIView()
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
     typealias PaymentMethod = (name: String, type: PaymentType)
@@ -66,6 +66,7 @@ class SubmitViewController: UIViewController {
         print(selectedPaymentType)
     }
     private func setUpPaymentOptions() {
+        contentView.addSubview(paymentView)
         var i = 0
         let width = paymentViewWidth/paymentOptions.count
         for option in paymentOptions {
