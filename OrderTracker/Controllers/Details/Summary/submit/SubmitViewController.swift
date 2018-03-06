@@ -28,11 +28,12 @@ class SubmitViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var orderTotalDetailLabel: UILabel!
+    @IBOutlet weak var orderTotalTitleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeaderBar: UINavigationBar!
     @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var remainingLabel: UILabel!
-    @IBOutlet weak var remainingNumberLabel: UILabel!
+
     var gradient: CAGradientLayer?
     @IBOutlet weak var optionDetails: UILabel!
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -42,7 +43,7 @@ class SubmitViewController: UIViewController {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var tenderButton: UIButton!
-    let paymentViewHeight = 95
+    let paymentViewHeight = 55
     let paymentViewWidth = 420
     var paymentView = UIView()
     @IBOutlet weak var paymentOptionLabel: UILabel!
@@ -63,7 +64,7 @@ class SubmitViewController: UIViewController {
         self.pending -= 1
     }
     @IBAction func tenderButtonPressed(_ sender: Any) {
-        print(selectedPaymentType)
+//        print(selectedPaymentType)
     }
     private func setUpPaymentOptions() {
         contentView.addSubview(paymentView)
@@ -105,10 +106,9 @@ class SubmitViewController: UIViewController {
         configureNavBar()
         addGradientMaskToImageView()
         addImageCaption()
-        configureRemainingNumber()
         configureOtherUIElements()
         setUpPaymentOptions()
-        paymentView.frame = CGRect(x: 0, y: 426, width: paymentViewWidth, height: paymentViewHeight)
+        paymentView.frame = CGRect(x: 0, y: 466, width: paymentViewWidth, height: paymentViewHeight)
     }
     
     private func configureOtherUIElements() {
@@ -125,6 +125,17 @@ class SubmitViewController: UIViewController {
         plusButton.tintColor = themeColour
         minusButton.tintColor = themeColour
 
+        configureTenderButton()
+        orderTotalTitleLabel.textColor = themeColour
+        
+        if let item = itemToDisplay {
+            itemImage.image = UIImage(named: item.imageURL)
+            orderTotalDetailLabel.textColor = themeColour
+            orderTotalDetailLabel.text = "\(item.quantity) ✕ $\(item.unitPrice) ＝ $\(item.totalPrice)"
+        }
+    }
+    
+    private func configureTenderButton() {
         tenderButton.tintColor = themeColour
         tenderButton.layer.cornerRadius = 40
         tenderButton.clipsToBounds = true
@@ -132,26 +143,8 @@ class SubmitViewController: UIViewController {
         tenderButton.layer.borderColor = themeColour?.cgColor
         tenderButton.backgroundColor = themeColour?.withAlphaComponent(0.3)
         toggleButtonsEnabled(activate: false)
-        
-        if let item = itemToDisplay {
-            itemImage.image = UIImage(named: item.imageURL)
-            remainingNumberLabel.text = "\(item.quantity)"
-        }
     }
     
-    private func configureRemainingNumber() {
-        remainingLabel.textColor = UIColor.white
-        remainingLabel.backgroundColor = themeColour
-        remainingLabel.layer.cornerRadius = 10
-        remainingLabel.clipsToBounds = true
-        remainingLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        remainingNumberLabel.layer.cornerRadius = 10
-        remainingNumberLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        remainingNumberLabel.clipsToBounds = true
-        remainingNumberLabel.layer.borderColor = themeColour?.cgColor
-        remainingNumberLabel.layer.borderWidth = 2
-        remainingNumberLabel.textColor = themeColour
-    }
     
     func updateOptionsDisplay() {
         guard let item = itemToDisplay else { return }
@@ -179,6 +172,7 @@ class SubmitViewController: UIViewController {
             NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17, weight: .light)
             ], range: NSRange.init(location: 8, length: displayText.count - 8))
         optionDetails.attributedText = text
+        optionDetails.sizeToFit()
     }
     
     private func addGradientMaskToImageView() {
@@ -214,7 +208,7 @@ class SubmitViewController: UIViewController {
     private func configureNavBar() {
         contentViewHeaderBar.barTintColor = themeColour
         if let item = itemToDisplay {
-            contentViewHeaderBar.topItem?.title = "Item No. \(item.number)"
+            contentViewHeaderBar.topItem?.title = "Tendering \(item.quantity) " + (item.quantity == 1 ? "item" : "items")
         }  
         contentViewHeaderBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor : UIColor.white,

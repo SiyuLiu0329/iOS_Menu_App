@@ -27,7 +27,7 @@ class PaymentOption: UIView {
         optionLabel!.text = text
         optionLabel!.frame = bounds
 
-        optionLabel!.font = UIFont.systemFont(ofSize: 40, weight: .light)
+        optionLabel!.font = UIFont.systemFont(ofSize: 25, weight: .light)
         optionLabel!.textColor = themeColour!
         id = number
         originalCenterX = optionLabel!.center.x
