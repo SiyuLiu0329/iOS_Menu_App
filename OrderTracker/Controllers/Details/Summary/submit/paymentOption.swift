@@ -17,7 +17,7 @@ class PaymentOption: UIView {
         self.frame = rect
         self.themeColour = colour
         self.intialFrame = rect
-        layer.borderWidth = 1
+        layer.borderWidth = 0.5
         layer.borderColor = themeColour!.cgColor
         clipsToBounds = true
         
