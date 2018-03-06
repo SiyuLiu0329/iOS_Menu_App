@@ -12,6 +12,7 @@ class SubmitViewController: UIViewController {
     var themeColour: UIColor?
     var itemToDisplay: MenuItem?
     var orderList: OrderList?
+    private var pending = 1
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewHeaderBar: UINavigationBar!
     @IBOutlet weak var itemImage: UIImageView!
@@ -23,8 +24,10 @@ class SubmitViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var tenderButton: UIButton!
-    let paymentViewHeight = 80
+    let paymentViewHeight = 95
     let paymentViewWidth = 420
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
@@ -48,6 +51,24 @@ class SubmitViewController: UIViewController {
     }
     
     
+    private func toggleButtonsEnabled(activate bool: Bool) {
+        if bool {
+            self.tenderButton.isEnabled = true
+            self.tenderButton.alpha = 1
+            self.plusButton.isEnabled = true
+            self.plusButton.alpha = 1
+            self.minusButton.isEnabled = true
+            self.minusButton.alpha = 1
+        } else {
+            self.tenderButton.isEnabled = false
+            self.tenderButton.alpha = 0.2
+            self.plusButton.isEnabled = false
+            self.plusButton.alpha = 0.2
+            self.minusButton.isEnabled = false
+            self.minusButton.alpha = 0.2
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +78,7 @@ class SubmitViewController: UIViewController {
         configureRemainingNumber()
         configureOtherUIElements()
         setUpPaymentOptions()
-        paymentView.frame = CGRect(x: 0, y: 442, width: paymentViewWidth, height: paymentViewHeight)
+        paymentView.frame = CGRect(x: 0, y: 426, width: paymentViewWidth, height: paymentViewHeight)
     }
     
     private func configureOtherUIElements() {
@@ -70,8 +91,17 @@ class SubmitViewController: UIViewController {
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         paymentOptionLabel.textColor = themeColour
+        
+        plusButton.tintColor = themeColour
+        minusButton.tintColor = themeColour
 
         tenderButton.tintColor = themeColour
+        tenderButton.layer.cornerRadius = 40
+        tenderButton.clipsToBounds = true
+        tenderButton.layer.borderWidth = 2
+        tenderButton.layer.borderColor = themeColour?.cgColor
+        tenderButton.backgroundColor = themeColour?.withAlphaComponent(0.3)
+        toggleButtonsEnabled(activate: false)
         
         if let item = itemToDisplay {
             itemImage.image = UIImage(named: item.imageURL)
@@ -181,7 +211,9 @@ extension SubmitViewController: PaymentOptionDelegate {
                         view.optionLabel!.transform = CGAffineTransform(translationX: self.paymentView.center.x - view.optionLabel!.center.x, y: 0)
                         view.backgroundColor = view.themeColour
                         view.optionLabel!.textColor = .white
-                        view.optionLabel!.text = self.paymentOptions[view.id!] + " Selected"
+                        view.optionLabel!.text = self.paymentOptions[view.id!] + " ✕ \(self.pending)"
+                        self.toggleButtonsEnabled(activate: true)
+                        
                     })
                     
                 } else {
@@ -192,6 +224,8 @@ extension SubmitViewController: PaymentOptionDelegate {
                         view.backgroundColor = .clear
                         view.optionLabel!.textColor = view.themeColour
                         view.optionLabel!.text = self.paymentOptions[view.id!]
+                        self.toggleButtonsEnabled(activate: false)
+
                     })
                 }
                 
