@@ -102,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				221735FD204189E3006170F8 /* SummaryViewController.swift */,
-				22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */,
 				22A68D13204978FC00355B53 /* submit */,
 			);
 			path = Summary;
@@ -131,14 +130,10 @@
 		2223F1FF203BB8250047E0D9 /* OrderTracker */ = {
 			isa = PBXGroup;
 			children = (
+				22350400204EE8DD000D0C3A /* Supporting Files */,
+				223503FF204EE8B8000D0C3A /* Views */,
 				22D4194B203EE59500674660 /* Models */,
 				22D4194C203EE5B300674660 /* Controllers */,
-				2223F200203BB8250047E0D9 /* AppDelegate.swift */,
-				22449571204C288100031644 /* Config.swift */,
-				2223F204203BB8250047E0D9 /* Main.storyboard */,
-				2223F207203BB8250047E0D9 /* Assets.xcassets */,
-				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
-				2223F20C203BB8250047E0D9 /* Info.plist */,
 			);
 			path = OrderTracker;
 			sourceTree = "<group>";
@@ -165,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
-				223572BE203E9ACB000C42FD /* CollectionViewCell.swift */,
 				221735FF204292A8006170F8 /* Summary */,
 			);
 			path = Details;
@@ -179,11 +173,34 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		223503FF204EE8B8000D0C3A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22449571204C288100031644 /* Config.swift */,
+				2223F204203BB8250047E0D9 /* Main.storyboard */,
+				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
+				22449573204C2B8C00031644 /* MasterTableViewCell.swift */,
+				223572BE203E9ACB000C42FD /* CollectionViewCell.swift */,
+				22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */,
+				22EB8FF0204E142F00CE7249 /* PaymentOption.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22350400204EE8DD000D0C3A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2223F200203BB8250047E0D9 /* AppDelegate.swift */,
+				2223F207203BB8250047E0D9 /* Assets.xcassets */,
+				2223F20C203BB8250047E0D9 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		22A68D13204978FC00355B53 /* submit */ = {
 			isa = PBXGroup;
 			children = (
 				22B4FC352049958E00E9B808 /* SubmitViewController.swift */,
-				22EB8FF0204E142F00CE7249 /* PaymentOption.swift */,
 			);
 			path = submit;
 			sourceTree = "<group>";
@@ -203,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				22F6E9F1203BBEF1001F78CA /* MasterViewController.swift */,
-				22449573204C2B8C00031644 /* MasterTableViewCell.swift */,
 				222AEA35204044B300F81074 /* Details */,
 			);
 			path = Controllers;
