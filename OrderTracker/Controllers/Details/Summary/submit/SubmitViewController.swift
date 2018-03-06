@@ -23,35 +23,31 @@ class SubmitViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    let paymentViewHeight = 80
+    let paymentViewHeight = 70
     let paymentViewWidth = 420
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
     var paymentOptions: [String] = ["Card", "Cash"]
+    var paymentOptionLabels: [PaymentOption] = []
     
-    private var paymentOptionsViews: [PaymentOptionView] = []
     
-    private func setUpPaymentOptionViews() {
-        let width = paymentViewWidth / paymentOptions.count
+    private func setUpPaymentOptions() {
         var i = 0
-        for paymentOption in paymentOptions {
-            let view = PaymentOptionView()
-            paymentView.addSubview(view)
-            view.frame = CGRect(x: i * width, y: 0, width: width, height: paymentViewHeight)
-            view.viewID = i
-            view.delegate = self
-            view.configureView()
-            view.themeColour = themeColour
-            view.optionTitle = paymentOption
-            
+        for option in paymentOptions {
+            print(option)
+            let label = PaymentOption()
+            paymentView.addSubview(label)
+            label.frame = CGRect(x: i * (paymentViewWidth/2), y: 0, width: paymentViewWidth/2, height: paymentViewHeight)
+            label.configureLabel(paymentOption: option, labelID: i, themeColour: themeColour!)
+            label.delegate = self
+            paymentOptionLabels.append(label)
             i += 1
-            paymentOptionsViews.append(view)
         }
-
-        
     }
     
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
@@ -59,7 +55,7 @@ class SubmitViewController: UIViewController {
         addImageCaption()
         configureRemainingNumber()
         configureOtherUIElements()
-        setUpPaymentOptionViews()
+        setUpPaymentOptions()
         paymentView.frame = CGRect(x: 0, y: 442, width: paymentViewWidth, height: paymentViewHeight)
     }
     
@@ -170,21 +166,17 @@ class SubmitViewController: UIViewController {
     }
 }
 
-extension SubmitViewController: paymentOptionTappedDelegate {
-    func swichView(withID id: Int) {
-        deselecteAll(exceptViewWithID: id)
-    }
-    
-    private func deselecteAll(exceptViewWithID id: Int) {
-
-        for view in paymentOptionsViews {
-            if view.viewID == id {
-                paymentView.bringSubview(toFront: view)
-                view.selected = true
+extension SubmitViewController: PaymentOptionDelegate {
+    func paymentOption(withIdSelected id: Int) {
+        for label in paymentOptionLabels {
+            if id == label.id {
+                label.isSelected = true
+                paymentView.bringSubview(toFront: label)
             } else {
-                view.selected = false
+                label.isSelected = false
             }
         }
     }
 }
+
 
