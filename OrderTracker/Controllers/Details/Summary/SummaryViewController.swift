@@ -64,7 +64,7 @@ extension SummaryViewController {
     }
     
     func updateLabelOnSubmitButton() {
-        let updatedText = "Submit All (" + String(describing: twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())) + ")"
+        let updatedText = "Tender All (" + String(describing: twoDigitPriceText(of: orderList.getTotalPriceOfCurrentOrder())) + ")"
         btnSubmit.setTitle(updatedText, for: .normal)
     }
     

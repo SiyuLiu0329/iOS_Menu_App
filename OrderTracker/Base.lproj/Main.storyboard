@@ -514,7 +514,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vOT-3w-dKB">
                                         <rect key="frame" x="12" y="306" width="90" height="90"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4h-F9-huz">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4h-F9-huz">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="1P1-hp-Z9g"/>
@@ -554,8 +554,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zI-qY-uEm">
+                                        <rect key="frame" x="55.5" y="471" width="204" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="rou-L5-sDG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Tender 10 Items"/>
+                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3x-oe-c2F">
-                                        <rect key="frame" x="57" y="453" width="201" height="58"/>
+                                        <rect key="frame" x="74" y="416" width="147" height="51"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -571,8 +579,10 @@
                                     <constraint firstItem="vOT-3w-dKB" firstAttribute="top" secondItem="8gQ-Jc-aDB" secondAttribute="bottom" constant="12" id="BR6-qD-QFM"/>
                                     <constraint firstItem="50y-x2-dez" firstAttribute="top" secondItem="vOT-3w-dKB" secondAttribute="bottom" constant="20" id="E4h-ad-IH4"/>
                                     <constraint firstItem="3r9-WQ-zb0" firstAttribute="leading" secondItem="vOT-3w-dKB" secondAttribute="trailing" constant="20" id="Hkj-HH-H8V"/>
+                                    <constraint firstItem="7zI-qY-uEm" firstAttribute="centerX" secondItem="Ve6-LX-jy1" secondAttribute="centerX" id="Jom-hB-BqJ"/>
                                     <constraint firstAttribute="trailing" secondItem="3r9-WQ-zb0" secondAttribute="trailing" constant="20" id="Qaw-vZ-s1v"/>
                                     <constraint firstItem="3r9-WQ-zb0" firstAttribute="top" secondItem="8gQ-Jc-aDB" secondAttribute="bottom" constant="12" id="YTV-Il-boX"/>
+                                    <constraint firstAttribute="bottom" secondItem="7zI-qY-uEm" secondAttribute="bottom" constant="12" id="cVd-YD-6Zn"/>
                                     <constraint firstAttribute="trailing" secondItem="zB7-Yp-1gI" secondAttribute="trailing" id="d7t-gt-Oox"/>
                                     <constraint firstItem="50y-x2-dez" firstAttribute="leading" secondItem="Ve6-LX-jy1" secondAttribute="leading" constant="12" id="lbj-9b-hIW"/>
                                     <constraint firstAttribute="trailing" secondItem="50y-x2-dez" secondAttribute="trailing" constant="12" id="uix-Q4-a1G"/>
@@ -597,6 +607,7 @@
                         <outlet property="paymentView" destination="L3x-oe-c2F" id="6Qj-B0-T3N"/>
                         <outlet property="remainingLabel" destination="b4h-F9-huz" id="wpn-in-5qz"/>
                         <outlet property="remainingNumberLabel" destination="Wis-Xd-A9H" id="WcJ-iD-9aG"/>
+                        <outlet property="tenderButton" destination="7zI-qY-uEm" id="T3i-DC-hKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agy-7r-UGW" userLabel="First Responder" sceneMemberID="firstResponder"/>

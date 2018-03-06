@@ -23,7 +23,8 @@ class SubmitViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    let paymentViewHeight = 70
+    @IBOutlet weak var tenderButton: UIButton!
+    let paymentViewHeight = 80
     let paymentViewWidth = 420
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!
@@ -69,6 +70,8 @@ class SubmitViewController: UIViewController {
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         paymentOptionLabel.textColor = themeColour
+
+        tenderButton.tintColor = themeColour
         
         if let item = itemToDisplay {
             itemImage.image = UIImage(named: item.imageURL)
@@ -173,20 +176,22 @@ extension SubmitViewController: PaymentOptionDelegate {
                 if view.isSelected == false {
                     view.isSelected = true
                     paymentView.bringSubview(toFront: view)
-                    UIView.animate(withDuration: 0.4, animations: {
+                    UIView.animate(withDuration: 0.3, animations: {
                         view.frame = self.paymentView.bounds
                         view.optionLabel!.transform = CGAffineTransform(translationX: self.paymentView.center.x - view.optionLabel!.center.x, y: 0)
                         view.backgroundColor = view.themeColour
                         view.optionLabel!.textColor = .white
+                        view.optionLabel!.text = self.paymentOptions[view.id!] + " Selected"
                     })
                     
                 } else {
                     view.isSelected = false
-                    UIView.animate(withDuration: 0.4, animations: {
+                    UIView.animate(withDuration: 0.3, animations: {
                         view.frame = view.intialFrame!
                         view.optionLabel!.transform = CGAffineTransform(translationX: 0, y: 0)
                         view.backgroundColor = .clear
                         view.optionLabel!.textColor = view.themeColour
+                        view.optionLabel!.text = self.paymentOptions[view.id!]
                     })
                 }
                 
