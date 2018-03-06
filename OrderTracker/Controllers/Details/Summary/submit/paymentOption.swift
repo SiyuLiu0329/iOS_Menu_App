@@ -1,62 +1,40 @@
-//
-//  paymentOption.swift
-//  OrderTracker
-//
-//  Created by macOS on 6/3/18.
-//  Copyright © 2018 macOS. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
 protocol PaymentOptionDelegate: class {
-    func paymentOption(withIdSelected id: Int)
+    func selectOption(withId id: Int)
 }
 
-class PaymentOption: UILabel {
-    var id: Int?
+class PaymentOption: UIView {
+    var optionLabel: UILabel?
     var themeColour: UIColor?
-    private var initialFrame: CGRect?
-    var isSelected = false {
-        willSet {
-            if newValue == true {
-                UIView.animate(withDuration: 0.2) {
-                    self.backgroundColor = self.themeColour!
-                    self.textColor = .white
-                    self.frame = self.superview!.bounds
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    self.backgroundColor = .white
-                    self.textColor = self.themeColour
-                }
-            }
-        }
-    }
+    var intialFrame: CGRect?
+    var originalCenterX: CGFloat?
+    var id: Int?
+    var isSelected = false 
     weak var delegate: PaymentOptionDelegate?
-    
-    func configureLabel(paymentOption text: String, labelID id: Int, themeColour colour: UIColor, initialFrame frame: CGRect) {
-        textAlignment = .center
-        textColor = colour
+    func configureOption(frame rect: CGRect, themColour colour: UIColor, optionText text: String, viewId number: Int) {
+        self.frame = rect
         self.themeColour = colour
-        self.id = id
-        self.text = text
-        self.frame = frame
-        self.initialFrame = frame
-        font = UIFont.systemFont(ofSize: 30, weight: .light)
-        configureGesture()
-    }
-    
-    private func configureGesture() {
-        isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapped))
-        addGestureRecognizer(tap)
+        self.intialFrame = rect
         
+        optionLabel = UILabel()
+        addSubview(optionLabel!)
+        optionLabel!.textAlignment = .center
+        optionLabel!.text = text
+        optionLabel!.frame = bounds
+        optionLabel!.font = UIFont.systemFont(ofSize: 30, weight: .light)
+        optionLabel!.textColor = themeColour!
+        id = number
+        originalCenterX = optionLabel!.center.x
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        addGestureRecognizer(tap)
     }
     
     @objc private func tapped() {
-        if delegate != nil && id != nil {
-            delegate!.paymentOption(withIdSelected: id!)
+        if id != nil && delegate != nil {
+            delegate!.selectOption(withId: id!)
         }
     }
 }

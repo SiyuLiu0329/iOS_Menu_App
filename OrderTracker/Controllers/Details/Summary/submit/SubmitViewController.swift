@@ -29,18 +29,19 @@ class SubmitViewController: UIViewController {
     @IBOutlet weak var paymentOptionLabel: UILabel!
     
     var paymentOptions: [String] = ["Card", "Cash"]
-    var paymentOptionLabels: [PaymentOption] = []
+    var paymentOptionViews: [PaymentOption] = []
     
     
     private func setUpPaymentOptions() {
         var i = 0
+        let width = paymentViewWidth/paymentOptions.count
         for option in paymentOptions {
-            let label = PaymentOption()
-            paymentView.addSubview(label)
-            let frame = CGRect(x: i * (paymentViewWidth/2), y: 0, width: paymentViewWidth/2, height: paymentViewHeight)
-            label.configureLabel(paymentOption: option, labelID: i, themeColour: themeColour!, initialFrame: frame)
-            label.delegate = self
-            paymentOptionLabels.append(label)
+            let view = PaymentOption()
+            let frame = CGRect(x: i * width , y: 0, width: width, height: paymentViewHeight)
+            view.configureOption(frame: frame, themColour: themeColour!, optionText: option, viewId: i)
+            paymentOptionViews.append(view)
+            paymentView.addSubview(view)
+            view.delegate = self
             i += 1
         }
     }
@@ -166,13 +167,35 @@ class SubmitViewController: UIViewController {
 }
 
 extension SubmitViewController: PaymentOptionDelegate {
-    func paymentOption(withIdSelected id: Int) {
-        for label in paymentOptionLabels {
-            if id == label.id {
-                label.isSelected = true
-                paymentView.bringSubview(toFront: label)
+    func selectOption(withId id: Int) {
+        for view in paymentOptionViews {
+            if view.id == id {
+                if view.isSelected == false {
+                    view.isSelected = true
+                    paymentView.bringSubview(toFront: view)
+                    UIView.animate(withDuration: 0.4, animations: {
+                        view.frame = self.paymentView.bounds
+                        view.optionLabel!.transform = CGAffineTransform(translationX: self.paymentView.center.x - view.optionLabel!.center.x, y: 0)
+                        view.backgroundColor = view.themeColour
+                        view.optionLabel!.textColor = .white
+                    })
+                    
+                } else {
+                    view.isSelected = false
+                    UIView.animate(withDuration: 0.4, animations: {
+                        view.frame = view.intialFrame!
+                        view.optionLabel!.transform = CGAffineTransform(translationX: 0, y: 0)
+                        view.backgroundColor = .clear
+                        view.optionLabel!.textColor = view.themeColour
+                    })
+                }
+                
             } else {
-                label.isSelected = false
+                if view.isSelected == false {
+                    continue
+                } else {
+                    view.isSelected = false
+                }
             }
         }
     }
