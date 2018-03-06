@@ -16,6 +16,7 @@ protocol PaymentOptionDelegate: class {
 class PaymentOption: UILabel {
     var id: Int?
     var themeColour: UIColor?
+    private var initialFrame: CGRect?
     var isSelected = false {
         willSet {
             if newValue == true {
@@ -34,12 +35,14 @@ class PaymentOption: UILabel {
     }
     weak var delegate: PaymentOptionDelegate?
     
-    func configureLabel(paymentOption text: String, labelID id: Int, themeColour colour: UIColor) {
+    func configureLabel(paymentOption text: String, labelID id: Int, themeColour colour: UIColor, initialFrame frame: CGRect) {
         textAlignment = .center
         textColor = colour
         self.themeColour = colour
         self.id = id
         self.text = text
+        self.frame = frame
+        self.initialFrame = frame
         font = UIFont.systemFont(ofSize: 30, weight: .light)
         configureGesture()
     }

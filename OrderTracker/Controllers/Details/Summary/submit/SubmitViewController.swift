@@ -35,11 +35,10 @@ class SubmitViewController: UIViewController {
     private func setUpPaymentOptions() {
         var i = 0
         for option in paymentOptions {
-            print(option)
             let label = PaymentOption()
             paymentView.addSubview(label)
-            label.frame = CGRect(x: i * (paymentViewWidth/2), y: 0, width: paymentViewWidth/2, height: paymentViewHeight)
-            label.configureLabel(paymentOption: option, labelID: i, themeColour: themeColour!)
+            let frame = CGRect(x: i * (paymentViewWidth/2), y: 0, width: paymentViewWidth/2, height: paymentViewHeight)
+            label.configureLabel(paymentOption: option, labelID: i, themeColour: themeColour!, initialFrame: frame)
             label.delegate = self
             paymentOptionLabels.append(label)
             i += 1
