@@ -23,7 +23,7 @@ class SubmitViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    let paymentViewHeight = 70
+    let paymentViewHeight = 60
     let paymentViewWidth = 420
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var paymentOptionLabel: UILabel!

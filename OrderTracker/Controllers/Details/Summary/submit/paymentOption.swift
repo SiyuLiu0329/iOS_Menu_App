@@ -17,6 +17,9 @@ class PaymentOption: UIView {
         self.frame = rect
         self.themeColour = colour
         self.intialFrame = rect
+        layer.borderWidth = 1
+        layer.borderColor = themeColour!.cgColor
+        clipsToBounds = true
         
         optionLabel = UILabel()
         addSubview(optionLabel!)
