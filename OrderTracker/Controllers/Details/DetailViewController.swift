@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         item = orderList.getItem(numbered: 1)
-        btnAdd.backgroundColor = UIColor.gray
+        btnAdd.backgroundColor = UIColor.lightGray
         btnAdd.isEnabled = false
         navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
         navigationController?.navigationBar.titleTextAttributes = [
@@ -208,7 +208,7 @@ extension DetailViewController {
         guard let selectedItem = item else { return }
         let quantity = orderList.getQuantity(ofItem: selectedItem.number)
         if quantity == 0 {
-            btnAdd.backgroundColor = UIColor.gray
+            btnAdd.backgroundColor = UIColor.lightGray
             btnAdd.isEnabled = false
         } else {
             btnAdd.backgroundColor = UIColor(red: 65/255, green: 169/255, blue: 56/255, alpha: 1)
