@@ -62,6 +62,11 @@ class OrderList {
         menuItems[number]!.quantity += amount
     }
     
+    func setQuantity(ofItem number: Int, to quantity: Int) {
+        guard menuItems[number] != nil else { return }
+        menuItems[number]!.quantity = quantity
+    }
+    
     
     // current order functions
     func getItemsInCurrentOrder() -> [MenuItem] {

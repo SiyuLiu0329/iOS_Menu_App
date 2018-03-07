@@ -118,9 +118,10 @@ class SubmitViewController: UIViewController {
         updateOptionsDisplay()
         optionDetails.textColor = themeColour
         view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
-        contentView.layer.cornerRadius = 20
+        contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         paymentOptionLabel.textColor = themeColour
+        contentView.alpha = 0.8
         
         plusButton.tintColor = themeColour
         minusButton.tintColor = themeColour

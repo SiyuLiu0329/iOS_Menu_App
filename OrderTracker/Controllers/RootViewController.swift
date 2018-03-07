@@ -13,9 +13,12 @@ class RootViewController: UIViewController {
     let orderList = OrderList()
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rootSegue1" {
-            guard let navController = segue.destination as? UINavigationController else { return }
-            guard let detail = navController.viewControllers.first as? DetailViewController else { return }
+            guard let detail = segue.destination as? DetailViewController else { return }
             detail.orderList = orderList
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 }

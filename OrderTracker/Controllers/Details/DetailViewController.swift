@@ -14,20 +14,16 @@ class DetailViewController: UIViewController {
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var rightNavBarItem: UIBarButtonItem!
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
-    @IBOutlet weak var quantityHeader: UILabel!
-    @IBOutlet weak var minusBtn: UIButton!
-    @IBOutlet weak var plusBtn: UIButton!
-    @IBOutlet weak var rightBarItem: UIBarButtonItem!
 
-    @IBAction func dismissViewAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBOutlet weak var quantityPicker: UIPickerView!
+    @IBOutlet weak var rightView: UIView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
-    
     
     private func twoDigitPriceText(of price: Double) -> String {
         return String(format: "$%.2f", price)
@@ -40,18 +36,35 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBAction func closeButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func refreshUI() {
         loadViewIfNeeded()
         guard let currentItem = item else { return }
         itemImage.image = UIImage(named: currentItem.imageURL)
         navigationController?.navigationBar.topItem?.title = "Item #\(currentItem.number)" + " - " + currentItem.name
-        quantity.text = String(describing: currentItem.quantity)
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
         collectionView.reloadData()
+        quantityPicker.selectRow(currentItem.quantity - 1, inComponent: 0, animated: true)
+    }
+    
+    private func addGradientMaskToImageView() {
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        gradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.3).cgColor]
+        gradient.locations = [0, 0.3, 0.7, 1]
+        itemImage.layer.addSublayer(gradient)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navBar.isTranslucent = true
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.topItem?.title = ""
+        
         item = orderList.getItem(numbered: 1)
         btnAdd.backgroundColor = UIColor.lightGray
         btnAdd.isEnabled = false
@@ -62,34 +75,25 @@ class DetailViewController: UIViewController {
         ]
         collectionView.delegate = self
         collectionView.dataSource = self
-        priceLabel.textColor = .darkGray
+        quantityPicker.delegate = self
+        quantityPicker.dataSource = self
         collectionView.backgroundColor = DesignConfig.detailConnectionViewBackgoundColour
-        addRoundedCorners()
         disableButtonsIfEmpty()
+        configureLeftView()
+        refreshUI()
+        addGradientMaskToImageView()
     }
     
-    private func addRoundedCorners() {
-        btnDel.clipsToBounds = true
-        btnDel.layer.cornerRadius = 10
-        btnDel.layer.maskedCorners = [.layerMinXMaxYCorner]
-        btnAdd.clipsToBounds = true
-        btnAdd.layer.cornerRadius = 10
-        btnAdd.layer.maskedCorners = [.layerMaxXMaxYCorner]
-        priceLabel.layer.cornerRadius = 10
-        priceLabel.clipsToBounds = true
-        priceLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        quantityHeader.layer.cornerRadius = 10
-        quantityHeader.clipsToBounds = true
-        quantityHeader.layer.maskedCorners = [.layerMaxXMinYCorner]
-        quantity.layer.cornerRadius = 10
-        quantity.clipsToBounds = true
-        quantity.layer.maskedCorners = [.layerMaxXMaxYCorner]
-        plusBtn.layer.cornerRadius = 10
-        plusBtn.clipsToBounds = true
-        plusBtn.layer.maskedCorners = [.layerMinXMinYCorner]
-        minusBtn.layer.cornerRadius = 10
-        minusBtn.clipsToBounds = true
-        minusBtn.layer.maskedCorners = [.layerMinXMaxYCorner]
+    private func configureLeftView() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        rightView.addSubview(blurEffectView)
+        rightView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        rightView.sendSubview(toBack: blurEffectView)
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -172,26 +176,7 @@ extension DetailViewController {
         orderList.resetTamplateItem(itemNumber: itemNumber!)
         item = orderList.getItem(numbered: itemNumber!)
         dimAllCells()
-        disableButtonsIfEmpty()
-    }
-    
-    @IBAction func btnIncrementQuantity(_ sender: Any) {
-        guard item != nil,
-            orderList.getItem(numbered: itemNumber!) != nil,
-            itemNumber != nil else { return }
-        orderList.incrementQuantity(forItem: itemNumber!, by: 1)
-        quantity.text = String(describing: orderList.getQuantity(ofItem: itemNumber!))
-        priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
-        disableButtonsIfEmpty()
-    }
-    
-    @IBAction func btnDecrementQuantity(_ sender: Any) {
-        guard item != nil,
-            orderList.getItem(numbered: itemNumber!) != nil,
-            itemNumber != nil else { return }
-        orderList.incrementQuantity(forItem: itemNumber!, by: -1)
-        quantity.text = String(describing: orderList.getQuantity(ofItem: itemNumber!))
-        priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
+        quantityPicker.selectRow(0, inComponent: 0, animated: true)
         disableButtonsIfEmpty()
     }
     
@@ -223,6 +208,35 @@ extension DetailViewController: ItemSelectedDelegate {
         if let item = orderList.getItem(numbered: number) {
             self.item = item
         }
+    }
+}
+
+extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 10
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let view = UILabel()
+        view.textColor = .white
+        view.text = "\(row + 1)"
+        view.font = UIFont.systemFont(ofSize: 150, weight: .thin)
+        view.textAlignment = .center
+        return view
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 150
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        orderList.setQuantity(ofItem: itemNumber!, to: row + 1)
+        priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
     }
 }
 

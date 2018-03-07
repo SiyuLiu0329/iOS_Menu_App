@@ -77,13 +77,13 @@ class SummaryCollectionViewCell: UICollectionViewCell {
     
     private func setUpCell() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.layer.cornerRadius = 15
+        submitButton.layer.cornerRadius = 8
         colourView.frame = CGRect(x: 0, y: 0, width: 120, height: frame.height)
         contentView.addSubview(colourView)
         setUpDeleteLabel()
         contentView.sendSubview(toBack: colourView)
         originalCentreX = deleteLabel.center.x
-        layer.cornerRadius = 20
+        layer.cornerRadius = 8
         layer.masksToBounds = true
         backgroundColor = UIColor.white
         addGuestureRecogniser()

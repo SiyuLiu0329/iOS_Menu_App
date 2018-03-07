@@ -52,8 +52,8 @@ struct MenuItem {
         self.number = number
         self.unitPrice =  price
         self.imageURL = imageName
-        self.quantity = 0
-        self.totalPrice = 0
+        self.quantity = 1
+        self.totalPrice = Double(quantity) * unitPrice
         self.itemType = type
         addDefaultOptions()
     }

@@ -31,6 +31,7 @@ class SummaryViewController: UIViewController {
     
     private func addBlur() {
         summaryCollectionView.backgroundColor = UIColor.clear
+        summaryCollectionView.alpha = 0.8
         view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
 
         if let popover = navigationController?.popoverPresentationController {
@@ -41,6 +42,7 @@ class SummaryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.black.withAlphaComponent(0.65)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Order Summary"
+        
     }
 }
 
