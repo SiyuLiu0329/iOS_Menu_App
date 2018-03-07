@@ -44,7 +44,7 @@ class DetailViewController: UIViewController {
         loadViewIfNeeded()
         guard let currentItem = item else { return }
         itemImage.image = UIImage(named: currentItem.imageURL)
-        navigationController?.navigationBar.topItem?.title = String(describing: currentItem.number) + ". " + currentItem.name
+        navigationController?.navigationBar.topItem?.title = "Item #\(currentItem.number)" + " - " + currentItem.name
         quantity.text = String(describing: currentItem.quantity)
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
         collectionView.reloadData()
@@ -57,8 +57,8 @@ class DetailViewController: UIViewController {
         btnAdd.isEnabled = false
         navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.white,
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .regular)
+            NSAttributedStringKey.foregroundColor: UIColor(red: 36/255, green: 126/255, blue: 46/255, alpha: 1),
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: .light)
         ]
         collectionView.delegate = self
         collectionView.dataSource = self
