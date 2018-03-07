@@ -427,7 +427,10 @@
                                                     <rect key="frame" x="155" y="34" width="174" height="176"/>
                                                 </scrollView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-Wz-AzB">
-                                                    <rect key="frame" x="265" y="210" width="60" height="38"/>
+                                                    <rect key="frame" x="265" y="216" width="60" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="DqV-uQ-sjI"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Tender Item ✓">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -443,7 +446,6 @@
                                             <constraint firstItem="p4K-jm-mdN" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="58j-kH-e00"/>
                                             <constraint firstItem="ha2-mx-0ON" firstAttribute="top" secondItem="Hzn-Pu-33y" secondAttribute="bottom" id="9IC-A8-d8z"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="top" secondItem="gkq-FC-MFf" secondAttribute="topMargin" constant="8" id="A8s-DS-CIT"/>
-                                            <constraint firstItem="0YP-Wz-AzB" firstAttribute="top" secondItem="ha2-mx-0ON" secondAttribute="bottom" id="Ku8-VJ-aUB"/>
                                             <constraint firstItem="p4c-BK-QUb" firstAttribute="leading" secondItem="gkq-FC-MFf" secondAttribute="leadingMargin" constant="12" id="OZ5-vo-XaD"/>
                                             <constraint firstItem="0YP-Wz-AzB" firstAttribute="leading" secondItem="p4K-jm-mdN" secondAttribute="trailing" constant="155" id="P7h-c4-j0z"/>
                                             <constraint firstItem="Hzn-Pu-33y" firstAttribute="leading" secondItem="p4c-BK-QUb" secondAttribute="trailing" constant="20" id="QHC-BL-DVo"/>
@@ -485,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-qd-u5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481.8359375" y="860.9375"/>
+            <point key="canvasLocation" x="1481" y="860"/>
         </scene>
         <!--Submit View Controller-->
         <scene sceneID="Vbp-yF-2SH">
@@ -642,7 +644,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agy-7r-UGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="861"/>
+            <point key="canvasLocation" x="2742" y="1743"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="i9A-L1-UwA">
