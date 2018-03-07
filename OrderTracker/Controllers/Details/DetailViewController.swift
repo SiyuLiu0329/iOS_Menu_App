@@ -10,7 +10,7 @@ import UIKit
 
 
 class DetailViewController: UIViewController {
-    let orderList = OrderList()
+    var orderList: OrderList!
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
@@ -24,6 +24,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var rightBarItem: UIBarButtonItem!
 
+    @IBAction func dismissViewAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     private func twoDigitPriceText(of price: Double) -> String {

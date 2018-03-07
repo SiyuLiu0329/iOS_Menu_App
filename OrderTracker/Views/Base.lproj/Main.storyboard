@@ -250,6 +250,12 @@
                         <viewLayoutGuide key="safeArea" id="4gm-LM-8Va"/>
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="3yM-aM-rk7">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="dismissViewAction:" destination="uQm-LB-eNr" id="ox3-f8-V9p"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="action" id="PpN-QA-xH1">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -649,9 +655,11 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYC-yo-UJn">
                                 <rect key="frame" x="611" y="470" width="145" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <state key="normal" title="Menu"/>
+                                <state key="normal" title="Menu">
+                                    <color key="titleColor" red="0.052716656059999999" green="0.55169999599999997" blue="0.083566971379999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
-                                    <segue destination="XwL-Ed-rAD" kind="show" id="UDr-nq-D6q"/>
+                                    <segue destination="XwL-Ed-rAD" kind="show" identifier="rootSegue1" id="UDr-nq-D6q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -665,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LFR-cM-zPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1662" y="158"/>
+            <point key="canvasLocation" x="-653" y="158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBa-Zq-e3S">
