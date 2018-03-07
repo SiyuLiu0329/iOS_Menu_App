@@ -12,7 +12,7 @@ protocol optionButtonDelegate: class {
     func optionaButtonPressed(_ sender: Any)
 }
 
-class CollectionViewCell: UICollectionViewCell {
+class OptionCollectionViewCell: UICollectionViewCell {
     weak var delegate: optionButtonDelegate?
     
     @IBOutlet weak var checkMark: UILabel!

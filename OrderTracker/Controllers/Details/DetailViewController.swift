@@ -10,7 +10,7 @@ import UIKit
 
 
 class DetailViewController: UIViewController {
-
+    let orderList = OrderList()
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
@@ -23,11 +23,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var minusBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var rightBarItem: UIBarButtonItem!
-    var orderList: OrderList! {
-        didSet {
-            disableButtonsIfEmpty()
-        }
-    }
+
     
     
     private func twoDigitPriceText(of price: Double) -> String {
@@ -52,6 +48,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        item = orderList.getItem(numbered: 1)
         btnAdd.backgroundColor = UIColor.gray
         btnAdd.isEnabled = false
         navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
@@ -64,6 +61,7 @@ class DetailViewController: UIViewController {
         priceLabel.textColor = .darkGray
         collectionView.backgroundColor = DesignConfig.detailConnectionViewBackgoundColour
         addRoundedCorners()
+        disableButtonsIfEmpty()
     }
     
     private func addRoundedCorners() {
@@ -96,6 +94,10 @@ class DetailViewController: UIViewController {
             guard let summaryController = navController.viewControllers.first as? SummaryViewController else { return }
             summaryController.orderList = orderList
             
+        } else if segue.identifier == "menuSegue" {
+            guard let navController = segue.destination as? UINavigationController else { return }
+            guard let menuController = navController.viewControllers.first as? MenuViewController else { return }
+            menuController.orderList = orderList
         }
     }
 }
@@ -111,7 +113,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! OptionCollectionViewCell
         if let currentItem = item {
             cell.itemDescription.text = currentItem.options[indexPath.row].description
             cell.itemDescription.isEditable = false
@@ -124,7 +126,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func dimAllCells() {
         let cells = collectionView.visibleCells
         for cell in cells {
-            let collectionViewCell = cell as! CollectionViewCell
+            let collectionViewCell = cell as! OptionCollectionViewCell
             collectionViewCell.dim()
             collectionViewCell.toggleState = false
         }
@@ -143,7 +145,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension DetailViewController: optionButtonDelegate {
     func optionaButtonPressed(_ sender: Any) {
-        let cell = sender as! CollectionViewCell
+        let cell = sender as! OptionCollectionViewCell
         if let indexPath = collectionView.indexPath(for: cell){
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
             priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))

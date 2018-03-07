@@ -15,22 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        guard let splitViewController = window?.rootViewController as? UISplitViewController,
-            let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
-            let masterViewController = leftNavController.topViewController as? MasterViewController,
-            let rightNavController = splitViewController.viewControllers.last as? UINavigationController,
-            let detailViewController = rightNavController.topViewController as? DetailViewController
-            else { fatalError() }
-        
-        let firstItem = masterViewController.orderList.menuItems[1]
-        leftNavController.navigationBar.topItem?.title = "Menu"
-        leftNavController.navigationBar.barTintColor = DesignConfig.masterNavBarColour
-        leftNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        masterViewController.tableView.rowHeight = 102
-        splitViewController.maximumPrimaryColumnWidth = 140
-        detailViewController.orderList = masterViewController.orderList
-        detailViewController.item = firstItem
+//        guard let splitViewController = window?.rootViewController as? UISplitViewController,
+//            let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
+//            let masterViewController = leftNavController.topViewController as? MasterViewController,
+//            let rightNavController = splitViewController.viewControllers.last as? UINavigationController,
+//            let detailViewController = rightNavController.topViewController as? DetailViewController
+//            else { fatalError() }
+//
+//        let firstItem = masterViewController.orderList.menuItems[1]
+//        leftNavController.navigationBar.topItem?.title = "Menu"
+//        leftNavController.navigationBar.barTintColor = DesignConfig.masterNavBarColour
+//        leftNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+//        masterViewController.tableView.rowHeight = 102
+//        splitViewController.maximumPrimaryColumnWidth = 140
+//        detailViewController.orderList = masterViewController.orderList
+//        detailViewController.item = firstItem
         
         // detailViewController.navigationItem.leftItemsSupplementBackButton = true
         // detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
