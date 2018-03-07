@@ -44,6 +44,7 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = String(describing: currentItem.number) + ". " + currentItem.name
         quantity.text = String(describing: currentItem.quantity)
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
+        collectionView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -98,6 +99,7 @@ class DetailViewController: UIViewController {
             guard let navController = segue.destination as? UINavigationController else { return }
             guard let menuController = navController.viewControllers.first as? MenuViewController else { return }
             menuController.orderList = orderList
+            menuController.delegate = self
         }
     }
 }
@@ -211,5 +213,13 @@ extension DetailViewController {
         }
     }
 
+}
+
+extension DetailViewController: ItemSelectedDelegate {
+    func updateUIForItem(numbered number: Int) {
+        if let item = orderList.getItem(numbered: number) {
+            self.item = item
+        }
+    }
 }
 

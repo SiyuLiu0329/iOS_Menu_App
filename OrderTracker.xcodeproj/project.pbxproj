@@ -19,8 +19,8 @@
 		22449572204C288100031644 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22449571204C288100031644 /* Config.swift */; };
 		22449574204C2B8C00031644 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22449573204C2B8C00031644 /* MasterTableViewCell.swift */; };
 		2284B219204F81B600D5D275 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284B218204F81B600D5D275 /* RootViewController.swift */; };
-		2284B21B204F8AA800D5D275 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284B21A204F8AA800D5D275 /* MenuViewController.swift */; };
 		2284B21D204F8E8F00D5D275 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284B21C204F8E8F00D5D275 /* MenuCollectionViewCell.swift */; };
+		2284B223204F919C00D5D275 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284B222204F919C00D5D275 /* MenuVC.swift */; };
 		22B4FC362049958E00E9B808 /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4FC352049958E00E9B808 /* SubmitViewController.swift */; };
 		22D4194A203EE58800674660 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D41949203EE58800674660 /* Option.swift */; };
 		22D7A95C2045703A00D05415 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */; };
@@ -66,8 +66,8 @@
 		22449571204C288100031644 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		22449573204C2B8C00031644 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
 		2284B218204F81B600D5D275 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = OrderTracker/Controllers/RootViewController.swift; sourceTree = SOURCE_ROOT; };
-		2284B21A204F8AA800D5D275 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		2284B21C204F8E8F00D5D275 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		2284B222204F919C00D5D275 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		22B4FC352049958E00E9B808 /* SubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
 		22D41949203EE58800674660 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		222AEA35204044B300F81074 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				2284B21A204F8AA800D5D275 /* MenuViewController.swift */,
+				2284B222204F919C00D5D275 /* MenuVC.swift */,
 				22F6E9F3203BCE17001F78CA /* DetailViewController.swift */,
 				221735FF204292A8006170F8 /* Summary */,
 			);
@@ -366,10 +366,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				22F6E9F6203BD9E5001F78CA /* MenuItem.swift in Sources */,
-				2284B21B204F8AA800D5D275 /* MenuViewController.swift in Sources */,
 				22F6E9F4203BCE17001F78CA /* DetailViewController.swift in Sources */,
 				2284B21D204F8E8F00D5D275 /* MenuCollectionViewCell.swift in Sources */,
 				22D4194A203EE58800674660 /* Option.swift in Sources */,
+				2284B223204F919C00D5D275 /* MenuVC.swift in Sources */,
 				22449574204C2B8C00031644 /* MasterTableViewCell.swift in Sources */,
 				223572BF203E9ACB000C42FD /* OptionCollectionViewCell.swift in Sources */,
 				22EB8FF1204E142F00CE7249 /* PaymentOption.swift in Sources */,

@@ -174,12 +174,6 @@
                                             <constraint firstAttribute="bottom" secondItem="e0c-nf-bTe" secondAttribute="bottom" id="xTK-II-leh"/>
                                             <constraint firstItem="NoD-AL-T6i" firstAttribute="leading" secondItem="QRQ-5O-JHY" secondAttribute="leadingMargin" constant="20" id="ydV-Az-CRR"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="checkMark" destination="NoD-AL-T6i" id="i0d-cO-GKu"/>
                                             <outlet property="itemDescription" destination="2JM-F8-vXZ" id="uyD-3C-Ia9"/>
@@ -256,14 +250,6 @@
                         <viewLayoutGuide key="safeArea" id="4gm-LM-8Va"/>
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="jcC-cK-ll8">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="0uK-3k-yGE">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="Oli-oz-JMH" kind="popoverPresentation" identifier="menuSegue" popoverAnchorBarButtonItem="0uK-3k-yGE" id="p91-T4-53x">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="action" id="PpN-QA-xH1">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -273,8 +259,16 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="bookmarks" id="nnw-Q6-Fzx">
+                            <barButtonItem systemItem="organize" id="nnw-Q6-Fzx">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </barButtonItem>
+                            <barButtonItem title="Menu" systemItem="bookmarks" id="0uK-3k-yGE">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="Oli-oz-JMH" kind="popoverPresentation" identifier="menuSegue" popoverAnchorBarButtonItem="0uK-3k-yGE" id="p91-T4-53x">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -709,7 +703,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ass-JB-xZu">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="ass-JB-xZu" customClass="MenuCollectionViewCell" customModule="OrderTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
