@@ -13,8 +13,14 @@ class RootViewController: UIViewController {
     let orderList = OrderList()
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rootSegue1" {
-            guard let detail = segue.destination as? DetailViewController else { return }
-            detail.orderList = orderList
+            let splitVC = segue.destination as! UISplitViewController
+            let detailVC = splitVC.viewControllers.last as! DetailViewController
+            detailVC.orderList = orderList
+            
+            let masterVC = splitVC.viewControllers.first as! UINavigationController
+            let menu = masterVC.viewControllers.first as! MenuViewController
+            menu.orderList = orderList
+            menu.delegate = detailVC
         }
     }
     

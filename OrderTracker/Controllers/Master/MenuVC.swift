@@ -18,7 +18,10 @@ class MenuViewController: UIViewController {
     let cellSpacing: CGFloat = 0
     
     weak var delegate: ItemSelectedDelegate?
-    
+        
+    @IBAction func dismissButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var menuCollectionView: UICollectionView!
     override func viewDidLoad() {
         setUpNavController()
@@ -30,14 +33,8 @@ class MenuViewController: UIViewController {
     
     private func setUpNavController() {
         menuCollectionView.backgroundColor = .clear
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
-        
-        if let popover = navigationController?.popoverPresentationController {
-            popover.backgroundColor = UIColor.clear
-        }
-        
-        //        collectionVIew.separatorColor = UIColor.clear
-        navigationController?.navigationBar.barTintColor = UIColor.black.withAlphaComponent(0.65)
+        view.backgroundColor = UIColor.darkGray
+        navigationController?.navigationBar.barTintColor = .darkGray
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Menu"
     }
@@ -47,7 +44,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     // collection view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuCollectionViewCell
-        cell.backgroundColor = .white
+        cell.backgroundColor = .black
 //        cell.frame.size.width = width! / 3
 //        cell.frame.size.height = width! / 3
         
@@ -70,6 +67,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
     
+    
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 3
         let numberOfItemsPerRow = 3
@@ -85,5 +83,6 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
 }
+
 
 

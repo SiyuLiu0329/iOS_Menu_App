@@ -18,13 +18,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
 
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var unitPriceView: UIView!
+    @IBOutlet weak var unitPriceLabel: UILabel!
+    @IBOutlet weak var submitView: UIView!
+    @IBOutlet weak var totalView: UIView!
+    @IBOutlet weak var quantityView: UIView!
+    @IBOutlet weak var viewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var quantityPicker: UIPickerView!
-    @IBOutlet weak var rightView: UIView!
-    @IBOutlet weak var navBar: UINavigationBar!
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
+
     private func twoDigitPriceText(of price: Double) -> String {
         return String(format: "$%.2f", price)
     }
@@ -36,10 +38,6 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBAction func closeButtonAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     private func refreshUI() {
         loadViewIfNeeded()
         guard let currentItem = item else { return }
@@ -48,22 +46,19 @@ class DetailViewController: UIViewController {
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
         collectionView.reloadData()
         quantityPicker.selectRow(currentItem.quantity - 1, inComponent: 0, animated: true)
+        unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
     }
     
     private func addGradientMaskToImageView() {
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        gradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.3).cgColor]
+        gradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
         gradient.locations = [0, 0.3, 0.7, 1]
         itemImage.layer.addSublayer(gradient)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        navBar.isTranslucent = true
-        navBar.shadowImage = UIImage()
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.topItem?.title = ""
         
         item = orderList.getItem(numbered: 1)
         btnAdd.backgroundColor = UIColor.lightGray
@@ -79,21 +74,28 @@ class DetailViewController: UIViewController {
         quantityPicker.dataSource = self
         collectionView.backgroundColor = DesignConfig.detailConnectionViewBackgoundColour
         disableButtonsIfEmpty()
-        configureLeftView()
+        
+        addBlurTo(view: quantityView)
+        addBlurTo(view: totalView)
+        addBlurTo(view: submitView)
+        addBlurTo(view: unitPriceView)
+        addBlurTo(view: commentView)
+
         refreshUI()
         addGradientMaskToImageView()
+//        viewTrailingConstraint.constant = -200
     }
     
-    private func configureLeftView() {
+    private func addBlurTo(view uiView: UIView) {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
+        blurEffectView.frame = uiView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        rightView.addSubview(blurEffectView)
-        rightView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        rightView.sendSubview(toBack: blurEffectView)
-        
-        
+        uiView.addSubview(blurEffectView)
+        uiView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        uiView.sendSubview(toBack: blurEffectView)
+        uiView.layer.cornerRadius = 8
+        uiView.clipsToBounds = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -158,6 +160,7 @@ extension DetailViewController: optionButtonDelegate {
         if let indexPath = collectionView.indexPath(for: cell){
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
             priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
+            unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
             cell.toggleState = !cell.toggleState
             if cell.toggleState == true {
                 cell.light()

@@ -41,6 +41,11 @@ class OrderList {
         return item.totalPrice
     }
     
+    func getUnitPrice(ofItem number: Int) -> Double {
+        guard let item = menuItems[number] else { return 0 }
+        return item.unitPrice
+    }
+    
     func getQuantity(ofItem number: Int) -> Int {
         guard let item = menuItems[number] else { return 0 }
         return item.quantity
