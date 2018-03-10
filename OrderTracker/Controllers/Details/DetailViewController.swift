@@ -16,6 +16,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
 
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var itemDetailView: UIView!
@@ -34,7 +36,9 @@ class DetailViewController: UIViewController {
     var item: MenuItem? {
         didSet {
             itemNumber = item?.number
-            submitBtn.backgroundColor = DesignConfig.getColour(withSeed: itemNumber!)
+            itemNumberLabel.text = "\(itemNumber!)"
+            itemNameLabel.text = item?.name
+            submitBtn.backgroundColor = DesignConfig.getColour(withSeed: itemNumber!).withAlphaComponent(0.4)
             refreshUI()
         }
     }
@@ -47,7 +51,7 @@ class DetailViewController: UIViewController {
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
         optionTableView.reloadData()
         quantityPicker.selectRow(currentItem.quantity - 1, inComponent: 0, animated: true)
-        unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
+        unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!)) + "/ea"
     }
     
     private func addGradientMaskToImageView() {
@@ -75,6 +79,10 @@ class DetailViewController: UIViewController {
         optionTableView.backgroundColor = .clear
         optionTableView.separatorColor = .clear
         
+        itemNumberLabel.layer.cornerRadius = 10
+        itemNumberLabel.clipsToBounds = true
+        itemNumberLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
         addBlurTo(view: quantityView)
         addBlurTo(view: totalView)
         addBlurTo(view: submitView)
@@ -83,10 +91,11 @@ class DetailViewController: UIViewController {
         addBlurTo(view: optionView)
         refreshUI()
         addGradientMaskToImageView()
+        itemNameLabel.numberOfLines = 0
         
 //        viewTrailingConstraint.constant = -200
     }
-    
+   
     
     private func addBlurTo(view uiView: UIView) {
         let blurEffect = UIBlurEffect(style: .dark)
@@ -133,8 +142,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "opCell", for: indexPath) as! OptionTableViewCell
-        if let currentItem = item {
+        if let currentItem = orderList.getItem(numbered: itemNumber!) {
             let option = currentItem.options[indexPath.row]
+            print(option.value)
             cell.toggleState = option.value
             cell.configureCell(description: option.description)
         }
@@ -155,7 +165,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.cellForRow(at: indexPath) as? OptionTableViewCell {
             cell.toggleState = !cell.toggleState
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
-            unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
+            unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!)) + "/ea"
             priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
         }
     }
@@ -211,7 +221,7 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let view = UILabel()
         view.textColor = .white
         view.text = "\(row + 1)"
-        view.font = UIFont.systemFont(ofSize: 150, weight: .thin)
+        view.font = UIFont.systemFont(ofSize: 150, weight: .ultraLight)
         view.textAlignment = .center
         return view
     }

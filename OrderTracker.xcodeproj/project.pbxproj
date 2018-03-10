@@ -194,8 +194,8 @@
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				223572BE203E9ACB000C42FD /* OptionTableViewCell.swift */,
 				2284B21C204F8E8F00D5D275 /* MenuCollectionViewCell.swift */,
-				22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */,
 				22EB8FF0204E142F00CE7249 /* PaymentOption.swift */,
+				22D7A95B2045703A00D05415 /* SummaryCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
