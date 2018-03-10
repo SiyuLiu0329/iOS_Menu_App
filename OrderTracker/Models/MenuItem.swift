@@ -24,7 +24,20 @@ enum PaymentStatus {
     
 }
 
-struct MenuItem {
+struct MenuItem: Equatable {
+    static func ==(lhs: MenuItem, rhs: MenuItem) -> Bool {
+        guard lhs.number == rhs.number else { return false }
+        guard lhs.unitPrice == rhs.unitPrice else { return false }
+        guard lhs.options.count == rhs.options.count else { return false }
+        guard lhs.comment == rhs.comment else { return false }
+        
+        for i in 0 ..< lhs.options.count {
+            guard lhs.options[i] == rhs.options[i] else { return false }
+        }
+        
+        return true
+    }
+    
     var number: Int
     var unitPrice: Double {
         willSet {

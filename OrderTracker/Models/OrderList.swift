@@ -26,8 +26,23 @@ class OrderList {
     
     // functions for current item
     func addItem(itemNumber number: Int) {
+
+        
         guard let tmpItem = menuItems[number] else { return }
+        if !currentOrder.items.isEmpty {
+            for i in 0 ..< currentOrder.items.count {
+                if tmpItem == currentOrder.items[i] {
+                    currentOrder.items[i].quantity += tmpItem.quantity
+                    currentOrder.orderTotalPrice += tmpItem.totalPrice
+                    resetTamplateItem(itemNumber: number)
+                    return
+                }
+            }
+        }
+        
         currentOrder.items.append(tmpItem)
+
+        
         currentOrder.orderTotalPrice += tmpItem.totalPrice
         resetTamplateItem(itemNumber: number)
     }

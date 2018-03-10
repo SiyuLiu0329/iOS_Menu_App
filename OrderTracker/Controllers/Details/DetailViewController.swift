@@ -144,7 +144,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "opCell", for: indexPath) as! OptionTableViewCell
         if let currentItem = orderList.getItem(numbered: itemNumber!) {
             let option = currentItem.options[indexPath.row]
-            print(option.value)
             cell.toggleState = option.value
             cell.configureCell(description: option.description)
         }

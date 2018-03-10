@@ -9,7 +9,15 @@
 import Foundation
 
 
-struct Option {
+
+struct Option: Equatable {
+    static func ==(lhs: Option, rhs: Option) -> Bool {
+        return lhs.description == rhs.description &&
+        lhs.value == rhs.value &&
+        lhs.imageURL == rhs.imageURL &&
+        lhs.price == rhs.price
+    }
+    
     var description: String
     var value: Bool
     var imageURL: String
@@ -21,4 +29,5 @@ struct Option {
         self.imageURL = url
         self.price = price
     }
+    
 }
