@@ -31,7 +31,7 @@
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3VB-7a-1JF">
                                                 <rect key="frame" x="0.0" y="40" width="250" height="188"/>
                                             </pickerView>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujH-aR-EwW">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujH-aR-EwW">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -59,17 +59,16 @@
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD6-YL-UQ6">
                                                 <rect key="frame" x="0.0" y="40" width="250" height="110"/>
                                                 <color key="backgroundColor" red="0.3718922006" green="0.68808156249999997" blue="0.31794128389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="100"/>
-                                                <state key="normal" title="✓">
+                                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="60"/>
+                                                <state key="normal" title="Submit">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="btnAddOrder:" destination="uQm-LB-eNr" eventType="touchUpInside" id="ZiS-Ia-aRU"/>
+                                                    <action selector="btnSubmit:" destination="uQm-LB-eNr" eventType="touchUpInside" id="ZiS-Ia-aRU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4J-UL-DPq">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
-                                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="7T1-qp-9nK"/>
                                                 </constraints>
@@ -98,7 +97,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUM-nR-1ju">
                                         <rect key="frame" x="766" y="422" width="250" height="160"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgS-aH-VJh">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgS-aH-VJh">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -142,7 +141,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3s-zs-NYK">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3s-zs-NYK">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -169,7 +168,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XlT-zC-QcL">
                                         <rect key="frame" x="8" y="240" width="750" height="500"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-WB-uNB">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-WB-uNB">
                                                 <rect key="frame" x="0.0" y="0.0" width="750" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -226,16 +225,28 @@
                                         <rect key="frame" x="8" y="8" width="750" height="224"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAN-dp-8H7">
-                                                <rect key="frame" x="0.0" y="0.0" width="750" height="224"/>
+                                                <rect key="frame" x="0.0" y="40" width="750" height="184"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wak-Vx-ccH">
+                                                <rect key="frame" x="0.0" y="0.0" width="750" height="40"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="mt0-oa-Nsd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                                <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="AAN-dp-8H7" secondAttribute="trailing" id="0Ez-Jh-CiA"/>
-                                            <constraint firstItem="AAN-dp-8H7" firstAttribute="top" secondItem="2CW-9a-kxG" secondAttribute="top" id="D0T-Xy-RLd"/>
+                                            <constraint firstItem="AAN-dp-8H7" firstAttribute="top" secondItem="wak-Vx-ccH" secondAttribute="bottom" id="6OD-wb-DQu"/>
+                                            <constraint firstAttribute="trailing" secondItem="wak-Vx-ccH" secondAttribute="trailing" id="G31-sO-Bnr"/>
+                                            <constraint firstItem="wak-Vx-ccH" firstAttribute="leading" secondItem="2CW-9a-kxG" secondAttribute="leading" id="P6u-DC-bA0"/>
+                                            <constraint firstItem="wak-Vx-ccH" firstAttribute="top" secondItem="2CW-9a-kxG" secondAttribute="top" id="T8m-Az-DPA"/>
                                             <constraint firstAttribute="bottom" secondItem="AAN-dp-8H7" secondAttribute="bottom" id="dRv-ap-oSm"/>
                                             <constraint firstItem="AAN-dp-8H7" firstAttribute="leading" secondItem="2CW-9a-kxG" secondAttribute="leading" id="mhb-ES-kUF"/>
                                         </constraints>
@@ -288,6 +299,7 @@
                         <outlet property="priceLabel" destination="HUR-59-dC0" id="mSh-i9-DSv"/>
                         <outlet property="quantityPicker" destination="3VB-7a-1JF" id="QqJ-VO-MSP"/>
                         <outlet property="quantityView" destination="Hip-r2-LAj" id="DPL-Nc-Wc6"/>
+                        <outlet property="submitBtn" destination="UD6-YL-UQ6" id="caA-DF-YUc"/>
                         <outlet property="submitView" destination="bqa-gd-nJu" id="dLI-5g-odJ"/>
                         <outlet property="totalView" destination="zUM-nR-1ju" id="hwB-Ww-gZQ"/>
                         <outlet property="unitPriceLabel" destination="AAN-dp-8H7" id="ZQp-nk-tdM"/>

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class DetailViewController: UIViewController {
     var orderList: OrderList!
     var itemNumber: Int?
@@ -17,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
 
+    @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var itemDetailView: UIView!
     @IBOutlet weak var optionView: UIView!
@@ -34,6 +34,7 @@ class DetailViewController: UIViewController {
     var item: MenuItem? {
         didSet {
             itemNumber = item?.number
+            submitBtn.backgroundColor = DesignConfig.getColour(withSeed: itemNumber!)
             refreshUI()
         }
     }
@@ -80,11 +81,12 @@ class DetailViewController: UIViewController {
         addBlurTo(view: commentView)
         addBlurTo(view: itemDetailView)
         addBlurTo(view: optionView)
-
         refreshUI()
         addGradientMaskToImageView()
+        
 //        viewTrailingConstraint.constant = -200
     }
+    
     
     private func addBlurTo(view uiView: UIView) {
         let blurEffect = UIBlurEffect(style: .dark)
@@ -178,14 +180,13 @@ extension DetailViewController {
         quantityPicker.selectRow(0, inComponent: 0, animated: true)
     }
     
-    @IBAction func btnAddOrder(_ sender: Any) {
+    @IBAction func btnSubmit(_ sender: Any) {
         guard itemNumber != nil,
             orderList.getSubTotal(ofItem: itemNumber!) != 0 else { return }
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
         dimAllCells()
     }
-
 }
 
 extension DetailViewController: ItemSelectedDelegate {
