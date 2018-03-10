@@ -26,10 +26,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hip-r2-LAj">
-                                        <rect key="frame" x="766" y="186" width="250" height="238"/>
+                                        <rect key="frame" x="766" y="206" width="250" height="208"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3VB-7a-1JF">
-                                                <rect key="frame" x="0.0" y="30" width="250" height="208"/>
+                                                <rect key="frame" x="0.0" y="30" width="250" height="178"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujH-aR-EwW">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
@@ -95,7 +95,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUM-nR-1ju">
-                                        <rect key="frame" x="766" y="432" width="250" height="150"/>
+                                        <rect key="frame" x="766" y="422" width="250" height="160"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgS-aH-VJh">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
@@ -107,9 +107,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUR-59-dC0">
-                                                <rect key="frame" x="0.0" y="30" width="250" height="120"/>
+                                                <rect key="frame" x="0.0" y="30" width="250" height="130"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="OBq-iS-brb"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="OBq-iS-brb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="60"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -133,10 +133,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1X-x1-MZ1">
-                                        <rect key="frame" x="766" y="8" width="250" height="170"/>
+                                        <rect key="frame" x="766" y="8" width="250" height="190"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comment here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mdo-eL-WFc">
-                                                <rect key="frame" x="0.0" y="30" width="250" height="140"/>
+                                                <rect key="frame" x="0.0" y="30" width="250" height="160"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -155,7 +155,7 @@
                                         <constraints>
                                             <constraint firstItem="mdo-eL-WFc" firstAttribute="top" secondItem="R3s-zs-NYK" secondAttribute="bottom" id="7lp-Yr-nE5"/>
                                             <constraint firstAttribute="trailing" secondItem="R3s-zs-NYK" secondAttribute="trailing" id="ESx-cu-gt0"/>
-                                            <constraint firstAttribute="height" constant="170" id="Hoy-eW-XIl"/>
+                                            <constraint firstAttribute="height" constant="190" id="Hoy-eW-XIl"/>
                                             <constraint firstItem="R3s-zs-NYK" firstAttribute="top" secondItem="P1X-x1-MZ1" secondAttribute="top" id="RQU-zN-NLp"/>
                                             <constraint firstAttribute="trailing" secondItem="mdo-eL-WFc" secondAttribute="trailing" id="bJq-QF-bla"/>
                                             <constraint firstItem="mdo-eL-WFc" firstAttribute="leading" secondItem="P1X-x1-MZ1" secondAttribute="leading" id="iMe-LO-7Hz"/>

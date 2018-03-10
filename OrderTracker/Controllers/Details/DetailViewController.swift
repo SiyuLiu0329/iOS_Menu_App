@@ -219,7 +219,7 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let view = UILabel()
         view.textColor = .white
-        view.text = "\(row + 1)"
+        view.text = "×\(row + 1)"
         view.font = UIFont.systemFont(ofSize: 150, weight: .ultraLight)
         view.textAlignment = .center
         return view
