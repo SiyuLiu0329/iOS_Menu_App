@@ -10,8 +10,21 @@ import UIKit
 
 class MenuCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var selectedView: UIView!
+    
+    var isItemSelected = false {
+        willSet {
+            if newValue == true {
+                selectedView.alpha = 0
+            } else {
+                selectedView.alpha = 0.7
+            }
+        }
+    }
     
     func configure(imageUrl url: String) {
         itemImageView.image = UIImage(named: url)
+        layer.cornerRadius = 5
+        clipsToBounds = true
     }
 }

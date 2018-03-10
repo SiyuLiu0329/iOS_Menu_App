@@ -190,7 +190,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4w-mD-d1f">
                                                                     <rect key="frame" x="10" y="0.0" width="740" height="44"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -555,7 +555,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-qd-u5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1547" y="858"/>
+            <point key="canvasLocation" x="1547" y="1006"/>
         </scene>
         <!--Submit View Controller-->
         <scene sceneID="Vbp-yF-2SH">
@@ -712,7 +712,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agy-7r-UGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2225" y="858"/>
+            <point key="canvasLocation" x="2276" y="1006"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="i9A-L1-UwA">
@@ -771,18 +771,27 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4t8-He-KPQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="134"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="269" height="134"/>
                                                 </imageView>
+                                                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bi4-qj-pj2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="269" height="134"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="4t8-He-KPQ" secondAttribute="trailing" constant="120" id="6ei-sg-6Eh"/>
                                             <constraint firstItem="4t8-He-KPQ" firstAttribute="leading" secondItem="ass-JB-xZu" secondAttribute="leading" id="79g-S4-t5v"/>
+                                            <constraint firstItem="bi4-qj-pj2" firstAttribute="leading" secondItem="ass-JB-xZu" secondAttribute="leading" id="GML-BV-Hep"/>
                                             <constraint firstItem="4t8-He-KPQ" firstAttribute="top" secondItem="ass-JB-xZu" secondAttribute="top" id="Lt7-w8-3Ls"/>
+                                            <constraint firstItem="bi4-qj-pj2" firstAttribute="top" secondItem="ass-JB-xZu" secondAttribute="top" id="ZF2-Et-t1Q"/>
+                                            <constraint firstAttribute="bottom" secondItem="bi4-qj-pj2" secondAttribute="bottom" id="bpI-0R-ath"/>
                                             <constraint firstAttribute="bottom" secondItem="4t8-He-KPQ" secondAttribute="bottom" id="kab-iC-rRN"/>
+                                            <constraint firstAttribute="trailing" secondItem="4t8-He-KPQ" secondAttribute="trailing" id="oMy-km-hCh"/>
+                                            <constraint firstAttribute="trailing" secondItem="bi4-qj-pj2" secondAttribute="trailing" id="q2t-dU-2Ho"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="itemImageView" destination="4t8-He-KPQ" id="i9X-C2-q5a"/>
+                                            <outlet property="selectedView" destination="bi4-qj-pj2" id="seQ-N3-6eW"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

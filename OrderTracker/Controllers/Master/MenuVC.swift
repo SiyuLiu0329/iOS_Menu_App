@@ -14,8 +14,14 @@ protocol ItemSelectedDelegate: class {
 }
 
 class MenuViewController: UIViewController {
-    var orderList: OrderList?
+    var orderList: OrderList? {
+        willSet {
+            itemSelected = Array(repeatElement(false, count: newValue!.menuItems.count))
+            itemSelected![0] = true
+        }
+    }
     let cellSpacing: CGFloat = 0
+    var itemSelected: [Bool]?
     
     weak var delegate: ItemSelectedDelegate?
         
@@ -33,7 +39,7 @@ class MenuViewController: UIViewController {
     
     private func setUpNavController() {
         menuCollectionView.backgroundColor = .clear
-        view.backgroundColor = UIColor.darkGray
+        view.backgroundColor = UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1)
         navigationController?.navigationBar.barTintColor = .clear
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Menu"
@@ -54,6 +60,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuCollectionViewCell
         cell.backgroundColor = .black
         if let item = orderList!.getItem(numbered: indexPath.row + 1) {
+            cell.isItemSelected = itemSelected![indexPath.row]
             cell.configure(imageUrl: item.imageURL)
         }
         return cell
@@ -70,6 +77,10 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if delegate != nil {
             delegate?.updateUIForItem(numbered: indexPath.row + 1)
+            for i in 0 ..< itemSelected!.count {
+                itemSelected![i] = (indexPath.row == i) ? true : false
+            }
+            collectionView.reloadData()
         }
     }
     
@@ -78,11 +89,11 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 3
-        let numberOfItemsPerRow = 1
+        let numberOfItemsPerRow = 2
         let width = menuCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) / 2)
+        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) * 3 / 4)
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
         layout.minimumLineSpacing = itemSpacing
