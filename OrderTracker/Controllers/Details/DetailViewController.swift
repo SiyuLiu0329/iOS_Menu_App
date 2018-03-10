@@ -102,7 +102,7 @@ class DetailViewController: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = uiView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.88
+        blurEffectView.alpha = 0.92
         uiView.addSubview(blurEffectView)
         uiView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         uiView.sendSubview(toBack: blurEffectView)

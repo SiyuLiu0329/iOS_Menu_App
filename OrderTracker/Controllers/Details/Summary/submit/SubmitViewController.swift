@@ -64,7 +64,7 @@ class SubmitViewController: UIViewController {
         self.pending -= 1
     }
     @IBAction func tenderButtonPressed(_ sender: Any) {
-//        print(selectedPaymentType)
+        print(selectedPaymentType)
     }
     private func setUpPaymentOptions() {
         contentView.addSubview(paymentView)
