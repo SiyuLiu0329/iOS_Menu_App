@@ -34,7 +34,7 @@ class MenuViewController: UIViewController {
     private func setUpNavController() {
         menuCollectionView.backgroundColor = .clear
         view.backgroundColor = UIColor.darkGray
-        navigationController?.navigationBar.barTintColor = .darkGray
+        navigationController?.navigationBar.barTintColor = .clear
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Menu"
     }
@@ -53,9 +53,9 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuCollectionViewCell
         cell.backgroundColor = .black
-//        cell.frame.size.width = width! / 3
-//        cell.frame.size.height = width! / 3
-        
+        if let item = orderList!.getItem(numbered: indexPath.row + 1) {
+            cell.configure(imageUrl: item.imageURL)
+        }
         return cell
     }
     
@@ -78,11 +78,11 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 3
-        let numberOfItemsPerRow = 3
+        let numberOfItemsPerRow = 1
         let width = menuCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow))
+        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) / 2)
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
         layout.minimumLineSpacing = itemSpacing

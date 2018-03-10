@@ -719,19 +719,33 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="704"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v5f-x1-CIu">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="269" height="134"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="ass-JB-xZu" customClass="MenuCollectionViewCell" customModule="OrderTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="25.5" y="0.0" width="269" height="134"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="269" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4t8-He-KPQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="134"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="4t8-He-KPQ" secondAttribute="trailing" constant="120" id="6ei-sg-6Eh"/>
+                                            <constraint firstItem="4t8-He-KPQ" firstAttribute="leading" secondItem="ass-JB-xZu" secondAttribute="leading" id="79g-S4-t5v"/>
+                                            <constraint firstItem="4t8-He-KPQ" firstAttribute="top" secondItem="ass-JB-xZu" secondAttribute="top" id="Lt7-w8-3Ls"/>
+                                            <constraint firstAttribute="bottom" secondItem="4t8-He-KPQ" secondAttribute="bottom" id="kab-iC-rRN"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="itemImageView" destination="4t8-He-KPQ" id="i9X-C2-q5a"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -767,7 +781,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3w5-Dd-f0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="156"/>
+            <point key="canvasLocation" x="637.5" y="155.46875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KR3-oJ-Qod">

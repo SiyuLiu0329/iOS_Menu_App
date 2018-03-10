@@ -153,7 +153,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.cellForRow(at: indexPath) as? OptionTableViewCell {
             cell.toggleState = !cell.toggleState
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
-            unitPriceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
+            unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
+            priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
         }
     }
 }

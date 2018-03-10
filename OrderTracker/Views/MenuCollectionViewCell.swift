@@ -9,5 +9,9 @@
 import UIKit
 
 class MenuCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var itemImageView: UIImageView!
     
+    func configure(imageUrl url: String) {
+        itemImageView.image = UIImage(named: url)
+    }
 }
