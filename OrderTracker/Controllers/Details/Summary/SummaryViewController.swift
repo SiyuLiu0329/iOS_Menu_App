@@ -15,10 +15,6 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var summaryCollectionView: UICollectionView!
     @IBOutlet weak var btnSubmit: UIButton!
 
-    
-    
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredContentSize = CGSize(width: 480, height: 700)

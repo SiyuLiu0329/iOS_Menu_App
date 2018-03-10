@@ -8,21 +8,16 @@
 
 import UIKit
 
-protocol optionButtonDelegate: class {
-    func optionaButtonPressed(_ sender: Any)
-}
 
 class OptionCollectionViewCell: UICollectionViewCell {
-    weak var delegate: optionButtonDelegate?
     
-    @IBOutlet weak var checkMark: UILabel!
-    @IBOutlet weak var itemDescription: UITextView!
-    @IBOutlet weak var overlay: UIView!
-    @IBOutlet weak var toggleButton: UIButton!
-    @IBAction func buttonPressed(_ sender: Any) {
-        delegate?.optionaButtonPressed(self)
+    func configureCell(description des: String) {
+        layer.cornerRadius = 5
+        clipsToBounds = true
+        optionDescription.text = des
     }
     
+    @IBOutlet weak var optionDescription: UILabel!
     var toggleState: Bool = false {
         willSet {
             if newValue == true {
@@ -34,12 +29,10 @@ class OptionCollectionViewCell: UICollectionViewCell {
     }
     
     func dim() {
-        overlay.alpha = 0.3
-        checkMark.alpha = 0
+        backgroundColor = .clear
     }
     
     func light() {
-        overlay.alpha = 0.05
-        checkMark.alpha = 1
+        backgroundColor = UIColor.white.withAlphaComponent(0.2)
     }
 }

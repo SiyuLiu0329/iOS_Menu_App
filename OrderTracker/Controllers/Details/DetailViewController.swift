@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
 
+    @IBOutlet weak var optionView: UIView!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var unitPriceView: UIView!
     @IBOutlet weak var unitPriceLabel: UILabel!
@@ -61,8 +62,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         item = orderList.getItem(numbered: 1)
-        btnAdd.backgroundColor = UIColor.lightGray
-        btnAdd.isEnabled = false
+
         navigationController?.navigationBar.barTintColor = DesignConfig.detailNavBarColour
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor(red: 36/255, green: 126/255, blue: 46/255, alpha: 1),
@@ -72,14 +72,15 @@ class DetailViewController: UIViewController {
         collectionView.dataSource = self
         quantityPicker.delegate = self
         quantityPicker.dataSource = self
-        collectionView.backgroundColor = DesignConfig.detailConnectionViewBackgoundColour
-        disableButtonsIfEmpty()
+        collectionView.backgroundColor = DesignConfig.detailCollectionViewBackgoundColour
         
         addBlurTo(view: quantityView)
         addBlurTo(view: totalView)
         addBlurTo(view: submitView)
         addBlurTo(view: unitPriceView)
         addBlurTo(view: commentView)
+        
+        addBlurTo(view: optionView)
 
         refreshUI()
         addGradientMaskToImageView()
@@ -92,6 +93,7 @@ class DetailViewController: UIViewController {
         blurEffectView.frame = uiView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         uiView.addSubview(blurEffectView)
+        blurEffectView.alpha = 0.8
         uiView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         uiView.sendSubview(toBack: blurEffectView)
         uiView.layer.cornerRadius = 8
@@ -126,10 +128,9 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! OptionCollectionViewCell
         if let currentItem = item {
-            cell.itemDescription.text = currentItem.options[indexPath.row].description
-            cell.itemDescription.isEditable = false
-            cell.delegate = self
-            cell.toggleState = currentItem.options[indexPath.row].value
+            let option = currentItem.options[indexPath.row]
+            cell.toggleState = option.value
+            cell.configureCell(description: option.description)
         }
         return cell
     }
@@ -143,34 +144,23 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? OptionCollectionViewCell {
+            cell.toggleState = !cell.toggleState
+            orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
+        }
+    }
+    
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let dim = collectionView.bounds.width / 4 - 5
-        return CGSize(width: dim, height: dim)
+        let dim = collectionView.bounds.width - 5
+        return CGSize(width: dim, height: 44)
     }
     
 }
-
-extension DetailViewController: optionButtonDelegate {
-    func optionaButtonPressed(_ sender: Any) {
-        let cell = sender as! OptionCollectionViewCell
-        if let indexPath = collectionView.indexPath(for: cell){
-            orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
-            priceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
-            unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
-            cell.toggleState = !cell.toggleState
-            if cell.toggleState == true {
-                cell.light()
-            } else {
-                cell.dim()
-            }
-        }
-    }
-}
-
 
 extension DetailViewController {
     // Button actions
@@ -180,7 +170,6 @@ extension DetailViewController {
         item = orderList.getItem(numbered: itemNumber!)
         dimAllCells()
         quantityPicker.selectRow(0, inComponent: 0, animated: true)
-        disableButtonsIfEmpty()
     }
     
     @IBAction func btnAddOrder(_ sender: Any) {
@@ -188,20 +177,7 @@ extension DetailViewController {
             orderList.getSubTotal(ofItem: itemNumber!) != 0 else { return }
         orderList.addItem(itemNumber: itemNumber!)
         item = orderList.menuItems[itemNumber!]
-        disableButtonsIfEmpty()
         dimAllCells()
-    }
-    
-    private func disableButtonsIfEmpty() {
-        guard let selectedItem = item else { return }
-        let quantity = orderList.getQuantity(ofItem: selectedItem.number)
-        if quantity == 0 {
-            btnAdd.backgroundColor = UIColor.lightGray
-            btnAdd.isEnabled = false
-        } else {
-            btnAdd.backgroundColor = UIColor(red: 65/255, green: 169/255, blue: 56/255, alpha: 1)
-            btnAdd.isEnabled = true
-        }
     }
 
 }

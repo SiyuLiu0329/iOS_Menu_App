@@ -11,6 +11,6 @@ import UIKit
 
 class DesignConfig {
     static let detailNavBarColour = UIColor.white
-    static let detailConnectionViewBackgoundColour = UIColor(red: 67/255, green: 59/255, blue: 73/255, alpha: 1).withAlphaComponent(0.8)
+    static let detailCollectionViewBackgoundColour = UIColor.clear
     
 }

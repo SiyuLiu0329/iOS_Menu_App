@@ -38,6 +38,14 @@ class MenuViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.title = "Menu"
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "summarySegue" {
+            let navController = segue.destination as? UINavigationController
+            let summaryVC = navController?.viewControllers.first as? SummaryViewController
+            summaryVC?.orderList = orderList
+        }
+    }
 }
 
 extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelegate {
