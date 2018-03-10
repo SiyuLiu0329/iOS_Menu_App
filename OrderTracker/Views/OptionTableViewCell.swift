@@ -9,12 +9,13 @@
 import UIKit
 
 
-class OptionCollectionViewCell: UICollectionViewCell {
+class OptionTableViewCell: UITableViewCell {
     
     func configureCell(description des: String) {
-        layer.cornerRadius = 5
-        clipsToBounds = true
         optionDescription.text = des
+        
+        let bgView = UIView()
+        selectedBackgroundView = bgView
     }
     
     @IBOutlet weak var optionDescription: UILabel!

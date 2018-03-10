@@ -14,18 +14,17 @@ class DetailViewController: UIViewController {
     var itemNumber: Int?
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var btnDel: UIButton!
 
+    @IBOutlet weak var optionTableView: UITableView!
+    @IBOutlet weak var itemDetailView: UIView!
     @IBOutlet weak var optionView: UIView!
     @IBOutlet weak var commentView: UIView!
-    @IBOutlet weak var unitPriceView: UIView!
     @IBOutlet weak var unitPriceLabel: UILabel!
     @IBOutlet weak var submitView: UIView!
     @IBOutlet weak var totalView: UIView!
     @IBOutlet weak var quantityView: UIView!
-    @IBOutlet weak var viewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var quantityPicker: UIPickerView!
 
     private func twoDigitPriceText(of price: Double) -> String {
@@ -45,7 +44,7 @@ class DetailViewController: UIViewController {
         itemImage.image = UIImage(named: currentItem.imageURL)
         navigationController?.navigationBar.topItem?.title = "Item #\(currentItem.number)" + " - " + currentItem.name
         priceLabel.text = twoDigitPriceText(of: currentItem.totalPrice)
-        collectionView.reloadData()
+        optionTableView.reloadData()
         quantityPicker.selectRow(currentItem.quantity - 1, inComponent: 0, animated: true)
         unitPriceLabel.text = twoDigitPriceText(of: orderList.getUnitPrice(ofItem: itemNumber!))
     }
@@ -68,18 +67,18 @@ class DetailViewController: UIViewController {
             NSAttributedStringKey.foregroundColor: UIColor(red: 36/255, green: 126/255, blue: 46/255, alpha: 1),
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: .light)
         ]
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        optionTableView.delegate = self
+        optionTableView.dataSource = self
         quantityPicker.delegate = self
         quantityPicker.dataSource = self
-        collectionView.backgroundColor = DesignConfig.detailCollectionViewBackgoundColour
+        optionTableView.backgroundColor = .clear
+        optionTableView.separatorColor = .clear
         
         addBlurTo(view: quantityView)
         addBlurTo(view: totalView)
         addBlurTo(view: submitView)
-        addBlurTo(view: unitPriceView)
         addBlurTo(view: commentView)
-        
+        addBlurTo(view: itemDetailView)
         addBlurTo(view: optionView)
 
         refreshUI()
@@ -88,12 +87,12 @@ class DetailViewController: UIViewController {
     }
     
     private func addBlurTo(view uiView: UIView) {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = uiView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.88
         uiView.addSubview(blurEffectView)
-        blurEffectView.alpha = 0.8
         uiView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         uiView.sendSubview(toBack: blurEffectView)
         uiView.layer.cornerRadius = 8
@@ -115,18 +114,23 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard item != nil else { return 0 }
         return item!.options.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! OptionCollectionViewCell
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "opCell", for: indexPath) as! OptionTableViewCell
         if let currentItem = item {
             let option = currentItem.options[indexPath.row]
             cell.toggleState = option.value
@@ -135,22 +139,23 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+
     func dimAllCells() {
-        let cells = collectionView.visibleCells
+        let cells = optionTableView.visibleCells
         for cell in cells {
-            let collectionViewCell = cell as! OptionCollectionViewCell
+            let collectionViewCell = cell as! OptionTableViewCell
             collectionViewCell.dim()
             collectionViewCell.toggleState = false
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? OptionCollectionViewCell {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? OptionTableViewCell {
             cell.toggleState = !cell.toggleState
             orderList.toggleOptionValue(ofOption: indexPath.row, forItem: itemNumber!)
+            unitPriceLabel.text = twoDigitPriceText(of: orderList.getSubTotal(ofItem: itemNumber!))
         }
     }
-    
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {

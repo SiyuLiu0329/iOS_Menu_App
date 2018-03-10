@@ -11,6 +11,5 @@ import UIKit
 
 class DesignConfig {
     static let detailNavBarColour = UIColor.white
-    static let detailCollectionViewBackgoundColour = UIColor.clear
     
 }
