@@ -14,6 +14,7 @@ class SplitViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black // divider colour
 
         // Do any additional setup after loading the view.
     }

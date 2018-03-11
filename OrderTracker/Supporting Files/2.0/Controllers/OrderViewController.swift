@@ -53,7 +53,7 @@ class OrderViewController: UIViewController {
     }
 }
 
-extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return orderList!.allOrders.count + 1
     }
@@ -61,24 +61,26 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: OrderCollectionViewCell
-        
-
-        
         cell = orderCollectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderCollectionViewCell
+        cell.configure()
         if indexPath.row == orderList!.allOrders.count {
             cell.label.text = "New Cell"
         } else {
             cell.label.text = "\(orderList!.allOrders[indexPath.row].orderNumber)"
         }
+        
 
-        
         return cell
-        
-        
+
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
     }
     
     private func layoutCollectionView() {
-        let itemSpacing: CGFloat = 3
+        let itemSpacing: CGFloat = 5
         let numberOfItemsPerRow = 5
         let width = orderCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()

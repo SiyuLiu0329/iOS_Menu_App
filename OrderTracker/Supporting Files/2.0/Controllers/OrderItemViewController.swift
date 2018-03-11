@@ -48,7 +48,7 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
         let cell: ItemCollectionViewCell
         
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
-        cell.configureCell()
+        cell.configure()
         cell.label.text =  "item \(orderList!.allOrders[orderId!].items[indexPath.row].number) x \(orderList!.allOrders[orderId!].items[indexPath.row].quantity)"
         return cell
     }

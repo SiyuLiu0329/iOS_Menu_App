@@ -11,14 +11,10 @@ import UIKit
 
 
 class ItemCollectionViewCell: UICollectionViewCell {
-
-
-
     @IBOutlet weak var label: UILabel!
-
     
-    func configureCell() {
-
+    func configure() {
+        
     }
 }
 

@@ -11,4 +11,8 @@ import UIKit
 class OrderCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var label: UILabel!
+    func configure() {
+        layer.cornerRadius = 5
+        clipsToBounds = true
+    }
 }

@@ -22,5 +22,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     
     func configure(imgUrl url: String) {
         itemImage.image = UIImage(named: url)
+        layer.cornerRadius = 5
+        clipsToBounds = true
     }
 }
