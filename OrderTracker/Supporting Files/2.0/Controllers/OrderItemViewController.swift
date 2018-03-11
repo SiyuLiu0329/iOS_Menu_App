@@ -11,7 +11,9 @@ import UIKit
 class OrderItemViewController: UIViewController {
     @IBOutlet weak var itemCollectionView: UICollectionView!
     var orderList: OrderList?
+    
     var orderId: Int?
+    var rowCount = 0 // for deleting and add cells
     override func viewDidLoad() {
         super.viewDidLoad()
         itemCollectionView.delegate = self
@@ -36,7 +38,7 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
         
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         cell.configureCell()
-        cell.label.text =  "item \(orderList!.allOrders[orderId!].items[indexPath.row].number)"
+        cell.label.text =  "item \(orderList!.allOrders[orderId!].items[indexPath.row].number) x \(orderList!.allOrders[orderId!].items[indexPath.row].quantity)"
         return cell
     }
     
@@ -51,15 +53,17 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
         layout.minimumInteritemSpacing = itemSpacing
         itemCollectionView.collectionViewLayout = layout
     }
-    
-    
 }
 
 extension OrderItemViewController: DetailViewControllerDelegate {
     func orderAdded() {
-        itemCollectionView.reloadData()
-//        itemCollectionView.insertItems(at: [IndexPath.init(row: orderList!.allOrders[orderId!].items.count + 1, section: 0)])
-        
+        if orderList!.allOrders[orderId!].items.count == rowCount {
+            itemCollectionView.reloadData()
+        } else {
+            rowCount = orderList!.allOrders[orderId!].items.count
+            let row = rowCount - 1
+            itemCollectionView.insertItems(at: [IndexPath.init(row: row, section: 0)])
+        }
     }
 }
 
