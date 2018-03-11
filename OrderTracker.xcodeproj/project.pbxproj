@@ -21,8 +21,6 @@
 		2223F206203BB8250047E0D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2223F204203BB8250047E0D9 /* Main.storyboard */; };
 		2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2223F207203BB8250047E0D9 /* Assets.xcassets */; };
 		2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */; };
-		2223F216203BB8260047E0D9 /* OrderTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */; };
-		2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */; };
 		222AEA342040014200F81074 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AEA332040014200F81074 /* Utils.swift */; };
 		22D4194A203EE58800674660 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D41949203EE58800674660 /* Option.swift */; };
 		22F6E9F6203BD9E5001F78CA /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F5203BD9E5001F78CA /* MenuItem.swift */; };
@@ -64,11 +62,7 @@
 		2223F20A203BB8250047E0D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2223F20C203BB8250047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2223F211203BB8260047E0D9 /* OrderTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrderTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackerTests.swift; sourceTree = "<group>"; };
-		2223F217203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2223F21C203BB8260047E0D9 /* OrderTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrderTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackerUITests.swift; sourceTree = "<group>"; };
-		2223F222203BB8260047E0D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		222AEA332040014200F81074 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		22D41949203EE58800674660 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		22F6E9F5203BD9E5001F78CA /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -117,8 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				2223F1FF203BB8250047E0D9 /* OrderTracker */,
-				2223F214203BB8260047E0D9 /* OrderTrackerTests */,
-				2223F21F203BB8260047E0D9 /* OrderTrackerUITests */,
 				2223F1FE203BB8250047E0D9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,24 +135,6 @@
 				22D4194B203EE59500674660 /* Models */,
 			);
 			path = OrderTracker;
-			sourceTree = "<group>";
-		};
-		2223F214203BB8260047E0D9 /* OrderTrackerTests */ = {
-			isa = PBXGroup;
-			children = (
-				2223F215203BB8260047E0D9 /* OrderTrackerTests.swift */,
-				2223F217203BB8260047E0D9 /* Info.plist */,
-			);
-			path = OrderTrackerTests;
-			sourceTree = "<group>";
-		};
-		2223F21F203BB8260047E0D9 /* OrderTrackerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2223F220203BB8260047E0D9 /* OrderTrackerUITests.swift */,
-				2223F222203BB8260047E0D9 /* Info.plist */,
-			);
-			path = OrderTrackerUITests;
 			sourceTree = "<group>";
 		};
 		222AEA36204044C700F81074 /* Data */ = {
@@ -360,7 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2223F216203BB8260047E0D9 /* OrderTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +341,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2223F221203BB8260047E0D9 /* OrderTrackerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
