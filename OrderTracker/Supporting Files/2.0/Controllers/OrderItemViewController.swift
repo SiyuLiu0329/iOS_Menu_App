@@ -58,6 +58,8 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
 extension OrderItemViewController: DetailViewControllerDelegate {
     func orderAdded() {
         itemCollectionView.reloadData()
+//        itemCollectionView.insertItems(at: [IndexPath.init(row: orderList!.allOrders[orderId!].items.count + 1, section: 0)])
+        
     }
 }
 
