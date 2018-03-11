@@ -11,9 +11,9 @@ import UIKit
 class OrderItemViewController: UIViewController {
     @IBOutlet weak var itemCollectionView: UICollectionView!
     var orderList: OrderList?
-    
     var orderId: Int?
-    var rowCount = 0 // for deleting and add cells
+    var cellCount: Int? // for deleting and add cells
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         itemCollectionView.delegate = self
@@ -57,11 +57,11 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
 
 extension OrderItemViewController: DetailViewControllerDelegate {
     func orderAdded() {
-        if orderList!.allOrders[orderId!].items.count == rowCount {
+        if orderList!.allOrders[orderId!].items.count == cellCount {
             itemCollectionView.reloadData()
         } else {
-            rowCount = orderList!.allOrders[orderId!].items.count
-            let row = rowCount - 1
+            cellCount = orderList!.allOrders[orderId!].items.count
+            let row = cellCount! - 1
             itemCollectionView.insertItems(at: [IndexPath.init(row: row, section: 0)])
         }
     }
