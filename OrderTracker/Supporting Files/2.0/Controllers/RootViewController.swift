@@ -15,9 +15,9 @@ class RootViewController: UIViewController {
         if segue.identifier == "rootSegue1" {
             
             let navVC = segue.destination as! UINavigationController
+            navVC.navigationBar.barTintColor = ColourScheme.navigationBarColour
             let orderVC = navVC.viewControllers.first as! OrderViewController
             orderVC.orderList = orderList
-            orderList.newOrder()
         }
     }
     

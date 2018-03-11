@@ -10,9 +10,14 @@ import UIKit
 
 class OrderViewController: UIViewController {
     
+    override var prefersStatusBarHidden: Bool {
+        return true 
+    }
+    
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     @IBOutlet weak var orderCollectionView: UICollectionView!
     var orderList: OrderList?
 
@@ -20,39 +25,51 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         orderCollectionView.delegate = self
         orderCollectionView.dataSource = self
+        orderCollectionView.backgroundColor = ColourScheme.collectionViewBackGroundColour
         layoutCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        orderCollectionView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let splitVC = segue.destination as! UISplitViewController
         let navVc = splitVC.viewControllers.first as! UINavigationController
-        let selectedVC = navVc.viewControllers.first as! OrderItemViewController
+        let orderItemVC = navVc.viewControllers.first as! OrderItemViewController
         let indexPath = orderCollectionView.indexPath(for: sender as! UICollectionViewCell)
-
-        selectedVC.orderList = orderList
-        selectedVC.orderId = indexPath!.row
-        selectedVC.cellCount = orderList!.allOrders[indexPath!.row].items.count
+        if indexPath!.row == orderList!.allOrders.count {
+            orderList!.newOrder()
+        }
+        orderItemVC.orderList = orderList
+        orderItemVC.orderId = indexPath!.row
+        orderItemVC.cellCount = orderList!.allOrders[indexPath!.row].items.count
         let tbC = splitVC.viewControllers.last as! UITabBarController
         let detailNavVC = tbC.viewControllers?.first  as! UINavigationController
         let detailVC = detailNavVC.viewControllers.first as! DetailViewController
         detailVC.orderList = orderList
         detailVC.orderId = indexPath!.row
-        detailVC.delegate = selectedVC
+        detailVC.delegate = orderItemVC
     }
 }
 
 extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return orderList!.allOrders.count
+        return orderList!.allOrders.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: OrderCollectionViewCell
         
-        cell = orderCollectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderCollectionViewCell
 
-        cell.label.text = "\(orderList!.allOrders[indexPath.row].orderNumber)"
+        
+        cell = orderCollectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderCollectionViewCell
+        if indexPath.row == orderList!.allOrders.count {
+            cell.label.text = "New Cell"
+        } else {
+            cell.label.text = "\(orderList!.allOrders[indexPath.row].orderNumber)"
+        }
 
         
         return cell

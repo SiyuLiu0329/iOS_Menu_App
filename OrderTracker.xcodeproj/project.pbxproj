@@ -10,6 +10,9 @@
 		0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040760892054DA3B0002B5E1 /* OrderItemViewController.swift */; };
 		0407608E2054DAD50002B5E1 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407608D2054DAD50002B5E1 /* ItemCollectionViewCell.swift */; };
 		040760902055049C0002B5E1 /* menuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407608F2055049C0002B5E1 /* menuItemCollectionViewCell.swift */; };
+		0407609220555EBF0002B5E1 /* ColourScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407609120555EBF0002B5E1 /* ColourScheme.swift */; };
+		04076094205561880002B5E1 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04076093205561880002B5E1 /* SplitViewController.swift */; };
+		04076096205563AF0002B5E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04076095205563AF0002B5E1 /* TabBarController.swift */; };
 		04C101C12054CCB400255361 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C101C02054CCB400255361 /* DetailViewController.swift */; };
 		04C101C32054CD9300255361 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C101C22054CD9300255361 /* OrderViewController.swift */; };
 		04C101C52054D07300255361 /* OrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C101C42054D07300255361 /* OrderCollectionViewCell.swift */; };
@@ -47,6 +50,9 @@
 		040760892054DA3B0002B5E1 /* OrderItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewController.swift; sourceTree = "<group>"; };
 		0407608D2054DAD50002B5E1 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		0407608F2055049C0002B5E1 /* menuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		0407609120555EBF0002B5E1 /* ColourScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourScheme.swift; sourceTree = "<group>"; };
+		04076093205561880002B5E1 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		04076095205563AF0002B5E1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		04C101C02054CCB400255361 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		04C101C22054CD9300255361 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		04C101C42054D07300255361 /* OrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 		04C101C62054D08B00255361 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
+				0407609120555EBF0002B5E1 /* ColourScheme.swift */,
 				2223F204203BB8250047E0D9 /* Main.storyboard */,
 				0407608F2055049C0002B5E1 /* menuItemCollectionViewCell.swift */,
 				0407608D2054DAD50002B5E1 /* ItemCollectionViewCell.swift */,
@@ -199,8 +206,10 @@
 			children = (
 				2284B218204F81B600D5D275 /* RootViewController.swift */,
 				04C101C22054CD9300255361 /* OrderViewController.swift */,
+				04076093205561880002B5E1 /* SplitViewController.swift */,
 				040760892054DA3B0002B5E1 /* OrderItemViewController.swift */,
 				04C101C02054CCB400255361 /* DetailViewController.swift */,
+				04076095205563AF0002B5E1 /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -340,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22F6E9F6203BD9E5001F78CA /* MenuItem.swift in Sources */,
+				04076094205561880002B5E1 /* SplitViewController.swift in Sources */,
 				04C101C12054CCB400255361 /* DetailViewController.swift in Sources */,
 				22D4194A203EE58800674660 /* Option.swift in Sources */,
 				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
@@ -351,6 +361,8 @@
 				04C101C52054D07300255361 /* OrderCollectionViewCell.swift in Sources */,
 				04C101C32054CD9300255361 /* OrderViewController.swift in Sources */,
 				0407608E2054DAD50002B5E1 /* ItemCollectionViewCell.swift in Sources */,
+				04076096205563AF0002B5E1 /* TabBarController.swift in Sources */,
+				0407609220555EBF0002B5E1 /* ColourScheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

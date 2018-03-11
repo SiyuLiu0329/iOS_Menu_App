@@ -13,10 +13,14 @@ protocol ItemCellDelegate: class {
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCellDelegate?
+    @IBOutlet weak var itemImage: UIImageView!
     @IBAction func incrementQuantity(_ sender: Any) {
         if delegate != nil {
             delegate!.incrementQuantity(self)
         }
     }
     
+    func configure(imgUrl url: String) {
+        itemImage.image = UIImage(named: url)
+    }
 }

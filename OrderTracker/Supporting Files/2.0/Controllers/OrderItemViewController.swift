@@ -9,6 +9,11 @@
 import UIKit
 
 class OrderItemViewController: UIViewController {
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     @IBOutlet weak var itemCollectionView: UICollectionView!
     var orderList: OrderList?
     var orderId: Int?
@@ -18,13 +23,19 @@ class OrderItemViewController: UIViewController {
         super.viewDidLoad()
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
+        itemCollectionView.backgroundColor = ColourScheme.collectionViewBackGroundColour
         layoutCollectionView()
+        navigationController?.navigationBar.barTintColor = ColourScheme.navigationBarColour
     }
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        orderList?.discardLastestOrder()
     }
     
+    @IBAction func saveAndDismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 
