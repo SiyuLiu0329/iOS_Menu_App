@@ -14,20 +14,30 @@ protocol ItemCollectionViewCellDelegate: class {
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
-    private let deleteLabel = UILabel()
+    private var deleteLabel: UILabel!
     private var originalCenterX: CGFloat?
     let threashold: CGFloat = 190
     private var delete = false
     private var displacement: CGFloat = 0
     weak var delegate: ItemCollectionViewCellDelegate?
     func configure() {
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        deleteLabel = UILabel()
         addSubview(deleteLabel)
-        contentView.backgroundColor = UIColor.darkGray
-        deleteLabel.frame = bounds
-        deleteLabel.backgroundColor = .red
+        contentView.backgroundColor = UIColor.orange
+        deleteLabel.backgroundColor = .darkGray
         originalCenterX = center.x
         addPanGesutre()
         bringSubview(toFront: contentView)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        deleteLabel.frame = bounds
     }
 }
 
@@ -39,7 +49,6 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
     }
     
     @objc private func pan(_ recogniser: UIPanGestureRecognizer) {
-        let point = recogniser.location(in: self)
         switch recogniser.state {
         case .began: break
         case .ended:
