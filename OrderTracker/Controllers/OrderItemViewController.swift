@@ -50,6 +50,7 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         cell.configure()
         cell.label.text =  "item \(orderList!.allOrders[orderId!].items[indexPath.row].number) x \(orderList!.allOrders[orderId!].items[indexPath.row].quantity)"
+        cell.delegate = self
         return cell
     }
     
@@ -75,6 +76,15 @@ extension OrderItemViewController: DetailViewControllerDelegate {
             let row = cellCount! - 1
             itemCollectionView.insertItems(at: [IndexPath.init(row: row, section: 0)])
         }
+    }
+}
+
+extension OrderItemViewController: ItemCollectionViewCellDelegate {
+    func deleteItemInCell(_ cell: ItemCollectionViewCell) {
+        let indexPath = itemCollectionView.indexPath(for: cell)
+        print(indexPath!.row)
+        
+        // implement delete
     }
 }
 
