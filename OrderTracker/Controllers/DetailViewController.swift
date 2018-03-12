@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        orderList!.loadOrder(withIndex: orderId!)
         itemsCollectionView.dataSource = self
         itemsCollectionView.delegate = self
         itemsCollectionView.backgroundColor = ColourScheme.detailViewControllerBackgoundColour
@@ -70,7 +71,7 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
 extension DetailViewController: ItemCellDelegate {
     func incrementQuantity(_ sender: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: sender)
-        orderList!.addItem(number: indexPath!.row + 1, toOrder: orderId! + 1)
+        orderList?.addItemToLoadedOrder(number: indexPath!.row + 1)
         if delegate != nil {
             delegate!.orderAdded()
         }

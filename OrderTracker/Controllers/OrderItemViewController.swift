@@ -30,18 +30,27 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        orderList?.discardLastestOrder()
+        if orderList!.isLatestOrderEmpty {
+            // if this order was newly created, discard it
+            orderList!.discardLastestOrder()
+        }
     }
     
     @IBAction func saveAndDismiss(_ sender: Any) {
+        if orderList!.isLoadedOrderEmpty {
+            // cannot save an empty order
+            // TODO: pop up
+            return
+        }
         dismiss(animated: true, completion: nil)
+        orderList?.saveLoadedOrder(withIndex: orderId!)
     }
 }
 
 
 extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return orderList!.allOrders[orderId!].items.count
+        return orderList!.getNumberOfItemsInLoadedOrder()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,7 +58,7 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
         
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         cell.configure()
-        cell.label.text =  "item \(orderList!.allOrders[orderId!].items[indexPath.row].number) x \(orderList!.allOrders[orderId!].items[indexPath.row].quantity)"
+        cell.label.text =  "item \(orderList!.getItemNumberInLoadedOrder(withIndex: indexPath.row)) x \(orderList!.getItemQuantityInLoadedOrder(withIndex: indexPath.row))"
         cell.delegate = self
         return cell
     }

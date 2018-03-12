@@ -21,8 +21,19 @@ struct Order {
 
 class OrderList {
     var allOrders: [Order] = []
+    
+    var isLatestOrderEmpty: Bool {
+        return allOrders.last!.items.isEmpty
+    }
+    
+    var isLoadedOrderEmpty: Bool {
+        return loadedOrder!.items.isEmpty
+    }
+    
     var menuItems: [Int: MenuItem] = [:]
     var currentOrderNumber = 1
+    private var loadedOrder: Order?
+    // Order
     
     init() {
         resetTamplateItem(itemNumber: 0)
@@ -37,29 +48,47 @@ class OrderList {
         currentOrderNumber += 1
     }
     
-    func addItem(number itemNumber: Int, toOrder orderNumber: Int) {
-        if orderNumber > currentOrderNumber || orderNumber < 1 {
-            fatalError()
-        }
-        
+    func loadOrder(withIndex index: Int) {
+        loadedOrder = allOrders[index]
+    }
+    
+    func saveLoadedOrder(withIndex index: Int) {
+        guard let order = loadedOrder else { return }
+        allOrders[index] = order
+    }
+    
+    func getNumberOfItemsInLoadedOrder() -> Int {
+        return loadedOrder!.items.count
+    }
+    
+    func getItemNamedInLoadedOrder(withIndex index: Int) -> String {
+        return loadedOrder!.items[index].name
+    }
+    
+    func getItemNumberInLoadedOrder(withIndex index: Int) -> Int {
+        return loadedOrder!.items[index].number
+    }
+    
+    func getItemQuantityInLoadedOrder(withIndex index: Int) -> Int {
+        return loadedOrder!.items[index].quantity
+    }
+    
+    func addItemToLoadedOrder(number itemNumber: Int) {
         guard let item = menuItems[itemNumber] else { return }
         var matchFound = false
-        for i in 0 ..< allOrders[orderNumber - 1].items.count {
-            if item == allOrders[orderNumber - 1].items[i] {
+        for i in 0 ..< loadedOrder!.items.count {
+            if item == loadedOrder!.items[i] {
                 matchFound = true
-                allOrders[orderNumber - 1].items[i].quantity += 1
+                loadedOrder!.items[i].quantity += 1
                 break
             }
         }
         
         if !matchFound {
-            allOrders[orderNumber - 1].items.append(item)
+            loadedOrder!.items.append(item)
         }
-        
-        resetTamplateItem(itemNumber: itemNumber)
-        print(allOrders[orderNumber - 1].items.count)
     }
-    
+
     func discardLastestOrder() {
         allOrders.removeLast()
         currentOrderNumber -= 1
