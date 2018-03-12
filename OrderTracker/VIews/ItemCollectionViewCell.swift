@@ -32,12 +32,13 @@ class ItemCollectionViewCell: UICollectionViewCell {
         deleteLabel.backgroundColor = .red
         originalCenterX = center.x
         addPanGesutre()
-        bringSubview(toFront: contentView)
+        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         deleteLabel.frame = bounds
+        bringSubview(toFront: contentView)
     }
 }
 
@@ -53,11 +54,12 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
         case .began: break
         case .ended:
             if delete {
+                // perform delete
                 if delegate != nil {
                     delegate!.deleteItemInCell(self)
                 }
             } else {
-                // restore to original position
+                // restore to original position (delete cancelled)
                 UIView.animate(withDuration: 0.2, animations: {
                     self.contentView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 })
@@ -69,7 +71,7 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
             displacement = contentView.center.x - originalCenterX!
             if fabs(displacement) > threashold {
                 if fabs(translation.x) < threashold {
-                    // cancel delete
+                    // cancel delete (User swipes back)
                     delete = false
                     UIView.animate(withDuration: 0.2, animations: {
                         self.contentView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
@@ -99,7 +101,7 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
         // horizontal only
         guard let pan = gestureRecognizer as? UIPanGestureRecognizer else { return false }
         let velocity = pan.velocity(in: self)
-        return fabs(velocity.y) < fabs(velocity.x)
+        return fabs(velocity.y * 2) < fabs(velocity.x)
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {

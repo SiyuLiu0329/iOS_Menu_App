@@ -37,11 +37,6 @@ class OrderItemViewController: UIViewController {
     }
     
     @IBAction func saveAndDismiss(_ sender: Any) {
-        if orderList!.isLoadedOrderEmpty {
-            // cannot save an empty order
-            // TODO: pop up
-            return
-        }
         dismiss(animated: true, completion: nil)
         orderList?.saveLoadedOrder(withIndex: orderId!)
     }
