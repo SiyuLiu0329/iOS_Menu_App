@@ -73,6 +73,10 @@ class OrderList {
         return loadedOrder!.items[index].quantity
     }
     
+    func deleteItemInLoadedOrder(withIndex index: Int) {
+        loadedOrder!.items.remove(at: index)
+    }
+    
     func addItemToLoadedOrder(number itemNumber: Int) {
         guard let item = menuItems[itemNumber] else { return }
         var matchFound = false

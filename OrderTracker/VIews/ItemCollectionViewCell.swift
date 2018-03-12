@@ -16,7 +16,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
     private var deleteLabel: UILabel!
     private var originalCenterX: CGFloat?
-    let threashold: CGFloat = 190
+    let threashold: CGFloat = 150
     private var delete = false
     private var displacement: CGFloat = 0
     weak var delegate: ItemCollectionViewCellDelegate?
@@ -28,8 +28,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         deleteLabel = UILabel()
         addSubview(deleteLabel)
-        contentView.backgroundColor = UIColor.orange
-        deleteLabel.backgroundColor = .darkGray
+        contentView.backgroundColor = UIColor.darkGray
+        deleteLabel.backgroundColor = .red
         originalCenterX = center.x
         addPanGesutre()
         bringSubview(toFront: contentView)
@@ -68,16 +68,26 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
             let height = contentView.frame.height
             displacement = contentView.center.x - originalCenterX!
             if fabs(displacement) > threashold {
-                delete = true
-                let dir = (displacement > 0) ? 1: -1
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.contentView.frame = CGRect(x: CGFloat(dir) * width, y: 0, width: self.frame.width, height: self.frame.height)
-                })
+                if fabs(translation.x) < threashold {
+                    // cancel delete
+                    delete = false
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.contentView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                    })
+                    delete = false
+                } else {
+                    delete = true
+                    let dir = (displacement > 0) ? 1: -1
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.contentView.frame = CGRect(x: CGFloat(dir) * width, y: 0, width: self.frame.width, height: self.frame.height)
+                    })
+                }
                 
             } else {
                 contentView.frame = CGRect(x: translation.x, y: 0, width: width, height: height)
                 delete = false
             }
+            print(displacement, translation)
         default:
             UIView.animate(withDuration: 0.2, animations: {
                 self.contentView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)

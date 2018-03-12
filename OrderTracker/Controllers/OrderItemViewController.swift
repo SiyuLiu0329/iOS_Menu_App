@@ -91,9 +91,8 @@ extension OrderItemViewController: DetailViewControllerDelegate {
 extension OrderItemViewController: ItemCollectionViewCellDelegate {
     func deleteItemInCell(_ cell: ItemCollectionViewCell) {
         let indexPath = itemCollectionView.indexPath(for: cell)
-        print(indexPath!.row)
-        
-        // implement delete
+        orderList!.deleteItemInLoadedOrder(withIndex: indexPath!.row)
+        itemCollectionView.deleteItems(at: [indexPath!])
     }
 }
 
