@@ -18,6 +18,7 @@ class OrderItemViewController: UIViewController {
     var orderList: OrderList?
     var orderId: Int?
     var headerHeight:CGFloat = 80
+    var isNewOrder = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        if orderList!.isLatestOrderEmpty && orderId == orderList!.allOrders.count - 1 {
+        if orderList!.isLatestOrderEmpty && orderId == orderList!.allOrders.count - 1 && isNewOrder {
             // if this order was newly created, discard it
             // if the latest(created) order is empty && this order is the latest!
             orderList!.discardLastestOrder()
