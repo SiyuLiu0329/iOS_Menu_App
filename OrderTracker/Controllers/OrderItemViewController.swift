@@ -73,10 +73,10 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
 
 extension OrderItemViewController: DetailViewControllerDelegate {
     func orderAdded() {
-        if orderList!.allOrders[orderId!].items.count == cellCount {
+        if orderList!.getNumberOfItemsInLoadedOrder() == cellCount {
             itemCollectionView.reloadData()
         } else {
-            cellCount = orderList!.allOrders[orderId!].items.count
+            cellCount = orderList!.getNumberOfItemsInLoadedOrder()
             let row = cellCount! - 1
             itemCollectionView.insertItems(at: [IndexPath.init(row: row, section: 0)])
         }
@@ -88,6 +88,7 @@ extension OrderItemViewController: ItemCollectionViewCellDelegate {
         let indexPath = itemCollectionView.indexPath(for: cell)
         orderList!.deleteItemInLoadedOrder(withIndex: indexPath!.row)
         itemCollectionView.deleteItems(at: [indexPath!])
+        cellCount = orderList!.getNumberOfItemsInLoadedOrder()
     }
 }
 

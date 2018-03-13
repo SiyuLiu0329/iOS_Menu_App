@@ -93,7 +93,6 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
                 contentView.frame = CGRect(x: translation.x, y: 0, width: width, height: height)
                 delete = false
             }
-            print(displacement, translation)
         default:
             UIView.animate(withDuration: 0.2, animations: {
                 self.contentView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
