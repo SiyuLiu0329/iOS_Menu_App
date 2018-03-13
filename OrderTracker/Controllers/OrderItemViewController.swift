@@ -29,8 +29,9 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        if orderList!.isLatestOrderEmpty {
+        if orderList!.isLatestOrderEmpty && orderId == orderList!.allOrders.count - 1 {
             // if this order was newly created, discard it
+            // if the latest(created) order is empty && this order is the latest!
             orderList!.discardLastestOrder()
         }
     }
