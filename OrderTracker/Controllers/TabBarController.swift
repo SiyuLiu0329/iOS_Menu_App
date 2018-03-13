@@ -11,7 +11,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
-        tabBar.barTintColor = ColourScheme.navigationBarColour
+        tabBar.barTintColor = Scheme.navigationBarColour
         tabBar.tintColor = .white
     }
 }

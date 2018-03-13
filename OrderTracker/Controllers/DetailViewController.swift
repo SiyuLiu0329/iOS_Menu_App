@@ -28,9 +28,11 @@ class DetailViewController: UIViewController {
         orderList!.loadOrder(withIndex: orderId!)
         itemsCollectionView.dataSource = self
         itemsCollectionView.delegate = self
-        itemsCollectionView.backgroundColor = ColourScheme.detailViewControllerBackgoundColour
+        itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
-        navigationController?.navigationBar.barTintColor = ColourScheme.navigationBarColour
+        navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
+        navigationController?.navigationBar.topItem?.title = "Menu"
+        navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
 
         // Do any additional setup after loading the view.
     }

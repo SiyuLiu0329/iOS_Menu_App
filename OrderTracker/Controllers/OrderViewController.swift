@@ -25,7 +25,9 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         orderCollectionView.delegate = self
         orderCollectionView.dataSource = self
-        orderCollectionView.backgroundColor = ColourScheme.collectionViewBackGroundColour
+        orderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
+        navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
+        navigationController?.navigationBar.topItem?.title = "All Orders"
         layoutCollectionView()
     }
     
@@ -43,7 +45,6 @@ class OrderViewController: UIViewController {
         }
         orderItemVC.orderList = orderList
         orderItemVC.orderId = indexPath!.row
-//        orderItemVC.cellCount = orderList!.allOrders[indexPath!.row].items.count
         let tbC = splitVC.viewControllers.last as! UITabBarController
         let detailNavVC = tbC.viewControllers?.first  as! UINavigationController
         let detailVC = detailNavVC.viewControllers.first as! DetailViewController

@@ -22,9 +22,11 @@ class OrderItemViewController: UIViewController {
         super.viewDidLoad()
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
-        itemCollectionView.backgroundColor = ColourScheme.collectionViewBackGroundColour
+        itemCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         layoutCollectionView()
-        navigationController?.navigationBar.barTintColor = ColourScheme.navigationBarColour
+        navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
+        navigationController?.navigationBar.topItem?.title = "Order #" + "\(orderId! + 1)"
+        navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
     }
     
     @IBAction func dismiss(_ sender: Any) {
