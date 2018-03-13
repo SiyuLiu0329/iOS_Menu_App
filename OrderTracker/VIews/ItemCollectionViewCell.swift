@@ -21,7 +21,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private var displacement: CGFloat = 0
     weak var delegate: ItemCollectionViewCellDelegate?
     func configure() {
-        
+        contentView.frame = bounds
     }
     
     override func awakeFromNib() {
@@ -30,6 +30,10 @@ class ItemCollectionViewCell: UICollectionViewCell {
         addSubview(deleteLabel)
         contentView.backgroundColor = UIColor.darkGray
         deleteLabel.backgroundColor = .red
+        deleteLabel.text = "Delete"
+        deleteLabel.font = UIFont.systemFont(ofSize: 25, weight: .light)
+        deleteLabel.textAlignment = .center
+        deleteLabel.textColor = .white
         originalCenterX = center.x
         addPanGesutre()
         
