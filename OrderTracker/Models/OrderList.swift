@@ -77,20 +77,21 @@ class OrderList {
         loadedOrder!.items.remove(at: index)
     }
     
-    func addItemToLoadedOrder(number itemNumber: Int) {
-        guard let item = menuItems[itemNumber] else { return }
+    func addItemToLoadedOrder(number itemNumber: Int) -> Int? {
+        guard let item = menuItems[itemNumber] else { return nil }
         var matchFound = false
         for i in 0 ..< loadedOrder!.items.count {
             if item == loadedOrder!.items[i] {
                 matchFound = true
                 loadedOrder!.items[i].quantity += 1
-                break
+                return i
             }
         }
         
         if !matchFound {
             loadedOrder!.items.append(item)
         }
+        return loadedOrder!.items.count - 1
     }
 
     func discardLastestOrder() {

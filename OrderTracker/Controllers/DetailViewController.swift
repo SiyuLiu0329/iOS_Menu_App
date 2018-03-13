@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DetailViewControllerDelegate: class {
-    func orderAdded()
+    func orderAdded(toOrderNumbered number: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -71,9 +71,9 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
 extension DetailViewController: ItemCellDelegate {
     func incrementQuantity(_ sender: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: sender)
-        orderList?.addItemToLoadedOrder(number: indexPath!.row + 1)
+        let number = orderList?.addItemToLoadedOrder(number: indexPath!.row + 1)
         if delegate != nil {
-            delegate!.orderAdded()
+            delegate!.orderAdded(toOrderNumbered: number!)
         }
     }
 }

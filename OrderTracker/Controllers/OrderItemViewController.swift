@@ -17,7 +17,6 @@ class OrderItemViewController: UIViewController {
     @IBOutlet weak var itemCollectionView: UICollectionView!
     var orderList: OrderList?
     var orderId: Int?
-    var cellCount: Int? // for deleting and add cells
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,16 +71,10 @@ extension OrderItemViewController: UICollectionViewDataSource, UICollectionViewD
 }
 
 extension OrderItemViewController: DetailViewControllerDelegate {
-    func orderAdded() {
-        if orderList!.getNumberOfItemsInLoadedOrder() == cellCount {
-            itemCollectionView.reloadData()
-        } else {
-            cellCount = orderList!.getNumberOfItemsInLoadedOrder()
-            let row = cellCount! - 1
-            let indexPath = IndexPath.init(row: row, section: 0)
-            itemCollectionView.reloadData()
-            itemCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-        }
+    func orderAdded(toOrderNumbered number: Int) {
+        let indexPath = IndexPath.init(row: number, section: 0)
+        itemCollectionView.reloadData()
+        itemCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
 }
 
@@ -90,7 +83,6 @@ extension OrderItemViewController: ItemCollectionViewCellDelegate {
         let indexPath = itemCollectionView.indexPath(for: cell)
         orderList!.deleteItemInLoadedOrder(withIndex: indexPath!.row)
         itemCollectionView.deleteItems(at: [indexPath!])
-        cellCount = orderList!.getNumberOfItemsInLoadedOrder()
     }
 }
 

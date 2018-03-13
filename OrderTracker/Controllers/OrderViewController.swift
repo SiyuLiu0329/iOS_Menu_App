@@ -43,7 +43,7 @@ class OrderViewController: UIViewController {
         }
         orderItemVC.orderList = orderList
         orderItemVC.orderId = indexPath!.row
-        orderItemVC.cellCount = orderList!.allOrders[indexPath!.row].items.count
+//        orderItemVC.cellCount = orderList!.allOrders[indexPath!.row].items.count
         let tbC = splitVC.viewControllers.last as! UITabBarController
         let detailNavVC = tbC.viewControllers?.first  as! UINavigationController
         let detailVC = detailNavVC.viewControllers.first as! DetailViewController
