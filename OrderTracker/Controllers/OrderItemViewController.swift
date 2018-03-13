@@ -78,7 +78,9 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         } else {
             cellCount = orderList!.getNumberOfItemsInLoadedOrder()
             let row = cellCount! - 1
-            itemCollectionView.insertItems(at: [IndexPath.init(row: row, section: 0)])
+            let indexPath = IndexPath.init(row: row, section: 0)
+            itemCollectionView.reloadData()
+            itemCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         }
     }
 }
