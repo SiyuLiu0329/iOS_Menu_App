@@ -15,6 +15,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCellDelegate?
     @IBOutlet weak var itemImage: UIImageView!
     @IBAction func incrementQuantity(_ sender: Any) {
+        // item added -> update parent view
         if delegate != nil {
             delegate!.incrementQuantity(self)
         }

@@ -22,12 +22,13 @@ class DetailViewController: UIViewController {
     var orderId: Int?
     var orderList: OrderList?
     weak var delegate: DetailViewControllerDelegate?
-    
+    var collectionViewDataSource: DetailCollectionViewDataSource!
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
         orderList!.loadOrder(withIndex: orderId!)
-        itemsCollectionView.dataSource = self
-        itemsCollectionView.delegate = self
+        itemsCollectionView.dataSource = collectionViewDataSource
+        itemsCollectionView.delegate = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
@@ -35,21 +36,6 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
 
         // Do any additional setup after loading the view.
-    }
-
-}
-
-extension DetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return orderList!.menuItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = orderList?.menuItems[indexPath.row + 1] else { fatalError() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuItemCollectionViewCell
-        cell.delegate = self
-        cell.configure(imgUrl: item.imageURL)
-        return cell
     }
     
     private func layoutCollectionView() {
@@ -64,15 +50,11 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
         itemsCollectionView.collectionViewLayout = layout
     }
 
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    }
-    
 }
 
 extension DetailViewController: ItemCellDelegate {
     func incrementQuantity(_ sender: MenuItemCollectionViewCell) {
+        // item added, update master view
         let indexPath = itemsCollectionView.indexPath(for: sender)
         let number = orderList?.addItemToLoadedOrder(number: indexPath!.row + 1)
         if delegate != nil {

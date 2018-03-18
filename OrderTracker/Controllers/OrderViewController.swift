@@ -9,7 +9,7 @@
 import UIKit
 
 class OrderViewController: UIViewController {
-    
+    var collectionViewDataSource: OrderViewControllerDataSource!
     override var prefersStatusBarHidden: Bool {
         return true 
     }
@@ -23,13 +23,16 @@ class OrderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        orderCollectionView.delegate = self
-        orderCollectionView.dataSource = self
+        collectionViewDataSource = OrderViewControllerDataSource(data: orderList!)
+        orderCollectionView.delegate = collectionViewDataSource
+        orderCollectionView.dataSource = collectionViewDataSource
+        
         orderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "All Orders"
         layoutCollectionView()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         orderCollectionView.reloadData()
@@ -56,32 +59,8 @@ class OrderViewController: UIViewController {
     }
 }
 
-extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return orderList!.allOrders.count + 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell: OrderCollectionViewCell
-        cell = orderCollectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderCollectionViewCell
-        cell.configure()
-        if indexPath.row == orderList!.allOrders.count {
-            cell.label.text = "New Cell"
-        } else {
-            cell.label.text = "\(orderList!.allOrders[indexPath.row].orderNumber)"
-        }
-        
+extension OrderViewController:  UICollectionViewDelegateFlowLayout {
 
-        return cell
-
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    }
-    
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 5
         let numberOfItemsPerRow = 5
@@ -93,6 +72,5 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
         layout.minimumInteritemSpacing = itemSpacing
         orderCollectionView.collectionViewLayout = layout
     }
-    
 }
 
