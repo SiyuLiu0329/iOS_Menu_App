@@ -15,7 +15,6 @@ class MenuItemExpandedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        return 
         let dataSource = OptionaTableViewDataSource(data: orderList!.menuItems[itemId!]!)
         optionTableView.delegate = self
         optionTableView.dataSource = dataSource

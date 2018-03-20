@@ -69,8 +69,11 @@ extension DetailViewController: ItemCellDelegate {
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationVC = MenuItemExpandedViewController()
-        navigationController?.pushViewController(destinationVC, animated: true)
         // set up data here
+        destinationVC.orderList = orderList
+        destinationVC.itemId = indexPath.row + 1
+        // display
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
