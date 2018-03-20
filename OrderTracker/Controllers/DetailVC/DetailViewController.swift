@@ -33,7 +33,8 @@ class DetailViewController: UIViewController {
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
-        navigationController?.navigationBar.topItem?.title = "Menu"
+        navigationController?.navigationBar.topItem?.title = "Menu Items"
+        navigationController?.navigationBar.tintColor = Scheme.navigationControllerBackButtonColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
 
         // Do any additional setup after loading the view.
@@ -67,7 +68,8 @@ extension DetailViewController: ItemCellDelegate {
 
 extension DetailViewController: MenuItemSelectedDelegate {
     func itemDidGetSelected(itemAt indexPath: IndexPath, in view: UICollectionView) {
-        print(indexPath)
+        let destinationVC = MenuItemExpandedViewController()
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 

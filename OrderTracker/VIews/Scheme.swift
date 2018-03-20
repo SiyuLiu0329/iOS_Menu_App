@@ -13,6 +13,7 @@ struct Scheme {
     static let collectionViewBackGroundColour = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
     static let navigationBarColour = UIColor.clear
     static let detailViewControllerBackgoundColour = UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1)
+    static let navigationControllerBackButtonColour = UIColor.white
     
     struct AttributedText {
         static let navigationControllerTitleAttributes = [

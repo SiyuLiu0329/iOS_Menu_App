@@ -191,25 +191,49 @@
 			isa = PBXGroup;
 			children = (
 				04481F17205572E700C2CB09 /* RootViewController.swift */,
-				04C101C22054CD9300255361 /* OrderViewController.swift */,
-				04076093205561880002B5E1 /* SplitViewController.swift */,
-				040760892054DA3B0002B5E1 /* OrderItemViewController.swift */,
-				04C101C02054CCB400255361 /* DetailViewController.swift */,
 				04076095205563AF0002B5E1 /* TabBarController.swift */,
-				DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */,
-				DC37FA92205EB36A004DC594 /* DataSources */,
+				04076093205561880002B5E1 /* SplitViewController.swift */,
+				DCCB7F7B2060E45800EA2917 /* OrderVC */,
+				DCCB7F792060E40800EA2917 /* OrderItemVC */,
+				DCCB7F7A2060E41F00EA2917 /* DetailVC */,
+				DCCB7F7C2060E48A00EA2917 /* MenuItemExpandedVC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		DC37FA92205EB36A004DC594 /* DataSources */ = {
+		DCCB7F792060E40800EA2917 /* OrderItemVC */ = {
 			isa = PBXGroup;
 			children = (
-				DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */,
+				040760892054DA3B0002B5E1 /* OrderItemViewController.swift */,
 				DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */,
+			);
+			path = OrderItemVC;
+			sourceTree = "<group>";
+		};
+		DCCB7F7A2060E41F00EA2917 /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				04C101C02054CCB400255361 /* DetailViewController.swift */,
 				DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */,
 			);
-			path = DataSources;
+			path = DetailVC;
+			sourceTree = "<group>";
+		};
+		DCCB7F7B2060E45800EA2917 /* OrderVC */ = {
+			isa = PBXGroup;
+			children = (
+				04C101C22054CD9300255361 /* OrderViewController.swift */,
+				DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */,
+			);
+			path = OrderVC;
+			sourceTree = "<group>";
+		};
+		DCCB7F7C2060E48A00EA2917 /* MenuItemExpandedVC */ = {
+			isa = PBXGroup;
+			children = (
+				DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */,
+			);
+			path = MenuItemExpandedVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +308,7 @@
 					};
 					2223F210203BB8260047E0D9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2223F1FC203BB8250047E0D9;
 					};
@@ -567,11 +592,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OrderTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.siyu.liu.OrderTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrderTracker.app/OrderTracker";
@@ -583,6 +610,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OrderTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
