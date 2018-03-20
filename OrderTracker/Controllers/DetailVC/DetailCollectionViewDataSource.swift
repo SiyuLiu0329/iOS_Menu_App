@@ -9,13 +9,8 @@
 import Foundation
 import UIKit
 
-protocol MenuItemSelectedDelegate: class {
-    func itemDidGetSelected(itemAt indexPath: IndexPath, in view: UICollectionView)
-}
-
-class DetailCollectionViewDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var orderList: OrderList
-    weak var itemSelectedDelegate: MenuItemSelectedDelegate?
     var delegateVC: ItemCellDelegate?
     init(data orderList: OrderList, delegate delegateVC: ItemCellDelegate) {
         self.orderList = orderList
@@ -37,12 +32,5 @@ class DetailCollectionViewDataSource: NSObject, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if itemSelectedDelegate != nil {
-            itemSelectedDelegate!.itemDidGetSelected(itemAt: indexPath, in: collectionView)
-        }
-    }
-
 }
 

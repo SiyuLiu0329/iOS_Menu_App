@@ -24,9 +24,7 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewDataSource = OrderViewControllerDataSource(data: orderList!)
-        orderCollectionView.delegate = collectionViewDataSource
         orderCollectionView.dataSource = collectionViewDataSource
-        
         orderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "All Orders"

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class OrderViewControllerDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
     var orderList: OrderList
     init(data orderList: OrderList) {
         

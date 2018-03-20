@@ -31,6 +31,7 @@
 		DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */; };
 		DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */; };
 		DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */; };
+		DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemExpandedViewController.swift; sourceTree = "<group>"; };
 		DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemExpandedViewController.xib; sourceTree = "<group>"; };
+		DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,7 @@
 				04BCD8342058269E008269A2 /* ItemCollectionViewHeaderView.swift */,
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				04C101C42054D07300255361 /* OrderCollectionViewCell.swift */,
-				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
+				DCCB7F7D2060E4F800EA2917 /* xibs */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -232,8 +234,17 @@
 			isa = PBXGroup;
 			children = (
 				DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */,
+				DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */,
 			);
 			path = MenuItemExpandedVC;
+			sourceTree = "<group>";
+		};
+		DCCB7F7D2060E4F800EA2917 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
+			);
+			path = xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,6 +392,7 @@
 				DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */,
 				04481F18205572E700C2CB09 /* RootViewController.swift in Sources */,
 				040760902055049C0002B5E1 /* menuItemCollectionViewCell.swift in Sources */,
+				DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 				0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */,

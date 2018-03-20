@@ -9,8 +9,19 @@
 import UIKit
 
 class MenuItemExpandedViewController: UIViewController {
-
+    var orderList: OrderList?
+    var itemId: Int?
+    @IBOutlet weak var optionTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        return 
+        let dataSource = OptionaTableViewDataSource(data: orderList!.menuItems[itemId!]!)
+        optionTableView.delegate = self
+        optionTableView.dataSource = dataSource
     }
+}
+
+extension MenuItemExpandedViewController: UITableViewDelegate {
+    
 }

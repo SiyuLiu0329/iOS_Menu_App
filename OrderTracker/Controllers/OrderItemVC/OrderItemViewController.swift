@@ -24,7 +24,6 @@ class OrderItemViewController: UIViewController {
         super.viewDidLoad()
         layoutCollectionView()
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderList!)
-        itemCollectionView.delegate = collectionViewDataSource
         itemCollectionView.dataSource = collectionViewDataSource
         itemCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes

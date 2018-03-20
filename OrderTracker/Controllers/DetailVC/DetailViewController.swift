@@ -28,8 +28,7 @@ class DetailViewController: UIViewController {
         collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
         orderList!.loadOrder(withIndex: orderId!)
         itemsCollectionView.dataSource = collectionViewDataSource
-        collectionViewDataSource.itemSelectedDelegate = self
-        itemsCollectionView.delegate = collectionViewDataSource
+        itemsCollectionView.delegate = self
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
@@ -66,10 +65,12 @@ extension DetailViewController: ItemCellDelegate {
     }
 }
 
-extension DetailViewController: MenuItemSelectedDelegate {
-    func itemDidGetSelected(itemAt indexPath: IndexPath, in view: UICollectionView) {
+
+extension DetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationVC = MenuItemExpandedViewController()
         navigationController?.pushViewController(destinationVC, animated: true)
+        // set up data here
     }
 }
 

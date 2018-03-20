@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     var headerHeight:CGFloat = 80
 
     var orderList: OrderList
