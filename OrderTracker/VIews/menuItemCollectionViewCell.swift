@@ -13,7 +13,6 @@ protocol ItemCellDelegate: class {
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCellDelegate?
-    @IBOutlet weak var itemImage: UIImageView!
     @IBAction func incrementQuantity(_ sender: Any) {
         // item added -> update parent view
         if delegate != nil {
@@ -22,8 +21,11 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(imgUrl url: String) {
-        itemImage.image = UIImage(named: url)
         layer.cornerRadius = 5
         clipsToBounds = true
+    }
+    
+    func animate_selected() {
+        
     }
 }

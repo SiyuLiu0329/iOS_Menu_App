@@ -67,8 +67,6 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         itemCollectionView.reloadData()
         itemCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         itemCollectionView.reloadItems(at: [IndexPath.init(row: 0, section: 0)])
-
-        
     }
 }
 

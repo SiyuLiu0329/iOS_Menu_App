@@ -29,6 +29,8 @@
 		DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */; };
 		DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */; };
 		DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */; };
+		DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */; };
+		DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemExpandedViewController.swift; sourceTree = "<group>"; };
+		DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemExpandedViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				04BCD8342058269E008269A2 /* ItemCollectionViewHeaderView.swift */,
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				04C101C42054D07300255361 /* OrderCollectionViewCell.swift */,
+				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				040760892054DA3B0002B5E1 /* OrderItemViewController.swift */,
 				04C101C02054CCB400255361 /* DetailViewController.swift */,
 				04076095205563AF0002B5E1 /* TabBarController.swift */,
+				DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */,
 				DC37FA92205EB36A004DC594 /* DataSources */,
 			);
 			path = Controllers;
@@ -316,6 +322,7 @@
 				2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */,
 				2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */,
 				2223F206203BB8250047E0D9 /* Main.storyboard in Resources */,
+				DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +362,7 @@
 				DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */,
 				04C101C52054D07300255361 /* OrderCollectionViewCell.swift in Sources */,
 				04C101C32054CD9300255361 /* OrderViewController.swift in Sources */,
+				DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */,
 				0407608E2054DAD50002B5E1 /* ItemCollectionViewCell.swift in Sources */,
 				04076096205563AF0002B5E1 /* TabBarController.swift in Sources */,
 				0407609220555EBF0002B5E1 /* Scheme.swift in Sources */,

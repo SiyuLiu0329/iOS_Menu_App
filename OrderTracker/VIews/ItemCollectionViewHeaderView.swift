@@ -12,6 +12,6 @@ import UIKit
 class ItemCollectionViewHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor.orange.withAlphaComponent(0.6)
+        backgroundColor = Scheme.collectionViewBackGroundColour
     }
 }

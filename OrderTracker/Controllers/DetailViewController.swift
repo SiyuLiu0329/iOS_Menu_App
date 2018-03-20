@@ -28,6 +28,7 @@ class DetailViewController: UIViewController {
         collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
         orderList!.loadOrder(withIndex: orderId!)
         itemsCollectionView.dataSource = collectionViewDataSource
+        collectionViewDataSource.itemSelectedDelegate = self
         itemsCollectionView.delegate = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
@@ -40,15 +41,16 @@ class DetailViewController: UIViewController {
     
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 5
-        let numberOfItemsPerRow = 1
+        let numberOfItemsPerRow = 2
         let width = itemsCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow)/5)
+        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow)/3)
         layout.minimumLineSpacing = itemSpacing
         layout.minimumInteritemSpacing = itemSpacing
         itemsCollectionView.collectionViewLayout = layout
     }
+    
 
 }
 
@@ -60,6 +62,12 @@ extension DetailViewController: ItemCellDelegate {
         if delegate != nil {
             delegate!.orderAdded(toOrderNumbered: number!)
         }
+    }
+}
+
+extension DetailViewController: MenuItemSelectedDelegate {
+    func itemDidGetSelected(itemAt indexPath: IndexPath, in view: UICollectionView) {
+        print(indexPath)
     }
 }
 
