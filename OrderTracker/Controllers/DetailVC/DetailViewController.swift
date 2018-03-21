@@ -33,19 +33,29 @@ class DetailViewController: UIViewController {
         layoutCollectionView()
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
         navigationController?.navigationBar.topItem?.title = "Menu Items"
+        
+
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.isTranslucent = true
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = (self.navigationController?.navigationBar.bounds)!
+        navigationController?.navigationBar.addSubview(blurEffectView)
+        navigationController?.navigationBar.sendSubview(toBack: blurEffectView)
+        
         navigationController?.navigationBar.tintColor = Scheme.navigationControllerBackButtonColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
 
-        // Do any additional setup after loading the view.
     }
     
     private func layoutCollectionView() {
-        let itemSpacing: CGFloat = 5
-        let numberOfItemsPerRow = 2
+        let itemSpacing: CGFloat = 10
+        let numberOfItemsPerRow = 3
         let width = itemsCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow)/3)
+        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) * 1.2)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.minimumLineSpacing = itemSpacing
         layout.minimumInteritemSpacing = itemSpacing
         itemsCollectionView.collectionViewLayout = layout
@@ -55,25 +65,25 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: ItemCellDelegate {
-    func incrementQuantity(_ sender: MenuItemCollectionViewCell) {
-        // item added, update master view
-        let indexPath = itemsCollectionView.indexPath(for: sender)
-        let number = orderList?.addItemToLoadedOrder(number: indexPath!.row + 1)
-        if delegate != nil {
-            delegate!.orderAdded(toOrderNumbered: number!)
-        }
-    }
-}
-
-
-extension DetailViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell) {
+        let indexPath = itemsCollectionView.indexPath(for: cell)!
         let destinationVC = MenuItemExpandedViewController()
         // set up data here
         destinationVC.orderList = orderList
         destinationVC.itemId = indexPath.row + 1
         // display
         navigationController?.pushViewController(destinationVC, animated: true)
+    }
+}
+
+
+extension DetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
+        if delegate != nil {
+            delegate!.orderAdded(toOrderNumbered: number!)
+        }
     }
 }
 

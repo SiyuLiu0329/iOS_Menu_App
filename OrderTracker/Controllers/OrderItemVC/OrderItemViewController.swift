@@ -25,6 +25,7 @@ class OrderItemViewController: UIViewController {
         layoutCollectionView()
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderList!)
         itemCollectionView.dataSource = collectionViewDataSource
+        itemCollectionView.delegate = collectionViewDataSource
         itemCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "Order #" + "\(orderId! + 1)"

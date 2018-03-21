@@ -11,7 +11,16 @@ import UIKit
 
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
+        
         tabBar.barTintColor = Scheme.navigationBarColour
         tabBar.tintColor = .white
+        tabBar.backgroundImage = UIImage()
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = tabBar.bounds
+        tabBar.addSubview(blurEffectView)
+        tabBar.sendSubview(toBack: blurEffectView)
+        
     }
 }

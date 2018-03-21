@@ -21,6 +21,7 @@ class OptionaTableViewDataSource: NSObject, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // placeholder cells -> xib in the future
         let cell = UITableViewCell()
         return cell
     }

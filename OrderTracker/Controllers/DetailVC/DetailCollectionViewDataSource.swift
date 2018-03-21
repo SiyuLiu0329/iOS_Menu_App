@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     var orderList: OrderList
     var delegateVC: ItemCellDelegate?
     init(data orderList: OrderList, delegate delegateVC: ItemCellDelegate) {
@@ -25,12 +25,9 @@ class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICo
         guard let item = orderList.menuItems[indexPath.row + 1] else { fatalError() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuItemCollectionViewCell
         cell.delegate = delegateVC!
-        cell.configure(imgUrl: item.imageURL)
+        cell.configure(imgUrl: item.imageURL, cellColour: item.colour)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    }
 }
 

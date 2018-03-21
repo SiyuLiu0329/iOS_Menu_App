@@ -38,7 +38,7 @@ struct MenuItem: Equatable {
         
         return true
     }
-    
+    var colour: UIColor = .darkGray
     var number: Int
     var unitPrice: Double {
         willSet {
@@ -70,6 +70,9 @@ struct MenuItem: Equatable {
         self.totalPrice = Double(quantity) * unitPrice
         self.itemType = type
         addDefaultOptions()
+        
+        //tmp
+        colour = Scheme.getColour(withSeed: number)
     }
     
     mutating private func addDefaultOptions() {
