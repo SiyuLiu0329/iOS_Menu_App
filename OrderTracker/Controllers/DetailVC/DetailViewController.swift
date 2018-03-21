@@ -79,6 +79,17 @@ extension DetailViewController: ItemCellDelegate {
         let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
             delegate!.orderAdded(toOrderNumbered: number!)
+            let ss = cell.snapshotView(afterScreenUpdates: true)!
+            view.addSubview(ss)
+            ss.frame = cell.frame
+            ss.transform = CGAffineTransform(translationX: -50, y: 50)
+            ss.alpha = 0.8
+            UIView.animate(withDuration: 0.5, animations: {
+                ss.frame = CGRect(x: -self.view.frame.height / 1.4, y: 0, width: self.view.frame.height / 1.4, height: self.view.frame.height)
+                ss.alpha = 0.3
+            }) { (bool) in
+                ss.removeFromSuperview()
+            }
         }
 
     }
