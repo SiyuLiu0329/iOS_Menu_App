@@ -21,6 +21,5 @@ class TabBarController: UITabBarController {
         blurEffectView.frame = tabBar.bounds
         tabBar.addSubview(blurEffectView)
         tabBar.sendSubview(toBack: blurEffectView)
-        
     }
 }

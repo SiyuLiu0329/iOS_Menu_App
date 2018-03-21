@@ -9,11 +9,15 @@
 import UIKit
 protocol ItemCellDelegate: class {
     func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell)
+    func itemAdded(atCell cell: MenuItemCollectionViewCell)
 }
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCellDelegate?
     @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var itemNumber: UILabel!
     @IBAction func showItemDetail(_ sender: Any) {
         // item added -> update parent view
         if delegate != nil {
@@ -21,14 +25,32 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(imgUrl url: String, cellColour colour: UIColor) {
+    func configure(imgUrl url: String, cellColour colour: UIColor, itemName name: String, itemNumber number: Int) {
         layer.cornerRadius = 5
         clipsToBounds = true
         itemImageView.image = UIImage(named: url)
         backgroundColor = colour
+        itemName.text = name
+        itemNumber.text = "\(number)"
     }
     
     func animate_selected() {
+        
+    }
+    
+    @IBAction func addItemAction(_ sender: Any) {
+        if delegate != nil {
+            delegate!.itemAdded(atCell: self)
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        itemName.sizeToFit()
+        itemName.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        addButton.layer.cornerRadius = 5
+        addButton.clipsToBounds = true
+        addButton.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         
     }
 }

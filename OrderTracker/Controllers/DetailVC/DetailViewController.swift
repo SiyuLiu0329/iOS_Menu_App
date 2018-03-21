@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
         collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
         orderList!.loadOrder(withIndex: orderId!)
         itemsCollectionView.dataSource = collectionViewDataSource
-        itemsCollectionView.delegate = self
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
@@ -54,7 +53,7 @@ class DetailViewController: UIViewController {
         let width = itemsCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) * 1.2)
+        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) * 1.4)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.minimumLineSpacing = itemSpacing
         layout.minimumInteritemSpacing = itemSpacing
@@ -74,16 +73,25 @@ extension DetailViewController: ItemCellDelegate {
         // display
         navigationController?.pushViewController(destinationVC, animated: true)
     }
-}
-
-
-extension DetailViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    
+    func itemAdded(atCell cell: MenuItemCollectionViewCell) {
+        let indexPath = itemsCollectionView.indexPath(for: cell)!
         let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
             delegate!.orderAdded(toOrderNumbered: number!)
         }
+
     }
 }
+
+
+//extension DetailViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//        let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
+//        if delegate != nil {
+//            delegate!.orderAdded(toOrderNumbered: number!)
+//        }
+//    }
+//}
 
