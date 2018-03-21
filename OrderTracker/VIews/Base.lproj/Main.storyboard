@@ -108,7 +108,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGF-PF-Ncx">
-                                                    <rect key="frame" x="170" y="8" width="27" height="24"/>
+                                                    <rect key="frame" x="160" y="0.0" width="45" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                                                     <state key="normal" title="···">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,22 +166,22 @@
                                         </view>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="iTG-fp-3uf" firstAttribute="top" secondItem="qGF-PF-Ncx" secondAttribute="bottom" constant="8" id="2dk-mV-Lmh"/>
+                                            <constraint firstItem="iTG-fp-3uf" firstAttribute="top" secondItem="qGF-PF-Ncx" secondAttribute="bottom" id="2dk-mV-Lmh"/>
                                             <constraint firstItem="iTG-fp-3uf" firstAttribute="top" secondItem="0Xc-H7-Ckf" secondAttribute="top" constant="40" id="2rR-Ki-sNY"/>
                                             <constraint firstItem="iTG-fp-3uf" firstAttribute="leading" secondItem="0Xc-H7-Ckf" secondAttribute="leading" id="96w-bH-xhb"/>
                                             <constraint firstAttribute="bottom" secondItem="jqH-4W-eit" secondAttribute="bottom" constant="8" id="ADw-UN-8DO"/>
                                             <constraint firstItem="xFY-ED-c89" firstAttribute="top" secondItem="iTG-fp-3uf" secondAttribute="bottom" constant="8" id="Bsn-uE-9JK"/>
                                             <constraint firstItem="xFY-ED-c89" firstAttribute="leading" secondItem="0Xc-H7-Ckf" secondAttribute="leading" constant="8" id="C3T-xA-FBS"/>
                                             <constraint firstAttribute="trailing" secondItem="xFY-ED-c89" secondAttribute="trailing" constant="8" id="Fky-aq-KSw"/>
-                                            <constraint firstItem="qGF-PF-Ncx" firstAttribute="leading" secondItem="Tiv-MX-OSH" secondAttribute="trailing" constant="130" id="Lrc-Q7-y19"/>
+                                            <constraint firstItem="qGF-PF-Ncx" firstAttribute="leading" secondItem="Tiv-MX-OSH" secondAttribute="trailing" constant="120" id="Lrc-Q7-y19"/>
                                             <constraint firstItem="Tiv-MX-OSH" firstAttribute="leading" secondItem="0Xc-H7-Ckf" secondAttribute="leading" constant="12" id="NBG-4K-Jrb"/>
                                             <constraint firstAttribute="bottom" secondItem="HPU-B3-wUT" secondAttribute="bottom" id="NNe-RG-71N"/>
                                             <constraint firstItem="HPU-B3-wUT" firstAttribute="leading" secondItem="jqH-4W-eit" secondAttribute="trailing" constant="80" id="Ncb-jD-Hij"/>
                                             <constraint firstItem="jqH-4W-eit" firstAttribute="leading" secondItem="0Xc-H7-Ckf" secondAttribute="leading" constant="8" id="UJ0-42-9Wl"/>
-                                            <constraint firstAttribute="trailing" secondItem="qGF-PF-Ncx" secondAttribute="trailing" constant="8" id="WSp-rh-hY3"/>
+                                            <constraint firstAttribute="trailing" secondItem="qGF-PF-Ncx" secondAttribute="trailing" id="WSp-rh-hY3"/>
                                             <constraint firstAttribute="trailing" secondItem="iTG-fp-3uf" secondAttribute="trailing" id="d4u-VL-egg"/>
                                             <constraint firstAttribute="trailing" secondItem="HPU-B3-wUT" secondAttribute="trailing" id="d87-nt-Swi"/>
-                                            <constraint firstItem="qGF-PF-Ncx" firstAttribute="top" secondItem="0Xc-H7-Ckf" secondAttribute="top" constant="8" id="myY-MD-Bce"/>
+                                            <constraint firstItem="qGF-PF-Ncx" firstAttribute="top" secondItem="0Xc-H7-Ckf" secondAttribute="top" id="myY-MD-Bce"/>
                                             <constraint firstItem="Tiv-MX-OSH" firstAttribute="top" secondItem="0Xc-H7-Ckf" secondAttribute="top" constant="6" id="wdF-Lz-0Bi"/>
                                         </constraints>
                                         <connections>

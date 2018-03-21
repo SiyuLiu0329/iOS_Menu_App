@@ -47,7 +47,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         itemName.sizeToFit()
-        itemName.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        itemName.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
         addButton.backgroundColor = UIColor.black.withAlphaComponent(0.2)

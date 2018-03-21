@@ -22,6 +22,7 @@ class OrderItemViewController: UIViewController {
     var collectionViewDataSource: OrderItemViewControllerDataSource!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         layoutCollectionView()
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderList!)
         itemCollectionView.dataSource = collectionViewDataSource
@@ -67,7 +68,11 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         itemCollectionView.reloadData()
         itemCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         itemCollectionView.reloadItems(at: [IndexPath.init(row: 0, section: 0)])
+        if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
+            cell.animateSelected()
+        }
     }
+    
 }
 
 

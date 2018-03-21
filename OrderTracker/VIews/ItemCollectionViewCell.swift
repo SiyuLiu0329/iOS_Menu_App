@@ -24,6 +24,15 @@ class ItemCollectionViewCell: UICollectionViewCell {
         contentView.frame = bounds
     }
     
+    func animateSelected() {
+        UIView.animate(withDuration: 0.5) {
+            self.contentView.backgroundColor = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
+        }
+        UIView.animate(withDuration: 0.5) {
+            self.contentView.backgroundColor = .darkGray
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         deleteLabel = UILabel()
