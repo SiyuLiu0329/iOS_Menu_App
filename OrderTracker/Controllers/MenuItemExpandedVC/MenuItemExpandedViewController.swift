@@ -23,7 +23,7 @@ class MenuItemExpandedViewController: UIViewController {
     private var item: MenuItem?
     override func viewDidLoad() {
         super.viewDidLoad()
-        optionDataSource = OptionaTableViewDataSource(data: orderList!.menuItems[itemId!]!)
+        optionDataSource = OptionaTableViewDataSource(data: orderList!, itemId: itemId!)
         optionTableView.delegate = self
         optionTableView.dataSource = optionDataSource
         
@@ -53,7 +53,7 @@ class MenuItemExpandedViewController: UIViewController {
         optionTableView.separatorColor = UIColor.clear
         
         guard item != nil else { return }
-         navBar.topItem?.title = item!.name
+        navBar.topItem?.title = item!.name
     }
 }
 
@@ -63,6 +63,8 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        let cell = tableView.cellForRow(at: indexPath) as! OptionTableViewCell
+        orderList?.toggleOptionValue(at: indexPath.row, inItem: itemId!)
+        cell.value = orderList!.getValue(ofOption: indexPath.row, inItem: itemId!)
     }
 }

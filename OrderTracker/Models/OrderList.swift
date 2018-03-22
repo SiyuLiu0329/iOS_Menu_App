@@ -43,6 +43,18 @@ class OrderList {
         menuItems = resetToDefault(forItem: number, in: menuItems)
     }
     
+    func toggleOptionValue(at optionIndex: Int, inItem itemNumber: Int) {
+        menuItems[itemNumber]!.options[optionIndex].value = !menuItems[itemNumber]!.options[optionIndex].value
+    }
+    
+    func getValue(ofOption optionIndex: Int, inItem itemNumber: Int) -> Bool {
+        return menuItems[itemNumber]!.options[optionIndex].value
+    }
+    
+    func getOptions(inItem itemNumber: Int) -> [Option] {
+        return menuItems[itemNumber]!.options
+    }
+    
     func newOrder() {
         allOrders.append(Order(orderNumber: currentOrderNumber))
         currentOrderNumber += 1

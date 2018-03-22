@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 
 class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
-    var item: MenuItem
+    var orderList: OrderList
+    var itemId: Int
     
-    init(data item: MenuItem) {
-        self.item = item
+    init(data orderList: OrderList, itemId id: Int) {
+        self.orderList = orderList
+        self.itemId = id
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -22,17 +24,18 @@ class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return item.options.count
+        return orderList.getOptions(inItem: itemId).count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // placeholder cells -> xib in the future
         let cell = Bundle.main.loadNibNamed("OptionTableViewCell", owner: self, options: nil)?.first as! OptionTableViewCell // grab the first view
-        let option = item.options[indexPath.row]
+        let option = orderList.getOptions(inItem: itemId)[indexPath.row]
         cell.optionName.text = option.description
         cell.priceLabel.text = (option.price == 0) ? "" : (Scheme.Util.twoDecimalPriceText(option.price))
-        cell.checkmark.backgroundColor = (option.value) ? .white : .clear
+        print(indexPath.row, option.value)
+        cell.value = option.value
         
         
         return cell
