@@ -47,6 +47,8 @@ class DetailViewController: UIViewController {
 
     }
     
+    
+    
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 10
         let numberOfItemsPerRow = 3
@@ -67,11 +69,13 @@ extension DetailViewController: ItemCellDelegate {
     func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         let destinationVC = MenuItemExpandedViewController()
-        // set up data here
         destinationVC.orderList = orderList
         destinationVC.itemId = indexPath.row + 1
-        // display
-        navigationController?.pushViewController(destinationVC, animated: true)
+        destinationVC.modalPresentationStyle = .overCurrentContext
+        destinationVC.view.backgroundColor = .clear
+        present(destinationVC, animated: true, completion: nil)
+ 
+        
     }
     
     func itemAdded(atCell cell: MenuItemCollectionViewCell) {
@@ -79,30 +83,19 @@ extension DetailViewController: ItemCellDelegate {
         let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
             delegate!.orderAdded(toOrderNumbered: number!)
-            let ss = cell.snapshotView(afterScreenUpdates: true)!
-            view.addSubview(ss)
-            ss.frame = cell.frame
-            ss.transform = CGAffineTransform(translationX: -50, y: 50)
-            ss.alpha = 0.8
-            UIView.animate(withDuration: 0.5, animations: {
-                ss.frame = CGRect(x: -self.view.frame.height / 1.4, y: 0, width: self.view.frame.height / 1.4, height: self.view.frame.height)
-                ss.alpha = 0.3
-            }) { (bool) in
-                ss.removeFromSuperview()
-            }
+//            let ss = cell.snapshotView(afterScreenUpdates: true)!
+//            view.addSubview(ss)
+//            ss.frame = cell.frame
+//            ss.transform = CGAffineTransform(translationX: -50, y: 50)
+//            ss.alpha = 0.8
+//            UIView.animate(withDuration: 0.5, animations: {
+//                ss.frame = CGRect(x: -self.view.frame.height / 1.4, y: 0, width: self.view.frame.height / 1.4, height: self.view.frame.height)
+//                ss.alpha = 0.3
+//            }) { (bool) in
+//                ss.removeFromSuperview()
+//            }
         }
 
     }
 }
-
-
-//extension DetailViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
-//        if delegate != nil {
-//            delegate!.orderAdded(toOrderNumbered: number!)
-//        }
-//    }
-//}
 

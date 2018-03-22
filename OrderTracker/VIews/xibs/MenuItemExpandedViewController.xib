@@ -12,27 +12,64 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuItemExpandedViewController" customModule="OrderTracker" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="6lq-WE-c1B" id="KzF-VW-nOm"/>
+                <outlet property="navBar" destination="5Ld-Qv-3lX" id="z0Q-h8-TVO"/>
                 <outlet property="optionTableView" destination="4MU-3q-0Yd" id="qFH-bP-0Su"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4MU-3q-0Yd">
-                    <rect key="frame" x="20" y="40" width="654" height="708"/>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="mj3-36-BAT">
+                    <rect key="frame" x="213" y="354" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mj3-36-BAT" id="UwZ-b4-q9N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tableViewCellContentView>
+                </tableViewCell>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lq-WE-c1B">
+                    <rect key="frame" x="10" y="10" width="520" height="600"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4MU-3q-0Yd">
+                            <rect key="frame" x="81" y="149" width="254" height="303"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-Qv-3lX">
+                            <rect key="frame" x="0.0" y="0.0" width="520" height="44"/>
+                            <items>
+                                <navigationItem title="Title" id="Yf6-GO-HUl">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="stop" id="NzL-Zj-cpX">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="dismiss:" destination="-1" id="f0R-ps-qxW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
+                    <constraints>
+                        <constraint firstItem="5Ld-Qv-3lX" firstAttribute="top" secondItem="6lq-WE-c1B" secondAttribute="top" id="8iW-gv-W5a"/>
+                        <constraint firstItem="5Ld-Qv-3lX" firstAttribute="leading" secondItem="6lq-WE-c1B" secondAttribute="leading" id="BB5-83-Xsp"/>
+                        <constraint firstAttribute="trailing" secondItem="5Ld-Qv-3lX" secondAttribute="trailing" id="Dkg-8g-0hR"/>
+                        <constraint firstAttribute="width" constant="520" id="JXG-r3-IDW"/>
+                        <constraint firstAttribute="height" constant="600" id="Mk8-fv-fXF"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4MU-3q-0Yd" secondAttribute="trailing" constant="20" id="2oL-xY-KaJ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4MU-3q-0Yd" secondAttribute="bottom" constant="20" id="QWz-rE-wka"/>
-                <constraint firstItem="4MU-3q-0Yd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="sSr-YL-1bg"/>
-                <constraint firstItem="4MU-3q-0Yd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wUN-UL-7AR"/>
+                <constraint firstItem="6lq-WE-c1B" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1ZL-7n-tD3"/>
+                <constraint firstItem="6lq-WE-c1B" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="yeS-iu-D6I"/>
             </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
