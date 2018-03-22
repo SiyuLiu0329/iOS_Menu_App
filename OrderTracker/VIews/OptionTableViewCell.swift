@@ -10,8 +10,27 @@ import UIKit
 
 class OptionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var optionName: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var checkmark: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        optionName.textColor = .white
+        priceLabel.textColor = .white
+        checkmark.textColor = .white
+        
+        backgroundColor = .clear
+        optionName.font = UIFont.systemFont(ofSize: 17, weight: .light)
+        priceLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
+        checkmark.font = UIFont.systemFont(ofSize: 17, weight: .light)
+        
+        checkmark.layer.cornerRadius = 5
+        checkmark.layer.borderColor = UIColor.white.cgColor
+        checkmark.layer.borderWidth = 1
+        checkmark.clipsToBounds = true
+        
+        selectedBackgroundView = UIView()
+        
         // Initialization code
     }
 

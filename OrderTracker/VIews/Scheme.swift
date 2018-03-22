@@ -38,4 +38,10 @@ struct Scheme {
         
         return colour
     }
+    
+    struct Util {
+        static func twoDecimalPriceText(_ price: Double) -> String {
+            return String(format: "$%.2f", price)
+        }
+    }
 }
