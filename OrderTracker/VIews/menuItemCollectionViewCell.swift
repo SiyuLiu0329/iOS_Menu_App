@@ -50,6 +50,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         itemName.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
+        addButton.layer.maskedCorners = [.layerMinXMinYCorner]
         addButton.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         
     }

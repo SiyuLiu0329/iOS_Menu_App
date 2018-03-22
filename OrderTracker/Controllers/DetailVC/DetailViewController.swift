@@ -26,16 +26,21 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
+        
+        // load order from list of orders so changes can be made to the order
         orderList!.loadOrder(withIndex: orderId!)
+        
         itemsCollectionView.dataSource = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
+        
+        // configure nav bar
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
         navigationController?.navigationBar.topItem?.title = "Menu Items"
-        
-
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.isTranslucent = true
+        
+        // add blur to nav bar
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = (self.navigationController?.navigationBar.bounds)!
