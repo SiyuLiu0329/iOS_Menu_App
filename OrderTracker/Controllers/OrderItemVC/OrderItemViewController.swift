@@ -26,10 +26,11 @@ class OrderItemViewController: UIViewController {
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderList!)
         itemCollectionView.dataSource = collectionViewDataSource
         itemCollectionView.delegate = collectionViewDataSource
-        itemCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
+        itemCollectionView.alwaysBounceVertical = true
+        itemCollectionView.backgroundColor = Scheme.menuItemCollectionViewBackgroundColour
         itemCollectionView.showsVerticalScrollIndicator = false
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
-        navigationController?.navigationBar.topItem?.title = "Order #" + "\(orderId! + 1)"
+        navigationController?.navigationBar.topItem?.title = "Order " + "\(orderId! + 1)"
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
     }
     

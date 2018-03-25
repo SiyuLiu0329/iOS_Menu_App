@@ -25,6 +25,7 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         collectionViewDataSource = OrderViewControllerDataSource(data: orderList!)
         orderCollectionView.dataSource = collectionViewDataSource
+        orderCollectionView.alwaysBounceVertical = true
         orderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "All Orders"

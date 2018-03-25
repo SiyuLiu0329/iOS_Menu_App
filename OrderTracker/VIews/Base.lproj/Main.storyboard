@@ -240,13 +240,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cWb-85-HZ4">
                                     <size key="itemSize" width="316" height="236"/>
-                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="80"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="LmP-F6-jdw" customClass="ItemCollectionViewCell" customModule="OrderTracker" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="50" width="316" height="236"/>
+                                        <rect key="frame" x="2" y="80" width="316" height="236"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
@@ -271,11 +271,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAk-gq-jnV">
-                                                    <rect key="frame" x="198" y="198" width="110" height="30"/>
+                                                    <rect key="frame" x="198" y="193" width="110" height="35"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="ILb-tM-fwS"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="xqu-I2-tId"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -339,13 +340,50 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="orderHeaderView" id="0ot-Jx-YdY" customClass="ItemCollectionViewHeaderView" customModule="OrderTracker" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99F-Qz-wxS">
+                                            <rect key="frame" x="93.5" y="8" width="218.5" height="64"/>
+                                            <state key="normal" title="Tender">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="tenderButtonPressed:" destination="0ot-Jx-YdY" eventType="touchUpInside" id="gr2-4G-vh9"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFD-iH-UTF">
+                                            <rect key="frame" x="8" y="8" width="85.5" height="64"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="eFD-iH-UTF" secondAttribute="height" multiplier="4:3" id="3Rs-si-M66"/>
+                                            </constraints>
+                                            <state key="normal" title="Clear">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="clearButtonPressed:" destination="0ot-Jx-YdY" eventType="touchUpInside" id="lJk-8Q-Kja"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eFD-iH-UTF" firstAttribute="top" secondItem="0ot-Jx-YdY" secondAttribute="topMargin" id="5fz-1O-9Yb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="99F-Qz-wxS" secondAttribute="trailing" id="9In-I9-k4f"/>
+                                        <constraint firstItem="eFD-iH-UTF" firstAttribute="leading" secondItem="0ot-Jx-YdY" secondAttribute="leadingMargin" id="Ivf-3P-AST"/>
+                                        <constraint firstItem="99F-Qz-wxS" firstAttribute="leading" secondItem="eFD-iH-UTF" secondAttribute="trailing" id="YS8-Dy-KGH"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="eFD-iH-UTF" secondAttribute="bottom" id="l0K-Pk-ewg"/>
+                                        <constraint firstItem="99F-Qz-wxS" firstAttribute="top" secondItem="0ot-Jx-YdY" secondAttribute="topMargin" id="mjf-i8-bYp"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="99F-Qz-wxS" secondAttribute="bottom" id="x9M-fT-IjJ"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="clearButton" destination="eFD-iH-UTF" id="8wL-Sv-lZc"/>
+                                        <outlet property="tenderButton" destination="99F-Qz-wxS" id="4WP-hL-vzE"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hwF-ZQ-FoK" firstAttribute="top" secondItem="3zg-HP-Omk" secondAttribute="top" id="7kS-vv-uLq"/>
                             <constraint firstItem="hwF-ZQ-FoK" firstAttribute="top" secondItem="3zg-HP-Omk" secondAttribute="top" id="Uux-QJ-ebv"/>
                             <constraint firstItem="hwF-ZQ-FoK" firstAttribute="leading" secondItem="3zg-HP-Omk" secondAttribute="leading" id="Vn3-ke-iLT"/>
                             <constraint firstItem="3zg-HP-Omk" firstAttribute="trailing" secondItem="hwF-ZQ-FoK" secondAttribute="trailing" id="WPC-WE-qve"/>
@@ -355,7 +393,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ACg-Xn-UR7">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="lMd-E4-Jj4">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <connections>
                                 <action selector="dismiss:" destination="HhU-Ko-Zro" id="nTf-Wn-HEe"/>
                             </connections>
