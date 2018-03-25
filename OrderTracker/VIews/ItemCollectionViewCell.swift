@@ -13,15 +13,45 @@ protocol ItemCollectionViewCellDelegate: class {
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var optionLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var label: UILabel!
     private var deleteLabel: UILabel!
+    
+
+    @IBAction func showItemDetailPressed(_ sender: Any) {
+        print("pressed")
+    }
+    
+    @IBOutlet weak var quantityLabel: UILabel!
     private var originalCenterX: CGFloat?
     let threashold: CGFloat = 150
     private var delete = false
     private var displacement: CGFloat = 0
     weak var delegate: ItemCollectionViewCellDelegate?
-    func configure() {
-        contentView.frame = bounds
+    private var item: MenuItem!
+    func configure(usingItem item: MenuItem) {
+        label.text = "#\(item.number). " + item.name
+        contentView.backgroundColor = item.colour
+        self.item = item
+        quantityLabel.text = "×\(item.quantity)"
+        priceLabel.text = "\(Scheme.Util.twoDecimalPriceText(item.totalPrice))"
+        
+        
+        var optionText = ""
+        for option in item.options {
+            if option.value {
+                optionText += "      · " + option.description + "\n"
+            }
+        }
+        
+        if !optionText.isEmpty {
+            optionText.removeLast()
+        }
+        
+        optionLabel.text = optionText
+        
+        
     }
     
     func animateSelected() {
@@ -29,7 +59,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
             self.contentView.backgroundColor = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
         }
         UIView.animate(withDuration: 0.5) {
-            self.contentView.backgroundColor = .darkGray
+            self.contentView.backgroundColor = self.item.colour
         }
     }
     
@@ -44,6 +74,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         deleteLabel.textAlignment = .center
         deleteLabel.textColor = .white
         originalCenterX = center.x
+        contentView.frame = bounds
         addPanGesutre()
         
     }

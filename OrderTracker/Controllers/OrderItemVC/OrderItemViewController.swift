@@ -28,6 +28,7 @@ class OrderItemViewController: UIViewController {
         itemCollectionView.dataSource = collectionViewDataSource
         itemCollectionView.delegate = collectionViewDataSource
         itemCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
+        itemCollectionView.showsVerticalScrollIndicator = false
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "Order #" + "\(orderId! + 1)"
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour

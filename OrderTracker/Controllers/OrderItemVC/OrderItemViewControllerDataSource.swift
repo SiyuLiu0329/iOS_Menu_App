@@ -23,10 +23,9 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ItemCollectionViewCell
-        
+        let item = orderList.getItemInLoadedOrder(atIndex: indexPath.row)
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
-        cell.configure()
-        cell.label.text =  "item \(orderList.getItemNumberInLoadedOrder(withIndex: indexPath.row)) x \(orderList.getItemQuantityInLoadedOrder(withIndex: indexPath.row))"
+        cell.configure(usingItem: item)
         cell.delegate = self
         return cell
     }
@@ -53,7 +52,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.row)
-        return CGSize(width: collectionView.frame.width, height: CGFloat(nSelected + 1) * 50)
+        return CGSize(width: collectionView.frame.width, height: CGFloat(nSelected) * 22 + 65 + 40) // 65 for title and 40 for buttons
     }
 }
 

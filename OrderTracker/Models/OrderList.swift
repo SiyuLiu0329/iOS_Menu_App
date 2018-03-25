@@ -44,7 +44,7 @@ class OrderList {
     }
     
     func toggleOptionValue(at optionIndex: Int, inItem itemNumber: Int) {
-        menuItems[itemNumber]!.options[optionIndex].value = !menuItems[itemNumber]!.options[optionIndex].value
+        menuItems[itemNumber]!.toggleSelectetState(ofOption: optionIndex)
     }
     
     func getValue(ofOption optionIndex: Int, inItem itemNumber: Int) -> Bool {
@@ -89,6 +89,10 @@ class OrderList {
         loadedOrder!.items.remove(at: index)
     }
     
+    func getItemInLoadedOrder(atIndex index: Int) -> MenuItem {
+        return loadedOrder!.items[index]
+    }
+    
     func addItemToLoadedOrder(number itemNumber: Int) -> Int? {
         guard let item = menuItems[itemNumber] else { return nil }
         var matchFound = false
@@ -105,6 +109,7 @@ class OrderList {
         }
         return loadedOrder!.items.count - 1
     }
+
 
     func getNumberOfSelectedOptions(forItemInLoadedOrder index: Int) -> Int {
         var nSelected = 0

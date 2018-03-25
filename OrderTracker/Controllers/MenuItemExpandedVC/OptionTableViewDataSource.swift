@@ -34,7 +34,6 @@ class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
         let option = orderList.getOptions(inItem: itemId)[indexPath.row]
         cell.optionName.text = option.description
         cell.priceLabel.text = (option.price == 0) ? "" : (Scheme.Util.twoDecimalPriceText(option.price))
-        print(indexPath.row, option.value)
         cell.value = option.value
         
         

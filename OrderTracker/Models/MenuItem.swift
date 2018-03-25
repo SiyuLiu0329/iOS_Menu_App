@@ -40,11 +40,7 @@ struct MenuItem: Equatable {
     }
     var colour: UIColor = .darkGray
     var number: Int
-    var unitPrice: Double {
-        willSet {
-            totalPrice = newValue * Double(quantity)
-        }
-    }
+    var unitPrice: Double
     var name: String
     var comment: String?
     var imageURL: String
@@ -52,13 +48,11 @@ struct MenuItem: Equatable {
     var itemType: ItemType
     var paymentStatus: PaymentStatus = .notPaid
     
-    var quantity: Int {
-        willSet {
-            totalPrice = Double(newValue) * unitPrice
-        }
-    }
+    var quantity: Int
     
-    var totalPrice: Double
+    var totalPrice: Double {
+        return unitPrice * Double(quantity)
+    }
     var options: [Option] = []
     
     init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double, image imageName: String) {
@@ -67,7 +61,6 @@ struct MenuItem: Equatable {
         self.unitPrice =  price
         self.imageURL = imageName
         self.quantity = 1
-        self.totalPrice = Double(quantity) * unitPrice
         self.itemType = type
         addDefaultOptions()
         
@@ -85,5 +78,10 @@ struct MenuItem: Equatable {
     
     mutating func changePaymentStatus(to status: PaymentStatus) {
         paymentStatus = status
+    }
+    
+    mutating func toggleSelectetState(ofOption index: Int) {
+        options[index].value = !options[index].value
+        unitPrice += (options[index].value) ? options[index].price : -options[index].price
     }
 }
