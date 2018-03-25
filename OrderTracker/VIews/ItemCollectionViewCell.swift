@@ -32,6 +32,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCollectionViewCellDelegate?
     private var item: MenuItem!
     func configure(usingItem item: MenuItem) {
+        contentView.frame = bounds
         label.text = item.name
         contentView.backgroundColor = item.colour
         self.item = item
@@ -51,6 +52,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         }
         
         optionLabel.text = optionText
+        
         
         
     }
