@@ -31,6 +31,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     
+    
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        
 //        switch kind {
@@ -52,7 +53,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.row)
-        return CGSize(width: collectionView.frame.width, height: CGFloat(nSelected) * 22 + 65 + 40) // 65 for title and 40 for buttons
+        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * 22 + 65 + 40) // 65 for title and 40 for buttons
     }
 }
 

@@ -82,6 +82,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         priceLabel.layer.cornerRadius = 5
         priceLabel.clipsToBounds = true
         priceLabel.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        optionLabel.isUserInteractionEnabled = false
         
     }
     
