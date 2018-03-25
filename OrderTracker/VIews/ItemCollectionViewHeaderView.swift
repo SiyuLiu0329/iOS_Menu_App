@@ -12,6 +12,10 @@ import UIKit
 class ItemCollectionViewHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = Scheme.collectionViewBackGroundColour
+        backgroundColor = Scheme.navigationBarColour
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = bounds
+        addSubview(blurEffectView)
     }
 }

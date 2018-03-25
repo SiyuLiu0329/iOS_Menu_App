@@ -51,6 +51,7 @@ class OrderItemViewController: UIViewController {
 
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
+        layout.sectionHeadersPinToVisibleBounds = true 
         itemCollectionView.collectionViewLayout = layout
     }
 }
