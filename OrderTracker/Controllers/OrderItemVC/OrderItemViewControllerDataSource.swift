@@ -52,7 +52,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.rowjhj)
+        let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.row)
         return CGSize(width: collectionView.frame.width, height: CGFloat(nSelected + 1) * 50)
     }
 }
