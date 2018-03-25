@@ -17,7 +17,6 @@ class OrderItemViewController: UIViewController {
     @IBOutlet weak var itemCollectionView: UICollectionView!
     var orderList: OrderList?
     var orderId: Int?
-    var headerHeight:CGFloat = 80
     var isNewOrder = false
     var collectionViewDataSource: OrderItemViewControllerDataSource!
     override func viewDidLoad() {
@@ -51,9 +50,7 @@ class OrderItemViewController: UIViewController {
     private func layoutCollectionView() {
 
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionHeadersPinToVisibleBounds = true
-        layout.minimumLineSpacing = 5
-
+        layout.minimumLineSpacing = 1
         itemCollectionView.collectionViewLayout = layout
     }
 }

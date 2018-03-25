@@ -31,24 +31,24 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "orderHeaderView", for: indexPath) as! ItemCollectionViewHeaderView
-            
-            //do other header related calls or settups
-            return reusableview
-            
-            
-        default:  fatalError("Unexpected element kind")
-        }
-        
-    }
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        
+//        switch kind {
+//        case UICollectionElementKindSectionHeader:
+//            let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "orderHeaderView", for: indexPath) as! ItemCollectionViewHeaderView
+//            
+//            //do other header related calls or settups
+//            return reusableview
+//            
+//            
+//        default:  fatalError("Unexpected element kind")
+//        }
+//        
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: headerHeight)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: collectionView.frame.width, height: headerHeight)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.row)

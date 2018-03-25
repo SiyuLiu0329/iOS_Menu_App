@@ -13,6 +13,7 @@ protocol ItemCollectionViewCellDelegate: class {
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var label: UILabel!
@@ -31,17 +32,17 @@ class ItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCollectionViewCellDelegate?
     private var item: MenuItem!
     func configure(usingItem item: MenuItem) {
-        label.text = "#\(item.number). " + item.name
+        label.text = item.name
         contentView.backgroundColor = item.colour
         self.item = item
-        quantityLabel.text = "×\(item.quantity)"
+        quantityLabel.text = "\(item.quantity) × \(Scheme.Util.twoDecimalPriceText(item.unitPrice))"
         priceLabel.text = "\(Scheme.Util.twoDecimalPriceText(item.totalPrice))"
-        
+        itemNumberLabel.text = "\(item.number)"
         
         var optionText = ""
         for option in item.options {
             if option.value {
-                optionText += "      · " + option.description + "\n"
+                optionText += "             · " + option.description + "\n"
             }
         }
         
@@ -76,6 +77,9 @@ class ItemCollectionViewCell: UICollectionViewCell {
         originalCenterX = center.x
         contentView.frame = bounds
         addPanGesutre()
+        priceLabel.layer.cornerRadius = 5
+        priceLabel.clipsToBounds = true
+        priceLabel.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
     }
     
