@@ -50,7 +50,7 @@ class OrderItemViewController: UIViewController {
     private func layoutCollectionView() {
 
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 5
         itemCollectionView.collectionViewLayout = layout
     }
 }

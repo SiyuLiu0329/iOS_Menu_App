@@ -84,6 +84,9 @@ class ItemCollectionViewCell: UICollectionViewCell {
         priceLabel.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         optionLabel.isUserInteractionEnabled = false
         
+        layer.cornerRadius = 5
+        clipsToBounds = true
+        
     }
     
     override func layoutSubviews() {
