@@ -7,28 +7,46 @@
 //
 
 import UIKit
+protocol ItemWithOptionsAddedDelegate: class {
+    func addItemToOrder(itemNumber number: Int)
+}
 
 class MenuItemExpandedViewController: UIViewController {
     var orderList: OrderList?
     var itemId: Int?
     var themeColour: UIColor?
+    weak var delegate: DetailViewControllerDelegate?
     var optionDataSource: OptionaTableViewDataSource!
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var contentView: UIView!
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        orderList?.resetTamplateItem(itemNumber: itemId!)
     }
     
+    @IBAction func addButtonAction(_ sender: Any) {
+        if delegate != nil {
+            let itemIdx = orderList?.addItemToLoadedOrder(number: itemId!)
+            delegate?.orderAdded(toOrderNumbered: itemIdx!)
+        }
+    }
     private var item: MenuItem?
     override func viewDidLoad() {
         super.viewDidLoad()
         optionDataSource = OptionaTableViewDataSource(data: orderList!, itemId: itemId!)
         optionTableView.delegate = self
         optionTableView.dataSource = optionDataSource
+        addButton.tintColor = .white
+        addButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        addButton.layer.cornerRadius = 5
+        addButton.clipsToBounds = true
+        addButton.layer.maskedCorners = [.layerMinXMinYCorner]
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
         
         // rounded window
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 5
         contentView.clipsToBounds = true
         
         themeColour = Scheme.getColour(withSeed: itemId!)

@@ -78,6 +78,7 @@ extension DetailViewController: ItemCellDelegate {
         destinationVC.itemId = indexPath.row + 1
         destinationVC.modalPresentationStyle = .overCurrentContext
         destinationVC.view.backgroundColor = .clear
+        destinationVC.delegate = delegate
         present(destinationVC, animated: true, completion: nil)
  
         

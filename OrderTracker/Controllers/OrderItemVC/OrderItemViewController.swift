@@ -48,15 +48,11 @@ class OrderItemViewController: UIViewController {
     }
     
     private func layoutCollectionView() {
-        let itemSpacing: CGFloat = 3
-        let numberOfItemsPerRow = 1
-        let width = itemCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
+
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionHeadersPinToVisibleBounds = true
-        layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) / 2)
-        layout.minimumLineSpacing = itemSpacing
-        layout.minimumInteritemSpacing = itemSpacing
+        layout.minimumLineSpacing = 5
+
         itemCollectionView.collectionViewLayout = layout
     }
 }

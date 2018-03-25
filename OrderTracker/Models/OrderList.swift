@@ -106,6 +106,17 @@ class OrderList {
         return loadedOrder!.items.count - 1
     }
 
+    func getNumberOfSelectedOptions(forItemInLoadedOrder index: Int) -> Int {
+        var nSelected = 0
+        let item = loadedOrder!.items[index]
+        for option in item.options {
+            if option.value {
+                nSelected += 1
+            }
+        }
+        return nSelected
+    }
+    
     func discardLastestOrder() {
         allOrders.removeLast()
         currentOrderNumber -= 1
