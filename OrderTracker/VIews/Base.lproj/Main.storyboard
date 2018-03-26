@@ -342,6 +342,23 @@
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="orderHeaderView" id="0ot-Jx-YdY" customClass="ItemCollectionViewHeaderView" customModule="OrderTracker" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buc-yS-hqW">
+                                            <rect key="frame" x="8" y="0.0" width="304" height="80"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Buc-yS-hqW" secondAttribute="bottom" id="D6T-5d-Ld2"/>
+                                        <constraint firstItem="Buc-yS-hqW" firstAttribute="top" secondItem="0ot-Jx-YdY" secondAttribute="top" id="XLd-0X-Tg5"/>
+                                        <constraint firstAttribute="trailing" secondItem="Buc-yS-hqW" secondAttribute="trailing" constant="8" id="oSM-0B-ghW"/>
+                                        <constraint firstItem="Buc-yS-hqW" firstAttribute="leading" secondItem="0ot-Jx-YdY" secondAttribute="leading" constant="8" id="yIK-Rg-YDr"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="headerTitleLabel" destination="Buc-yS-hqW" id="rvU-DU-vgo"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFL-Qg-9Ya">

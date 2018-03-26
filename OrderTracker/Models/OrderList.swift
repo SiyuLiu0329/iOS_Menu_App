@@ -14,6 +14,7 @@ struct Order {
     var orderTotalPrice: Double = 0
     var orderNumber: Int
     var numItems: Int = 0
+    var orderFinished = false
     
     init(orderNumber number: Int) {
         self.orderNumber = number

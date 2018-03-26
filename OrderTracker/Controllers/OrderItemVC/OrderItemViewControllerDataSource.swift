@@ -24,6 +24,9 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 1 {
+            return 0
+        }
         return orderList.getNumberOfItemsInLoadedOrder()
     }
     
@@ -48,6 +51,11 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
             let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "orderHeaderView", for: indexPath) as! ItemCollectionViewHeaderView
             
             //do other header related calls or settups
+            if indexPath.section == 0 {
+                reusableview.configureHeader(title: "Pending")
+            } else if indexPath.section == 1 {
+                reusableview.configureHeader(title: "Finished")
+            }
             return reusableview
             
             
@@ -63,6 +71,13 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.row)
         return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * 22 + 65 + 40) // 65 for title and 40 for buttons
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if orderList.getNumberOfItemsInLoadedOrder() == 0 {
+            return 0
+        }
+        return 1
     }
 }
 

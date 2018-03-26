@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ItemCollectionViewHeaderView: UICollectionReusableView {
+    @IBOutlet weak var headerTitleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = Scheme.navigationBarColour
@@ -18,7 +19,9 @@ class ItemCollectionViewHeaderView: UICollectionReusableView {
         blurEffectView.frame = bounds
         addSubview(blurEffectView)
         sendSubview(toBack: blurEffectView)
-        
-        
+    }
+    
+    func configureHeader(title t: String) {
+        headerTitleLabel.text = t
     }
 }
