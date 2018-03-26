@@ -236,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hwF-ZQ-FoK">
-                                <rect key="frame" x="0.0" y="64" width="320" height="704"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="654"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cWb-85-HZ4">
                                     <size key="itemSize" width="316" height="236"/>
@@ -342,52 +342,24 @@
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="orderHeaderView" id="0ot-Jx-YdY" customClass="ItemCollectionViewHeaderView" customModule="OrderTracker" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99F-Qz-wxS">
-                                            <rect key="frame" x="93.5" y="8" width="218.5" height="64"/>
-                                            <state key="normal" title="Tender">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="tenderButtonPressed:" destination="0ot-Jx-YdY" eventType="touchUpInside" id="gr2-4G-vh9"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFD-iH-UTF">
-                                            <rect key="frame" x="8" y="8" width="85.5" height="64"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="eFD-iH-UTF" secondAttribute="height" multiplier="4:3" id="3Rs-si-M66"/>
-                                            </constraints>
-                                            <state key="normal" title="Clear">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="clearButtonPressed:" destination="0ot-Jx-YdY" eventType="touchUpInside" id="lJk-8Q-Kja"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="eFD-iH-UTF" firstAttribute="top" secondItem="0ot-Jx-YdY" secondAttribute="topMargin" id="5fz-1O-9Yb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="99F-Qz-wxS" secondAttribute="trailing" id="9In-I9-k4f"/>
-                                        <constraint firstItem="eFD-iH-UTF" firstAttribute="leading" secondItem="0ot-Jx-YdY" secondAttribute="leadingMargin" id="Ivf-3P-AST"/>
-                                        <constraint firstItem="99F-Qz-wxS" firstAttribute="leading" secondItem="eFD-iH-UTF" secondAttribute="trailing" id="YS8-Dy-KGH"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="eFD-iH-UTF" secondAttribute="bottom" id="l0K-Pk-ewg"/>
-                                        <constraint firstItem="99F-Qz-wxS" firstAttribute="top" secondItem="0ot-Jx-YdY" secondAttribute="topMargin" id="mjf-i8-bYp"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="99F-Qz-wxS" secondAttribute="bottom" id="x9M-fT-IjJ"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="clearButton" destination="eFD-iH-UTF" id="8wL-Sv-lZc"/>
-                                        <outlet property="tenderButton" destination="99F-Qz-wxS" id="4WP-hL-vzE"/>
-                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFL-Qg-9Ya">
+                                <rect key="frame" x="0.0" y="718" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gFL-Qg-9Ya" firstAttribute="trailing" secondItem="3zg-HP-Omk" secondAttribute="trailing" id="3K6-2P-t8e"/>
                             <constraint firstItem="hwF-ZQ-FoK" firstAttribute="top" secondItem="3zg-HP-Omk" secondAttribute="top" id="7kS-vv-uLq"/>
+                            <constraint firstItem="3zg-HP-Omk" firstAttribute="bottom" secondItem="hwF-ZQ-FoK" secondAttribute="bottom" constant="50" id="Dxy-Ii-sfB"/>
+                            <constraint firstItem="gFL-Qg-9Ya" firstAttribute="bottom" secondItem="3zg-HP-Omk" secondAttribute="bottom" id="IrS-cY-1pl"/>
                             <constraint firstItem="hwF-ZQ-FoK" firstAttribute="top" secondItem="3zg-HP-Omk" secondAttribute="top" id="Uux-QJ-ebv"/>
                             <constraint firstItem="hwF-ZQ-FoK" firstAttribute="leading" secondItem="3zg-HP-Omk" secondAttribute="leading" id="Vn3-ke-iLT"/>
                             <constraint firstItem="3zg-HP-Omk" firstAttribute="trailing" secondItem="hwF-ZQ-FoK" secondAttribute="trailing" id="WPC-WE-qve"/>
-                            <constraint firstItem="3zg-HP-Omk" firstAttribute="bottom" secondItem="hwF-ZQ-FoK" secondAttribute="bottom" id="xO6-uk-1I2"/>
+                            <constraint firstItem="gFL-Qg-9Ya" firstAttribute="top" secondItem="hwF-ZQ-FoK" secondAttribute="bottom" id="ekz-qT-ApQ"/>
+                            <constraint firstItem="gFL-Qg-9Ya" firstAttribute="leading" secondItem="3zg-HP-Omk" secondAttribute="leading" id="lsp-Su-wQm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3zg-HP-Omk"/>
                     </view>
