@@ -10,9 +10,11 @@ import UIKit
 
 class OrderItemViewController: UIViewController {
     
+    @IBOutlet weak var buttonDisabledBackgroundView: UIView!
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    @IBOutlet weak var buttonsDisabledLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
     @IBOutlet weak var totalQuantityLabel: UILabel!
@@ -21,6 +23,14 @@ class OrderItemViewController: UIViewController {
     @IBOutlet weak var tenderButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBAction func clearButtonPressed(_ sender: Any) {
+        var indexPaths: [IndexPath] = []
+        for i in 0..<orderList!.getNumberOfItemsInLoadedOrder() {
+            indexPaths.append(IndexPath(item: i, section: 0))
+        }
+        orderList!.clearLoadedOrder()
+        itemCollectionView.deleteItems(at: indexPaths)
+        updateTenderView()
+        
     }
     
     @IBAction func tenderButtonPressed(_ sender: Any) {
@@ -46,6 +56,16 @@ class OrderItemViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = "Order " + "\(orderId! + 1)"
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
         tenderView.backgroundColor = Scheme.tenderViewColour
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = buttonDisabledBackgroundView.bounds
+        buttonDisabledBackgroundView.addSubview(blurEffectView)
+        buttonDisabledBackgroundView.backgroundColor = .clear
+        buttonDisabledBackgroundView.layer.cornerRadius = 5
+        buttonDisabledBackgroundView.clipsToBounds = true
+        buttonDisabledBackgroundView.sendSubview(toBack: blurEffectView)
+        
         // buttons
         tenderButton.layer.cornerRadius = 5
         tenderButton.clipsToBounds = true
@@ -55,6 +75,7 @@ class OrderItemViewController: UIViewController {
         clearButton.clipsToBounds = true
         clearButton.backgroundColor = UIColor.red.withAlphaComponent(0.5)
         clearButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        
         updateTenderView()
     }
     
@@ -81,8 +102,12 @@ class OrderItemViewController: UIViewController {
     }
     
     func updateTenderView() {
-        totalQuantityLabel.text = "\(orderList!.getTotalNumberOfItemsInLoadedOrder())"
+        let numItems = orderList!.getTotalNumberOfItemsInLoadedOrder()
+        totalQuantityLabel.text = "\(numItems)"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder())
+        UIView.animate(withDuration: 0.5) {
+            self.buttonDisabledBackgroundView.alpha = numItems == 0 ? 1 : 0
+        }
     }
 }
 

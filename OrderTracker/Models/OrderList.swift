@@ -13,6 +13,7 @@ struct Order {
     var tableNumber = 0
     var orderTotalPrice: Double = 0
     var orderNumber: Int
+    var numItems: Int = 0
     
     init(orderNumber number: Int) {
         self.orderNumber = number
@@ -40,11 +41,7 @@ class OrderList {
     }
     
     func getTotalNumberOfItemsInLoadedOrder() -> Int {
-        var quantity = 0
-        for item in loadedOrder!.items {
-            quantity += item.quantity
-        }
-        return quantity
+        return loadedOrder!.numItems
     }
     
     func getTotalPriceOfLoadedOrder() -> Double {
@@ -102,16 +99,24 @@ class OrderList {
     }
     
     func deleteItemInLoadedOrder(withIndex index: Int) {
+        loadedOrder!.numItems -= loadedOrder!.items[index].quantity
         loadedOrder!.items.remove(at: index)
+        
     }
     
     func getItemInLoadedOrder(atIndex index: Int) -> MenuItem {
         return loadedOrder!.items[index]
     }
     
+    func clearLoadedOrder() {
+        loadedOrder!.items = []
+        loadedOrder!.numItems = 0
+    }
+    
     func addItemToLoadedOrder(number itemNumber: Int) -> Int? {
         guard let item = menuItems[itemNumber] else { return nil }
         var matchFound = false
+        loadedOrder!.numItems += 1
         for i in 0 ..< loadedOrder!.items.count {
             if item == loadedOrder!.items[i] {
                 matchFound = true
@@ -123,6 +128,8 @@ class OrderList {
         if !matchFound {
             loadedOrder!.items.append(item)
         }
+        
+        
         return loadedOrder!.items.count - 1
     }
 
