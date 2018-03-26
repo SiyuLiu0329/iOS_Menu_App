@@ -9,10 +9,16 @@
 import Foundation
 import UIKit
 
+protocol ItemDeletedDelegate: class {
+    func itemDidGetDeleted(sender cell: ItemCollectionViewCell)
+}
+
+
 class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     var headerHeight:CGFloat = 25
 
     var orderList: OrderList
+    weak var delegate: ItemDeletedDelegate?
     init(data orderList: OrderList) {
         self.orderList = orderList
     }
@@ -62,11 +68,9 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
 
 extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {
     func deleteItemInCell(_ cell: ItemCollectionViewCell) {
-        // item deleted, update collection view
-        let itemCollectionView = cell.superview as! UICollectionView
-        let indexPath = itemCollectionView.indexPath(for: cell)
-        orderList.deleteItemInLoadedOrder(withIndex: indexPath!.row)
-        itemCollectionView.deleteItems(at: [indexPath!])
+        if delegate != nil {
+            delegate!.itemDidGetDeleted(sender: cell)
+        }
     }
 }
 

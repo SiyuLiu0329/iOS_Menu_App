@@ -36,6 +36,7 @@ class OrderItemViewController: UIViewController {
         
         layoutCollectionView()
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderList!)
+        collectionViewDataSource.delegate = self
         itemCollectionView.dataSource = collectionViewDataSource
         itemCollectionView.delegate = collectionViewDataSource
         itemCollectionView.alwaysBounceVertical = true
@@ -98,6 +99,15 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         }
     }
     
+}
+
+extension OrderItemViewController: ItemDeletedDelegate {
+    func itemDidGetDeleted(sender cell: ItemCollectionViewCell) {
+        let indexPath = itemCollectionView.indexPath(for: cell)
+        orderList!.deleteItemInLoadedOrder(withIndex: indexPath!.row)
+        itemCollectionView.deleteItems(at: [indexPath!])
+        updateTenderView()
+    }
 }
 
 
