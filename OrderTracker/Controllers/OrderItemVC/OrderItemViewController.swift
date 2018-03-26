@@ -22,13 +22,10 @@ class OrderItemViewController: UIViewController {
     @IBOutlet weak var itemCollectionView: UICollectionView!
     @IBOutlet weak var tenderButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
+    
     @IBAction func clearButtonPressed(_ sender: Any) {
-        var indexPaths: [IndexPath] = []
-        for i in 0..<orderList!.getNumberOfItemsInLoadedOrder() {
-            indexPaths.append(IndexPath(item: i, section: 0))
-        }
         orderList!.clearLoadedOrder()
-        itemCollectionView.deleteItems(at: indexPaths)
+        itemCollectionView.deleteSections([0]) // deletes the whole section named "pending"
         updateTenderView()
         
     }
@@ -133,7 +130,11 @@ extension OrderItemViewController: ItemDeletedDelegate {
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
         
         orderList!.deleteItemInLoadedOrder(withIndex: indexPath.row)
-        itemCollectionView.deleteItems(at: [indexPath])
+        if orderList?.getNumberOfItemsInLoadedOrder() == 0 {
+            itemCollectionView.deleteSections([0])
+        } else {
+            itemCollectionView.deleteItems(at: [indexPath])
+        }
         updateTenderView()
     }
 }
