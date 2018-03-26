@@ -128,9 +128,12 @@ extension OrderItemViewController: DetailViewControllerDelegate {
 
 extension OrderItemViewController: ItemDeletedDelegate {
     func itemDidGetDeleted(sender cell: ItemCollectionViewCell) {
-        let indexPath = itemCollectionView.indexPath(for: cell)
-        orderList!.deleteItemInLoadedOrder(withIndex: indexPath!.row)
-        itemCollectionView.deleteItems(at: [indexPath!])
+        // do nothing if index path not found (happens when the clear button is pressed before this action)
+        // prevents the app from crashing
+        guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
+        
+        orderList!.deleteItemInLoadedOrder(withIndex: indexPath.row)
+        itemCollectionView.deleteItems(at: [indexPath])
         updateTenderView()
     }
 }
