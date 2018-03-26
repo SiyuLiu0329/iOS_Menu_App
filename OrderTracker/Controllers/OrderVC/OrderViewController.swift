@@ -42,18 +42,19 @@ class OrderViewController: UIViewController {
         let navVc = splitVC.viewControllers.first as! UINavigationController
         let orderItemVC = navVc.viewControllers.first as! OrderItemViewController
         let indexPath = orderCollectionView.indexPath(for: sender as! UICollectionViewCell)
-
+        
         orderItemVC.orderList = orderList
         orderItemVC.orderId = indexPath!.row
         if indexPath!.row == orderList!.allOrders.count {
             orderList!.newOrder()
             orderItemVC.isNewOrder = true
         }
+        orderList!.loadOrder(withIndex: indexPath!.row)
+        
         let tbC = splitVC.viewControllers.last as! UITabBarController
         let detailNavVC = tbC.viewControllers?.first  as! UINavigationController
         let detailVC = detailNavVC.viewControllers.first as! DetailViewController
         detailVC.orderList = orderList
-        detailVC.orderId = indexPath!.row
         detailVC.delegate = orderItemVC
     }
 }

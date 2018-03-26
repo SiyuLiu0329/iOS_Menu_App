@@ -19,7 +19,6 @@ class DetailViewController: UIViewController {
     }
 
     @IBOutlet weak var itemsCollectionView: UICollectionView!
-    var orderId: Int?
     var orderList: OrderList?
     weak var delegate: DetailViewControllerDelegate?
     var collectionViewDataSource: DetailCollectionViewDataSource!
@@ -28,7 +27,7 @@ class DetailViewController: UIViewController {
         collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
         
         // load order from list of orders so changes can be made to the order
-        orderList!.loadOrder(withIndex: orderId!)
+        
         
         itemsCollectionView.dataSource = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour

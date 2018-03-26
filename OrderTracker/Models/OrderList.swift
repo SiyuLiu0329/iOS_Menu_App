@@ -38,6 +38,22 @@ class OrderList {
     init() {
         resetTamplateItem(itemNumber: 0)
     }
+    
+    func getTotalNumberOfItemsInLoadedOrder() -> Int {
+        var quantity = 0
+        for item in loadedOrder!.items {
+            quantity += item.quantity
+        }
+        return quantity
+    }
+    
+    func getTotalPriceOfLoadedOrder() -> Double {
+        var totalPrice: Double = 0
+        for item in loadedOrder!.items {
+            totalPrice += item.totalPrice
+        }
+        return totalPrice
+    }
 
     func resetTamplateItem(itemNumber number: Int) {
         menuItems = resetToDefault(forItem: number, in: menuItems)

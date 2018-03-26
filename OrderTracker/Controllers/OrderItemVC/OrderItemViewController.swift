@@ -13,12 +13,24 @@ class OrderItemViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    @IBOutlet weak var totalPriceLabel: UILabel!
     
+    @IBOutlet weak var totalQuantityLabel: UILabel!
+    @IBOutlet weak var tenderView: UIView!
     @IBOutlet weak var itemCollectionView: UICollectionView!
-    var orderList: OrderList?
-    var orderId: Int?
+    @IBOutlet weak var tenderButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBAction func clearButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func tenderButtonPressed(_ sender: Any) {
+        
+    }
     var isNewOrder = false
     var collectionViewDataSource: OrderItemViewControllerDataSource!
+    var orderList: OrderList?
+    var orderId: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +44,17 @@ class OrderItemViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "Order " + "\(orderId! + 1)"
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
+        tenderView.backgroundColor = Scheme.tenderViewColour
+        // buttons
+        tenderButton.layer.cornerRadius = 5
+        tenderButton.clipsToBounds = true
+        tenderButton.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 4)
+        tenderButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        clearButton.layer.cornerRadius = 5
+        clearButton.clipsToBounds = true
+        clearButton.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        clearButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        updateTenderView()
     }
     
     @IBAction func dismiss(_ sender: Any) {
@@ -55,6 +78,11 @@ class OrderItemViewController: UIViewController {
         layout.sectionHeadersPinToVisibleBounds = true 
         itemCollectionView.collectionViewLayout = layout
     }
+    
+    func updateTenderView() {
+        totalQuantityLabel.text = "\(orderList!.getTotalNumberOfItemsInLoadedOrder())"
+        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder())
+    }
 }
 
 
@@ -64,6 +92,7 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         itemCollectionView.reloadData()
         itemCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         itemCollectionView.reloadItems(at: [IndexPath.init(row: 0, section: 0)])
+        updateTenderView()
         if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
             cell.animateSelected()
         }
