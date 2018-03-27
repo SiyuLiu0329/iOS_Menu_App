@@ -12,10 +12,34 @@ class OrderItemViewController: UIViewController {
     
     
     @IBAction func tenderBarButtonPressed(_ sender: Any) {
+        
+        let card = UIAlertAction(title: "Card", style: .default) { (action) in
+
+        }
+        
+        let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        // Create and configure the alert controller.
+        let alert = UIAlertController(title: Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder()),
+                                      message: "Select a payment method.",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(card)
+        alert.addAction(cash)
+        alert.addAction(cancelAction)
+        
+        
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
     }
     @IBOutlet weak var tenderBarButton: UIBarButtonItem!
     @IBAction func clearBarButtonPressed(_ sender: Any) {
-        let defaultAction = UIAlertAction(title: "Clear", style: .default) { (action) in
+        let defaultAction = UIAlertAction(title: "Clear", style: .destructive) { (action) in
             self.orderList!.clearLoadedOrder()
             self.itemCollectionView.deleteSections([0])
             self.updateTenderView()
@@ -26,13 +50,12 @@ class OrderItemViewController: UIViewController {
         // Create and configure the alert controller.
         let alert = UIAlertController(title: "Delete",
             message: "Click \"Clear\" to delete all pending items.",
-            preferredStyle: .actionSheet)
+            preferredStyle: .alert)
         
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
+    
         
-        // On iPad, action sheets must be presented from a popover.
-        alert.popoverPresentationController?.barButtonItem = self.clearBarButton
         self.present(alert, animated: true) {
             // The alert was presented
         }
@@ -78,7 +101,7 @@ class OrderItemViewController: UIViewController {
         buttonDisabledBackgroundView.addSubview(blurEffectView)
         buttonDisabledBackgroundView.backgroundColor = .clear
         buttonDisabledBackgroundView.sendSubview(toBack: blurEffectView)
-        actionBar.barTintColor = Scheme.tenderViewColour
+        actionBar.barTintColor = UIColor.black
         updateTenderView()
     }
     
