@@ -40,7 +40,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
     }
     
     
@@ -74,6 +74,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        var numSection = 0
         if orderList.getNumberOfItemsInLoadedOrder() == 0 {
             return 0
         }

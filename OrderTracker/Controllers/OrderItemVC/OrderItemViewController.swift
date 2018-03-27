@@ -10,29 +10,47 @@ import UIKit
 
 class OrderItemViewController: UIViewController {
     
+    
+    @IBAction func tenderBarButtonPressed(_ sender: Any) {
+    }
+    @IBOutlet weak var tenderBarButton: UIBarButtonItem!
+    @IBAction func clearBarButtonPressed(_ sender: Any) {
+        let defaultAction = UIAlertAction(title: "Clear", style: .default) { (action) in
+            self.orderList!.clearLoadedOrder()
+            self.itemCollectionView.deleteSections([0])
+            self.updateTenderView()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Create and configure the alert controller.
+        let alert = UIAlertController(title: "Delete",
+            message: "Click \"Clear\" to delete all pending items.",
+            preferredStyle: .actionSheet)
+        
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        
+        // On iPad, action sheets must be presented from a popover.
+        alert.popoverPresentationController?.barButtonItem = self.clearBarButton
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+        
+    }
+    
+    @IBOutlet weak var clearBarButton: UIBarButtonItem!
     @IBOutlet weak var buttonDisabledBackgroundView: UIView!
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    @IBOutlet weak var actionBar: UIToolbar!
     @IBOutlet weak var buttonsDisabledLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
     @IBOutlet weak var totalQuantityLabel: UILabel!
     @IBOutlet weak var tenderView: UIView!
     @IBOutlet weak var itemCollectionView: UICollectionView!
-    @IBOutlet weak var tenderButton: UIButton!
-    @IBOutlet weak var clearButton: UIButton!
-    
-    @IBAction func clearButtonPressed(_ sender: Any) {
-        orderList!.clearLoadedOrder()
-        itemCollectionView.deleteSections([0]) // deletes the whole section named "pending"
-        updateTenderView()
-        
-    }
-    
-    @IBAction func tenderButtonPressed(_ sender: Any) {
-        
-    }
     var isNewOrder = false
     var collectionViewDataSource: OrderItemViewControllerDataSource!
     var orderList: OrderList?
@@ -59,20 +77,8 @@ class OrderItemViewController: UIViewController {
         blurEffectView.frame = buttonDisabledBackgroundView.bounds
         buttonDisabledBackgroundView.addSubview(blurEffectView)
         buttonDisabledBackgroundView.backgroundColor = .clear
-        buttonDisabledBackgroundView.layer.cornerRadius = 5
-        buttonDisabledBackgroundView.clipsToBounds = true
         buttonDisabledBackgroundView.sendSubview(toBack: blurEffectView)
-        
-        // buttons
-        tenderButton.layer.cornerRadius = 5
-        tenderButton.clipsToBounds = true
-        tenderButton.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 4)
-        tenderButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        clearButton.layer.cornerRadius = 5
-        clearButton.clipsToBounds = true
-        clearButton.backgroundColor = UIColor.red.withAlphaComponent(0.5)
-        clearButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        
+        actionBar.barTintColor = Scheme.tenderViewColour
         updateTenderView()
     }
     
@@ -91,10 +97,10 @@ class OrderItemViewController: UIViewController {
     }
     
     private func layoutCollectionView() {
-
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
-        layout.sectionHeadersPinToVisibleBounds = true 
+        layout.sectionHeadersPinToVisibleBounds = true
         itemCollectionView.collectionViewLayout = layout
     }
     
@@ -102,7 +108,7 @@ class OrderItemViewController: UIViewController {
         let numItems = orderList!.getTotalNumberOfItemsInLoadedOrder()
         totalQuantityLabel.text = "\(numItems)"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder())
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.buttonDisabledBackgroundView.alpha = numItems == 0 ? 1 : 0
         }
     }
