@@ -13,9 +13,11 @@ protocol ItemCollectionViewCellDelegate: class {
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
+    @IBAction func tenderButtonPressed(_ sender: Any) {
+    }
+    @IBOutlet weak var tenderButton: UIButton!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var label: UILabel!
     private var deleteLabel: UILabel!
     
@@ -31,13 +33,14 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private var displacement: CGFloat = 0
     weak var delegate: ItemCollectionViewCellDelegate?
     private var item: MenuItem!
+    
     func configure(usingItem item: MenuItem) {
         contentView.frame = bounds
         label.text = item.name
         contentView.backgroundColor = item.colour
         self.item = item
         quantityLabel.text = "\(item.quantity) × \(Scheme.Util.twoDecimalPriceText(item.unitPrice))"
-        priceLabel.text = "\(Scheme.Util.twoDecimalPriceText(item.totalPrice))"
+        tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
         itemNumberLabel.text = "\(item.number)"
         
         var optionText = ""
@@ -79,9 +82,10 @@ class ItemCollectionViewCell: UICollectionViewCell {
         originalCenterX = center.x
         contentView.frame = bounds
         addPanGesutre()
-        priceLabel.layer.cornerRadius = 5
-        priceLabel.clipsToBounds = true
-        priceLabel.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        tenderButton.layer.cornerRadius = 5
+        tenderButton.clipsToBounds = true
+        tenderButton.layer.maskedCorners = [.layerMinXMinYCorner]
+        tenderButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         optionLabel.isUserInteractionEnabled = false
         
         layer.cornerRadius = 5

@@ -262,21 +262,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Av-pg-hqA">
-                                                    <rect key="frame" x="38" y="199" width="100" height="24"/>
+                                                    <rect key="frame" x="38" y="204" width="100" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="0ld-mo-knk"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAk-gq-jnV">
-                                                    <rect key="frame" x="198" y="193" width="110" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="ILb-tM-fwS"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="xqu-I2-tId"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -308,34 +298,48 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="168-E5-DZP">
+                                                    <rect key="frame" x="216" y="196" width="100" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="AcU-RK-EZf"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ZJI-fD-TSQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    <state key="normal" title="$99.99">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tenderButtonPressed:" destination="LmP-F6-jdw" eventType="touchUpInside" id="qGg-gd-cwd"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="168-E5-DZP" firstAttribute="leading" secondItem="0Av-pg-hqA" secondAttribute="trailing" constant="78" id="0LE-AJ-KY4"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" constant="30" id="3bd-7c-Q1s"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" secondItem="1at-r5-B0f" secondAttribute="trailing" constant="5" id="BNd-BM-zbm"/>
                                             <constraint firstAttribute="trailing" secondItem="lrk-kg-95c" secondAttribute="trailing" id="C5c-5i-3W3"/>
                                             <constraint firstItem="0Av-pg-hqA" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" constant="30" id="CkB-Xb-RBA"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="0Av-pg-hqA" secondAttribute="bottom" constant="5" id="K1P-rU-J2N"/>
                                             <constraint firstItem="1at-r5-B0f" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" constant="6" id="L92-t3-jin"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lrk-kg-95c" secondAttribute="bottom" constant="35" id="SHL-5F-Gh1"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="PAk-gq-jnV" secondAttribute="trailing" id="YEW-0v-q9H"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="PAk-gq-jnV" secondAttribute="bottom" id="Zls-md-wys"/>
+                                            <constraint firstItem="0Av-pg-hqA" firstAttribute="bottom" secondItem="LmP-F6-jdw" secondAttribute="bottomMargin" id="UsB-Ej-kcB"/>
                                             <constraint firstItem="1at-r5-B0f" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" id="dpc-L4-z4B"/>
                                             <constraint firstItem="E81-55-1bB" firstAttribute="leading" secondItem="3fr-yg-xyg" secondAttribute="trailing" id="feH-aj-ISf"/>
                                             <constraint firstItem="lrk-kg-95c" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" constant="60" id="iAw-0u-Ykh"/>
                                             <constraint firstItem="E81-55-1bB" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" id="msg-JK-Jld"/>
-                                            <constraint firstItem="PAk-gq-jnV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Av-pg-hqA" secondAttribute="trailing" constant="50" id="oFP-nW-tE1"/>
                                             <constraint firstItem="lrk-kg-95c" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" id="pWZ-BC-KC8"/>
                                             <constraint firstAttribute="trailing" secondItem="E81-55-1bB" secondAttribute="trailing" id="r1k-YZ-8bJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="168-E5-DZP" secondAttribute="bottom" id="wRG-65-xVx"/>
+                                            <constraint firstAttribute="trailing" secondItem="168-E5-DZP" secondAttribute="trailing" id="x72-Uk-f0o"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="topMargin" id="zah-l6-751"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="itemNumberLabel" destination="1at-r5-B0f" id="poj-xT-u3u"/>
                                             <outlet property="label" destination="3fr-yg-xyg" id="HAV-YM-IxO"/>
                                             <outlet property="optionLabel" destination="lrk-kg-95c" id="QG1-Nc-YhM"/>
-                                            <outlet property="priceLabel" destination="PAk-gq-jnV" id="w4H-HE-nVW"/>
                                             <outlet property="quantityLabel" destination="0Av-pg-hqA" id="iIe-gK-V7M"/>
+                                            <outlet property="tenderButton" destination="168-E5-DZP" id="dVu-9k-o5c"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -428,7 +432,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="125" style="plain" systemItem="fixedSpace" id="GJp-8R-lEX"/>
-                                    <barButtonItem systemItem="action" id="wKi-hx-XlT">
+                                    <barButtonItem title="Tender" id="wKi-hx-XlT">
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="tenderBarButtonPressed:" destination="HhU-Ko-Zro" id="hER-MP-A6l"/>
