@@ -47,6 +47,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         cell.configure(usingItem: item)
         cell.delegate = self
+        cell.isUserInteractionEnabled = indexPath.section == 0 ? true : false
         return cell
     }
     

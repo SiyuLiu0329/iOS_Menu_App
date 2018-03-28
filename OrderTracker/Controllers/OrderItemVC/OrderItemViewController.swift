@@ -188,14 +188,20 @@ extension OrderItemViewController: ItemDeletedDelegate {
         // do nothing if index path not found (happens when the clear button is pressed before this action)
         // prevents the app from crashing
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
-        
         orderList!.deletePendingItemInLoadedOrder(withIndex: indexPath.row)
+        if itemCollectionView.numberOfItems(inSection: 0) == 1\ {
+            itemCollectionView.reloadItems(at: [indexPath])
+        } else {
+            
+            itemCollectionView.deleteItems(at: [indexPath])
+        }
+        
 //        if orderList?.getPaidItemsInLoadedOrder().count == 0 {
 //            itemCollectionView.deleteSections([0])
 //        } else {
 //            itemCollectionView.deleteItems(at: [indexPath])
 //        }
-        itemCollectionView.deleteItems(at: [indexPath])
+        
         updateTenderView()
     }
 }
