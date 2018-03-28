@@ -37,7 +37,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
         if items.isEmpty {
             let cell: OrderItemPlaceHolderCell
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "placeholder", for: indexPath) as! OrderItemPlaceHolderCell
-            cell.backgroundColor = .clear
+            cell.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
             cell.placeholderTextLabel.text = indexPath.section == 0 ? "No pending items(s)" : "No paid item(s)" + "..."
             return cell
         }

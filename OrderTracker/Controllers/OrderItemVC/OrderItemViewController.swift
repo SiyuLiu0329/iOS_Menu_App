@@ -9,18 +9,32 @@
 import UIKit
 
 class OrderItemViewController: UIViewController {
+    func selectCells(inSection section: Int, atRows rows: [Int]) {
+        for row in rows {
+            let indexPath = IndexPath(item: row, section: section)
+            if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
+                cell.animateSelected()
+            }
+        }
+    }
     
     @IBAction func tenderButtonPressed(_ sender: Any) {
+        
+        self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
-            self.orderList!.tenderAllPendingItems(withPaymentType: .card)
+            let rows = self.orderList!.tenderAllPendingItems(withPaymentType: .card)
             self.itemCollectionView.reloadSections([0, 1])
             self.updateTenderView()
+            self.selectCells(inSection: 1, atRows: rows)
+//            self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
         
         let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
-            self.orderList!.tenderAllPendingItems(withPaymentType: .cash)
+            let rows = self.orderList!.tenderAllPendingItems(withPaymentType: .cash)
             self.itemCollectionView.reloadSections([0, 1])
             self.updateTenderView()
+            self.selectCells(inSection: 1, atRows: rows)
+//            self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -154,9 +168,13 @@ class OrderItemViewController: UIViewController {
 extension OrderItemViewController: DetailViewControllerDelegate {
     func orderAdded(toOrderNumbered number: Int) {
         let indexPath = IndexPath.init(row: number, section: 0)
-        itemCollectionView.reloadData()
-        itemCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
-        itemCollectionView.reloadItems(at: [IndexPath.init(row: 0, section: 0)])
+        if number == orderList!.loadedItemCollections[0].items.count - 1 && number != itemCollectionView.numberOfItems(inSection: 0) - 1 {
+            itemCollectionView.insertItems(at: [indexPath])
+        } else {
+            itemCollectionView.reloadItems(at: [IndexPath.init(row: number, section: 0)])
+            
+        }
+        itemCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         updateTenderView()
         if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
             cell.animateSelected()

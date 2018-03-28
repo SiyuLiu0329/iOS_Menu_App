@@ -24,12 +24,32 @@ struct Order {
         itemCollections.append(("Paid", []))
     }
     
-    mutating func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) {
-        for i in 0..<itemCollections[0].items.count {
-            itemCollections[0].items[i].paymentStatus = paymentType
+    mutating func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) -> [Int] {
+        var res: [Int] = []
+        let pendingItems = itemCollections[0].items
+        for i in 0..<pendingItems.count {
+            var item = pendingItems[i]
+            var matchFound = false
+            item.paymentStatus = paymentType
+            for j in 0..<itemCollections[1].items.count {
+                if item == itemCollections[1].items[j] {
+                    itemCollections[1].items[j].quantity += 1
+                    res.append(j)
+                    matchFound = true
+                    break
+                }
+                // no item found if the reaches here
+            }
+            if !matchFound {
+                res.append(itemCollections[1].items.count)
+                itemCollections[1].items.append(item)
+            }
+            
         }
-        itemCollections[1].items.append(contentsOf: itemCollections[0].items)
         itemCollections[0].items.removeAll()
+        print(res)
+        
+        return res
     }
 }
 
@@ -141,8 +161,8 @@ class OrderList {
         currentOrderNumber -= 1
     }
     
-    func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) {
-        loadedOrder!.tenderAllPendingItems(withPaymentType: paymentType)
+    func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) -> [Int] {
+        return loadedOrder!.tenderAllPendingItems(withPaymentType: paymentType)
     }
     
 }
