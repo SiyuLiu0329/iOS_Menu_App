@@ -9,7 +9,8 @@
 import Foundation
 
 struct Order {
-    var items: [MenuItem] = []
+    var pendingItems: [MenuItem] = []
+    var paidItems: [MenuItem] = []
     var tableNumber = 0
     var orderTotalPrice: Double = 0
     var orderNumber: Int
@@ -19,17 +20,25 @@ struct Order {
     init(orderNumber number: Int) {
         self.orderNumber = number
     }
+    
+    mutating func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) {
+        for i in 0..<pendingItems.count {
+            pendingItems[i].paymentStatus = paymentType
+        }
+        paidItems.append(contentsOf: pendingItems)
+        pendingItems.removeAll()
+    }
 }
 
 class OrderList {
     var allOrders: [Order] = []
     
     var isLatestOrderEmpty: Bool {
-        return allOrders.last!.items.isEmpty
+        return allOrders.last!.pendingItems.isEmpty
     }
     
     var isLoadedOrderEmpty: Bool {
-        return loadedOrder!.items.isEmpty
+        return loadedOrder!.pendingItems.isEmpty
     }
     
     var menuItems: [Int: MenuItem] = [:]
@@ -45,9 +54,9 @@ class OrderList {
         return loadedOrder!.numItems
     }
     
-    func getTotalPriceOfLoadedOrder() -> Double {
+    func getTotalPriceOfPendingItemsInLoadedOrder() -> Double {
         var totalPrice: Double = 0
-        for item in loadedOrder!.items {
+        for item in loadedOrder!.pendingItems {
             totalPrice += item.totalPrice
         }
         return totalPrice
@@ -83,34 +92,34 @@ class OrderList {
         allOrders[index] = order
     }
     
+    @available(*, unavailable, message: "No longer useful")
     func getNumberOfItemsInLoadedOrder() -> Int {
-        return loadedOrder!.items.count
+        return loadedOrder!.pendingItems.count
     }
     
     func getItemNamedInLoadedOrder(withIndex index: Int) -> String {
-        return loadedOrder!.items[index].name
+        return loadedOrder!.pendingItems[index].name
     }
     
     func getItemNumberInLoadedOrder(withIndex index: Int) -> Int {
-        return loadedOrder!.items[index].number
+        return loadedOrder!.pendingItems[index].number
     }
     
     func getItemQuantityInLoadedOrder(withIndex index: Int) -> Int {
-        return loadedOrder!.items[index].quantity
+        return loadedOrder!.pendingItems[index].quantity
     }
     
-    func deleteItemInLoadedOrder(withIndex index: Int) {
-        loadedOrder!.numItems -= loadedOrder!.items[index].quantity
-        loadedOrder!.items.remove(at: index)
-        
+    func deletePendingItemInLoadedOrder(withIndex index: Int) {
+        loadedOrder!.numItems -= loadedOrder!.pendingItems[index].quantity
+        loadedOrder!.pendingItems.remove(at: index)
     }
     
     func getItemInLoadedOrder(atIndex index: Int) -> MenuItem {
-        return loadedOrder!.items[index]
+        return loadedOrder!.pendingItems[index]
     }
     
     func clearLoadedOrder() {
-        loadedOrder!.items = []
+        loadedOrder!.pendingItems = []
         loadedOrder!.numItems = 0
     }
     
@@ -118,26 +127,26 @@ class OrderList {
         guard let item = menuItems[itemNumber] else { return nil }
         var matchFound = false
         loadedOrder!.numItems += 1
-        for i in 0 ..< loadedOrder!.items.count {
-            if item == loadedOrder!.items[i] {
+        for i in 0 ..< loadedOrder!.pendingItems.count {
+            if item == loadedOrder!.pendingItems[i] {
                 matchFound = true
-                loadedOrder!.items[i].quantity += 1
+                loadedOrder!.pendingItems[i].quantity += 1
                 return i
             }
         }
         
         if !matchFound {
-            loadedOrder!.items.append(item)
+            loadedOrder!.pendingItems.append(item)
         }
         
         
-        return loadedOrder!.items.count - 1
+        return loadedOrder!.pendingItems.count - 1
     }
 
 
-    func getNumberOfSelectedOptions(forItemInLoadedOrder index: Int) -> Int {
+    func getNumberOfSelectedOptions(forPendingItemInLoadedOrder index: Int) -> Int {
         var nSelected = 0
-        let item = loadedOrder!.items[index]
+        let item = loadedOrder!.pendingItems[index]
         for option in item.options {
             if option.value {
                 nSelected += 1
@@ -146,8 +155,46 @@ class OrderList {
         return nSelected
     }
     
+    func getNumberOfSelectedOptions(forPaidItemInLoadedOrder index: Int) -> Int {
+        var nSelected = 0
+        let item = loadedOrder!.paidItems[index]
+        for option in item.options {
+            if option.value {
+                nSelected += 1
+            }
+        }
+        return nSelected
+    }
+    
+    func getPaidItemsInLoadedOrder() -> [MenuItem] {
+        return loadedOrder!.paidItems
+    }
+    
+    func getItemInPaidItems(withIndexInLoadedOrder index: Int) -> MenuItem {
+        return loadedOrder!.paidItems[index]
+    }
+    
+    func getItemInPendingItems(withIndexInLoadedOrder index: Int) -> MenuItem {
+        return loadedOrder!.pendingItems[index]
+    }
+    
+    func getPendingItemsInLoadedOrder() -> [MenuItem] {
+        return loadedOrder!.pendingItems
+    }
+    
     func discardLastestOrder() {
         allOrders.removeLast()
         currentOrderNumber -= 1
+    }
+    
+    func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) {
+        loadedOrder!.tenderAllPendingItems(withPaymentType: paymentType)
+    }
+    
+    // tender
+    func tenderAllItemsInLoadedOrder(usingPaymentMethod paymentMethod: PaymentStatus) {
+        for i in 0..<loadedOrder!.pendingItems.count {
+            loadedOrder!.pendingItems[i].paymentStatus = paymentMethod
+        }
     }
 }

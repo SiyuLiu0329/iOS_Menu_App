@@ -24,17 +24,37 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 1 {
-            return 0
+        if section == 0 {
+            if orderList.getPendingItemsInLoadedOrder().isEmpty {
+                return orderList.getPaidItemsInLoadedOrder().count
+            } else {
+                return orderList.getPendingItemsInLoadedOrder().count
+            }
+        } else if section == 1 {
+            return orderList.getPaidItemsInLoadedOrder().count
         }
-        return orderList.getNumberOfItemsInLoadedOrder()
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ItemCollectionViewCell
-        let item = orderList.getItemInLoadedOrder(atIndex: indexPath.row)
+        
+        var item: MenuItem?
+        if indexPath.section == 0 {
+            if orderList.getPendingItemsInLoadedOrder().isEmpty {
+                item = orderList.getItemInPaidItems(withIndexInLoadedOrder: indexPath.row)
+            } else {
+                item = orderList.getItemInPendingItems(withIndexInLoadedOrder: indexPath.row)
+            }
+            
+        } else if indexPath.section == 1 {
+            item = orderList.getItemInPaidItems(withIndexInLoadedOrder: indexPath.row)
+        } else {
+            fatalError()
+        }
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
-        cell.configure(usingItem: item)
+        cell.configure(usingItem: item!)
         cell.delegate = self
         return cell
     }
@@ -52,9 +72,14 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
             
             //do other header related calls or settups
             if indexPath.section == 0 {
-                reusableview.configureHeader(title: "Pending")
+                if orderList.getPendingItemsInLoadedOrder().isEmpty {
+                    reusableview.configureHeader(title: "Paid")
+                } else {
+                    reusableview.configureHeader(title: "Pending")
+                }
+                
             } else if indexPath.section == 1 {
-                reusableview.configureHeader(title: "Finished")
+                reusableview.configureHeader(title: "Paid")
             }
             return reusableview
             
@@ -69,16 +94,27 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let nSelected = orderList.getNumberOfSelectedOptions(forItemInLoadedOrder: indexPath.row)
-        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * 22 + 65 + 40) // 65 for title and 40 for buttons
+        var nSelected: Int?
+        if indexPath.section == 0 {
+            if orderList.getPendingItemsInLoadedOrder().isEmpty {
+                nSelected = orderList.getNumberOfSelectedOptions(forPaidItemInLoadedOrder: indexPath.row)
+            } else {
+                nSelected = orderList.getNumberOfSelectedOptions(forPendingItemInLoadedOrder: indexPath.row)
+            }
+            
+        } else if indexPath.section == 1 {
+            nSelected = orderList.getNumberOfSelectedOptions(forPaidItemInLoadedOrder: indexPath.row)
+            
+        }
+        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected!) * 22 + 65 + 40)
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        var numSection = 0
-        if orderList.getNumberOfItemsInLoadedOrder() == 0 {
-            return 0
-        }
-        return 1
+        var numSectins = 0
+        numSectins += orderList.getPaidItemsInLoadedOrder().isEmpty ? 0 : 1
+        numSectins += orderList.getPendingItemsInLoadedOrder().isEmpty ? 0 : 1
+        return numSectins
     }
 }
 

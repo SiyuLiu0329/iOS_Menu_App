@@ -12,24 +12,28 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func tenderButtonPressed(_ sender: Any) {
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
-            
+            self.orderList!.tenderAllPendingItems(withPaymentType: .card)
+            self.itemCollectionView.reloadData()
+            self.updateTenderView()
         }
         
         let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
-            
+            self.orderList!.tenderAllPendingItems(withPaymentType: .cash)
+            self.itemCollectionView.reloadData()
+            self.updateTenderView()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         // Create and configure the alert controller.
-        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder()))",
+        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder()))",
                                       message: "Select a payment method.",
                                       preferredStyle: .alert)
-        
         alert.addAction(card)
         alert.addAction(cash)
         alert.addAction(cancelAction)
         
+        alert.view.tintColor = .black
         
         self.present(alert, animated: true) {
             // The alert was presented
@@ -40,7 +44,7 @@ class OrderItemViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     
     @IBAction func clearButtonPressed(_ sender: Any) {
-        let defaultAction = UIAlertAction(title: "Clear", style: .destructive) { (action) in
+        let defaultAction = UIAlertAction(title: "Clear", style: .default) { (action) in
             self.orderList!.clearLoadedOrder()
             self.itemCollectionView.deleteSections([0])
             self.updateTenderView()
@@ -53,8 +57,10 @@ class OrderItemViewController: UIViewController {
                                       message: "Click \"Clear\" to delete all pending items.",
                                       preferredStyle: .alert)
         
-        alert.addAction(defaultAction)
+        
         alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        alert.view.tintColor = .black
         
         
         self.present(alert, animated: true) {
@@ -135,9 +141,9 @@ class OrderItemViewController: UIViewController {
     }
     
     func updateTenderView() {
-        let numItems = orderList!.getTotalNumberOfItemsInLoadedOrder()
+        let numItems = orderList!.getPendingItemsInLoadedOrder().count
         totalQuantityLabel.text = "\(numItems)"
-        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder())
+        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder())
         UIView.animate(withDuration: 0.3) {
             self.buttonDisabledBackgroundView.alpha = numItems == 0 ? 1 : 0
         }
@@ -165,12 +171,13 @@ extension OrderItemViewController: ItemDeletedDelegate {
         // prevents the app from crashing
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
         
-        orderList!.deleteItemInLoadedOrder(withIndex: indexPath.row)
-        if orderList?.getNumberOfItemsInLoadedOrder() == 0 {
-            itemCollectionView.deleteSections([0])
-        } else {
-            itemCollectionView.deleteItems(at: [indexPath])
-        }
+        orderList!.deletePendingItemInLoadedOrder(withIndex: indexPath.row)
+//        if orderList?.getPaidItemsInLoadedOrder().count == 0 {
+//            itemCollectionView.deleteSections([0])
+//        } else {
+//            itemCollectionView.deleteItems(at: [indexPath])
+//        }
+        itemCollectionView.deleteItems(at: [indexPath])
         updateTenderView()
     }
 }
