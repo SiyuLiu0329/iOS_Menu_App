@@ -32,6 +32,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         backgroundColor = colour
         itemName.text = name
         itemNumber.text = "\(number)"
+        itemNumber.textColor = colour
     }
     
     func animate_selected() {
@@ -52,6 +53,9 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         addButton.clipsToBounds = true
         addButton.layer.maskedCorners = [.layerMinXMinYCorner]
         addButton.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        itemNumber.layer.cornerRadius = 15
+        itemNumber.clipsToBounds = true
+        itemNumber.backgroundColor = .white
         
     }
 }

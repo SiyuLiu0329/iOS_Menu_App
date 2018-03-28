@@ -130,6 +130,8 @@ class OrderItemViewController: UIViewController {
         clearButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         clearButton.clipsToBounds = true
         updateTenderView()
+        
+        
     }
     
     @IBAction func dismiss(_ sender: Any) {

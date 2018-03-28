@@ -38,6 +38,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         contentView.frame = bounds
         label.text = item.name
         contentView.backgroundColor = item.colour
+        itemNumberLabel.textColor = item.colour
         self.item = item
         quantityLabel.text = "\(item.quantity) × \(Scheme.Util.twoDecimalPriceText(item.unitPrice))"
         tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
@@ -90,6 +91,9 @@ class ItemCollectionViewCell: UICollectionViewCell {
         
         layer.cornerRadius = 5
         clipsToBounds = true
+        itemNumberLabel.backgroundColor = .white
+        itemNumberLabel.layer.cornerRadius = 20
+        itemNumberLabel.clipsToBounds = true
         
     }
     
