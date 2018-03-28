@@ -100,7 +100,7 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! OptionTableViewCell
-        orderList?.toggleOptionValue(at: indexPath.row, inItem: itemId!)
-        cell.value = orderList!.getValue(ofOption: indexPath.row, inItem: itemId!)
+        orderList?.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
+        cell.value = orderList!.getValue(ofOption: indexPath.row, inPendingItem: itemId!)
     }
 }

@@ -66,11 +66,11 @@ class OrderList {
         menuItems = resetToDefault(forItem: number, in: menuItems)
     }
     
-    func toggleOptionValue(at optionIndex: Int, inItem itemNumber: Int) {
+    func toggleOptionValue(at optionIndex: Int, inPendingItem itemNumber: Int) {
         menuItems[itemNumber]!.toggleSelectetState(ofOption: optionIndex)
     }
     
-    func getValue(ofOption optionIndex: Int, inItem itemNumber: Int) -> Bool {
+    func getValue(ofOption optionIndex: Int, inPendingItem itemNumber: Int) -> Bool {
         return menuItems[itemNumber]!.options[optionIndex].value
     }
     
@@ -92,30 +92,10 @@ class OrderList {
         allOrders[index] = order
     }
     
-    @available(*, unavailable, message: "No longer useful")
-    func getNumberOfItemsInLoadedOrder() -> Int {
-        return loadedOrder!.pendingItems.count
-    }
-    
-    func getItemNamedInLoadedOrder(withIndex index: Int) -> String {
-        return loadedOrder!.pendingItems[index].name
-    }
-    
-    func getItemNumberInLoadedOrder(withIndex index: Int) -> Int {
-        return loadedOrder!.pendingItems[index].number
-    }
-    
-    func getItemQuantityInLoadedOrder(withIndex index: Int) -> Int {
-        return loadedOrder!.pendingItems[index].quantity
-    }
     
     func deletePendingItemInLoadedOrder(withIndex index: Int) {
         loadedOrder!.numItems -= loadedOrder!.pendingItems[index].quantity
         loadedOrder!.pendingItems.remove(at: index)
-    }
-    
-    func getItemInLoadedOrder(atIndex index: Int) -> MenuItem {
-        return loadedOrder!.pendingItems[index]
     }
     
     func clearLoadedOrder() {
