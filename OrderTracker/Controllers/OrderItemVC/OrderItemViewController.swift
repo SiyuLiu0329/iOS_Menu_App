@@ -10,11 +10,9 @@ import UIKit
 
 class OrderItemViewController: UIViewController {
     
-    
-    @IBAction func tenderBarButtonPressed(_ sender: Any) {
-        
+    @IBAction func tenderButtonPressed(_ sender: Any) {
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
-
+            
         }
         
         let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
@@ -24,7 +22,7 @@ class OrderItemViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
         // Create and configure the alert controller.
-        let alert = UIAlertController(title: Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder()),
+        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfLoadedOrder()))",
                                       message: "Select a payment method.",
                                       preferredStyle: .alert)
         
@@ -37,8 +35,11 @@ class OrderItemViewController: UIViewController {
             // The alert was presented
         }
     }
-    @IBOutlet weak var tenderBarButton: UIBarButtonItem!
-    @IBAction func clearBarButtonPressed(_ sender: Any) {
+    
+    @IBOutlet weak var tenderButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    
+    @IBAction func clearButtonPressed(_ sender: Any) {
         let defaultAction = UIAlertAction(title: "Clear", style: .destructive) { (action) in
             self.orderList!.clearLoadedOrder()
             self.itemCollectionView.deleteSections([0])
@@ -49,25 +50,24 @@ class OrderItemViewController: UIViewController {
         
         // Create and configure the alert controller.
         let alert = UIAlertController(title: "Delete",
-            message: "Click \"Clear\" to delete all pending items.",
-            preferredStyle: .alert)
+                                      message: "Click \"Clear\" to delete all pending items.",
+                                      preferredStyle: .alert)
         
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
-    
+        
         
         self.present(alert, animated: true) {
             // The alert was presented
         }
-        
     }
+
     
-    @IBOutlet weak var clearBarButton: UIBarButtonItem!
     @IBOutlet weak var buttonDisabledBackgroundView: UIView!
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    @IBOutlet weak var actionBar: UIToolbar!
+
     @IBOutlet weak var buttonsDisabledLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
@@ -101,7 +101,14 @@ class OrderItemViewController: UIViewController {
         buttonDisabledBackgroundView.addSubview(blurEffectView)
         buttonDisabledBackgroundView.backgroundColor = .clear
         buttonDisabledBackgroundView.sendSubview(toBack: blurEffectView)
-        actionBar.barTintColor = UIColor.black
+        clearButton.backgroundColor = UIColor.red.withAlphaComponent(0.3)
+        tenderButton.backgroundColor = UIColor.green.withAlphaComponent(0.3)
+        tenderButton.layer.cornerRadius = 5
+        tenderButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        tenderButton.clipsToBounds = true
+        clearButton.layer.cornerRadius = 5
+        clearButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        clearButton.clipsToBounds = true
         updateTenderView()
     }
     

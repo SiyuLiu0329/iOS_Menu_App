@@ -14,9 +14,11 @@ protocol DetailViewControllerDelegate: class {
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var dimView: UIView!
     override var prefersStatusBarHidden: Bool {
         return true
     }
+
 
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     var orderList: OrderList?
@@ -78,8 +80,9 @@ extension DetailViewController: ItemCellDelegate {
         destinationVC.modalPresentationStyle = .overCurrentContext
         destinationVC.view.backgroundColor = .clear
         destinationVC.delegate = delegate
+        destinationVC.popoverDelegate = self // to animate dim
         present(destinationVC, animated: true, completion: nil)
- 
+        
         
     }
     
@@ -101,6 +104,19 @@ extension DetailViewController: ItemCellDelegate {
 //            }
         }
 
+    }
+}
+
+extension DetailViewController: MenuItemExpandedViewControllerDismissedDelegate {
+    func popoverDidDisappear() {
+        UIView.animate(withDuration: 0.4) {
+            self.dimView.alpha = 0
+        }
+    }
+    func popoverWillAppear() {
+        UIView.animate(withDuration: 0.4) {
+            self.dimView.alpha = 0.6
+        }
     }
 }
 

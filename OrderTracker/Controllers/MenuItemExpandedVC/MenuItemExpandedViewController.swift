@@ -11,19 +11,29 @@ protocol ItemWithOptionsAddedDelegate: class {
     func addItemToOrder(itemNumber number: Int)
 }
 
+protocol MenuItemExpandedViewControllerDismissedDelegate: class {
+    func popoverDidDisappear() // called when this view is dismissed (to animate dim)
+    func popoverWillAppear()
+}
+
 class MenuItemExpandedViewController: UIViewController {
     var orderList: OrderList?
     var itemId: Int?
     var themeColour: UIColor?
     weak var delegate: DetailViewControllerDelegate?
+    weak var popoverDelegate: MenuItemExpandedViewControllerDismissedDelegate?
     var optionDataSource: OptionaTableViewDataSource!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var contentView: UIView!
+    
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         orderList?.resetTamplateItem(itemNumber: itemId!)
+        if popoverDelegate != nil {
+            popoverDelegate!.popoverDidDisappear()
+        }
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
@@ -32,6 +42,7 @@ class MenuItemExpandedViewController: UIViewController {
             delegate?.orderAdded(toOrderNumbered: itemIdx!)
         }
     }
+    
     private var item: MenuItem?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +84,14 @@ class MenuItemExpandedViewController: UIViewController {
         guard item != nil else { return }
         navBar.topItem?.title = item!.name
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if popoverDelegate != nil {
+            popoverDelegate!.popoverWillAppear()
+        }
+    }
 }
+
 
 extension MenuItemExpandedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
