@@ -9,36 +9,22 @@
 import UIKit
 
 class OrderItemViewController: UIViewController {
-    func selectCells(inSection section: Int, atRows rows: [Int]) {
-        for row in rows {
-            let indexPath = IndexPath(item: row, section: section)
-            if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
-                cell.animateSelected()
-            }
-        }
+    
+    private func tenderAllItems(withPaymentType paymentType: PaymentStatus) {
+        let _ = self.orderList!.tenderAllPendingItems(withPaymentType: paymentType)
+        self.itemCollectionView.reloadSections([0, 1])
+        self.updateTenderView()
     }
     
     @IBAction func tenderButtonPressed(_ sender: Any) {
-        
         self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
-            let rows = self.orderList!.tenderAllPendingItems(withPaymentType: .card)
-            self.itemCollectionView.reloadSections([0, 1])
-            self.updateTenderView()
-            self.selectCells(inSection: 1, atRows: rows)
-//            self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            self.tenderAllItems(withPaymentType: .card)
         }
-        
         let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
-            let rows = self.orderList!.tenderAllPendingItems(withPaymentType: .cash)
-            self.itemCollectionView.reloadSections([0, 1])
-            self.updateTenderView()
-            self.selectCells(inSection: 1, atRows: rows)
-//            self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            self.tenderAllItems(withPaymentType: .cash)
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
         // Create and configure the alert controller.
         let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder()))",
                                       message: "Select a payment method.",
@@ -46,9 +32,7 @@ class OrderItemViewController: UIViewController {
         alert.addAction(card)
         alert.addAction(cash)
         alert.addAction(cancelAction)
-        
         alert.view.tintColor = .black
-        
         self.present(alert, animated: true) {
             // The alert was presented
         }
@@ -65,18 +49,13 @@ class OrderItemViewController: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
         // Create and configure the alert controller.
         let alert = UIAlertController(title: "Delete",
                                       message: "Click \"Clear\" to delete all pending items.",
                                       preferredStyle: .alert)
-        
-        
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
         alert.view.tintColor = .black
-        
-        
         self.present(alert, animated: true) {
             // The alert was presented
         }
@@ -149,7 +128,6 @@ class OrderItemViewController: UIViewController {
     }
     
     private func layoutCollectionView() {
-        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
         layout.sectionHeadersPinToVisibleBounds = true
@@ -174,11 +152,11 @@ extension OrderItemViewController: DetailViewControllerDelegate {
             itemCollectionView.insertItems(at: [indexPath])
         } else {
             itemCollectionView.reloadItems(at: [IndexPath.init(row: number, section: 0)])
-            
         }
         itemCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         updateTenderView()
         if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
+            // if cell is visible, light up the cell
             cell.animateSelected()
         }
     }
@@ -186,23 +164,44 @@ extension OrderItemViewController: DetailViewControllerDelegate {
 }
 
 extension OrderItemViewController: ItemDeletedDelegate {
+    func itemDidGetTendered(sender cell: ItemCollectionViewCell) {
+        guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
+
+        let card = UIAlertAction(title: "Card", style: .default) { (action) in
+            let _ = self.orderList!.tender(pendingItem: indexPath.row, withPaymentMethod: .card)
+            self.itemCollectionView.reloadSections([0, 1])
+            self.updateTenderView()
+        }
+        let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
+            let _ = self.orderList!.tender(pendingItem: indexPath.row, withPaymentMethod: .cash)
+            self.itemCollectionView.reloadSections([0, 1])
+            self.updateTenderView()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        // Create and configure the alert controller.
+        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder()))",
+            message: "Select a payment method.",
+            preferredStyle: .alert)
+        alert.addAction(card)
+        alert.addAction(cash)
+        alert.addAction(cancelAction)
+        alert.view.tintColor = .black
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+    }
+    
     func itemDidGetDeleted(sender cell: ItemCollectionViewCell) {
         // do nothing if index path not found (happens when the clear button is pressed before this action)
         // prevents the app from crashing
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
         orderList!.deletePendingItemInLoadedOrder(withIndex: indexPath.row)
         if itemCollectionView.numberOfItems(inSection: 0) == 1 {
+            // if this is the last item left in the collection view, dont delete (replace with placeholder)
             itemCollectionView.reloadItems(at: [indexPath])
         } else {
-            
             itemCollectionView.deleteItems(at: [indexPath])
         }
-        
-//        if orderList?.getPaidItemsInLoadedOrder().count == 0 {
-//            itemCollectionView.deleteSections([0])
-//        } else {
-//            itemCollectionView.deleteItems(at: [indexPath])
-//        }
         
         updateTenderView()
     }

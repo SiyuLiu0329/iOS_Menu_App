@@ -9,30 +9,32 @@
 import UIKit
 
 protocol ItemCollectionViewCellDelegate: class {
-    func deleteItemInCell(_ cell: ItemCollectionViewCell)
+    func itemWillBeRemoved(_ cell: ItemCollectionViewCell)
+    func itemWillTender(_ cell: ItemCollectionViewCell)
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBAction func tenderButtonPressed(_ sender: Any) {
+        if delegate != nil {
+            delegate!.itemWillTender(self)
+        }
     }
+    @IBAction func showItemDetailPressed(_ sender: Any) {
+        print("pressed")
+    }
+    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var tenderButton: UIButton!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var label: UILabel!
-    private var deleteLabel: UILabel!
     
-
-    @IBAction func showItemDetailPressed(_ sender: Any) {
-        print("pressed")
-    }
-    
-    @IBOutlet weak var quantityLabel: UILabel!
-    private var originalCenterX: CGFloat?
-    let threashold: CGFloat = 150
-    private var delete = false
-    private var displacement: CGFloat = 0
-    weak var delegate: ItemCollectionViewCellDelegate?
-    private var item: MenuItem!
+    weak var delegate: ItemCollectionViewCellDelegate? // called to perform a delete action
+    private var originalCenterX: CGFloat? // used to determine how far the view has been slid
+    private var deleteLabel: UILabel! // slide to delete background
+    private let threashold: CGFloat = 150 // slide to delete threshold
+    private var delete = false // flag to determine if the cell should be deletec
+    private var displacement: CGFloat = 0 // distance the view has been slid
+    private var item: MenuItem! // item used to configure the view
     
     func configure(usingItem item: MenuItem) {
         contentView.frame = bounds
@@ -56,12 +58,10 @@ class ItemCollectionViewCell: UICollectionViewCell {
         }
         
         optionLabel.text = optionText
-        
-        
-        
     }
     
     func animateSelected() {
+        // light up this cell for a brief moment
         UIView.animate(withDuration: 0.5) {
             self.contentView.backgroundColor = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
         }
@@ -118,7 +118,7 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
             if delete {
                 // perform delete
                 if delegate != nil {
-                    delegate!.deleteItemInCell(self)
+                    delegate!.itemWillBeRemoved(self)
                 }
             } else {
                 // restore to original position (delete cancelled)

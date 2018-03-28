@@ -24,6 +24,22 @@ struct Order {
         itemCollections.append(("Paid", []))
     }
     
+    mutating func tender(pendingItem index: Int, withPaymentMethod paymentMethod: PaymentStatus) -> Int {
+        var pendingItem = itemCollections[0].items[index]
+        pendingItem.paymentStatus = paymentMethod
+        itemCollections[0].items.remove(at: index)
+        for i in 0..<itemCollections[1].items.count {
+            if pendingItem == itemCollections[1].items[i] {
+                itemCollections[1].items[i].quantity += pendingItem.quantity
+                print(i)
+                return i
+            }
+        }
+        // no match found if reaches this point
+        itemCollections[1].items.append(pendingItem)
+        return itemCollections[1].items.count - 1
+    }
+    
     mutating func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) -> [Int] {
         var res: [Int] = []
         let pendingItems = itemCollections[0].items
@@ -33,7 +49,7 @@ struct Order {
             item.paymentStatus = paymentType
             for j in 0..<itemCollections[1].items.count {
                 if item == itemCollections[1].items[j] {
-                    itemCollections[1].items[j].quantity += 1
+                    itemCollections[1].items[j].quantity += item.quantity
                     res.append(j)
                     matchFound = true
                     break
@@ -47,7 +63,6 @@ struct Order {
             
         }
         itemCollections[0].items.removeAll()
-        print(res)
         
         return res
     }
@@ -126,20 +141,13 @@ class OrderList {
     
     func pendItemToLoadedOrder(number itemNumber: Int) -> Int? {
         guard let item = menuItems[itemNumber] else { return nil }
-        var matchFound = false
         for i in 0 ..< loadedOrder!.itemCollections[0].items.count {
             if item == loadedOrder!.itemCollections[0].items[i] {
-                matchFound = true
                 loadedOrder!.itemCollections[0].items[i].quantity += 1
                 return i
             }
         }
-        
-        if !matchFound {
-            loadedOrder!.itemCollections[0].items.append(item)
-        }
-        
-        
+        loadedOrder!.itemCollections[0].items.append(item)
         return loadedOrder!.itemCollections[0].items.count - 1
     }
     
@@ -152,6 +160,10 @@ class OrderList {
             }
         }
         return nSelected
+    }
+    
+    func tender(pendingItem index: Int, withPaymentMethod paymentMethod: PaymentStatus) -> Int {
+        return loadedOrder!.tender(pendingItem: index, withPaymentMethod: paymentMethod)
     }
     
     
