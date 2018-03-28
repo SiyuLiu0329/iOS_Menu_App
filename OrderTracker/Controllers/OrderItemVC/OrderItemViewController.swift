@@ -189,7 +189,7 @@ extension OrderItemViewController: ItemDeletedDelegate {
         // prevents the app from crashing
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
         orderList!.deletePendingItemInLoadedOrder(withIndex: indexPath.row)
-        if itemCollectionView.numberOfItems(inSection: 0) == 1\ {
+        if itemCollectionView.numberOfItems(inSection: 0) == 1 {
             itemCollectionView.reloadItems(at: [indexPath])
         } else {
             
