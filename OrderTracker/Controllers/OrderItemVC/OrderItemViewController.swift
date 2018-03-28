@@ -13,13 +13,13 @@ class OrderItemViewController: UIViewController {
     @IBAction func tenderButtonPressed(_ sender: Any) {
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
             self.orderList!.tenderAllPendingItems(withPaymentType: .card)
-            self.itemCollectionView.reloadData()
+            self.itemCollectionView.reloadSections([0, 1])
             self.updateTenderView()
         }
         
         let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
             self.orderList!.tenderAllPendingItems(withPaymentType: .cash)
-            self.itemCollectionView.reloadData()
+            self.itemCollectionView.reloadSections([0, 1])
             self.updateTenderView()
         }
         
@@ -45,8 +45,8 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         let defaultAction = UIAlertAction(title: "Clear", style: .default) { (action) in
-            self.orderList!.clearLoadedOrder()
-            self.itemCollectionView.deleteSections([0])
+            self.orderList!.clearPendingItemsLoadedOrder()
+            self.itemCollectionView.reloadSections([0])
             self.updateTenderView()
         }
         
@@ -141,7 +141,7 @@ class OrderItemViewController: UIViewController {
     }
     
     func updateTenderView() {
-        let numItems = orderList!.getPendingItemsInLoadedOrder().count
+        let numItems = orderList!.loadedItemCollections[0].items.count
         totalQuantityLabel.text = "\(numItems)"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder())
         UIView.animate(withDuration: 0.3) {

@@ -24,37 +24,28 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            if orderList.getPendingItemsInLoadedOrder().isEmpty {
-                return orderList.getPaidItemsInLoadedOrder().count
-            } else {
-                return orderList.getPendingItemsInLoadedOrder().count
-            }
-        } else if section == 1 {
-            return orderList.getPaidItemsInLoadedOrder().count
+        let num = orderList.loadedItemCollections[section].items.count
+        if num == 0 {
+            return 1 // this is for a place holder cell
         }
-        
-        return 0
+        return orderList.loadedItemCollections[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: ItemCollectionViewCell
         
-        var item: MenuItem?
-        if indexPath.section == 0 {
-            if orderList.getPendingItemsInLoadedOrder().isEmpty {
-                item = orderList.getItemInPaidItems(withIndexInLoadedOrder: indexPath.row)
-            } else {
-                item = orderList.getItemInPendingItems(withIndexInLoadedOrder: indexPath.row)
-            }
-            
-        } else if indexPath.section == 1 {
-            item = orderList.getItemInPaidItems(withIndexInLoadedOrder: indexPath.row)
-        } else {
-            fatalError()
+        let items = orderList.loadedItemCollections[indexPath.section].items
+        if items.isEmpty {
+            let cell: OrderItemPlaceHolderCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "placeholder", for: indexPath) as! OrderItemPlaceHolderCell
+            cell.backgroundColor = .clear
+            cell.placeholderTextLabel.text = indexPath.section == 0 ? "No pending items(s)" : "No paid item(s)" + "..."
+            return cell
         }
+        
+        let item: MenuItem = items[indexPath.row]
+        let cell: ItemCollectionViewCell
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
-        cell.configure(usingItem: item!)
+        cell.configure(usingItem: item)
         cell.delegate = self
         return cell
     }
@@ -71,16 +62,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
             let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "orderHeaderView", for: indexPath) as! ItemCollectionViewHeaderView
             
             //do other header related calls or settups
-            if indexPath.section == 0 {
-                if orderList.getPendingItemsInLoadedOrder().isEmpty {
-                    reusableview.configureHeader(title: "Paid")
-                } else {
-                    reusableview.configureHeader(title: "Pending")
-                }
-                
-            } else if indexPath.section == 1 {
-                reusableview.configureHeader(title: "Paid")
-            }
+            reusableview.configureHeader(title: orderList.loadedItemCollections[indexPath.section].collectionName)
             return reusableview
             
             
@@ -94,27 +76,17 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var nSelected: Int?
-        if indexPath.section == 0 {
-            if orderList.getPendingItemsInLoadedOrder().isEmpty {
-                nSelected = orderList.getNumberOfSelectedOptions(forPaidItemInLoadedOrder: indexPath.row)
-            } else {
-                nSelected = orderList.getNumberOfSelectedOptions(forPendingItemInLoadedOrder: indexPath.row)
-            }
-            
-        } else if indexPath.section == 1 {
-            nSelected = orderList.getNumberOfSelectedOptions(forPaidItemInLoadedOrder: indexPath.row)
-            
+        if orderList.loadedItemCollections[indexPath.section].items.isEmpty {
+            // if the list is empty, use the placeholder cell
+            return CGSize(width: collectionView.frame.width - 10, height: 0 * 22 + 65 + 40)
         }
-        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected!) * 22 + 65 + 40)
+        let nSelected = orderList.getNumberOfSelectedOptions(inCollection: indexPath.section, forItem: indexPath.row)
+        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * 22 + 65 + 40)
         
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        var numSectins = 0
-        numSectins += orderList.getPaidItemsInLoadedOrder().isEmpty ? 0 : 1
-        numSectins += orderList.getPendingItemsInLoadedOrder().isEmpty ? 0 : 1
-        return numSectins
+        return orderList.loadedItemCollections.count
     }
 }
 

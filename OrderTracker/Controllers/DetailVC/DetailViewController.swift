@@ -88,7 +88,7 @@ extension DetailViewController: ItemCellDelegate {
     
     func itemAdded(atCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
-        let number = orderList?.addItemToLoadedOrder(number: indexPath.row + 1)
+        let number = orderList?.pendItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
             delegate!.orderAdded(toOrderNumbered: number!)
 //            let ss = cell.snapshotView(afterScreenUpdates: true)!

@@ -38,7 +38,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func addButtonAction(_ sender: Any) {
         if delegate != nil {
-            let itemIdx = orderList?.addItemToLoadedOrder(number: itemId!)
+            let itemIdx = orderList?.pendItemToLoadedOrder(number: itemId!)
             delegate?.orderAdded(toOrderNumbered: itemIdx!)
         }
     }

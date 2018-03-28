@@ -348,6 +348,29 @@
                                             <outlet property="tenderButton" destination="168-E5-DZP" id="dVu-9k-o5c"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeholder" id="0Sc-7d-z9N" customClass="OrderItemPlaceHolderCell" customModule="OrderTracker" customModuleProvider="target">
+                                        <rect key="frame" x="2" y="326" width="316" height="236"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Item(s) Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTd-ie-Mmu">
+                                                    <rect key="frame" x="87" y="108" width="142" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.4689861489701147" green="0.4689861489701147" blue="0.4689861489701147" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="xTd-ie-Mmu" firstAttribute="centerY" secondItem="0Sc-7d-z9N" secondAttribute="centerY" id="IA4-Jm-saN"/>
+                                            <constraint firstItem="xTd-ie-Mmu" firstAttribute="centerX" secondItem="0Sc-7d-z9N" secondAttribute="centerX" id="UUM-8l-1zY"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="placeholderTextLabel" destination="xTd-ie-Mmu" id="69p-Mq-ahB"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="orderHeaderView" id="0ot-Jx-YdY" customClass="ItemCollectionViewHeaderView" customModule="OrderTracker" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
