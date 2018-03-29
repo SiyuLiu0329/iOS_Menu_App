@@ -9,6 +9,22 @@
 import UIKit
 
 class OrderItemViewController: UIViewController {
+    @IBOutlet weak var tenderButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var buttonDisabledBackgroundView: UIView!
+    @IBOutlet weak var buttonsDisabledLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var totalQuantityLabel: UILabel!
+    @IBOutlet weak var tenderView: UIView!
+    @IBOutlet weak var itemCollectionView: UICollectionView!
+    var isNewOrder = false
+    var collectionViewDataSource: OrderItemViewControllerDataSource!
+    var orderList: OrderList?
+    var orderId: Int?
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     private func tenderAllItems(withPaymentType paymentType: PaymentStatus) {
         let _ = self.orderList!.tenderAllPendingItems(withPaymentType: paymentType)
@@ -16,8 +32,11 @@ class OrderItemViewController: UIViewController {
         self.updateTenderView()
     }
     
+    
     @IBAction func tenderButtonPressed(_ sender: Any) {
+        // alert shown when tendering ALL items (by clicking on the button at the bottom)
         self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
+
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
             self.tenderAllItems(withPaymentType: .card)
         }
@@ -37,9 +56,6 @@ class OrderItemViewController: UIViewController {
             // The alert was presented
         }
     }
-    
-    @IBOutlet weak var tenderButton: UIButton!
-    @IBOutlet weak var clearButton: UIButton!
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         let defaultAction = UIAlertAction(title: "Clear", style: .default) { (action) in
@@ -61,23 +77,6 @@ class OrderItemViewController: UIViewController {
         }
     }
 
-    
-    @IBOutlet weak var buttonDisabledBackgroundView: UIView!
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
-    @IBOutlet weak var buttonsDisabledLabel: UILabel!
-    @IBOutlet weak var totalPriceLabel: UILabel!
-    
-    @IBOutlet weak var totalQuantityLabel: UILabel!
-    @IBOutlet weak var tenderView: UIView!
-    @IBOutlet weak var itemCollectionView: UICollectionView!
-    var isNewOrder = false
-    var collectionViewDataSource: OrderItemViewControllerDataSource!
-    var orderList: OrderList?
-    var orderId: Int?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,12 +118,14 @@ class OrderItemViewController: UIViewController {
             // if this order was newly created, discard it
             // if the latest(created) order is empty && this order is the latest!
             orderList!.discardLastestOrder()
+            orderList!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
         }
     }
     
     @IBAction func saveAndDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         orderList?.saveLoadedOrder(withIndex: orderId!)
+        orderList!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
     }
     
     private func layoutCollectionView() {
@@ -162,6 +163,7 @@ extension OrderItemViewController: DetailViewControllerDelegate {
     }
     
     func itemWillQuickTender(itemNumber number: Int) {
+        // called when a single template item is tendered
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
             let _ = self.orderList!.quickTenderTemplateItem(numbered: number, withPaymentMethod: .card)
             self.itemCollectionView.reloadSections([1])
@@ -189,7 +191,7 @@ extension OrderItemViewController: DetailViewControllerDelegate {
 
 extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
     func itemDidGetTendered(sender cell: ItemCollectionViewCell) {
-        // called when a pending item is tendered
+        // called when a pending item is tendered (A card in the collection view)
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
 
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
