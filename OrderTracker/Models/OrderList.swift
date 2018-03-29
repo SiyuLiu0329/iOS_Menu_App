@@ -99,6 +99,10 @@ class OrderList {
         }
         return totalPrice
     }
+    
+    func getPriceOfPendingItem(withIndex index: Int) -> Double {
+        return loadedOrder!.itemCollections[0].items[index].totalPrice
+    }
 
     func resetTamplateItem(itemNumber number: Int) {
         menuItems = resetToDefault(forItem: number, in: menuItems)

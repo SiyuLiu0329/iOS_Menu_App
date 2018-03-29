@@ -187,8 +187,9 @@ extension OrderItemViewController: DetailViewControllerDelegate {
     
 }
 
-extension OrderItemViewController: ItemDeletedDelegate {
+extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
     func itemDidGetTendered(sender cell: ItemCollectionViewCell) {
+        // called when a pending item is tendered
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
 
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
@@ -203,7 +204,7 @@ extension OrderItemViewController: ItemDeletedDelegate {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         // Create and configure the alert controller.
-        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder()))",
+        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getPriceOfPendingItem(withIndex: indexPath.row)))",
             message: "Select a payment method.",
             preferredStyle: .alert)
         alert.addAction(card)

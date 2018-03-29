@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ItemDeletedDelegate: class {
+protocol OrderItemCollectionViewCellDelegate: class {
     func itemDidGetDeleted(sender cell: ItemCollectionViewCell)
     func itemDidGetTendered(sender cell: ItemCollectionViewCell)
 }
@@ -19,7 +19,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     var headerHeight:CGFloat = 25
 
     var orderList: OrderList
-    weak var delegate: ItemDeletedDelegate?
+    weak var delegate: OrderItemCollectionViewCellDelegate?
     init(data orderList: OrderList) {
         self.orderList = orderList
     }
