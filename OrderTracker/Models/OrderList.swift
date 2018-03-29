@@ -166,7 +166,18 @@ class OrderList {
         return loadedOrder!.tender(pendingItem: index, withPaymentMethod: paymentMethod)
     }
     
-    
+    func quickTenderTemplateItem(numbered number: Int, withPaymentMethod paymentMethod: PaymentStatus) -> Int {
+        var item = menuItems[number]!
+        item.paymentStatus = paymentMethod
+        for i in 0..<loadedOrder!.itemCollections[1].items.count {
+            if item == loadedOrder!.itemCollections[1].items[i] {
+                loadedOrder!.itemCollections[1].items[i].quantity += 1
+                return i
+            }
+        }
+        loadedOrder!.itemCollections[1].items.append(item)
+        return loadedOrder!.itemCollections[1].items.count - 1
+    }
     
     func discardLastestOrder() {
         allOrders.removeLast()

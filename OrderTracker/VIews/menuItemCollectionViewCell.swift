@@ -10,14 +10,20 @@ import UIKit
 protocol ItemCellDelegate: class {
     func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell)
     func itemAdded(atCell cell: MenuItemCollectionViewCell)
+    func quickTenderItem(atCell cell: MenuItemCollectionViewCell)
 }
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
     weak var delegate: ItemCellDelegate?
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var itemName: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var tenderButton: UIButton!
     @IBOutlet weak var itemNumber: UILabel!
+    @IBAction func addItemButtonPressed(_ sender: Any) {
+        if delegate != nil {
+            delegate!.itemAdded(atCell: self)
+        }
+    }
     @IBAction func showItemDetail(_ sender: Any) {
         // item added -> update parent view
         if delegate != nil {
@@ -25,23 +31,20 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(imgUrl url: String, cellColour colour: UIColor, itemName name: String, itemNumber number: Int) {
+    func configure(withItem item: MenuItem) {
         layer.cornerRadius = 5
         clipsToBounds = true
-        itemImageView.image = UIImage(named: url)
-        backgroundColor = colour
-        itemName.text = name
-        itemNumber.text = "\(number)"
-        itemNumber.textColor = colour
+        itemImageView.image = UIImage(named: item.imageURL)
+        backgroundColor = item.colour
+        itemName.text = item.name
+        itemNumber.text = "\(item.number)"
+        itemNumber.textColor = item.colour
+        tenderButton.setTitle(Scheme.Util.twoDecimalPriceText(item.unitPrice), for: .normal)
     }
     
-    func animate_selected() {
-        
-    }
-    
-    @IBAction func addItemAction(_ sender: Any) {
+    @IBAction func tenderButtonPressed(_ sender: Any) {
         if delegate != nil {
-            delegate!.itemAdded(atCell: self)
+            delegate?.quickTenderItem(atCell: self)
         }
     }
     
@@ -49,10 +52,10 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         itemName.sizeToFit()
         itemName.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-        addButton.layer.cornerRadius = 5
-        addButton.clipsToBounds = true
-        addButton.layer.maskedCorners = [.layerMinXMinYCorner]
-        addButton.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        tenderButton.layer.cornerRadius = 5
+        tenderButton.clipsToBounds = true
+        tenderButton.layer.maskedCorners = [.layerMinXMinYCorner]
+        tenderButton.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         itemNumber.layer.cornerRadius = 15
         itemNumber.clipsToBounds = true
         itemNumber.backgroundColor = .white

@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailViewControllerDelegate: class {
     func orderAdded(toOrderNumbered number: Int)
+    func itemTendered(itemNumber number: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -84,6 +85,13 @@ extension DetailViewController: ItemCellDelegate {
         present(destinationVC, animated: true, completion: nil)
         
         
+    }
+    
+    func quickTenderItem(atCell cell: MenuItemCollectionViewCell) {
+        guard let indexPath = itemsCollectionView.indexPath(for: cell) else { return }
+        if delegate != nil {
+            delegate!.itemTendered(itemNumber: indexPath.row + 1)
+        }
     }
     
     func itemAdded(atCell cell: MenuItemCollectionViewCell) {

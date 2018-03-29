@@ -25,7 +25,7 @@ class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         guard let item = orderList.menuItems[indexPath.row + 1] else { fatalError() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuItemCollectionViewCell
         cell.delegate = delegateVC!
-        cell.configure(imgUrl: item.imageURL, cellColour: item.colour, itemName: item.name, itemNumber: item.number)
+        cell.configure(withItem: item)
         return cell
     }
     

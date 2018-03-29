@@ -161,6 +161,32 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         }
     }
     
+    func itemTendered(itemNumber number: Int) {
+        
+        
+        let card = UIAlertAction(title: "Card", style: .default) { (action) in
+            let _ = self.orderList!.quickTenderTemplateItem(numbered: number, withPaymentMethod: .card)
+            self.itemCollectionView.reloadSections([1])
+        }
+        let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
+            let _ = self.orderList!.quickTenderTemplateItem(numbered: number, withPaymentMethod: .cash)
+            self.itemCollectionView.reloadSections([1])
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        // Create and configure the alert controller.
+        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.menuItems[number]!.unitPrice))",
+            message: "Select a payment method.",
+            preferredStyle: .alert)
+        alert.addAction(card)
+        alert.addAction(cash)
+        alert.addAction(cancelAction)
+        alert.view.tintColor = .black
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+        
+    }
+    
 }
 
 extension OrderItemViewController: ItemDeletedDelegate {
