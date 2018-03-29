@@ -9,8 +9,8 @@
 import UIKit
 
 protocol DetailViewControllerDelegate: class {
-    func orderAdded(toOrderNumbered number: Int)
-    func itemTendered(itemNumber number: Int)
+    func itemAdded(toIndex number: Int)
+    func itemWillQuickTender(itemNumber number: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -90,7 +90,7 @@ extension DetailViewController: ItemCellDelegate {
     func quickTenderItem(atCell cell: MenuItemCollectionViewCell) {
         guard let indexPath = itemsCollectionView.indexPath(for: cell) else { return }
         if delegate != nil {
-            delegate!.itemTendered(itemNumber: indexPath.row + 1)
+            delegate!.itemWillQuickTender(itemNumber: indexPath.row + 1)
         }
     }
     
@@ -98,18 +98,7 @@ extension DetailViewController: ItemCellDelegate {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         let number = orderList?.pendItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
-            delegate!.orderAdded(toOrderNumbered: number!)
-//            let ss = cell.snapshotView(afterScreenUpdates: true)!
-//            view.addSubview(ss)
-//            ss.frame = cell.frame
-//            ss.transform = CGAffineTransform(translationX: -50, y: 50)
-//            ss.alpha = 0.8
-//            UIView.animate(withDuration: 0.5, animations: {
-//                ss.frame = CGRect(x: -self.view.frame.height / 1.4, y: 0, width: self.view.frame.height / 1.4, height: self.view.frame.height)
-//                ss.alpha = 0.3
-//            }) { (bool) in
-//                ss.removeFromSuperview()
-//            }
+            delegate!.itemAdded(toIndex: number!)
         }
 
     }

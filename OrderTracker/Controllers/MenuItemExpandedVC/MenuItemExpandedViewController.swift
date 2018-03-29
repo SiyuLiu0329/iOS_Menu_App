@@ -7,9 +7,6 @@
 //
 
 import UIKit
-protocol ItemWithOptionsAddedDelegate: class {
-    func addItemToOrder(itemNumber number: Int)
-}
 
 protocol MenuItemExpandedViewControllerDismissedDelegate: class {
     func popoverDidDisappear() // called when this view is dismissed (to animate dim)
@@ -17,16 +14,26 @@ protocol MenuItemExpandedViewControllerDismissedDelegate: class {
 }
 
 class MenuItemExpandedViewController: UIViewController {
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var quickTender: UIButton!
+    @IBOutlet weak var optionTableView: UITableView!
+    @IBOutlet weak var contentView: UIView!
+    weak var delegate: DetailViewControllerDelegate? // will perform similar actions to buttons in detailVC
+    weak var popoverDelegate: MenuItemExpandedViewControllerDismissedDelegate? // used to dim / light background view
+    private var item: MenuItem?
     var orderList: OrderList?
     var itemId: Int?
     var themeColour: UIColor?
-    weak var delegate: DetailViewControllerDelegate?
-    weak var popoverDelegate: MenuItemExpandedViewControllerDismissedDelegate?
     var optionDataSource: OptionaTableViewDataSource!
-    @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var optionTableView: UITableView!
-    @IBOutlet weak var contentView: UIView!
+    
+    @IBAction func addButtonAction(_ sender: Any) {
+        let number = orderList?.pendItemToLoadedOrder(number: itemId!)
+        if delegate != nil {
+            delegate!.itemAdded(toIndex: number!)
+        }
+    }
+    
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -36,26 +43,33 @@ class MenuItemExpandedViewController: UIViewController {
         }
     }
     
-    @IBAction func addButtonAction(_ sender: Any) {
+    @IBAction func quickTenderAction(_ sender: Any) {
         if delegate != nil {
-            let itemIdx = orderList?.pendItemToLoadedOrder(number: itemId!)
-            delegate?.orderAdded(toOrderNumbered: itemIdx!)
+            delegate!.itemWillQuickTender(itemNumber: itemId!)
         }
     }
     
-    private var item: MenuItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         optionDataSource = OptionaTableViewDataSource(data: orderList!, itemId: itemId!)
         optionTableView.delegate = self
         optionTableView.dataSource = optionDataSource
+        quickTender.tintColor = .white
+        quickTender.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        quickTender.layer.cornerRadius = 5
+        quickTender.clipsToBounds = true
+        quickTender.layer.maskedCorners = [.layerMinXMinYCorner]
+        quickTender.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
+        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(orderList!.menuItems[itemId!]!.unitPrice), for: .normal)
+        
+        
         addButton.tintColor = .white
         addButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
-        addButton.layer.maskedCorners = [.layerMinXMinYCorner]
+        addButton.layer.maskedCorners = [.layerMaxXMinYCorner]
         addButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
-        
         // rounded window
         contentView.layer.cornerRadius = 5
         contentView.clipsToBounds = true
@@ -99,8 +113,10 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // changes are made to template items and will persist until this view is dimissed
         let cell = tableView.cellForRow(at: indexPath) as! OptionTableViewCell
         orderList?.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
         cell.value = orderList!.getValue(ofOption: indexPath.row, inPendingItem: itemId!)
+        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(orderList!.menuItems[itemId!]!.unitPrice), for: .normal)
     }
 }

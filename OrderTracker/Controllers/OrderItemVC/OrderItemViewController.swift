@@ -146,7 +146,7 @@ class OrderItemViewController: UIViewController {
 
 
 extension OrderItemViewController: DetailViewControllerDelegate {
-    func orderAdded(toOrderNumbered number: Int) {
+    func itemAdded(toIndex number: Int) {
         let indexPath = IndexPath.init(row: number, section: 0)
         if number == orderList!.loadedItemCollections[0].items.count - 1 && number != itemCollectionView.numberOfItems(inSection: 0) - 1 {
             itemCollectionView.insertItems(at: [indexPath])
@@ -161,9 +161,7 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         }
     }
     
-    func itemTendered(itemNumber number: Int) {
-        
-        
+    func itemWillQuickTender(itemNumber number: Int) {
         let card = UIAlertAction(title: "Card", style: .default) { (action) in
             let _ = self.orderList!.quickTenderTemplateItem(numbered: number, withPaymentMethod: .card)
             self.itemCollectionView.reloadSections([1])

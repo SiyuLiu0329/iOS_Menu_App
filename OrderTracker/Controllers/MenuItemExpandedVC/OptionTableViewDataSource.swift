@@ -35,8 +35,6 @@ class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
         cell.optionName.text = option.description
         cell.priceLabel.text = (option.price == 0) ? "" : (Scheme.Util.twoDecimalPriceText(option.price))
         cell.value = option.value
-        
-        
         return cell
     }
 }
