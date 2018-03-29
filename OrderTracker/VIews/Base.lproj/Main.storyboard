@@ -157,7 +157,7 @@
                                                 <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqP-yb-KDw">
                                                     <rect key="frame" x="0.0" y="40" width="205" height="154"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                                     <state key="normal" title="Pend">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -323,6 +323,10 @@
                                                         <action selector="tenderButtonPressed:" destination="LmP-F6-jdw" eventType="touchUpInside" id="qGg-gd-cwd"/>
                                                     </connections>
                                                 </button>
+                                                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-bY-8WO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -330,8 +334,11 @@
                                             <constraint firstItem="168-E5-DZP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0Av-pg-hqA" secondAttribute="trailing" constant="78" id="0LE-AJ-KY4"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" constant="50" id="3bd-7c-Q1s"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1at-r5-B0f" secondAttribute="trailing" constant="20" id="6uj-tr-2ED"/>
+                                            <constraint firstItem="pXb-bY-8WO" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" id="8o6-mx-2kN"/>
                                             <constraint firstAttribute="trailing" secondItem="lrk-kg-95c" secondAttribute="trailing" id="C5c-5i-3W3"/>
                                             <constraint firstItem="0Av-pg-hqA" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" id="CkB-Xb-RBA"/>
+                                            <constraint firstAttribute="bottom" secondItem="pXb-bY-8WO" secondAttribute="bottom" id="IU9-kM-ULy"/>
+                                            <constraint firstAttribute="trailing" secondItem="pXb-bY-8WO" secondAttribute="trailing" id="KKb-ks-hGl"/>
                                             <constraint firstItem="1at-r5-B0f" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" constant="10" id="L92-t3-jin"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lrk-kg-95c" secondAttribute="bottom" constant="35" id="SHL-5F-Gh1"/>
                                             <constraint firstItem="0Av-pg-hqA" firstAttribute="bottom" secondItem="LmP-F6-jdw" secondAttribute="bottomMargin" id="UsB-Ej-kcB"/>
@@ -341,12 +348,14 @@
                                             <constraint firstItem="E81-55-1bB" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" id="msg-JK-Jld"/>
                                             <constraint firstItem="lrk-kg-95c" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" id="pWZ-BC-KC8"/>
                                             <constraint firstAttribute="trailing" secondItem="E81-55-1bB" secondAttribute="trailing" id="r1k-YZ-8bJ"/>
+                                            <constraint firstItem="pXb-bY-8WO" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" id="wHu-nN-t1L"/>
                                             <constraint firstAttribute="bottom" secondItem="168-E5-DZP" secondAttribute="bottom" id="wRG-65-xVx"/>
                                             <constraint firstAttribute="trailing" secondItem="168-E5-DZP" secondAttribute="trailing" id="x72-Uk-f0o"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="topMargin" id="zah-l6-751"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="itemNumberLabel" destination="1at-r5-B0f" id="poj-xT-u3u"/>
+                                            <outlet property="itemStatusOverlay" destination="pXb-bY-8WO" id="RcD-Op-s2R"/>
                                             <outlet property="label" destination="3fr-yg-xyg" id="HAV-YM-IxO"/>
                                             <outlet property="optionLabel" destination="lrk-kg-95c" id="QG1-Nc-YhM"/>
                                             <outlet property="quantityLabel" destination="0Av-pg-hqA" id="iIe-gK-V7M"/>

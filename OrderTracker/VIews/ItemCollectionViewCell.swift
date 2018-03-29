@@ -14,6 +14,7 @@ protocol ItemCollectionViewCellDelegate: class {
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var itemStatusOverlay: UIView!
     @IBAction func tenderButtonPressed(_ sender: Any) {
         if delegate != nil {
             delegate!.itemWillTender(self)
@@ -45,6 +46,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
         quantityLabel.text = "\(item.quantity) × \(Scheme.Util.twoDecimalPriceText(item.unitPrice))"
         tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
         itemNumberLabel.text = "\(item.number)"
+        
+        itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.4 : 0
         
         var optionText = ""
         for option in item.options {
@@ -88,7 +91,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         tenderButton.layer.maskedCorners = [.layerMinXMinYCorner]
         tenderButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         optionLabel.isUserInteractionEnabled = false
-        
+        itemStatusOverlay.backgroundColor = UIColor.black
         layer.cornerRadius = 5
         clipsToBounds = true
         itemNumberLabel.backgroundColor = .white
