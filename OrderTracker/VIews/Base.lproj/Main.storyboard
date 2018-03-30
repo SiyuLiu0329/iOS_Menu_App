@@ -154,11 +154,11 @@
                                                         <action selector="tenderButtonPressed:" destination="0Xc-H7-Ckf" eventType="touchUpInside" id="qK2-en-9aP"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqP-yb-KDw">
+                                                <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqP-yb-KDw">
                                                     <rect key="frame" x="0.0" y="40" width="205" height="154"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="80"/>
-                                                    <state key="normal" title="Pend">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="115"/>
+                                                    <state key="normal" title="+">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -471,13 +471,13 @@
                                                     <action selector="clearButtonPressed:" destination="HhU-Ko-Zro" eventType="touchUpInside" id="CHK-bE-NEV"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Eu-Ni-CkA">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Eu-Ni-CkA" userLabel="Bill Button">
                                                 <rect key="frame" x="82" y="0.0" width="222" height="46"/>
-                                                <state key="normal" title="Tender">
+                                                <state key="normal" title="Bill">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tenderButtonPressed:" destination="HhU-Ko-Zro" eventType="touchUpInside" id="pyy-5N-uGn"/>
+                                                    <action selector="billButtonPressed:" destination="HhU-Ko-Zro" eventType="touchUpInside" id="pyy-5N-uGn"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -550,12 +550,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="billButton" destination="9Eu-Ni-CkA" id="rB6-UB-b6E"/>
+                        <outlet property="billView" destination="gFL-Qg-9Ya" id="t3i-PA-bcz"/>
                         <outlet property="buttonDisabledBackgroundView" destination="YAN-to-L00" id="ysX-KA-cXQ"/>
                         <outlet property="buttonsDisabledLabel" destination="jJd-Kw-AaS" id="rLS-IP-pNr"/>
                         <outlet property="clearButton" destination="FPp-Ea-kg2" id="3Qg-Fu-EAW"/>
                         <outlet property="itemCollectionView" destination="hwF-ZQ-FoK" id="7w8-gk-MBR"/>
-                        <outlet property="tenderButton" destination="9Eu-Ni-CkA" id="rB6-UB-b6E"/>
-                        <outlet property="tenderView" destination="gFL-Qg-9Ya" id="t3i-PA-bcz"/>
                         <outlet property="totalPriceLabel" destination="rqZ-3G-sPw" id="kiP-7j-UXv"/>
                         <outlet property="totalQuantityLabel" destination="878-o3-9Da" id="wxn-Ki-ukj"/>
                     </connections>

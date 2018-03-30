@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol OrderItemCollectionViewCellDelegate: class {
-    func itemDidGetDeleted(sender cell: ItemCollectionViewCell)
-    func itemDidGetTendered(sender cell: ItemCollectionViewCell)
+    func itemWillDelete(sender cell: ItemCollectionViewCell)
+    func itemWillBill(sender cell: ItemCollectionViewCell)
 }
 
 
@@ -96,13 +96,13 @@ extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {
     // delegate cell button actions from the data source to view controllers
     func itemWillTender(_ cell: ItemCollectionViewCell) {
         if delegate != nil {
-            delegate!.itemDidGetTendered(sender: cell)
+            delegate!.itemWillBill(sender: cell)
         }
     }
     
     func itemWillBeRemoved(_ cell: ItemCollectionViewCell) {
         if delegate != nil {
-            delegate!.itemDidGetDeleted(sender: cell)
+            delegate!.itemWillDelete(sender: cell)
         }
     }
 }

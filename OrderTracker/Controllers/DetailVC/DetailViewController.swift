@@ -10,7 +10,7 @@ import UIKit
 
 protocol DetailViewControllerDelegate: class {
     func itemAdded(toIndex number: Int)
-    func itemWillQuickTender(itemNumber number: Int)
+    func itemWillQuickBill(itemNumber number: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -90,7 +90,7 @@ extension DetailViewController: ItemCellDelegate {
     func quickTenderItem(atCell cell: MenuItemCollectionViewCell) {
         guard let indexPath = itemsCollectionView.indexPath(for: cell) else { return }
         if delegate != nil {
-            delegate!.itemWillQuickTender(itemNumber: indexPath.row + 1)
+            delegate!.itemWillQuickBill(itemNumber: indexPath.row + 1)
         }
     }
     

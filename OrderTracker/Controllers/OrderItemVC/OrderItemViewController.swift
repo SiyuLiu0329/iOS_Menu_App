@@ -9,13 +9,13 @@
 import UIKit
 
 class OrderItemViewController: UIViewController {
-    @IBOutlet weak var tenderButton: UIButton!
+    @IBOutlet weak var billButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var buttonDisabledBackgroundView: UIView!
     @IBOutlet weak var buttonsDisabledLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var totalQuantityLabel: UILabel!
-    @IBOutlet weak var tenderView: UIView!
+    @IBOutlet weak var billView: UIView!
     @IBOutlet weak var itemCollectionView: UICollectionView!
     var isNewOrder = false
     var collectionViewDataSource: OrderItemViewControllerDataSource!
@@ -26,42 +26,18 @@ class OrderItemViewController: UIViewController {
         return true
     }
     
-    private func tenderAllItems(withPaymentType paymentType: PaymentStatus) {
-        let _ = self.orderList!.tenderAllPendingItems(withPaymentType: paymentType)
-        self.itemCollectionView.reloadSections([0, 1])
-        self.updateTenderView()
-    }
-    
-    
-    @IBAction func tenderButtonPressed(_ sender: Any) {
-        // alert shown when tendering ALL items (by clicking on the button at the bottom)
-        self.itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
+    @IBAction func billButtonPressed(_ sender: Any) {
+        let billVC = BillItemViewController()
+        billVC.modalPresentationStyle = .formSheet
+        present(billVC, animated: true, completion: nil)
 
-        let card = UIAlertAction(title: "Card", style: .default) { (action) in
-            self.tenderAllItems(withPaymentType: .card)
-        }
-        let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
-            self.tenderAllItems(withPaymentType: .cash)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        // Create and configure the alert controller.
-        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder()))",
-                                      message: "Select a payment method.",
-                                      preferredStyle: .alert)
-        alert.addAction(card)
-        alert.addAction(cash)
-        alert.addAction(cancelAction)
-        alert.view.tintColor = .black
-        self.present(alert, animated: true) {
-            // The alert was presented
-        }
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         let defaultAction = UIAlertAction(title: "Clear", style: .default) { (action) in
             self.orderList!.clearPendingItemsLoadedOrder()
             self.itemCollectionView.reloadSections([0])
-            self.updateTenderView()
+            self.updateBillView()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -91,7 +67,7 @@ class OrderItemViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "Items in Order " + "\(orderId! + 1)"
         navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
-        tenderView.backgroundColor = Scheme.tenderViewColour
+        billView.backgroundColor = Scheme.billViewColour
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -100,14 +76,14 @@ class OrderItemViewController: UIViewController {
         buttonDisabledBackgroundView.backgroundColor = .clear
         buttonDisabledBackgroundView.sendSubview(toBack: blurEffectView)
         clearButton.backgroundColor = UIColor.red.withAlphaComponent(0.3)
-        tenderButton.backgroundColor = UIColor.green.withAlphaComponent(0.3)
-        tenderButton.layer.cornerRadius = 5
-        tenderButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        tenderButton.clipsToBounds = true
+        billButton.backgroundColor = UIColor.green.withAlphaComponent(0.3)
+        billButton.layer.cornerRadius = 5
+        billButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        billButton.clipsToBounds = true
         clearButton.layer.cornerRadius = 5
         clearButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         clearButton.clipsToBounds = true
-        updateTenderView()
+        updateBillView()
         
         
     }
@@ -135,7 +111,7 @@ class OrderItemViewController: UIViewController {
         itemCollectionView.collectionViewLayout = layout
     }
     
-    func updateTenderView() {
+    func updateBillView() {
         let numItems = orderList!.loadedItemCollections[0].items.count
         totalQuantityLabel.text = "\(numItems)"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder())
@@ -155,70 +131,24 @@ extension OrderItemViewController: DetailViewControllerDelegate {
             itemCollectionView.reloadItems(at: [IndexPath.init(row: number, section: 0)])
         }
         itemCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-        updateTenderView()
+        updateBillView()
         if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
             // if cell is visible, light up the cell
             cell.animateSelected()
         }
     }
     
-    func itemWillQuickTender(itemNumber number: Int) {
-        // called when a single template item is tendered
-        let card = UIAlertAction(title: "Card", style: .default) { (action) in
-            let _ = self.orderList!.quickTenderTemplateItem(numbered: number, withPaymentMethod: .card)
-            self.itemCollectionView.reloadSections([1])
-        }
-        let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
-            let _ = self.orderList!.quickTenderTemplateItem(numbered: number, withPaymentMethod: .cash)
-            self.itemCollectionView.reloadSections([1])
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        // Create and configure the alert controller.
-        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.menuItems[number]!.unitPrice))",
-            message: "Select a payment method.",
-            preferredStyle: .alert)
-        alert.addAction(card)
-        alert.addAction(cash)
-        alert.addAction(cancelAction)
-        alert.view.tintColor = .black
-        self.present(alert, animated: true) {
-            // The alert was presented
-        }
-        
+    func itemWillQuickBill(itemNumber number: Int) {
+
     }
     
 }
 
 extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
-    func itemDidGetTendered(sender cell: ItemCollectionViewCell) {
-        // called when a pending item is tendered (A card in the collection view)
-        guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
-
-        let card = UIAlertAction(title: "Card", style: .default) { (action) in
-            let _ = self.orderList!.tender(pendingItem: indexPath.row, withPaymentMethod: .card)
-            self.itemCollectionView.reloadSections([0, 1])
-            self.updateTenderView()
-        }
-        let cash = UIAlertAction(title: "Cash", style: .default) { (action) in
-            let _ = self.orderList!.tender(pendingItem: indexPath.row, withPaymentMethod: .cash)
-            self.itemCollectionView.reloadSections([0, 1])
-            self.updateTenderView()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        // Create and configure the alert controller.
-        let alert = UIAlertController(title: "Tendering: \(Scheme.Util.twoDecimalPriceText(orderList!.getPriceOfPendingItem(withIndex: indexPath.row)))",
-            message: "Select a payment method.",
-            preferredStyle: .alert)
-        alert.addAction(card)
-        alert.addAction(cash)
-        alert.addAction(cancelAction)
-        alert.view.tintColor = .black
-        self.present(alert, animated: true) {
-            // The alert was presented
-        }
+    func itemWillBill(sender cell: ItemCollectionViewCell) {
     }
     
-    func itemDidGetDeleted(sender cell: ItemCollectionViewCell) {
+    func itemWillDelete(sender cell: ItemCollectionViewCell) {
         // do nothing if index path not found (happens when the clear button is pressed before this action)
         // prevents the app from crashing
         guard let indexPath = itemCollectionView.indexPath(for: cell) else { return }
@@ -230,7 +160,7 @@ extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
             itemCollectionView.deleteItems(at: [indexPath])
         }
         
-        updateTenderView()
+        updateBillView()
     }
 }
 

@@ -45,7 +45,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func quickTenderAction(_ sender: Any) {
         if delegate != nil {
-            delegate!.itemWillQuickTender(itemNumber: itemId!)
+            delegate!.itemWillQuickBill(itemNumber: itemId!)
         }
     }
     

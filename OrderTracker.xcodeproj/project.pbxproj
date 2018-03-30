@@ -28,6 +28,12 @@
 		22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F7203BEA4B001F78CA /* OrderList.swift */; };
 		DC25BDBD2063580600B9C8E3 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BDBB2063580600B9C8E3 /* OptionTableViewCell.swift */; };
 		DC25BDBE2063580600B9C8E3 /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */; };
+		DC2B673B206DCD780071F026 /* BillAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6739206DCD780071F026 /* BillAllViewController.swift */; };
+		DC2B673C206DCD780071F026 /* BillAllViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC2B673A206DCD780071F026 /* BillAllViewController.xib */; };
+		DC2B673F206DCDB20071F026 /* SplitBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B673D206DCDB20071F026 /* SplitBillViewController.swift */; };
+		DC2B6740206DCDB20071F026 /* SplitBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC2B673E206DCDB20071F026 /* SplitBillViewController.xib */; };
+		DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6741206DD30A0071F026 /* BillItemViewController.swift */; };
+		DC2B6744206DD30A0071F026 /* BillItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC2B6742206DD30A0071F026 /* BillItemViewController.xib */; };
 		DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */; };
 		DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */; };
 		DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */; };
@@ -80,6 +86,12 @@
 		22F6E9F7203BEA4B001F78CA /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
 		DC25BDBB2063580600B9C8E3 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
+		DC2B6739206DCD780071F026 /* BillAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAllViewController.swift; sourceTree = "<group>"; };
+		DC2B673A206DCD780071F026 /* BillAllViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillAllViewController.xib; sourceTree = "<group>"; };
+		DC2B673D206DCDB20071F026 /* SplitBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillViewController.swift; sourceTree = "<group>"; };
+		DC2B673E206DCDB20071F026 /* SplitBillViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitBillViewController.xib; sourceTree = "<group>"; };
+		DC2B6741206DD30A0071F026 /* BillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemViewController.swift; sourceTree = "<group>"; };
+		DC2B6742206DD30A0071F026 /* BillItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillItemViewController.xib; sourceTree = "<group>"; };
 		DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemPlaceHolderCell.swift; sourceTree = "<group>"; };
 		DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewControllerDataSource.swift; sourceTree = "<group>"; };
@@ -214,6 +226,9 @@
 		DCCB7F792060E40800EA2917 /* OrderItemVC */ = {
 			isa = PBXGroup;
 			children = (
+				DC2B6741206DD30A0071F026 /* BillItemViewController.swift */,
+				DC2B6739206DCD780071F026 /* BillAllViewController.swift */,
+				DC2B673D206DCDB20071F026 /* SplitBillViewController.swift */,
 				040760892054DA3B0002B5E1 /* OrderItemViewController.swift */,
 				DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */,
 			);
@@ -250,6 +265,9 @@
 		DCCB7F7D2060E4F800EA2917 /* xibs */ = {
 			isa = PBXGroup;
 			children = (
+				DC2B6742206DD30A0071F026 /* BillItemViewController.xib */,
+				DC2B673A206DCD780071F026 /* BillAllViewController.xib */,
+				DC2B673E206DCDB20071F026 /* SplitBillViewController.xib */,
 				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
 				DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */,
 			);
@@ -365,8 +383,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */,
+				DC2B6740206DCDB20071F026 /* SplitBillViewController.xib in Resources */,
 				2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */,
 				2223F206203BB8250047E0D9 /* Main.storyboard in Resources */,
+				DC2B6744206DD30A0071F026 /* BillItemViewController.xib in Resources */,
+				DC2B673C206DCD780071F026 /* BillAllViewController.xib in Resources */,
 				DC25BDBE2063580600B9C8E3 /* OptionTableViewCell.xib in Resources */,
 				DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */,
 			);
@@ -403,10 +424,13 @@
 				04481F18205572E700C2CB09 /* RootViewController.swift in Sources */,
 				040760902055049C0002B5E1 /* menuItemCollectionViewCell.swift in Sources */,
 				DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */,
+				DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 				0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */,
+				DC2B673F206DCDB20071F026 /* SplitBillViewController.swift in Sources */,
 				DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */,
+				DC2B673B206DCD780071F026 /* BillAllViewController.swift in Sources */,
 				DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */,
 				04C101C52054D07300255361 /* OrderCollectionViewCell.swift in Sources */,
 				04C101C32054CD9300255361 /* OrderViewController.swift in Sources */,

@@ -9,6 +9,11 @@
 import Foundation
 typealias ItemCollection = (collectionName: String, items: [MenuItem])
 
+enum PaymentMethod {
+    case card
+    case cash
+}
+
 struct Order {
    
     var itemCollections: [ItemCollection] = []
@@ -16,61 +21,23 @@ struct Order {
     var orderTotalPrice: Double = 0
     var orderNumber: Int
     var orderFinished = false
-    
+    var cardSales = 0
+    var cashSales = 0
     
     init(orderNumber number: Int) {
         self.orderNumber = number
         itemCollections.append(("Pending", []))
         itemCollections.append(("Paid", []))
     }
-    
-    mutating func tender(pendingItem index: Int, withPaymentMethod paymentMethod: PaymentStatus) -> Int {
-        var pendingItem = itemCollections[0].items[index]
-        pendingItem.paymentStatus = paymentMethod
-        itemCollections[0].items.remove(at: index)
-        for i in 0..<itemCollections[1].items.count {
-            if pendingItem == itemCollections[1].items[i] {
-                itemCollections[1].items[i].quantity += pendingItem.quantity
-                print(i)
-                return i
-            }
-        }
-        // no match found if reaches this point
-        itemCollections[1].items.append(pendingItem)
-        return itemCollections[1].items.count - 1
-    }
-    
-    mutating func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) -> [Int] {
-        var res: [Int] = []
-        let pendingItems = itemCollections[0].items
-        for i in 0..<pendingItems.count {
-            var item = pendingItems[i]
-            var matchFound = false
-            item.paymentStatus = paymentType
-            for j in 0..<itemCollections[1].items.count {
-                if item == itemCollections[1].items[j] {
-                    itemCollections[1].items[j].quantity += item.quantity
-                    res.append(j)
-                    matchFound = true
-                    break
-                }
-                // no item found if the reaches here
-            }
-            if !matchFound {
-                res.append(itemCollections[1].items.count)
-                itemCollections[1].items.append(item)
-            }
-            
-        }
-        itemCollections[0].items.removeAll()
-        
-        return res
-    }
 }
 
 class OrderList {
     var loadedItemCollections: [ItemCollection] {
         return loadedOrder!.itemCollections
+    }
+    
+    func getPendingItemsInLoadedOrder() -> [MenuItem] {
+        return loadedOrder!.itemCollections[0].items
     }
     
     var allOrders: [Order] = []
@@ -166,30 +133,10 @@ class OrderList {
         return nSelected
     }
     
-    func tender(pendingItem index: Int, withPaymentMethod paymentMethod: PaymentStatus) -> Int {
-        return loadedOrder!.tender(pendingItem: index, withPaymentMethod: paymentMethod)
-    }
-    
-    func quickTenderTemplateItem(numbered number: Int, withPaymentMethod paymentMethod: PaymentStatus) -> Int {
-        var item = menuItems[number]!
-        item.paymentStatus = paymentMethod
-        for i in 0..<loadedOrder!.itemCollections[1].items.count {
-            if item == loadedOrder!.itemCollections[1].items[i] {
-                loadedOrder!.itemCollections[1].items[i].quantity += 1
-                return i
-            }
-        }
-        loadedOrder!.itemCollections[1].items.append(item)
-        return loadedOrder!.itemCollections[1].items.count - 1
-    }
-    
     func discardLastestOrder() {
         allOrders.removeLast()
         currentOrderNumber -= 1
     }
-    
-    func tenderAllPendingItems(withPaymentType paymentType: PaymentStatus) -> [Int] {
-        return loadedOrder!.tenderAllPendingItems(withPaymentType: paymentType)
-    }
+
     
 }

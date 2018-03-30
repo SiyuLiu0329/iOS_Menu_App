@@ -75,7 +75,7 @@
                                 <constraint firstAttribute="height" constant="50" id="rQ7-Cq-QR8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                            <state key="normal" title="Pend"/>
+                            <state key="normal" title="+"/>
                             <connections>
                                 <action selector="addButtonAction:" destination="-1" eventType="touchUpInside" id="NJO-Po-zRa"/>
                             </connections>

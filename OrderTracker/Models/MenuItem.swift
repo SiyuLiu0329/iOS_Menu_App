@@ -18,10 +18,8 @@ enum ItemType {
 }
 
 enum PaymentStatus {
-    case cash
-    case card
+    case paid
     case notPaid
-    
 }
 
 struct MenuItem: Equatable {
@@ -35,9 +33,9 @@ struct MenuItem: Equatable {
         for i in 0 ..< lhs.options.count {
             guard lhs.options[i] == rhs.options[i] else { return false }
         }
-        
         return true
     }
+    
     var colour: UIColor = .darkGray
     var number: Int
     var unitPrice: Double
