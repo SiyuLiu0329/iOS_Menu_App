@@ -29,6 +29,8 @@ class OrderItemViewController: UIViewController {
     @IBAction func billButtonPressed(_ sender: Any) {
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
+        billVC.totalPrice = orderList!.getTotalPriceOfPendingItemsInLoadedOrder()
+        billVC.numberOfItems = orderList!.getNumberOfPendingItemsInLoadedOrder()
         present(billVC, animated: true, completion: nil)
 
     }

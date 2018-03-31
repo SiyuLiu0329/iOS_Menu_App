@@ -23,6 +23,13 @@ struct Order {
     var orderFinished = false
     var cardSales = 0
     var cashSales = 0
+    var numberOfItemsInOrder: Int {
+        var num = 0
+        for item in itemCollections[0].items {
+            num += item.quantity
+        }
+        return num
+    }
     
     init(orderNumber number: Int) {
         self.orderNumber = number
@@ -108,6 +115,10 @@ class OrderList {
     
     func clearPendingItemsLoadedOrder() {
         loadedOrder!.itemCollections[0].items = []
+    }
+    
+    func getNumberOfPendingItemsInLoadedOrder() -> Int {
+        return loadedOrder!.numberOfItemsInOrder
     }
     
     func pendItemToLoadedOrder(number itemNumber: Int) -> Int? {

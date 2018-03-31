@@ -9,27 +9,16 @@
 import UIKit
 
 class BillAllViewController: UIViewController {
-
+    @IBOutlet weak var numberOfItemsLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    var price: Double!
+    var numberOfItems: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(price)
+        numberOfItemsLabel.text = "\(numberOfItems!) items"
+        print(numberOfItems)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
