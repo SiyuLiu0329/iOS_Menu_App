@@ -22,8 +22,8 @@ struct Order {
     var orderTotalPrice: Double = 0
     var orderNumber: Int
     var orderFinished = false
-    var cardSales = 0
-    var cashSales = 0
+    var cardSales: Double = 0
+    var cashSales: Double = 0
     var numberOfItemsInOrder: Int {
         var num = 0
         for item in itemCollections[0].items {
@@ -143,6 +143,38 @@ class OrderList {
             }
         }
         return nSelected
+    }
+    
+    func billAllPendingItems(withPaymentMethod method: PaymentMethod) {
+        for var item in loadedOrder!.itemCollections[0].items {
+            item.paymentStatus = .paid
+            if method == .card {
+                loadedOrder!.cardSales += item.totalPrice
+            } else if method == .cash {
+                loadedOrder!.cashSales += item.totalPrice
+            }
+            
+            if loadedOrder!.itemCollections[1].items.isEmpty {
+                loadedOrder!.itemCollections[1].items.append(item)
+                continue
+            }
+            
+            var matchFound = false
+            for i in 0..<loadedOrder!.itemCollections[1].items.count {
+                if item == loadedOrder!.itemCollections[1].items[i] {
+                    loadedOrder!.itemCollections[1].items[i].quantity += item.quantity
+                    matchFound = true
+                    break
+                }
+                
+            }
+            
+            if !matchFound {
+                loadedOrder!.itemCollections[1].items.append(item)
+            }
+        }
+        loadedOrder!.itemCollections[0].items.removeAll()
+        print(loadedOrder!.cardSales, loadedOrder!.cashSales)
     }
     
     func discardLastestOrder() {

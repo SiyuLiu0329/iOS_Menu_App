@@ -250,13 +250,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cWb-85-HZ4">
                                     <size key="itemSize" width="316" height="236"/>
-                                    <size key="headerReferenceSize" width="50" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="LmP-F6-jdw" customClass="ItemCollectionViewCell" customModule="OrderTracker" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="80" width="316" height="236"/>
+                                        <rect key="frame" x="2" y="0.0" width="316" height="236"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
@@ -323,9 +323,24 @@
                                                         <action selector="tenderButtonPressed:" destination="LmP-F6-jdw" eventType="touchUpInside" id="qGg-gd-cwd"/>
                                                     </connections>
                                                 </button>
-                                                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-bY-8WO">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-bY-8WO">
                                                     <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBA-dF-VBF">
+                                                            <rect key="frame" x="228" y="156" width="80" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="aM8-Du-0c4"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="vqg-T9-1VJ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="lBA-dF-VBF" secondAttribute="bottom" constant="40" id="HRP-cR-tA2"/>
+                                                        <constraint firstItem="lBA-dF-VBF" firstAttribute="centerX" secondItem="pXb-bY-8WO" secondAttribute="centerX" constant="110" id="hHE-J1-5Zv"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                         </view>
@@ -358,12 +373,13 @@
                                             <outlet property="itemStatusOverlay" destination="pXb-bY-8WO" id="RcD-Op-s2R"/>
                                             <outlet property="label" destination="3fr-yg-xyg" id="HAV-YM-IxO"/>
                                             <outlet property="optionLabel" destination="lrk-kg-95c" id="QG1-Nc-YhM"/>
+                                            <outlet property="paidLabel" destination="lBA-dF-VBF" id="ePb-qU-O3Q"/>
                                             <outlet property="quantityLabel" destination="0Av-pg-hqA" id="iIe-gK-V7M"/>
                                             <outlet property="tenderButton" destination="168-E5-DZP" id="dVu-9k-o5c"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeholder" id="0Sc-7d-z9N" customClass="OrderItemPlaceHolderCell" customModule="OrderTracker" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="326" width="316" height="236"/>
+                                        <rect key="frame" x="2" y="246" width="316" height="236"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
@@ -386,27 +402,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="orderHeaderView" id="0ot-Jx-YdY" customClass="ItemCollectionViewHeaderView" customModule="OrderTracker" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buc-yS-hqW">
-                                            <rect key="frame" x="8" y="0.0" width="304" height="80"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                            <color key="textColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Buc-yS-hqW" secondAttribute="bottom" id="D6T-5d-Ld2"/>
-                                        <constraint firstItem="Buc-yS-hqW" firstAttribute="top" secondItem="0ot-Jx-YdY" secondAttribute="top" id="XLd-0X-Tg5"/>
-                                        <constraint firstAttribute="trailing" secondItem="Buc-yS-hqW" secondAttribute="trailing" constant="8" id="oSM-0B-ghW"/>
-                                        <constraint firstItem="Buc-yS-hqW" firstAttribute="leading" secondItem="0ot-Jx-YdY" secondAttribute="leading" constant="8" id="yIK-Rg-YDr"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="headerTitleLabel" destination="Buc-yS-hqW" id="rvU-DU-vgo"/>
-                                    </connections>
-                                </collectionReusableView>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFL-Qg-9Ya">
                                 <rect key="frame" x="0.0" y="648" width="320" height="120"/>

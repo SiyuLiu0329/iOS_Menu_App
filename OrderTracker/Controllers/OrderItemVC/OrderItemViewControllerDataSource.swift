@@ -16,8 +16,7 @@ protocol OrderItemCollectionViewCellDelegate: class {
 
 
 class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
-    var headerHeight:CGFloat = 25
-
+    
     var orderList: OrderList
     weak var delegate: OrderItemCollectionViewCellDelegate?
     init(data orderList: OrderList) {
@@ -57,26 +56,6 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "orderHeaderView", for: indexPath) as! ItemCollectionViewHeaderView
-            
-            //do other header related calls or settups
-            reusableview.configureHeader(title: orderList.loadedItemCollections[indexPath.section].collectionName)
-            return reusableview
-            
-            
-        default:  fatalError("Unexpected element kind")
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: headerHeight)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if orderList.loadedItemCollections[indexPath.section].items.isEmpty {
             // if the list is empty, use the placeholder cell
@@ -90,6 +69,12 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return orderList.loadedItemCollections.count
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(5)
+    }
+    
 }
 
 extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {

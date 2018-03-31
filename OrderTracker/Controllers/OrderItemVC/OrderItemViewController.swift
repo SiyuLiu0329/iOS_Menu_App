@@ -27,6 +27,7 @@ class OrderItemViewController: UIViewController {
     }
     
     @IBAction func billButtonPressed(_ sender: Any) {
+        itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
         billVC.totalPrice = orderList!.getTotalPriceOfPendingItemsInLoadedOrder()
@@ -59,7 +60,6 @@ class OrderItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layoutCollectionView()
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderList!)
         collectionViewDataSource.delegate = self
         itemCollectionView.dataSource = collectionViewDataSource
@@ -106,13 +106,7 @@ class OrderItemViewController: UIViewController {
         orderList?.saveLoadedOrder(withIndex: orderId!)
         orderList!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
     }
-    
-    private func layoutCollectionView() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 5
-        layout.sectionHeadersPinToVisibleBounds = true
-        itemCollectionView.collectionViewLayout = layout
-    }
+
     
     func updateBillView() {
         let numItems = orderList!.loadedItemCollections[0].items.count
@@ -133,7 +127,7 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         } else {
             itemCollectionView.reloadItems(at: [IndexPath.init(row: number, section: 0)])
         }
-        itemCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        itemCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         updateBillView()
         if let cell = itemCollectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell {
             // if cell is visible, light up the cell
@@ -169,7 +163,14 @@ extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
 
 extension OrderItemViewController: BillItemViewControllerDelegate {
     func billItemViewControllerDidReturn(withBillingMode mode: BillingMode, paymentMethod method: PaymentMethod) {
-        print(mode, method)
+        switch mode {
+        case .billAll:
+            orderList!.billAllPendingItems(withPaymentMethod: method)
+            itemCollectionView.reloadSections([0, 1])
+            updateBillView()
+        case .splitBill:
+            break
+        }
     }
     
 }

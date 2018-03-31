@@ -37,6 +37,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private var displacement: CGFloat = 0 // distance the view has been slid
     private var item: MenuItem! // item used to configure the view
     
+    @IBOutlet weak var paidLabel: UILabel!
     func configure(usingItem item: MenuItem) {
         contentView.frame = bounds
         label.text = item.name
@@ -47,7 +48,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
         itemNumberLabel.text = "\(item.number)"
         
-        itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.4 : 0
+        itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.7 : 0
         
         var optionText = ""
         for option in item.options {
@@ -97,6 +98,14 @@ class ItemCollectionViewCell: UICollectionViewCell {
         itemNumberLabel.backgroundColor = .white
         itemNumberLabel.layer.cornerRadius = 20
         itemNumberLabel.clipsToBounds = true
+        
+        paidLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+        paidLabel.layer.cornerRadius = 5
+        paidLabel.layer.borderColor = UIColor.red.cgColor
+        paidLabel.layer.borderWidth = 2
+        paidLabel.clipsToBounds = true
+        paidLabel.alpha = 0.7
+        paidLabel.textColor = .red
         
     }
     

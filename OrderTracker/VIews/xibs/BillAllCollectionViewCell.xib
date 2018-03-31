@@ -80,12 +80,12 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwR-2E-RgN">
-                        <rect key="frame" x="8" y="324" width="120" height="40"/>
+                        <rect key="frame" x="8" y="8" width="120" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="dzY-EE-Ati"/>
                             <constraint firstAttribute="width" constant="120" id="xBm-8n-mqS"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                         <state key="normal" title="Cancel">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -99,7 +99,7 @@
                             <constraint firstAttribute="height" constant="40" id="fyF-fN-tlD"/>
                             <constraint firstAttribute="width" constant="120" id="xrO-k7-ZNR"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                         <state key="normal" title="Confirm">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -115,10 +115,10 @@
                 <constraint firstItem="ccZ-jW-hAI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="8tF-ta-W6V"/>
                 <constraint firstAttribute="bottom" secondItem="Nie-bE-noV" secondAttribute="bottom" constant="8" id="EHm-Tg-iag"/>
                 <constraint firstItem="ccZ-jW-hAI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UqK-NJ-vRp"/>
-                <constraint firstAttribute="bottom" secondItem="zwR-2E-RgN" secondAttribute="bottom" constant="8" id="Xv5-MY-wvq"/>
                 <constraint firstAttribute="trailing" secondItem="ww1-Ik-4aS" secondAttribute="trailing" id="aGE-Ph-i35"/>
                 <constraint firstItem="ww1-Ik-4aS" firstAttribute="leading" secondItem="ccZ-jW-hAI" secondAttribute="trailing" id="c1G-nn-u6I"/>
                 <constraint firstAttribute="trailing" secondItem="Nie-bE-noV" secondAttribute="trailing" constant="8" id="eey-T1-jz8"/>
+                <constraint firstItem="zwR-2E-RgN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="etg-RM-gLR"/>
                 <constraint firstItem="zwR-2E-RgN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="omh-fB-UWf"/>
                 <constraint firstAttribute="bottom" secondItem="ccZ-jW-hAI" secondAttribute="bottom" constant="1" id="qV6-1X-G5G"/>
                 <constraint firstAttribute="bottom" secondItem="ww1-Ik-4aS" secondAttribute="bottom" constant="1" id="zpO-YF-rn1"/>
