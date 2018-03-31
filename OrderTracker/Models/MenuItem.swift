@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-enum ItemType {
+enum ItemType: Int, Codable {
+    
     // different options for each type
     case type1
     case type1veg
@@ -17,12 +18,12 @@ enum ItemType {
     case type3
 }
 
-enum PaymentStatus {
+enum PaymentStatus: Int, Codable {
     case paid
     case notPaid
 }
 
-struct MenuItem: Equatable {
+struct MenuItem: Equatable, Codable {
     static func ==(lhs: MenuItem, rhs: MenuItem) -> Bool {
         guard lhs.number == rhs.number else { return false }
         guard lhs.unitPrice == rhs.unitPrice else { return false }
@@ -36,7 +37,18 @@ struct MenuItem: Equatable {
         return true
     }
     
-    var colour: UIColor = .darkGray
+    struct themeColour: Codable {
+        var r: Double
+        var g: Double
+        var b: Double
+        init(red r: Double, green g: Double, blue b: Double) {
+            self.r = r
+            self.g = g
+            self.b = b
+        }
+    }
+    
+    var colour: themeColour
     var number: Int
     var unitPrice: Double
     var name: String
@@ -60,10 +72,9 @@ struct MenuItem: Equatable {
         self.imageURL = imageName
         self.quantity = 1
         self.itemType = type
+        let rgb = Scheme.getColour(withSeed: number)
+        colour = themeColour(red: rgb.r, green: rgb.g, blue: rgb.b)
         addDefaultOptions()
-        
-        //tmp
-        colour = Scheme.getColour(withSeed: number)
     }
     
     mutating private func addDefaultOptions() {

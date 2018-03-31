@@ -74,7 +74,8 @@ class MenuItemExpandedViewController: UIViewController {
         contentView.layer.cornerRadius = 5
         contentView.clipsToBounds = true
         
-        themeColour = Scheme.getColour(withSeed: itemId!)
+        let rgb = Scheme.getColour(withSeed: itemId!)
+        themeColour = UIColor(red: CGFloat(rgb.r), green:  CGFloat(rgb.g), blue:  CGFloat(rgb.b), alpha: 1)
         
         // configure nav bar (tint, text and text colour)
         navBar.barTintColor = themeColour

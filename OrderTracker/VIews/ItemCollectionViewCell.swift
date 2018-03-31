@@ -41,8 +41,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     func configure(usingItem item: MenuItem) {
         contentView.frame = bounds
         label.text = item.name
-        contentView.backgroundColor = item.colour
-        itemNumberLabel.textColor = item.colour
+        contentView.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
+        itemNumberLabel.textColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         self.item = item
         quantityLabel.text = "\(item.quantity) × \(Scheme.Util.twoDecimalPriceText(item.unitPrice))"
         tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
@@ -70,7 +70,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
             self.contentView.backgroundColor = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
         }
         UIView.animate(withDuration: 0.5) {
-            self.contentView.backgroundColor = self.item.colour
+            self.contentView.backgroundColor = UIColor(red: CGFloat(self.item.colour.r), green: CGFloat(self.item.colour.g), blue: CGFloat(self.item.colour.b), alpha: 1)
         }
     }
     

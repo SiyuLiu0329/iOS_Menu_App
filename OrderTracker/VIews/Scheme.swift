@@ -23,26 +23,43 @@ struct Scheme {
         ]
     }
     
-    static func getColour(withSeed number: Int) -> UIColor {
-        var colour: UIColor
+    static func getColour(withSeed number: Int) -> (r: Double, g: Double, b: Double) {
         let nColour = 7
+        var r: Double = 0
+        var g: Double = 0
+        var b: Double = 0
         if number % nColour == 0 {
-            colour = UIColor.darkGray
+            r = 50
+            g = 50
+            b = 50
         } else if number % nColour == 1 {
-            colour = UIColor(red: 104/255, green: 81/255, blue: 116/255, alpha: 1)
+            r = 104
+            g = 81
+            b = 116
         } else if number % nColour == 2 {
-            colour = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+            r = 34
+            g = 139
+            b = 34
         } else if number % nColour == 3 {
-            colour = UIColor(red: 24/255, green: 61/255, blue: 97/255, alpha: 1)
+            r = 24
+            g = 61
+            b = 97
         } else if number % nColour == 4 {
-            colour = UIColor(red: 152/255, green: 80/255, blue: 60/255, alpha: 1)
+            r = 152
+            g = 80
+            b = 60
         } else if number % nColour == 5 {
-            colour = UIColor(red: 78/255, green: 97/255, blue: 114/255, alpha: 1)
+            r = 78
+            g = 97
+            b = 114
         } else {
-            colour = UIColor(red: 88/255, green: 35/255, blue: 53/255, alpha: 1)
+            r = 88
+            g = 35
+            b = 53
+            
         }
         
-        return colour
+        return (r/255, g/255, b/255)
     }
     
     struct Util {

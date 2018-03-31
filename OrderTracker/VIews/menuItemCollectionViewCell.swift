@@ -35,10 +35,10 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 5
         clipsToBounds = true
         itemImageView.image = UIImage(named: item.imageURL)
-        backgroundColor = item.colour
+        backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         itemName.text = item.name
         itemNumber.text = "\(item.number)"
-        itemNumber.textColor = item.colour
+        itemNumber.textColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         tenderButton.setTitle(Scheme.Util.twoDecimalPriceText(item.unitPrice), for: .normal)
     }
     
