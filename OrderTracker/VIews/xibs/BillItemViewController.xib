@@ -12,8 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillItemViewController" customModule="OrderTracker" customModuleProvider="target">
             <connections>
-                <outlet property="containerView" destination="3ky-ap-7aC" id="RME-EJ-bdd"/>
                 <outlet property="numberOfItemsLabel" destination="lEA-mq-3A1" id="PZQ-uV-BQd"/>
+                <outlet property="toolbar" destination="PJV-J4-onK" id="axI-qY-1B8"/>
                 <outlet property="totalPriceLabel" destination="Qo7-j9-gqz" id="OH9-iY-Lv6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,42 +23,8 @@
             <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJV-J4-onK">
-                    <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Jzn-5B-tfq"/>
-                    </constraints>
-                    <items>
-                        <barButtonItem systemItem="stop" id="MGg-YW-zun">
-                            <color key="tintColor" red="0.46898614900000002" green="0.46898614900000002" blue="0.46898614900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <action selector="dismissAction:" destination="-1" id="kDB-SS-pna"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="g24-D2-CQQ"/>
-                        <barButtonItem style="plain" id="Az0-XX-6vJ">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Yu6-hA-tVv">
-                                <rect key="frame" x="150.5" y="6.5" width="239" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Bill All"/>
-                                    <segment title="Split Bill"/>
-                                </segments>
-                                <color key="tintColor" red="0.46898614900000002" green="0.46898614900000002" blue="0.46898614900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="segmentedControlAction:" destination="-1" eventType="valueChanged" id="dkS-63-zzu"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="M3L-Kl-ZG0"/>
-                    </items>
-                </toolbar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ky-ap-7aC">
-                    <rect key="frame" x="0.0" y="194" width="540" height="426"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v85-aF-tTU">
-                    <rect key="frame" x="0.0" y="44" width="540" height="150"/>
+                    <rect key="frame" x="0.0" y="0.0" width="540" height="150"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xbc-dk-Xku">
                             <rect key="frame" x="108.5" y="15.5" width="324.5" height="119.5"/>
@@ -80,23 +46,75 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="DlF-XY-kIA"/>
-                        <constraint firstAttribute="height" constant="150" id="HFt-ea-Ago"/>
+                        <constraint firstAttribute="height" constant="150" id="Gjv-NS-cRJ"/>
                         <constraint firstItem="lEA-mq-3A1" firstAttribute="centerY" secondItem="v85-aF-tTU" secondAttribute="centerY" constant="55" id="Ue7-oC-bp4"/>
                         <constraint firstItem="Xbc-dk-Xku" firstAttribute="centerX" secondItem="v85-aF-tTU" secondAttribute="centerX" id="b6j-ye-FFk"/>
                         <constraint firstItem="lEA-mq-3A1" firstAttribute="centerX" secondItem="v85-aF-tTU" secondAttribute="centerX" id="ehP-i0-qfc"/>
                         <constraint firstItem="Xbc-dk-Xku" firstAttribute="centerY" secondItem="v85-aF-tTU" secondAttribute="centerY" id="qAo-d3-42H"/>
                     </constraints>
                 </view>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJV-J4-onK">
+                    <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Jzn-5B-tfq"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="stop" id="MGg-YW-zun">
+                            <color key="tintColor" red="0.46898614900000002" green="0.46898614900000002" blue="0.46898614900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="dismissAction:" destination="-1" id="kDB-SS-pna"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mb-mJ-ib4">
+                    <rect key="frame" x="0.0" y="532" width="540" height="88"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zIa-dl-0iz">
+                            <rect key="frame" x="170.5" y="9" width="200" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="BzR-Iy-hg1"/>
+                                <constraint firstAttribute="width" constant="200" id="CyP-sz-F8D"/>
+                            </constraints>
+                            <segments>
+                                <segment title="Bill All"/>
+                                <segment title="Split Bill"/>
+                            </segments>
+                            <color key="tintColor" red="0.46898614900000002" green="0.46898614900000002" blue="0.46898614900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="segmentedControlAction:" destination="-1" eventType="valueChanged" id="5aB-Jd-5T7"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="zIa-dl-0iz" firstAttribute="centerY" secondItem="5mb-mJ-ib4" secondAttribute="centerY" constant="-20" id="1IN-Sc-sCs"/>
+                        <constraint firstItem="zIa-dl-0iz" firstAttribute="centerX" secondItem="5mb-mJ-ib4" secondAttribute="centerX" id="WQv-ko-uaZ"/>
+                        <constraint firstAttribute="height" constant="88" id="yqS-Ky-UqF"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-FU-z5m">
+                    <rect key="frame" x="0.0" y="151" width="540" height="380"/>
+                    <color key="backgroundColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qq6-pw-eAY">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="3ky-ap-7aC" firstAttribute="top" secondItem="v85-aF-tTU" secondAttribute="bottom" id="JDS-RF-apR"/>
+                <constraint firstItem="5mb-mJ-ib4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ASr-ZY-H4R"/>
+                <constraint firstItem="v85-aF-tTU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JIP-mr-yVE"/>
+                <constraint firstItem="wuk-FU-z5m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Pg1-ng-QF9"/>
+                <constraint firstAttribute="trailing" secondItem="5mb-mJ-ib4" secondAttribute="trailing" id="R7M-Cg-Tx9"/>
+                <constraint firstItem="wuk-FU-z5m" firstAttribute="top" secondItem="v85-aF-tTU" secondAttribute="bottom" constant="1" id="RPD-oT-QDA"/>
                 <constraint firstAttribute="trailing" secondItem="PJV-J4-onK" secondAttribute="trailing" id="SAi-wT-FMX"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3ky-ap-7aC" secondAttribute="bottom" id="Tg5-EB-IQi"/>
-                <constraint firstItem="v85-aF-tTU" firstAttribute="top" secondItem="PJV-J4-onK" secondAttribute="bottom" id="Xd9-LJ-VhP"/>
-                <constraint firstItem="3ky-ap-7aC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eeN-MT-DtC"/>
-                <constraint firstItem="3ky-ap-7aC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="l9T-qk-yNH"/>
+                <constraint firstItem="5mb-mJ-ib4" firstAttribute="top" secondItem="wuk-FU-z5m" secondAttribute="bottom" constant="1" id="VYC-5l-41s"/>
+                <constraint firstItem="5mb-mJ-ib4" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="WgJ-Qh-CPU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wuk-FU-z5m" secondAttribute="trailing" id="hJn-Vf-4gj"/>
                 <constraint firstItem="PJV-J4-onK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="oJQ-qI-v4H"/>
                 <constraint firstItem="v85-aF-tTU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pmh-kM-Xit"/>
                 <constraint firstItem="v85-aF-tTU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pqk-Pt-VMh"/>
