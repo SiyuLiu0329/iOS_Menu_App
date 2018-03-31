@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillItemViewController" customModule="OrderTracker" customModuleProvider="target">
             <connections>
+                <outlet property="billingOptionCollectionView" destination="wuk-FU-z5m" id="wBd-cq-Xfl"/>
                 <outlet property="numberOfItemsLabel" destination="lEA-mq-3A1" id="PZQ-uV-BQd"/>
                 <outlet property="toolbar" destination="PJV-J4-onK" id="axI-qY-1B8"/>
                 <outlet property="totalPriceLabel" destination="Qo7-j9-gqz" id="OH9-iY-Lv6"/>
@@ -93,10 +94,10 @@
                         <constraint firstAttribute="height" constant="88" id="yqS-Ky-UqF"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-FU-z5m">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-FU-z5m">
                     <rect key="frame" x="0.0" y="151" width="540" height="380"/>
                     <color key="backgroundColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qq6-pw-eAY">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qq6-pw-eAY">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>

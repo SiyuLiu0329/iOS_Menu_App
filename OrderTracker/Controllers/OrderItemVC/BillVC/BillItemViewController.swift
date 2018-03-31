@@ -12,17 +12,21 @@ class BillItemViewController: UIViewController {
     var itemsToBill: [MenuItem]!
     var totalPrice: Double!
     var numberOfItems: Int!
+    private var collectionViewDataSource: UICollectionViewDataSource!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var numberOfItemsLabel: UILabel!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var billingOptionCollectionView: UICollectionView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView)
+        billingOptionCollectionView.dataSource = collectionViewDataSource
+        billingOptionCollectionView.delegate = self
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
         numberOfItemsLabel.text =  "\(numberOfItems!) items"
-        self.toolbar.setBackgroundImage(UIImage(),
-                                        forToolbarPosition: .any,
-                                        barMetrics: .default)
+        self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         self.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
     }
     
@@ -32,6 +36,21 @@ class BillItemViewController: UIViewController {
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
-        print(sender.selectedSegmentIndex)
+        billingOptionCollectionView.scrollToItem(at: IndexPath(item: sender.selectedSegmentIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
+}
+
+extension BillItemViewController: UICollectionViewDelegate {
+}
+
+extension BillItemViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.billingOptionCollectionView.frame.width, height: self.billingOptionCollectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    
 }
