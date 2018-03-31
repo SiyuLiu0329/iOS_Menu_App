@@ -12,6 +12,7 @@ typealias ItemCollection = (collectionName: String, items: [MenuItem])
 enum PaymentMethod {
     case card
     case cash
+    case mix
 }
 
 struct Order {

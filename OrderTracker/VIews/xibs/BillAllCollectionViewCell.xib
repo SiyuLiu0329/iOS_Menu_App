@@ -20,20 +20,20 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccZ-jW-hAI">
-                        <rect key="frame" x="0.0" y="1" width="189" height="370"/>
+                        <rect key="frame" x="0.0" y="1" width="190" height="370"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OsD-b6-VUy">
-                                <rect key="frame" x="34.5" y="109" width="120" height="152"/>
+                                <rect key="frame" x="35.5" y="109" width="120.5" height="152"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lXk-Tq-HJe">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120.5" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="eVv-w3-Ev4"/>
                                             <constraint firstAttribute="width" constant="120" id="leZ-aC-Vut"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lU-Gr-VjW">
-                                        <rect key="frame" x="0.0" y="128" width="120" height="24"/>
+                                        <rect key="frame" x="0.0" y="128" width="120.5" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="IJB-6p-utD"/>
                                         </constraints>
@@ -51,7 +51,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ww1-Ik-4aS">
-                        <rect key="frame" x="189.5" y="1" width="270" height="370"/>
+                        <rect key="frame" x="190" y="1" width="270" height="370"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dYh-yD-Zm3">
                                 <rect key="frame" x="75" y="106" width="120" height="158"/>
@@ -112,14 +112,13 @@
             <color key="backgroundColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="ww1-Ik-4aS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="1H4-fh-SRd"/>
-                <constraint firstItem="ww1-Ik-4aS" firstAttribute="leading" secondItem="ccZ-jW-hAI" secondAttribute="trailing" constant="0.5" id="63m-Tv-apv"/>
                 <constraint firstItem="ccZ-jW-hAI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="8tF-ta-W6V"/>
                 <constraint firstAttribute="bottom" secondItem="Nie-bE-noV" secondAttribute="bottom" constant="8" id="EHm-Tg-iag"/>
                 <constraint firstItem="ccZ-jW-hAI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UqK-NJ-vRp"/>
                 <constraint firstAttribute="bottom" secondItem="zwR-2E-RgN" secondAttribute="bottom" constant="8" id="Xv5-MY-wvq"/>
                 <constraint firstAttribute="trailing" secondItem="ww1-Ik-4aS" secondAttribute="trailing" id="aGE-Ph-i35"/>
+                <constraint firstItem="ww1-Ik-4aS" firstAttribute="leading" secondItem="ccZ-jW-hAI" secondAttribute="trailing" id="c1G-nn-u6I"/>
                 <constraint firstAttribute="trailing" secondItem="Nie-bE-noV" secondAttribute="trailing" constant="8" id="eey-T1-jz8"/>
-                <constraint firstItem="ww1-Ik-4aS" firstAttribute="leading" secondItem="ccZ-jW-hAI" secondAttribute="trailing" constant="0.5" id="fpo-BF-Oua"/>
                 <constraint firstItem="zwR-2E-RgN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="omh-fB-UWf"/>
                 <constraint firstAttribute="bottom" secondItem="ccZ-jW-hAI" secondAttribute="bottom" constant="1" id="qV6-1X-G5G"/>
                 <constraint firstAttribute="bottom" secondItem="ww1-Ik-4aS" secondAttribute="bottom" constant="1" id="zpO-YF-rn1"/>
@@ -127,6 +126,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="460" height="372"/>
             <connections>
+                <outlet property="cancelButton" destination="zwR-2E-RgN" id="N1h-hJ-cyU"/>
                 <outlet property="cardImageView" destination="3jN-u4-G9a" id="J2N-kF-qXF"/>
                 <outlet property="cardLabel" destination="rCW-8i-vPv" id="59R-MZ-AAs"/>
                 <outlet property="cardView" destination="ww1-Ik-4aS" id="VSp-Di-37f"/>
@@ -134,6 +134,7 @@
                 <outlet property="cashImageView" destination="lXk-Tq-HJe" id="g2W-xy-Ku8"/>
                 <outlet property="cashLabel" destination="9lU-Gr-VjW" id="bSo-Io-8QO"/>
                 <outlet property="cashView" destination="ccZ-jW-hAI" id="CHe-7N-BRa"/>
+                <outlet property="confirmButton" destination="Nie-bE-noV" id="0aJ-A1-Xci"/>
             </connections>
             <point key="canvasLocation" x="-14" y="136"/>
         </collectionViewCell>

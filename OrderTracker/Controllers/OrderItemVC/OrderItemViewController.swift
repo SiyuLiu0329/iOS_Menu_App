@@ -31,6 +31,7 @@ class OrderItemViewController: UIViewController {
         billVC.modalPresentationStyle = .formSheet
         billVC.totalPrice = orderList!.getTotalPriceOfPendingItemsInLoadedOrder()
         billVC.numberOfItems = orderList!.getNumberOfPendingItemsInLoadedOrder()
+        billVC.delegate = self // get billing info when this VC is dismissed
         present(billVC, animated: true, completion: nil)
 
     }
@@ -164,6 +165,13 @@ extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
         
         updateBillView()
     }
+}
+
+extension OrderItemViewController: BillItemViewControllerDelegate {
+    func billItemViewControllerDidReturn(withBillingMode mode: BillingMode, paymentMethod method: PaymentMethod) {
+        print(mode, method)
+    }
+    
 }
 
 

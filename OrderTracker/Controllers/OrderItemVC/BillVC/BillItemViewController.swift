@@ -8,11 +8,21 @@
 
 import UIKit
 
+enum BillingMode {
+    case billAll
+    case splitBill
+}
+
+protocol BillItemViewControllerDelegate: class {
+    func billItemViewControllerDidReturn(withBillingMode mode: BillingMode, paymentMethod method: PaymentMethod)
+}
+
 class BillItemViewController: UIViewController {
     var itemsToBill: [MenuItem]!
     var totalPrice: Double!
     var numberOfItems: Int!
-    private var collectionViewDataSource: UICollectionViewDataSource!
+    weak var delegate: BillItemViewControllerDelegate?
+    private var collectionViewDataSource: BillCollectionViewDataSource!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var numberOfItemsLabel: UILabel!
@@ -23,6 +33,7 @@ class BillItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView)
+        collectionViewDataSource.cellDelegate = self
         billingOptionCollectionView.dataSource = collectionViewDataSource
         billingOptionCollectionView.delegate = self
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
@@ -61,6 +72,14 @@ extension BillItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
-    
+}
+
+extension BillItemViewController: BillCellDelegate {
+    func billAllCellDidConfirm(paymentMethod method: PaymentMethod) {
+        if delegate != nil {
+            // get information from cell and pass it onto orderItemVC
+            delegate!.billItemViewControllerDidReturn(withBillingMode: .billAll, paymentMethod: method)
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }

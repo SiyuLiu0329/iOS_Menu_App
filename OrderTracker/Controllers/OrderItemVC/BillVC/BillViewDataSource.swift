@@ -11,6 +11,7 @@ import UIKit
 
 class BillCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     weak var collectionView: UICollectionView?
+    weak var cellDelegate: BillCellDelegate?
     
     init(forCollectionView collectionView: UICollectionView) {
         super.init()
@@ -30,6 +31,7 @@ class BillCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "billAllCell", for: indexPath) as! BillAllCollectionViewCell
+            cell.delegate = cellDelegate
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "splitBillCell", for: indexPath) as! SplitBillCollectionViewCell
