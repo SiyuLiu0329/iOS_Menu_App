@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="billingOptionCollectionView" destination="wuk-FU-z5m" id="wBd-cq-Xfl"/>
                 <outlet property="numberOfItemsLabel" destination="lEA-mq-3A1" id="PZQ-uV-BQd"/>
+                <outlet property="segmentedControl" destination="zIa-dl-0iz" id="CW4-Sh-3H9"/>
                 <outlet property="toolbar" destination="PJV-J4-onK" id="axI-qY-1B8"/>
                 <outlet property="totalPriceLabel" destination="Qo7-j9-gqz" id="OH9-iY-Lv6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

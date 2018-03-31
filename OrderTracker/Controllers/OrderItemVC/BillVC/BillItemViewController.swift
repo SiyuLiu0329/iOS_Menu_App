@@ -13,6 +13,7 @@ class BillItemViewController: UIViewController {
     var totalPrice: Double!
     var numberOfItems: Int!
     private var collectionViewDataSource: UICollectionViewDataSource!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var numberOfItemsLabel: UILabel!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -28,6 +29,8 @@ class BillItemViewController: UIViewController {
         numberOfItemsLabel.text =  "\(numberOfItems!) items"
         self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         self.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+//        self.billingOptionCollectionView.bounces = false
+//        billingOptionCollectionView.isScrollEnabled = false
     }
     
     
@@ -36,16 +39,21 @@ class BillItemViewController: UIViewController {
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
-        billingOptionCollectionView.scrollToItem(at: IndexPath(item: sender.selectedSegmentIndex, section: 0), at: .centeredHorizontally, animated: true)
+        
     }
+    
 }
 
 extension BillItemViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        segmentedControl.selectedSegmentIndex = scrollView.contentOffset.x == 0 ? 0 : 1
+    }
 }
 
 extension BillItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.billingOptionCollectionView.frame.width, height: self.billingOptionCollectionView.frame.height)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
