@@ -38,7 +38,7 @@
 		DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */; };
 		DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */; };
 		DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */; };
-		DC4F70F4206FB61400A00FA1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4F70F3206FB61400A00FA1 /* DataManager.swift */; };
+		DC4F70F6206FC02000A00FA1 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4F70F5206FC02000A00FA1 /* Order.swift */; };
 		DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */; };
 		DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */; };
 		DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */; };
@@ -97,7 +97,7 @@
 		DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
-		DC4F70F3206FB61400A00FA1 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DC4F70F5206FC02000A00FA1 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemExpandedViewController.swift; sourceTree = "<group>"; };
 		DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemExpandedViewController.xib; sourceTree = "<group>"; };
 		DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -204,9 +204,9 @@
 		22D4194B203EE59500674660 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DC4F70F3206FB61400A00FA1 /* DataManager.swift */,
 				22F6E9F5203BD9E5001F78CA /* MenuItem.swift */,
 				22F6E9F7203BEA4B001F78CA /* OrderList.swift */,
+				DC4F70F5206FC02000A00FA1 /* Order.swift */,
 				22D41949203EE58800674660 /* Option.swift */,
 				222AEA36204044C700F81074 /* Data */,
 			);
@@ -437,6 +437,7 @@
 				DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				DC06E2A1206F27330063642A /* BillAllCollectionViewCell.swift in Sources */,
+				DC4F70F6206FC02000A00FA1 /* Order.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 				0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */,
 				DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */,
@@ -450,7 +451,6 @@
 				04076096205563AF0002B5E1 /* TabBarController.swift in Sources */,
 				0407609220555EBF0002B5E1 /* Scheme.swift in Sources */,
 				DC25BDBD2063580600B9C8E3 /* OptionTableViewCell.swift in Sources */,
-				DC4F70F4206FB61400A00FA1 /* DataManager.swift in Sources */,
 				DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

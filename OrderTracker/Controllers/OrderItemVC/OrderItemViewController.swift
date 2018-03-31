@@ -109,7 +109,7 @@ class OrderItemViewController: UIViewController {
 
     
     func updateBillView() {
-        let numItems = orderList!.loadedItemCollections[0].items.count
+        let numItems = orderList!.loadedItemCollections[0].count
         totalQuantityLabel.text = "\(orderList!.getNumberOfPendingItemsInLoadedOrder())"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder())
         UIView.animate(withDuration: 0.3) {
@@ -122,7 +122,7 @@ class OrderItemViewController: UIViewController {
 extension OrderItemViewController: DetailViewControllerDelegate {
     func itemAdded(toIndex number: Int) {
         let indexPath = IndexPath.init(row: number, section: 0)
-        if number == orderList!.loadedItemCollections[0].items.count - 1 && number != itemCollectionView.numberOfItems(inSection: 0) - 1 {
+        if number == orderList!.loadedItemCollections[0].count - 1 && number != itemCollectionView.numberOfItems(inSection: 0) - 1 {
             itemCollectionView.insertItems(at: [indexPath])
         } else {
             itemCollectionView.reloadItems(at: [IndexPath.init(row: number, section: 0)])
@@ -196,7 +196,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
         let inserted = insertRes.1
         let paidIndexPath = IndexPath(item: insertIndex, section: 1)
         itemCollectionView.performBatchUpdates({
-            let count = orderList!.loadedItemCollections[1].items.count
+            let count = orderList!.loadedItemCollections[1].count
             if count == 1 && insertIndex == 0 || !inserted {
                 self.itemCollectionView.reloadItems(at: [paidIndexPath])
             } else {
@@ -217,7 +217,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
             } else {
                 self.itemCollectionView.deleteItems(at: [pendingIndexPath])
             }
-            let count = orderList!.loadedItemCollections[1].items.count
+            let count = orderList!.loadedItemCollections[1].count
             if count == 1 && insertIndex == 0 || !inserted {
                 self.itemCollectionView.reloadItems(at: [paidIndexPath])
             } else {

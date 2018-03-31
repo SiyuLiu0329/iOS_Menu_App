@@ -24,16 +24,16 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let num = orderList.loadedItemCollections[section].items.count
+        let num = orderList.loadedItemCollections[section].count
         if num == 0 {
             return 1 // this is for a place holder cell
         }
-        return orderList.loadedItemCollections[section].items.count
+        return orderList.loadedItemCollections[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let items = orderList.loadedItemCollections[indexPath.section].items
+        let items = orderList.loadedItemCollections[indexPath.section]
         if items.isEmpty {
             let cell: OrderItemPlaceHolderCell
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "placeholder", for: indexPath) as! OrderItemPlaceHolderCell
@@ -57,7 +57,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if orderList.loadedItemCollections[indexPath.section].items.isEmpty {
+        if orderList.loadedItemCollections[indexPath.section].isEmpty {
             // if the list is empty, use the placeholder cell
             return CGSize(width: collectionView.frame.width - 10, height: 0 * 22 + 65 + 40)
         }

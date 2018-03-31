@@ -7,7 +7,6 @@
 //
 
 import Foundation
-typealias ItemCollection = (collectionName: String, items: [MenuItem])
 
 enum PaymentMethod {
     case card
@@ -15,47 +14,25 @@ enum PaymentMethod {
     case mix
 }
 
-struct Order {
-   
-    var itemCollections: [ItemCollection] = []
-    var tableNumber = 0
-    var orderTotalPrice: Double = 0
-    var orderNumber: Int
-    var orderFinished = false
-    var cardSales: Double = 0
-    var cashSales: Double = 0
-    var numberOfItemsInOrder: Int {
-        var num = 0
-        for item in itemCollections[0].items {
-            num += item.quantity
-        }
-        return num
-    }
-    
-    init(orderNumber number: Int) {
-        self.orderNumber = number
-        itemCollections.append(("Pending", []))
-        itemCollections.append(("Paid", []))
-    }
-}
+
 
 class OrderList {
-    var loadedItemCollections: [ItemCollection] {
+    var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
     }
     
     func getPendingItemsInLoadedOrder() -> [MenuItem] {
-        return loadedOrder!.itemCollections[0].items
+        return loadedOrder!.itemCollections[0]
     }
     
     var allOrders: [Order] = []
     
     var isLatestOrderEmpty: Bool {
-        return allOrders.last!.itemCollections[0].items.isEmpty
+        return allOrders.last!.itemCollections[0].isEmpty
     }
     
     var isLoadedOrderEmpty: Bool {
-        return loadedOrder!.itemCollections[0].items.isEmpty
+        return loadedOrder!.itemCollections[0].isEmpty
     }
     
     var menuItems: [Int: MenuItem] = [:]
@@ -69,14 +46,14 @@ class OrderList {
     
     func getTotalPriceOfPendingItemsInLoadedOrder() -> Double {
         var totalPrice: Double = 0
-        for item in loadedOrder!.itemCollections[0].items {
+        for item in loadedOrder!.itemCollections[0] {
             totalPrice += item.totalPrice
         }
         return totalPrice
     }
     
     func getPriceOfPendingItem(withIndex index: Int) -> Double {
-        return loadedOrder!.itemCollections[0].items[index].totalPrice
+        return loadedOrder!.itemCollections[0][index].totalPrice
     }
 
     func resetTamplateItem(itemNumber number: Int) {
@@ -111,11 +88,11 @@ class OrderList {
     
     
     func deletePendingItemInLoadedOrder(withIndex index: Int) {
-        loadedOrder!.itemCollections[0].items.remove(at: index)
+        loadedOrder!.itemCollections[0].remove(at: index)
     }
     
     func clearPendingItemsLoadedOrder() {
-        loadedOrder!.itemCollections[0].items = []
+        loadedOrder!.itemCollections[0] = []
     }
     
     func getNumberOfPendingItemsInLoadedOrder() -> Int {
@@ -124,19 +101,19 @@ class OrderList {
     
     func pendItemToLoadedOrder(number itemNumber: Int) -> Int? {
         guard let item = menuItems[itemNumber] else { return nil }
-        for i in 0 ..< loadedOrder!.itemCollections[0].items.count {
-            if item == loadedOrder!.itemCollections[0].items[i] {
-                loadedOrder!.itemCollections[0].items[i].quantity += 1
+        for i in 0 ..< loadedOrder!.itemCollections[0].count {
+            if item == loadedOrder!.itemCollections[0][i] {
+                loadedOrder!.itemCollections[0][i].quantity += 1
                 return i
             }
         }
-        loadedOrder!.itemCollections[0].items.append(item)
-        return loadedOrder!.itemCollections[0].items.count - 1
+        loadedOrder!.itemCollections[0].append(item)
+        return loadedOrder!.itemCollections[0].count - 1
     }
     
     func getNumberOfSelectedOptions(inCollection collectionIndex: Int, forItem index: Int) -> Int {
         var nSelected = 0
-        let item = loadedOrder!.itemCollections[collectionIndex].items[index]
+        let item = loadedOrder!.itemCollections[collectionIndex][index]
         for option in item.options {
             if option.value {
                 nSelected += 1
@@ -146,7 +123,7 @@ class OrderList {
     }
     
     func billAllPendingItems(withPaymentMethod method: PaymentMethod) {
-        for var item in loadedOrder!.itemCollections[0].items {
+        for var item in loadedOrder!.itemCollections[0] {
             item.paymentStatus = .paid
             if method == .card {
                 loadedOrder!.cardSales += item.totalPrice
@@ -154,15 +131,15 @@ class OrderList {
                 loadedOrder!.cashSales += item.totalPrice
             }
             
-            if loadedOrder!.itemCollections[1].items.isEmpty {
-                loadedOrder!.itemCollections[1].items.append(item)
+            if loadedOrder!.itemCollections[1].isEmpty {
+                loadedOrder!.itemCollections[1].append(item)
                 continue
             }
             
             var matchFound = false
-            for i in 0..<loadedOrder!.itemCollections[1].items.count {
-                if item == loadedOrder!.itemCollections[1].items[i] {
-                    loadedOrder!.itemCollections[1].items[i].quantity += item.quantity
+            for i in 0..<loadedOrder!.itemCollections[1].count {
+                if item == loadedOrder!.itemCollections[1][i] {
+                    loadedOrder!.itemCollections[1][i].quantity += item.quantity
                     matchFound = true
                     break
                 }
@@ -170,16 +147,16 @@ class OrderList {
             }
             
             if !matchFound {
-                loadedOrder!.itemCollections[1].items.append(item)
+                loadedOrder!.itemCollections[1].append(item)
             }
         }
-        loadedOrder!.itemCollections[0].items.removeAll()
+        loadedOrder!.itemCollections[0].removeAll()
         print(loadedOrder!.cardSales, loadedOrder!.cashSales)
     }
     
     func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> (Int, Bool) {
-        var item = loadedOrder!.itemCollections[0].items[index]
-        loadedOrder!.itemCollections[0].items.remove(at: index)
+        var item = loadedOrder!.itemCollections[0][index]
+        loadedOrder!.itemCollections[0].remove(at: index)
         item.paymentStatus = .paid
         
         if method == .card {
@@ -190,13 +167,13 @@ class OrderList {
             fatalError()
         }
         // move this item to paid items
-        for i in 0..<loadedOrder!.itemCollections[1].items.count {
-            if item == loadedOrder!.itemCollections[1].items[i] {
-                loadedOrder!.itemCollections[1].items[i].quantity += item.quantity
+        for i in 0..<loadedOrder!.itemCollections[1].count {
+            if item == loadedOrder!.itemCollections[1][i] {
+                loadedOrder!.itemCollections[1][i].quantity += item.quantity
                 return (i, false)
             }
         }
-        loadedOrder!.itemCollections[1].items.insert(item, at: 0)
+        loadedOrder!.itemCollections[1].insert(item, at: 0)
         
         return (0, true)
     }
@@ -212,13 +189,13 @@ class OrderList {
             fatalError()
         }
         
-        for i in 0..<loadedOrder!.itemCollections[1].items.count {
-            if item == loadedOrder!.itemCollections[1].items[i] {
-                loadedOrder!.itemCollections[1].items[i].quantity += item.quantity
+        for i in 0..<loadedOrder!.itemCollections[1].count {
+            if item == loadedOrder!.itemCollections[1][i] {
+                loadedOrder!.itemCollections[1][i].quantity += item.quantity
                 return (i, false)
             }
         }
-        loadedOrder!.itemCollections[1].items.insert(item, at: 0)
+        loadedOrder!.itemCollections[1].insert(item, at: 0)
         
         return (0, true)
     }
