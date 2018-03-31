@@ -8,17 +8,10 @@
 
 import UIKit
 
-class BillAllViewController: UIViewController {
-    @IBOutlet weak var numberOfItemsLabel: UILabel!
-    @IBOutlet weak var totalPriceLabel: UILabel!
-    var price: Double!
-    var numberOfItems: Int!
+class BillAllViewController: UIViewController {    var price: Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(price)
-        numberOfItemsLabel.text = "\(numberOfItems!) items"
-        print(numberOfItems)
     }
 
 }

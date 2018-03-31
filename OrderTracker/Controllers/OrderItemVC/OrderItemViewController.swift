@@ -115,7 +115,7 @@ class OrderItemViewController: UIViewController {
     
     func updateBillView() {
         let numItems = orderList!.loadedItemCollections[0].items.count
-        totalQuantityLabel.text = "\(numItems)"
+        totalQuantityLabel.text = "\(orderList!.getNumberOfPendingItemsInLoadedOrder())"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderList!.getTotalPriceOfPendingItemsInLoadedOrder())
         UIView.animate(withDuration: 0.3) {
             self.buttonDisabledBackgroundView.alpha = numItems == 0 ? 1 : 0

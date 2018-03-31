@@ -14,9 +14,13 @@ class BillItemViewController: UIViewController {
     var totalPrice: Double!
     var numberOfItems: Int!
     @IBOutlet weak var bottomBar: UIToolbar!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var numberOfItemsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
+        numberOfItemsLabel.text =  "\(numberOfItems!) items"
         views = []
         views.append(createBillAllView())
         views.append(SplitBillViewController().view)
@@ -29,8 +33,6 @@ class BillItemViewController: UIViewController {
     
     func createBillAllView() -> UIView {
         let billAllViewVC = BillAllViewController()
-        billAllViewVC.numberOfItems = numberOfItems
-        billAllViewVC.price = totalPrice
         billAllViewVC.view.frame = containerView.bounds
         return billAllViewVC.view
     }

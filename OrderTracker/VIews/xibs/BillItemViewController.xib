@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillItemViewController" customModule="OrderTracker" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="3ky-ap-7aC" id="RME-EJ-bdd"/>
+                <outlet property="numberOfItemsLabel" destination="lEA-mq-3A1" id="PZQ-uV-BQd"/>
+                <outlet property="totalPriceLabel" destination="Qo7-j9-gqz" id="OH9-iY-Lv6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,19 +54,52 @@
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ky-ap-7aC">
-                    <rect key="frame" x="0.0" y="44" width="540" height="576"/>
+                    <rect key="frame" x="0.0" y="194" width="540" height="426"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v85-aF-tTU">
+                    <rect key="frame" x="0.0" y="44" width="540" height="150"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xbc-dk-Xku">
+                            <rect key="frame" x="108.5" y="15.5" width="324.5" height="119.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qo7-j9-gqz">
+                                    <rect key="frame" x="0.0" y="0.0" width="324.5" height="119.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEA-mq-3A1">
+                            <rect key="frame" x="241" y="121" width="58" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="DlF-XY-kIA"/>
+                        <constraint firstAttribute="height" constant="150" id="HFt-ea-Ago"/>
+                        <constraint firstItem="lEA-mq-3A1" firstAttribute="centerY" secondItem="v85-aF-tTU" secondAttribute="centerY" constant="55" id="Ue7-oC-bp4"/>
+                        <constraint firstItem="Xbc-dk-Xku" firstAttribute="centerX" secondItem="v85-aF-tTU" secondAttribute="centerX" id="b6j-ye-FFk"/>
+                        <constraint firstItem="lEA-mq-3A1" firstAttribute="centerX" secondItem="v85-aF-tTU" secondAttribute="centerX" id="ehP-i0-qfc"/>
+                        <constraint firstItem="Xbc-dk-Xku" firstAttribute="centerY" secondItem="v85-aF-tTU" secondAttribute="centerY" id="qAo-d3-42H"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="3ky-ap-7aC" firstAttribute="top" secondItem="PJV-J4-onK" secondAttribute="bottom" id="MZA-VQ-Ykb"/>
+                <constraint firstItem="3ky-ap-7aC" firstAttribute="top" secondItem="v85-aF-tTU" secondAttribute="bottom" id="JDS-RF-apR"/>
                 <constraint firstAttribute="trailing" secondItem="PJV-J4-onK" secondAttribute="trailing" id="SAi-wT-FMX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3ky-ap-7aC" secondAttribute="bottom" id="Tg5-EB-IQi"/>
-                <constraint firstItem="3ky-ap-7aC" firstAttribute="top" secondItem="PJV-J4-onK" secondAttribute="bottom" id="UFt-Th-uET"/>
+                <constraint firstItem="v85-aF-tTU" firstAttribute="top" secondItem="PJV-J4-onK" secondAttribute="bottom" id="Xd9-LJ-VhP"/>
                 <constraint firstItem="3ky-ap-7aC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eeN-MT-DtC"/>
                 <constraint firstItem="3ky-ap-7aC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="l9T-qk-yNH"/>
                 <constraint firstItem="PJV-J4-onK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="oJQ-qI-v4H"/>
+                <constraint firstItem="v85-aF-tTU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pmh-kM-Xit"/>
+                <constraint firstItem="v85-aF-tTU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pqk-Pt-VMh"/>
                 <constraint firstItem="PJV-J4-onK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tGs-Bh-GOU"/>
             </constraints>
             <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
