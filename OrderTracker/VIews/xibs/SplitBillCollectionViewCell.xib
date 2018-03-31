@@ -18,8 +18,20 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="388" height="242"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7c-hb-z2M">
+                        <rect key="frame" x="0.5" y="1" width="386.5" height="240"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
             </view>
-            <color key="backgroundColor" red="0.10940515839999999" green="0.69357189119999996" blue="0.15205268620000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.83393377589999995" green="0.83393377589999995" blue="0.83393377589999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="N7c-hb-z2M" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="0.5" id="31g-cA-jBi"/>
+                <constraint firstAttribute="trailing" secondItem="N7c-hb-z2M" secondAttribute="trailing" constant="1" id="BTy-hy-fkQ"/>
+                <constraint firstItem="N7c-hb-z2M" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="P2n-EE-cRD"/>
+                <constraint firstAttribute="bottom" secondItem="N7c-hb-z2M" secondAttribute="bottom" constant="1" id="TZ0-Sk-bLB"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="388" height="242"/>
             <point key="canvasLocation" x="203" y="150"/>

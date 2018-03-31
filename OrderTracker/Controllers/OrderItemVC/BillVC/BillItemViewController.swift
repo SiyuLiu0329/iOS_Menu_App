@@ -26,10 +26,12 @@ class BillItemViewController: UIViewController {
         billingOptionCollectionView.dataSource = collectionViewDataSource
         billingOptionCollectionView.delegate = self
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
-        numberOfItemsLabel.text =  "\(numberOfItems!) items"
-        self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        self.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-//        self.billingOptionCollectionView.bounces = false
+        let unit = numberOfItems == 1 ? "item" : "items"
+        numberOfItemsLabel.text =  "\(numberOfItems!) " + unit
+        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        billingOptionCollectionView.showsHorizontalScrollIndicator = false
+        self.billingOptionCollectionView.bounces = false
 //        billingOptionCollectionView.isScrollEnabled = false
     }
     
@@ -39,7 +41,7 @@ class BillItemViewController: UIViewController {
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
-        
+        billingOptionCollectionView.scrollToItem(at: IndexPath(row: segmentedControl.selectedSegmentIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
     
 }
