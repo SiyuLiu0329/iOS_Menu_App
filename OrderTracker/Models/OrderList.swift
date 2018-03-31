@@ -177,6 +177,52 @@ class OrderList {
         print(loadedOrder!.cardSales, loadedOrder!.cashSales)
     }
     
+    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> (Int, Bool) {
+        var item = loadedOrder!.itemCollections[0].items[index]
+        loadedOrder!.itemCollections[0].items.remove(at: index)
+        item.paymentStatus = .paid
+        
+        if method == .card {
+            loadedOrder!.cardSales += item.totalPrice
+        } else if method == .cash {
+            loadedOrder!.cashSales += item.totalPrice
+        } else {
+            fatalError()
+        }
+        // move this item to paid items
+        for i in 0..<loadedOrder!.itemCollections[1].items.count {
+            if item == loadedOrder!.itemCollections[1].items[i] {
+                loadedOrder!.itemCollections[1].items[i].quantity += item.quantity
+                return (i, false)
+            }
+        }
+        loadedOrder!.itemCollections[1].items.insert(item, at: 0)
+        
+        return (0, true)
+    }
+    
+    func quickBillTemplateItem(withNumber number: Int, withPaymentMethod method: PaymentMethod)  -> (Int, Bool) {
+        var item = menuItems[number]!
+        item.paymentStatus = .paid
+        if method == .card {
+            loadedOrder!.cardSales += item.totalPrice
+        } else if method == .cash {
+            loadedOrder!.cashSales += item.totalPrice
+        } else {
+            fatalError()
+        }
+        
+        for i in 0..<loadedOrder!.itemCollections[1].items.count {
+            if item == loadedOrder!.itemCollections[1].items[i] {
+                loadedOrder!.itemCollections[1].items[i].quantity += item.quantity
+                return (i, false)
+            }
+        }
+        loadedOrder!.itemCollections[1].items.insert(item, at: 0)
+        
+        return (0, true)
+    }
+    
     func discardLastestOrder() {
         allOrders.removeLast()
         currentOrderNumber -= 1

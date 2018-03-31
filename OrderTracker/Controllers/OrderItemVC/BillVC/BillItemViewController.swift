@@ -15,14 +15,31 @@ enum BillingMode {
 
 protocol BillItemViewControllerDelegate: class {
     func billItemViewControllerDidReturn(withBillingMode mode: BillingMode, paymentMethod method: PaymentMethod)
+    func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod)
+    func quickBill(templateItemNumbered number: Int, paymentMethod method: PaymentMethod)
 }
 
 class BillItemViewController: UIViewController {
-    var itemsToBill: [MenuItem]!
     var totalPrice: Double!
     var numberOfItems: Int!
+    var isQuickBill = false // bill all pending items if this is false
+    var pendingItemQuickBillIndex: Int? {
+        willSet {
+            if templateItemQuickBillNumber != nil && newValue != nil {
+                fatalError()
+            }
+        }
+    } // use this number to quick bill a item in pending items
+    var templateItemQuickBillNumber: Int? {
+        willSet {
+            if pendingItemQuickBillIndex != nil && newValue != nil {
+                fatalError()
+            }
+        }
+    }// use this number to quick bill a item in the template item
     weak var delegate: BillItemViewControllerDelegate?
     private var collectionViewDataSource: BillCollectionViewDataSource!
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var numberOfItemsLabel: UILabel!
@@ -78,7 +95,20 @@ extension BillItemViewController: BillCellDelegate {
     func billAllCellDidConfirm(paymentMethod method: PaymentMethod) {
         if delegate != nil {
             // get information from cell and pass it onto orderItemVC
-            delegate!.billItemViewControllerDidReturn(withBillingMode: .billAll, paymentMethod: method)
+            if !isQuickBill {
+                delegate!.billItemViewControllerDidReturn(withBillingMode: .billAll, paymentMethod: method)
+                
+            } else {
+                
+                if let index = pendingItemQuickBillIndex {
+                    delegate!.quickBill(itemInPendingItems: index, paymentMethod: method)
+                }
+                
+                if let number = templateItemQuickBillNumber {
+                    delegate!.quickBill(templateItemNumbered: number, paymentMethod: method)
+                }
+                
+            }
         }
         dismiss(animated: true, completion: nil)
     }

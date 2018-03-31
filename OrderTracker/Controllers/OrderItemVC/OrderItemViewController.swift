@@ -136,13 +136,30 @@ extension OrderItemViewController: DetailViewControllerDelegate {
     }
     
     func itemWillQuickBill(itemNumber number: Int) {
-
+        let billVC = BillItemViewController()
+        billVC.modalPresentationStyle = .formSheet
+        billVC.totalPrice = orderList!.menuItems[number]!.unitPrice
+        billVC.numberOfItems = 1
+        billVC.delegate = self // get billing info when this VC is dismissed
+        billVC.isQuickBill = true
+        billVC.templateItemQuickBillNumber = number
+        present(billVC, animated: true, completion: nil)
+        
     }
     
 }
 
 extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
     func itemWillBill(sender cell: ItemCollectionViewCell) {
+        let indexPath = itemCollectionView.indexPath(for: cell)!
+        let billVC = BillItemViewController()
+        billVC.modalPresentationStyle = .formSheet
+        billVC.totalPrice = orderList!.getPriceOfPendingItem(withIndex: indexPath.row)
+        billVC.numberOfItems = 1
+        billVC.delegate = self // get billing info when this VC is dismissed
+        billVC.isQuickBill = true
+        billVC.pendingItemQuickBillIndex = indexPath.row
+        present(billVC, animated: true, completion: nil)
     }
     
     func itemWillDelete(sender cell: ItemCollectionViewCell) {
@@ -171,6 +188,42 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
         case .splitBill:
             break
         }
+    }
+    
+    func quickBill(templateItemNumbered number: Int, paymentMethod method: PaymentMethod) {
+        let insertRes = orderList!.quickBillTemplateItem(withNumber: number, withPaymentMethod: method)
+        let insertIndex = insertRes.0
+        let inserted = insertRes.1
+        let paidIndexPath = IndexPath(item: insertIndex, section: 1)
+        itemCollectionView.performBatchUpdates({
+            let count = orderList!.loadedItemCollections[1].items.count
+            if count == 1 && insertIndex == 0 || !inserted {
+                self.itemCollectionView.reloadItems(at: [paidIndexPath])
+            } else {
+                self.itemCollectionView.insertItems(at: [paidIndexPath])
+            }
+        }, completion: nil)
+    }
+    
+    func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod) {
+        let pendingIndexPath = IndexPath(item: index, section: 0)
+        let insertRes = orderList!.quickBillPendingItem(withIndex: index, withPaymentMethod: method)
+        let insertIndex = insertRes.0
+        let inserted = insertRes.1
+        let paidIndexPath = IndexPath(item: insertIndex, section: 1)
+        itemCollectionView.performBatchUpdates({
+            if self.itemCollectionView.numberOfItems(inSection: 0) == 1 {
+                self.itemCollectionView.reloadItems(at: [pendingIndexPath])
+            } else {
+                self.itemCollectionView.deleteItems(at: [pendingIndexPath])
+            }
+            let count = orderList!.loadedItemCollections[1].items.count
+            if count == 1 && insertIndex == 0 || !inserted {
+                self.itemCollectionView.reloadItems(at: [paidIndexPath])
+            } else {
+                self.itemCollectionView.insertItems(at: [paidIndexPath])
+            }
+        }, completion: nil)
     }
     
 }

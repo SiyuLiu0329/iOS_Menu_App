@@ -78,12 +78,12 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
 }
 
 extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {
-    // delegate cell button actions from the data source to view controllers
-    func itemWillTender(_ cell: ItemCollectionViewCell) {
+    func itemVillQuickBill(_ cell: ItemCollectionViewCell) {
         if delegate != nil {
             delegate!.itemWillBill(sender: cell)
         }
     }
+
     
     func itemWillBeRemoved(_ cell: ItemCollectionViewCell) {
         if delegate != nil {

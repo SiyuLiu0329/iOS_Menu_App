@@ -10,14 +10,14 @@ import UIKit
 
 protocol ItemCollectionViewCellDelegate: class {
     func itemWillBeRemoved(_ cell: ItemCollectionViewCell)
-    func itemWillTender(_ cell: ItemCollectionViewCell)
+    func itemVillQuickBill(_ cell: ItemCollectionViewCell)
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemStatusOverlay: UIView!
     @IBAction func tenderButtonPressed(_ sender: Any) {
         if delegate != nil {
-            delegate!.itemWillTender(self)
+            delegate!.itemVillQuickBill(self)
         }
     }
     @IBAction func showItemDetailPressed(_ sender: Any) {
