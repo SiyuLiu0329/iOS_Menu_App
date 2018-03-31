@@ -14,8 +14,6 @@ enum PaymentMethod {
     case mix
 }
 
-
-
 class OrderList {
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
@@ -36,12 +34,34 @@ class OrderList {
     }
     
     var menuItems: [Int: MenuItem] = [:]
+
     var currentOrderNumber = 1
     private var loadedOrder: Order?
     // Order
     
     init() {
         resetTamplateItem(itemNumber: 0)
+        loadData()
+        
+    }
+    
+    private func loadData() {
+        allOrders.removeAll()
+        currentOrderNumber = 1
+        let fileManager = FileManager()
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let decoer = JSONDecoder()
+        do {
+            let files = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            for file in files {
+                print(file)
+                let json = try Data.init(contentsOf: file)
+                allOrders.append(try decoer.decode(Order.self, from: json))
+                currentOrderNumber += 1
+            }
+        } catch let error {
+            print(error)
+        }
     }
     
     func getTotalPriceOfPendingItemsInLoadedOrder() -> Double {
@@ -83,7 +103,20 @@ class OrderList {
     
     func saveLoadedOrder(withIndex index: Int) {
         guard let order = loadedOrder else { return }
-        allOrders[index] = order
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let fileManager = FileManager()
+        var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            url = url.appendingPathComponent("\(order.orderNumber)" + ".json")
+            let data = try encoder.encode(order)
+            try data.write(to: url)
+        } catch let error {
+            fatalError("\(error)")
+        }
+        
+//        allOrders[index] = order
+        loadData()
     }
     
     
