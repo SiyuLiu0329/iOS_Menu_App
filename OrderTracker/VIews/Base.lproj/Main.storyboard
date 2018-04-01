@@ -321,7 +321,7 @@
                                         </view>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="168-E5-DZP" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" constant="236" id="3Vu-yd-IfT"/>
+                                            <constraint firstItem="168-E5-DZP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="LmP-F6-jdw" secondAttribute="leading" constant="236" id="3Vu-yd-IfT"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" constant="50" id="3bd-7c-Q1s"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1at-r5-B0f" secondAttribute="trailing" constant="20" id="6uj-tr-2ED"/>
                                             <constraint firstItem="pXb-bY-8WO" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" id="8o6-mx-2kN"/>
@@ -527,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6t-Nn-wZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798" y="45"/>
+            <point key="canvasLocation" x="2069" y="88"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="i9A-L1-UwA">
