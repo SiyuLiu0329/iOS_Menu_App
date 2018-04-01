@@ -12,14 +12,18 @@ import UIKit
 class BillCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     weak var collectionView: UICollectionView?
     weak var cellDelegate: BillCellDelegate?
+    var sBCVCCDataSource: SplitBillCellCollectionViewDataSource
     
-    init(forCollectionView collectionView: UICollectionView) {
+    var model: BillModel
+    
+    init(forCollectionView collectionView: UICollectionView, billModel model: BillModel) {
+        self.model = model
+        sBCVCCDataSource = SplitBillCellCollectionViewDataSource(billModel: model)
         super.init()
         let billAllCellNib = UINib(nibName: "BillAllCollectionViewCell", bundle: Bundle.main)
         collectionView.register(billAllCellNib, forCellWithReuseIdentifier: "billAllCell")
         let splitBillNib = UINib(nibName: "SplitBillCollectionViewCell", bundle: Bundle.main)
         collectionView.register(splitBillNib, forCellWithReuseIdentifier: "splitBillCell")
-        
         self.collectionView = collectionView
     }
     
@@ -35,6 +39,9 @@ class BillCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "splitBillCell", for: indexPath) as! SplitBillCollectionViewCell
+            cell.delegate = cellDelegate
+            cell.collectionView.delegate = sBCVCCDataSource
+            cell.collectionView.dataSource = sBCVCCDataSource
             return cell
         default:
             fatalError()

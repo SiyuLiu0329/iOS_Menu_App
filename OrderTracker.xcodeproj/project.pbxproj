@@ -30,6 +30,9 @@
 		DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */; };
 		DC06E2A6206F27600063642A /* SplitBillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */; };
 		DC06E2A9206F27C90063642A /* BillViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A8206F27C90063642A /* BillViewDataSource.swift */; };
+		DC19272820707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */; };
+		DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */; };
+		DC19272C20707E7B0047C46E /* SBCVCCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */; };
 		DC25BDBD2063580600B9C8E3 /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BDBB2063580600B9C8E3 /* OptionTableViewCell.swift */; };
 		DC25BDBE2063580600B9C8E3 /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */; };
 		DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6741206DD30A0071F026 /* BillItemViewController.swift */; };
@@ -90,6 +93,9 @@
 		DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitBillCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC06E2A8206F27C90063642A /* BillViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewDataSource.swift; sourceTree = "<group>"; };
+		DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCellCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBCVCCollectionViewCell.swift; sourceTree = "<group>"; };
+		DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SBCVCCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC25BDBB2063580600B9C8E3 /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
 		DC2B6741206DD30A0071F026 /* BillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 				DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */,
 				DC06E29F206F27330063642A /* BillAllCollectionViewCell.swift */,
 				DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */,
+				DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */,
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				04C101C42054D07300255361 /* OrderCollectionViewCell.swift */,
 				DC25BDBB2063580600B9C8E3 /* OptionTableViewCell.swift */,
@@ -235,6 +242,7 @@
 			children = (
 				DC2B6741206DD30A0071F026 /* BillItemViewController.swift */,
 				DC06E2A8206F27C90063642A /* BillViewDataSource.swift */,
+				DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */,
 			);
 			path = BillVC;
 			sourceTree = "<group>";
@@ -282,6 +290,7 @@
 				DC2B6742206DD30A0071F026 /* BillItemViewController.xib */,
 				DC06E2A0206F27330063642A /* BillAllCollectionViewCell.xib */,
 				DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */,
+				DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */,
 				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
 				DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */,
 			);
@@ -404,6 +413,7 @@
 				DC25BDBE2063580600B9C8E3 /* OptionTableViewCell.xib in Resources */,
 				DC06E2A6206F27600063642A /* SplitBillCollectionViewCell.xib in Resources */,
 				DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */,
+				DC19272C20707E7B0047C46E /* SBCVCCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +444,7 @@
 				04C101C12054CCB400255361 /* DetailViewController.swift in Sources */,
 				22D4194A203EE58800674660 /* Option.swift in Sources */,
 				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
+				DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */,
 				DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */,
 				04481F18205572E700C2CB09 /* RootViewController.swift in Sources */,
 				040760902055049C0002B5E1 /* menuItemCollectionViewCell.swift in Sources */,
@@ -441,6 +452,7 @@
 				DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				DC06E2A1206F27330063642A /* BillAllCollectionViewCell.swift in Sources */,
+				DC19272820707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift in Sources */,
 				DC4F70F6206FC02000A00FA1 /* Order.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 				0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */,

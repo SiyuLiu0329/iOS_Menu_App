@@ -50,7 +50,8 @@ class BillItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView)
+        model = BillModel(totalPrice: totalPrice, numberOfItems: numberOfItems)
+        collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView, billModel: model)
         collectionViewDataSource.cellDelegate = self
         billingOptionCollectionView.dataSource = collectionViewDataSource
         billingOptionCollectionView.delegate = self
@@ -62,7 +63,6 @@ class BillItemViewController: UIViewController {
         billingOptionCollectionView.showsHorizontalScrollIndicator = false
         self.billingOptionCollectionView.bounces = false
         // instanciate model here
-        model = BillModel(totalPrice: totalPrice, numberOfItems: numberOfItems)
 //        billingOptionCollectionView.isScrollEnabled = false
     }
     

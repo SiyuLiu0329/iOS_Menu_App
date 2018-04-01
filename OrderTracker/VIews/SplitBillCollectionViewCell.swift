@@ -29,6 +29,7 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
 
     }
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cardLabel: UILabel!
@@ -70,6 +71,10 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
         
         cardViewTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.tapped(sender:)))
         cardView.addGestureRecognizer(cardViewTapGestureRecogniser)
+        
+        let collectionViewCellNib = UINib(nibName: "SBCVCCollectionViewCell", bundle: Bundle.main)
+        collectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "SBCVCCell")
+        collectionView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         
     }
     
