@@ -11,7 +11,7 @@ import UIKit
 
 protocol OrderItemCollectionViewCellDelegate: class {
     func itemWillDelete(sender cell: ItemCollectionViewCell)
-    func itemWillBill(sender cell: ItemCollectionViewCell)
+    func willBillPendingItem(sender cell: ItemCollectionViewCell)
 }
 
 
@@ -81,7 +81,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
 extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {
     func itemVillQuickBill(_ cell: ItemCollectionViewCell) {
         if delegate != nil {
-            delegate!.itemWillBill(sender: cell)
+            delegate!.willBillPendingItem(sender: cell)
         }
     }
 

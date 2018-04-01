@@ -9,8 +9,8 @@
 import UIKit
 
 protocol DetailViewControllerDelegate: class {
-    func itemAdded(toIndex number: Int)
-    func itemWillQuickBill(itemNumber number: Int)
+    func itemAddedToPendingList(toIndex number: Int)
+    func willBillTemplateItem(itemNumber number: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -91,7 +91,7 @@ extension DetailViewController: ItemCellDelegate {
     func quickTenderItem(atCell cell: MenuItemCollectionViewCell) {
         guard let indexPath = itemsCollectionView.indexPath(for: cell) else { return }
         if delegate != nil {
-            delegate!.itemWillQuickBill(itemNumber: indexPath.row + 1)
+            delegate!.willBillTemplateItem(itemNumber: indexPath.row + 1)
         }
     }
     
@@ -99,7 +99,7 @@ extension DetailViewController: ItemCellDelegate {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         let number = orderList?.pendItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
-            delegate!.itemAdded(toIndex: number!)
+            delegate!.itemAddedToPendingList(toIndex: number!)
         }
 
     }

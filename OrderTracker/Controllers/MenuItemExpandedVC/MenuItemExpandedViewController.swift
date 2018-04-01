@@ -30,7 +30,7 @@ class MenuItemExpandedViewController: UIViewController {
     @IBAction func addButtonAction(_ sender: Any) {
         let number = orderList?.pendItemToLoadedOrder(number: itemId!)
         if delegate != nil {
-            delegate!.itemAdded(toIndex: number!)
+            delegate!.itemAddedToPendingList(toIndex: number!)
         }
     }
     
@@ -45,7 +45,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func quickTenderAction(_ sender: Any) {
         if delegate != nil {
-            delegate!.itemWillQuickBill(itemNumber: itemId!)
+            delegate!.willBillTemplateItem(itemNumber: itemId!)
         }
     }
     

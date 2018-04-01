@@ -15,8 +15,16 @@ struct Order: Codable {
     var orderTotalPrice: Double = 0
     var orderNumber: Int
     var orderFinished = false
-    var cardSales: Double = 0
-    var cashSales: Double = 0
+    var cardSales: Double = 0 {
+        willSet {
+            print("card: " + "\(newValue)")
+        }
+    }
+    var cashSales: Double = 0 {
+        willSet {
+            print("cash: " + "\(newValue)")
+        }
+    }
     var numberOfItemsInOrder: Int {
         var num = 0
         for item in itemCollections[0] {

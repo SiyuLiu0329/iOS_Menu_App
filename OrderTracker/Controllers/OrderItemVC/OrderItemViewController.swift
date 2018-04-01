@@ -33,6 +33,7 @@ class OrderItemViewController: UIViewController {
         billVC.totalPrice = orderList!.getTotalPriceOfPendingItemsInLoadedOrder()
         billVC.numberOfItems = orderList!.getNumberOfPendingItemsInLoadedOrder()
         billVC.delegate = self // get billing info when this VC is dismissed
+        billVC.billingMode = .normal
         present(billVC, animated: true, completion: nil)
 
     }
@@ -120,7 +121,7 @@ class OrderItemViewController: UIViewController {
 
 
 extension OrderItemViewController: DetailViewControllerDelegate {
-    func itemAdded(toIndex number: Int) {
+    func itemAddedToPendingList(toIndex number: Int) {
         let indexPath = IndexPath.init(row: number, section: 0)
         if orderList?.getNumberOfPendingItemsInLoadedOrder() == 1 {
             itemCollectionView.reloadItems(at: [indexPath])
@@ -136,14 +137,13 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         }
     }
     
-    func itemWillQuickBill(itemNumber number: Int) {
+    func willBillTemplateItem(itemNumber number: Int) {
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
         billVC.totalPrice = orderList!.menuItems[number]!.unitPrice
         billVC.numberOfItems = 1
         billVC.delegate = self // get billing info when this VC is dismissed
-        billVC.isQuickBill = true
-        billVC.templateItemQuickBillNumber = number
+        billVC.billingMode = BillingMode.template(number)
         present(billVC, animated: true, completion: nil)
         
     }
@@ -151,15 +151,14 @@ extension OrderItemViewController: DetailViewControllerDelegate {
 }
 
 extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
-    func itemWillBill(sender cell: ItemCollectionViewCell) {
+    func willBillPendingItem(sender cell: ItemCollectionViewCell) {
         let indexPath = itemCollectionView.indexPath(for: cell)!
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
         billVC.totalPrice = orderList!.getPriceOfPendingItem(withIndex: indexPath.row)
         billVC.numberOfItems = orderList?.getQuantityOfPendingItem(withIndex: indexPath.row)
         billVC.delegate = self // get billing info when this VC is dismissed
-        billVC.isQuickBill = true
-        billVC.pendingItemQuickBillIndex = indexPath.row
+        billVC.billingMode = BillingMode.pendingItem(indexPath.row)
         present(billVC, animated: true, completion: nil)
     }
     
@@ -180,14 +179,37 @@ extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
 }
 
 extension OrderItemViewController: BillItemViewControllerDelegate {
-    func billItemViewControllerDidReturn(withBillingMode mode: BillingMode, paymentMethod method: PaymentMethod) {
+    func billItemViewControllerDidReturn(withBillReturnType mode: BillReturnType, paymentMethod method: PaymentMethod, billingMode bMode: BillingMode) {
         switch mode {
         case .billAll:
             orderList!.billAllPendingItems(withPaymentMethod: method)
             itemCollectionView.reloadSections([0, 1])
             updateBillView()
         case .splitBill(let cash, let card):
-            print(cash, card)
+            var res: Int
+            switch bMode {
+            case .pendingItem(let index):
+                res = orderList!.splitBill(itemIndex: index, cashSales: cash, cardSales: card)
+                let pendingIndexPath = IndexPath(item: index, section: 0)
+                let paidIndexPath = IndexPath(item: res, section: 1)
+                itemCollectionView.performBatchUpdates({
+                    removeFromSection0(pendingIndexPath)
+                    insertIntoSection1(paidIndexPath)
+                }, completion: nil)
+                
+                return
+            case .template(let number):
+                res = orderList!.splitBill(itemNumber: number, cashSales: cash, cardSales: card)
+            default:
+                orderList!.splitBillAllPendingItems(cashSales: cash, cardSales: card)
+                itemCollectionView.reloadData()
+                updateBillView()
+                return
+            }
+            
+            let paidIndexPath = IndexPath(item: res, section: 1)
+            insertIntoSection1(paidIndexPath)
+            updateBillView()
         }
     }
     
@@ -195,14 +217,26 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
         let insertRes = orderList!.quickBillTemplateItem(withNumber: number, withPaymentMethod: method)
         let paidIndexPath = IndexPath(item: insertRes, section: 1)
         itemCollectionView.performBatchUpdates({
-            let count = orderList!.loadedItemCollections[1].count
-            if count == 1 && insertRes == 0 {
-                self.itemCollectionView.reloadItems(at: [paidIndexPath])
-            } else {
-                self.itemCollectionView.insertItems(at: [paidIndexPath])
-            }
+            insertIntoSection1(paidIndexPath)
         }, completion: nil)
         updateBillView()
+    }
+    
+    private func insertIntoSection1(_ indexPath: IndexPath) {
+        let count = orderList!.loadedItemCollections[1].count
+        if count == 1 && indexPath.row == 0 {
+            self.itemCollectionView.reloadItems(at: [indexPath])
+        } else {
+            self.itemCollectionView.insertItems(at: [indexPath])
+        }
+    }
+    
+    private func removeFromSection0(_ indexPath: IndexPath) {
+        if self.itemCollectionView.numberOfItems(inSection: 0) == 1 {
+            self.itemCollectionView.reloadItems(at: [indexPath])
+        } else {
+            self.itemCollectionView.deleteItems(at: [indexPath])
+        }
     }
     
     func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod) {
@@ -210,17 +244,8 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
         let insertRes = orderList!.quickBillPendingItem(withIndex: index, withPaymentMethod: method)
         let paidIndexPath = IndexPath(item: insertRes, section: 1)
         itemCollectionView.performBatchUpdates({
-            if self.itemCollectionView.numberOfItems(inSection: 0) == 1 {
-                self.itemCollectionView.reloadItems(at: [pendingIndexPath])
-            } else {
-                self.itemCollectionView.deleteItems(at: [pendingIndexPath])
-            }
-            let count = orderList!.loadedItemCollections[1].count
-            if count == 1 && insertRes == 0 {
-                self.itemCollectionView.reloadItems(at: [paidIndexPath])
-            } else {
-                self.itemCollectionView.insertItems(at: [paidIndexPath])
-            }
+            removeFromSection0(pendingIndexPath)
+            insertIntoSection1(paidIndexPath)
         }, completion: nil)
         updateBillView()
     }

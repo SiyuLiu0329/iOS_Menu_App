@@ -8,13 +8,19 @@
 
 import UIKit
 
-enum BillingMode {
+enum BillReturnType {
     case billAll
     case splitBill(Double, Double)
 }
 
+enum BillingMode {
+    case template(Int) // item number
+    case pendingItem(Int) // index
+    case normal
+}
+
 protocol BillItemViewControllerDelegate: class {
-    func billItemViewControllerDidReturn(withBillingMode mode: BillingMode, paymentMethod method: PaymentMethod)
+    func billItemViewControllerDidReturn(withBillReturnType mode: BillReturnType, paymentMethod method: PaymentMethod, billingMode bMode: BillingMode)
     func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod)
     func quickBill(templateItemNumbered number: Int, paymentMethod method: PaymentMethod)
 }
@@ -23,21 +29,7 @@ class BillItemViewController: UIViewController {
     var totalPrice: Double!
     var numberOfItems: Int!
     var model: BillModel!
-    var isQuickBill = false // bill all pending items if this is false
-    var pendingItemQuickBillIndex: Int? {
-        willSet {
-            if templateItemQuickBillNumber != nil && newValue != nil {
-                fatalError()
-            }
-        }
-    } // use this number to quick bill a item in pending items
-    var templateItemQuickBillNumber: Int? {
-        willSet {
-            if pendingItemQuickBillIndex != nil && newValue != nil {
-                fatalError()
-            }
-        }
-    }// use this number to quick bill a item in the template item
+    var billingMode: BillingMode!
     weak var delegate: BillItemViewControllerDelegate?
     private var collectionViewDataSource: BillCollectionViewDataSource!
     
@@ -95,6 +87,7 @@ extension BillItemViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension BillItemViewController: BillCellDelegate {
+    // this functions are called by two types of cells ( they are for split bill and bill all)
     func splitBillDidConfirm(_ collectionView: UICollectionView, paymentMethod method: PaymentMethod) {
         // function called by split bill cell when confirm is pressed
         let indices = model.billSelectedItems(withPaymentMethod: method)
@@ -106,7 +99,7 @@ extension BillItemViewController: BillCellDelegate {
         
         if model.selected.isEmpty {
             // all items billed
-            delegate!.billItemViewControllerDidReturn(withBillingMode: .splitBill(model.cashSales, model.cardSales), paymentMethod: .mix)
+            delegate!.billItemViewControllerDidReturn(withBillReturnType: .splitBill(model.cashSales, model.cardSales), paymentMethod: .mix, billingMode: billingMode)
             dismiss(animated: true, completion: nil)
         }
     }
@@ -114,19 +107,13 @@ extension BillItemViewController: BillCellDelegate {
     func billAllCellDidConfirm(paymentMethod method: PaymentMethod) {
         if delegate != nil {
             // get information from cell and pass it onto orderItemVC
-            if !isQuickBill {
-                delegate!.billItemViewControllerDidReturn(withBillingMode: .billAll, paymentMethod: method)
-                
-            } else {
-                
-                if let index = pendingItemQuickBillIndex {
-                    delegate!.quickBill(itemInPendingItems: index, paymentMethod: method)
-                }
-                
-                if let number = templateItemQuickBillNumber {
-                    delegate!.quickBill(templateItemNumbered: number, paymentMethod: method)
-                }
-                
+            switch billingMode! {
+            case .normal:
+                delegate!.billItemViewControllerDidReturn(withBillReturnType: .billAll, paymentMethod: method, billingMode: .normal)
+            case .pendingItem(let index):
+                delegate!.quickBill(itemInPendingItems: index, paymentMethod: method)
+            case .template(let number):
+                delegate!.quickBill(templateItemNumbered: number, paymentMethod: method)
             }
         }
         dismiss(animated: true, completion: nil)

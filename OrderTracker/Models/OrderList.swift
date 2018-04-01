@@ -140,7 +140,6 @@ class OrderList {
                 return i
             }
         }
-        
         loadedOrder!.itemCollections[0].insert(item, at: 0)
         return 0
     }
@@ -179,7 +178,6 @@ class OrderList {
         } else {
             fatalError()
         }
-        
         for i in 0..<loadedItemCollections[1].count {
             if item == loadedItemCollections[1][i] {
                 loadedOrder!.itemCollections[1].insert(item, at: i)
@@ -200,6 +198,52 @@ class OrderList {
     func discardLastestOrder() {
         allOrders.removeLast()
         currentOrderNumber -= 1
+    }
+    
+    func splitBill(itemNumber number: Int, cashSales cash: Double, cardSales card: Double) -> Int {
+        let item = menuItems[number]!
+        return splitBill(menuItem: item, cashSales: cash, cardSales: card)
+        
+    }
+    
+    func splitBill(itemIndex index: Int, cashSales cash: Double, cardSales card: Double) -> Int {
+        let item = loadedOrder!.itemCollections[0][index]
+        loadedOrder!.itemCollections[0].remove(at: index)
+        return splitBill(menuItem: item, cashSales: cash, cardSales: card)
+    }
+    
+    private func splitBill(menuItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
+        var item = itemToAdd
+        item.paymentStatus = .paid
+        loadedOrder!.cardSales += card
+        loadedOrder!.cashSales += cash
+//        print(loadedOrder!.cashSales, loadedOrder!.cardSales)
+        for i in 0..<loadedItemCollections[1].count {
+            if item == loadedItemCollections[1][i] {
+                loadedOrder!.itemCollections[1].insert(item, at: i)
+                return i
+            }
+        }
+        
+        loadedOrder!.itemCollections[1].insert(item, at: 0)
+        
+        return 0
+    }
+    
+    func splitBillAllPendingItems(cashSales cash: Double, cardSales card: Double) {
+        loadedOrder!.cashSales += cash
+        loadedOrder!.cardSales += card
+        for var item in loadedOrder!.itemCollections[0] {
+            item.paymentStatus = .paid
+            for i in 0..<loadedItemCollections[1].count {
+                if item == loadedItemCollections[1][i] {
+                    loadedOrder!.itemCollections[1].insert(item, at: i)
+                    continue
+                }
+            }
+            loadedOrder!.itemCollections[1].insert(item, at: 0)
+        }
+        loadedOrder!.itemCollections[0].removeAll()
     }
     
     func getQuantityOfPendingItem(withIndex index: Int) -> Int {
