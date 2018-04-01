@@ -85,7 +85,7 @@ class BillAllCollectionViewCell: UICollectionViewCell {
             cardViewWidth.constant = 0 // expand the view to the right
             UIView.animate(withDuration: 0.3) {
                 self.cardView.alpha = 0
-                self.cashView.backgroundColor = .darkGray
+                self.cashView.backgroundColor = Scheme.billViewCashSelectedColour
                 self.cardView.backgroundColor = .white
                 self.contentView.layoutIfNeeded() // animate the expansion
             }
@@ -99,7 +99,7 @@ class BillAllCollectionViewCell: UICollectionViewCell {
             cardViewWidth.constant = fullWidth
             UIView.animate(withDuration: 0.3) {
                 self.cashView.alpha = 0
-                self.cardView.backgroundColor = .darkGray
+                self.cardView.backgroundColor = Scheme.billViewCardSelectedColour
                 self.cashView.backgroundColor = .white
                 self.contentView.layoutIfNeeded()
             }

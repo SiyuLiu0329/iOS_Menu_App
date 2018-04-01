@@ -17,12 +17,7 @@ class SplitBillCellCollectionViewDataSource: NSObject, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SBCVCCell", for: indexPath) as! SBCVCCollectionViewCell
         cell.backgroundColor = .red
-        cell.isSelectedForBilling = model.selected[indexPath.row]
-        if cell.isSelectedForBilling {
-            cell.backgroundColor = UIColor.darkGray
-        } else {
-            cell.backgroundColor = .white
-        }
+        cell.configure(model.selected[indexPath.row], price: model.pricePerSplit)
         return cell
     }
     

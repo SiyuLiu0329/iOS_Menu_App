@@ -19,19 +19,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="179" height="167"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hfv-dM-Hpb">
-                        <rect key="frame" x="0.0" y="0.0" width="179" height="137"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hfv-dM-Hpb">
+                        <rect key="frame" x="30" y="20" width="119" height="107"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOo-oI-cdR">
+                        <rect key="frame" x="0.0" y="127" width="179" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="Hfv-dM-Hpb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0cZ-qK-k9g"/>
-                <constraint firstAttribute="bottom" secondItem="Hfv-dM-Hpb" secondAttribute="bottom" constant="30" id="IFU-EZ-p5r"/>
-                <constraint firstAttribute="trailing" secondItem="Hfv-dM-Hpb" secondAttribute="trailing" id="eY5-Nx-5dh"/>
-                <constraint firstItem="Hfv-dM-Hpb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ryn-1O-ctP"/>
+                <constraint firstItem="Hfv-dM-Hpb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="6dI-ik-vRx"/>
+                <constraint firstAttribute="trailing" secondItem="Hfv-dM-Hpb" secondAttribute="trailing" constant="30" id="AxG-W9-Cye"/>
+                <constraint firstAttribute="bottom" secondItem="Hfv-dM-Hpb" secondAttribute="bottom" constant="40" id="IFU-EZ-p5r"/>
+                <constraint firstItem="jOo-oI-cdR" firstAttribute="top" secondItem="Hfv-dM-Hpb" secondAttribute="bottom" id="XbA-xJ-6In"/>
+                <constraint firstAttribute="trailing" secondItem="jOo-oI-cdR" secondAttribute="trailing" id="YoK-sf-G7w"/>
+                <constraint firstItem="Hfv-dM-Hpb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="i5G-HM-ktx"/>
+                <constraint firstItem="jOo-oI-cdR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jsP-Wr-Il2"/>
+                <constraint firstAttribute="bottom" secondItem="jOo-oI-cdR" secondAttribute="bottom" id="ok2-eH-rg9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="179" height="167"/>
+            <connections>
+                <outlet property="icon" destination="Hfv-dM-Hpb" id="vB0-yE-VPM"/>
+                <outlet property="priceLabel" destination="jOo-oI-cdR" id="7Hs-bg-Jlo"/>
+            </connections>
             <point key="canvasLocation" x="98.5" y="112.5"/>
         </collectionViewCell>
     </objects>

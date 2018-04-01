@@ -9,6 +9,9 @@
 import UIKit
 
 class SBCVCCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var icon: UIImageView!
     var isSelectedForBilling = false
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,5 +21,20 @@ class SBCVCCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 5
         clipsToBounds = true
     }
-
+    
+    func configure(_ selected: Bool, price p: Double) {
+        isSelectedForBilling = selected
+        if selected {
+            backgroundColor = Scheme.splitBillSelectedColour
+            icon.image = #imageLiteral(resourceName: "person_selected")
+            priceLabel.textColor = .white
+        } else {
+            backgroundColor = .white
+            icon.image = #imageLiteral(resourceName: "person")
+            priceLabel.textColor = .darkGray
+        }
+        priceLabel.text = Scheme.Util.twoDecimalPriceText(p)
+    }
+   
+    
 }
