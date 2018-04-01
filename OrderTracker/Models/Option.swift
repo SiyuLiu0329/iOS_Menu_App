@@ -11,12 +11,6 @@ import Foundation
 
 
 struct Option: Equatable, Codable {
-    static func ==(lhs: Option, rhs: Option) -> Bool {
-        return lhs.description == rhs.description &&
-        lhs.value == rhs.value &&
-        lhs.imageURL == rhs.imageURL &&
-        lhs.price == rhs.price
-    }
     
     var description: String
     var value: Bool

@@ -263,10 +263,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fr-yg-xyg">
-                                                    <rect key="frame" x="58" y="8" width="210" height="21.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="210" id="aoO-qD-xh3"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="58" y="8" width="240" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -324,10 +321,12 @@
                                         </view>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="168-E5-DZP" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" constant="236" id="3Vu-yd-IfT"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" constant="50" id="3bd-7c-Q1s"/>
                                             <constraint firstItem="3fr-yg-xyg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1at-r5-B0f" secondAttribute="trailing" constant="20" id="6uj-tr-2ED"/>
                                             <constraint firstItem="pXb-bY-8WO" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" id="8o6-mx-2kN"/>
                                             <constraint firstAttribute="trailing" secondItem="lrk-kg-95c" secondAttribute="trailing" id="C5c-5i-3W3"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="3fr-yg-xyg" secondAttribute="trailing" constant="10" id="DBp-m7-w8m"/>
                                             <constraint firstAttribute="bottom" secondItem="pXb-bY-8WO" secondAttribute="bottom" id="IU9-kM-ULy"/>
                                             <constraint firstAttribute="trailing" secondItem="pXb-bY-8WO" secondAttribute="trailing" id="KKb-ks-hGl"/>
                                             <constraint firstItem="1at-r5-B0f" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" constant="10" id="L92-t3-jin"/>
@@ -528,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6t-Nn-wZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153.90625" y="88.28125"/>
+            <point key="canvasLocation" x="2798" y="45"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="i9A-L1-UwA">

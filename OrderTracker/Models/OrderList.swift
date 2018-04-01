@@ -134,8 +134,15 @@ class OrderList {
     
     func pendItemToLoadedOrder(number itemNumber: Int) -> Int? {
         guard let item = menuItems[itemNumber] else { return nil }
-        loadedOrder!.itemCollections[0].append(item)
-        return loadedOrder!.itemCollections[0].count - 1
+        for i in 0..<loadedItemCollections[0].count {
+            if item == loadedItemCollections[0][i] {
+                loadedOrder!.itemCollections[0].insert(item, at: i)
+                return i
+            }
+        }
+        
+        loadedOrder!.itemCollections[0].insert(item, at: 0)
+        return 0
     }
     
     func getNumberOfSelectedOptions(inCollection collectionIndex: Int, forItem index: Int) -> Int {
@@ -150,39 +157,20 @@ class OrderList {
     }
     
     func billAllPendingItems(withPaymentMethod method: PaymentMethod) {
-        for var item in loadedOrder!.itemCollections[0] {
-            item.paymentStatus = .paid
-            if method == .card {
-                loadedOrder!.cardSales += item.totalPrice
-            } else if method == .cash {
-                loadedOrder!.cashSales += item.totalPrice
-            }
-            
-            loadedOrder!.itemCollections[1].append(item)
+        for item in loadedOrder!.itemCollections[0] {
+            let _ = insertItemToPaidItems(item, paymentMethod: method)
         }
         loadedOrder!.itemCollections[0].removeAll()
     }
     
-    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> (Int, Bool) {
-        var item = loadedOrder!.itemCollections[0][index]
+    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> Int {
+        let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
-        item.paymentStatus = .paid
-        
-        if method == .card {
-            loadedOrder!.cardSales += item.totalPrice
-        } else if method == .cash {
-            loadedOrder!.cashSales += item.totalPrice
-        } else {
-            fatalError()
-        }
-        
-        loadedOrder!.itemCollections[1].insert(item, at: 0)
-        
-        return (0, true)
+        return insertItemToPaidItems(item, paymentMethod: method)
     }
     
-    func quickBillTemplateItem(withNumber number: Int, withPaymentMethod method: PaymentMethod)  -> (Int, Bool) {
-        var item = menuItems[number]!
+    private func insertItemToPaidItems(_ itemToAdd: MenuItem, paymentMethod method: PaymentMethod) -> Int {
+        var item = itemToAdd
         item.paymentStatus = .paid
         if method == .card {
             loadedOrder!.cardSales += item.totalPrice
@@ -191,9 +179,22 @@ class OrderList {
         } else {
             fatalError()
         }
+        
+        for i in 0..<loadedItemCollections[1].count {
+            if item == loadedItemCollections[1][i] {
+                loadedOrder!.itemCollections[1].insert(item, at: i)
+                return i
+            }
+        }
+        
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         
-        return (0, true)
+        return 0
+    }
+    
+    func quickBillTemplateItem(withNumber number: Int, withPaymentMethod method: PaymentMethod)  -> Int {
+        let item = menuItems[number]!
+        return insertItemToPaidItems(item, paymentMethod: method)
     }
     
     func discardLastestOrder() {
