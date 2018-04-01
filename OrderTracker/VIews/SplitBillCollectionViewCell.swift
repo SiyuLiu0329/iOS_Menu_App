@@ -26,6 +26,7 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
+        CancelButtonPressed(self)
         if delegate != nil {
             delegate!.splitBillDidConfirm(collectionView, paymentMethod: cashSelected ? PaymentMethod.cash : PaymentMethod.card)
         }

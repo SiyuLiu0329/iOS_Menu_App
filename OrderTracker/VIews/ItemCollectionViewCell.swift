@@ -174,8 +174,8 @@ extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // make pan work with scroll view
-        return true
+        // avoid conflict
+        return false
     }
     
     
