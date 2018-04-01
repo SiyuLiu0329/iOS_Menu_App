@@ -22,6 +22,7 @@ protocol BillItemViewControllerDelegate: class {
 class BillItemViewController: UIViewController {
     var totalPrice: Double!
     var numberOfItems: Int!
+    var model: BillModel!
     var isQuickBill = false // bill all pending items if this is false
     var pendingItemQuickBillIndex: Int? {
         willSet {
@@ -60,6 +61,8 @@ class BillItemViewController: UIViewController {
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         billingOptionCollectionView.showsHorizontalScrollIndicator = false
         self.billingOptionCollectionView.bounces = false
+        // instanciate model here
+        model = BillModel(totalPrice: totalPrice, numberOfItems: numberOfItems)
 //        billingOptionCollectionView.isScrollEnabled = false
     }
     
