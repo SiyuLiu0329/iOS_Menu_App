@@ -48,12 +48,13 @@ class ItemCollectionViewCell: UICollectionViewCell {
         var optionText = ""
         for option in item.options {
             if option.value {
-                optionText += "             · " + option.description + "\n"
+                optionText += "      · " + option.description + "\n"
             }
         }
         
         if !optionText.isEmpty {
             optionText.removeLast()
+            
         }
         
         optionLabel.text = optionText

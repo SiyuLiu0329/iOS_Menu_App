@@ -203,6 +203,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
                 self.itemCollectionView.insertItems(at: [paidIndexPath])
             }
         }, completion: nil)
+        updateBillView()
     }
     
     func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod) {
@@ -224,6 +225,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
                 self.itemCollectionView.insertItems(at: [paidIndexPath])
             }
         }, completion: nil)
+        updateBillView()
     }
     
 }
