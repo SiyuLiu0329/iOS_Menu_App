@@ -155,7 +155,7 @@ extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
         billVC.totalPrice = orderList!.getPriceOfPendingItem(withIndex: indexPath.row)
-        billVC.numberOfItems = 1
+        billVC.numberOfItems = orderList?.getQuantityOfPendingItem(withIndex: indexPath.row)
         billVC.delegate = self // get billing info when this VC is dismissed
         billVC.isQuickBill = true
         billVC.pendingItemQuickBillIndex = indexPath.row

@@ -237,6 +237,10 @@ class OrderList {
         allOrders.removeLast()
         currentOrderNumber -= 1
     }
+    
+    func getQuantityOfPendingItem(withIndex index: Int) -> Int {
+        return loadedItemCollections[0][index].quantity
+    }
 
     
 }

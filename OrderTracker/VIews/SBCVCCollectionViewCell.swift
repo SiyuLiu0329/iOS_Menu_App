@@ -18,8 +18,6 @@ class SBCVCCollectionViewCell: UICollectionViewCell {
         // Initialization code
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.6
-        layer.cornerRadius = 5
-        clipsToBounds = true
     }
     
     func configure(_ selected: Bool, price p: Double) {
