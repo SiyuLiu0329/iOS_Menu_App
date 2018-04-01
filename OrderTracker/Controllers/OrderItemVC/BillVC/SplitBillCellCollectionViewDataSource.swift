@@ -31,7 +31,6 @@ extension SplitBillCellCollectionViewDataSource: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         model.toggleSelected(atIndex: indexPath.row)
         collectionView.reloadItems(at: [indexPath])
-        print(model.getAmountForSelectedItems())
     }
 }
 

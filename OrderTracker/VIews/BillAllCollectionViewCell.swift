@@ -10,6 +10,7 @@ import UIKit
 
 protocol BillCellDelegate: class {
     func billAllCellDidConfirm(paymentMethod method: PaymentMethod)
+    func splitBillDidConfirm(_ collectionView: UICollectionView, paymentMethod method: PaymentMethod)
 }
 
 class BillAllCollectionViewCell: UICollectionViewCell {

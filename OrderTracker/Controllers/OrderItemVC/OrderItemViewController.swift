@@ -186,8 +186,8 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
             orderList!.billAllPendingItems(withPaymentMethod: method)
             itemCollectionView.reloadSections([0, 1])
             updateBillView()
-        case .splitBill:
-            break
+        case .splitBill(let cash, let card):
+            print(cash, card)
         }
     }
     

@@ -16,6 +16,8 @@ class BillModel {
     var selected: [Bool]
     var totalPrice: Double
     var numSelected = 0
+    var cardSales: Double = 0
+    var cashSales: Double = 0
     var pricePerSplit: Double {
         return totalPrice / Double(numberOfSplits)
     }
@@ -40,8 +42,24 @@ class BillModel {
         selected[index] ? cellDeselectec(atIndex: index) : cellSelected(atIndex: index)
     }
     
-    func getAmountForSelectedItems() -> Double {
-        return totalPrice * Double(numSelected) / Double(numberOfSplits)
+    func billSelectedItems(withPaymentMethod method: PaymentMethod) -> [Int] {
+        var res: [Int] = []
+        for i in 0..<selected.count {
+            if selected[i] {
+                res.append(i)
+                selected[i] =  false
+            }
+        }
+        let paidAmount = totalPrice * Double(numSelected) / Double(numberOfSplits)
+        totalPrice = totalPrice - paidAmount
+        selected.removeLast(res.count)
+        numSelected = 0
+
+        if method == .card {
+            cardSales += paidAmount
+        } else {
+            cashSales += paidAmount
+        }
+        return res
     }
-    
 }

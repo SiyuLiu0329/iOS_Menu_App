@@ -10,7 +10,7 @@ import UIKit
 
 enum BillingMode {
     case billAll
-    case splitBill
+    case splitBill(Double, Double)
 }
 
 protocol BillItemViewControllerDelegate: class {
@@ -95,6 +95,22 @@ extension BillItemViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension BillItemViewController: BillCellDelegate {
+    func splitBillDidConfirm(_ collectionView: UICollectionView, paymentMethod method: PaymentMethod) {
+        // function called by split bill cell when confirm is pressed
+        let indices = model.billSelectedItems(withPaymentMethod: method)
+        var indexPaths: [IndexPath] = []
+        for i in indices {
+            indexPaths.append(IndexPath(item: i, section: 0))
+        }
+        collectionView.deleteItems(at: indexPaths)
+        
+        if model.selected.isEmpty {
+            // all items billed
+            delegate!.billItemViewControllerDidReturn(withBillingMode: .splitBill(model.cashSales, model.cardSales), paymentMethod: .mix)
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     func billAllCellDidConfirm(paymentMethod method: PaymentMethod) {
         if delegate != nil {
             // get information from cell and pass it onto orderItemVC

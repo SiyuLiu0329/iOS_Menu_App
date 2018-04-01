@@ -54,7 +54,7 @@ class OrderList {
         do {
             let files = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             for file in files {
-                print(file)
+//                print(file)
                 let json = try Data.init(contentsOf: file)
                 allOrders.append(try decoer.decode(Order.self, from: json))
                 currentOrderNumber += 1
