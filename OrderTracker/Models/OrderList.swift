@@ -233,15 +233,20 @@ class OrderList {
     func splitBillAllPendingItems(cashSales cash: Double, cardSales card: Double) {
         loadedOrder!.cashSales += cash
         loadedOrder!.cardSales += card
+        var matchFound = false
         for var item in loadedOrder!.itemCollections[0] {
+            matchFound = false
             item.paymentStatus = .paid
             for i in 0..<loadedItemCollections[1].count {
                 if item == loadedItemCollections[1][i] {
                     loadedOrder!.itemCollections[1].insert(item, at: i)
-                    continue
+                    matchFound = true
+                    break
                 }
             }
-            loadedOrder!.itemCollections[1].insert(item, at: 0)
+            if !matchFound {
+                loadedOrder!.itemCollections[1].insert(item, at: 0)
+            }
         }
         loadedOrder!.itemCollections[0].removeAll()
     }
