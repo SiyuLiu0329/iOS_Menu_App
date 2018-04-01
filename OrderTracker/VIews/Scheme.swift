@@ -32,9 +32,9 @@ struct Scheme {
         var g: Double = 0
         var b: Double = 0
         if number % nColour == 0 {
-            r = 50
-            g = 50
-            b = 50
+            r = 80
+            g = 80
+            b = 80
         } else if number % nColour == 1 {
             r = 104
             g = 81

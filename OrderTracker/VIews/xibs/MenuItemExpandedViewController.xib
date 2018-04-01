@@ -74,7 +74,7 @@
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Ycw-71-7ao"/>
                                 <constraint firstAttribute="height" constant="50" id="rQ7-Cq-QR8"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
                             <state key="normal" title="+"/>
                             <connections>
                                 <action selector="addButtonAction:" destination="-1" eventType="touchUpInside" id="NJO-Po-zRa"/>

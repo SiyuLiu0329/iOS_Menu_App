@@ -69,7 +69,6 @@ class MenuItemExpandedViewController: UIViewController {
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
         addButton.layer.maskedCorners = [.layerMaxXMinYCorner]
-        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
         // rounded window
         contentView.layer.cornerRadius = 5
         contentView.clipsToBounds = true
