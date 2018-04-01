@@ -9,11 +9,12 @@
 import Foundation
 
 class BillModel {
-    var totalPrice: Double
     var numberOfSplits: Int
+    var totalPrice: Double
     
-    init(totalPrice price: Double, nSplits n: Int) {
-        self.totalPrice = price
-        self.numberOfSplits = n
+    init(totalPrice price: Double, numberOfItems number: Int) {
+        numberOfSplits = number
+        totalPrice = price
     }
+    
 }
