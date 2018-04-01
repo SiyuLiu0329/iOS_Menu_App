@@ -93,13 +93,14 @@ class OrderItemViewController: UIViewController {
     }
     
     @IBAction func dismiss(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
         if orderList!.isLatestOrderEmpty && orderId == orderList!.allOrders.count - 1 && isNewOrder {
             // if this order was newly created, discard it
             // if the latest(created) order is empty && this order is the latest!
             orderList!.discardLastestOrder()
-            orderList!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
         }
+        orderList!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
+        dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func saveAndDismiss(_ sender: Any) {
