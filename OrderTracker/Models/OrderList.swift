@@ -134,12 +134,6 @@ class OrderList {
     
     func pendItemToLoadedOrder(number itemNumber: Int) -> Int? {
         guard let item = menuItems[itemNumber] else { return nil }
-        for i in 0 ..< loadedOrder!.itemCollections[0].count {
-            if item == loadedOrder!.itemCollections[0][i] {
-                loadedOrder!.itemCollections[0][i].quantity += 1
-                return i
-            }
-        }
         loadedOrder!.itemCollections[0].append(item)
         return loadedOrder!.itemCollections[0].count - 1
     }
@@ -164,27 +158,9 @@ class OrderList {
                 loadedOrder!.cashSales += item.totalPrice
             }
             
-            if loadedOrder!.itemCollections[1].isEmpty {
-                loadedOrder!.itemCollections[1].append(item)
-                continue
-            }
-            
-            var matchFound = false
-            for i in 0..<loadedOrder!.itemCollections[1].count {
-                if item == loadedOrder!.itemCollections[1][i] {
-                    loadedOrder!.itemCollections[1][i].quantity += item.quantity
-                    matchFound = true
-                    break
-                }
-                
-            }
-            
-            if !matchFound {
-                loadedOrder!.itemCollections[1].append(item)
-            }
+            loadedOrder!.itemCollections[1].append(item)
         }
         loadedOrder!.itemCollections[0].removeAll()
-        print(loadedOrder!.cardSales, loadedOrder!.cashSales)
     }
     
     func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> (Int, Bool) {
@@ -199,13 +175,7 @@ class OrderList {
         } else {
             fatalError()
         }
-        // move this item to paid items
-        for i in 0..<loadedOrder!.itemCollections[1].count {
-            if item == loadedOrder!.itemCollections[1][i] {
-                loadedOrder!.itemCollections[1][i].quantity += item.quantity
-                return (i, false)
-            }
-        }
+        
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         
         return (0, true)
@@ -220,13 +190,6 @@ class OrderList {
             loadedOrder!.cashSales += item.totalPrice
         } else {
             fatalError()
-        }
-        
-        for i in 0..<loadedOrder!.itemCollections[1].count {
-            if item == loadedOrder!.itemCollections[1][i] {
-                loadedOrder!.itemCollections[1][i].quantity += item.quantity
-                return (i, false)
-            }
         }
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         

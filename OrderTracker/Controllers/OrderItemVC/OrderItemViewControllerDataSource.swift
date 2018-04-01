@@ -59,10 +59,10 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if orderList.loadedItemCollections[indexPath.section].isEmpty {
             // if the list is empty, use the placeholder cell
-            return CGSize(width: collectionView.frame.width - 10, height: 0 * 22 + 65 + 40)
+            return CGSize(width: collectionView.frame.width - 10, height: 0 * 22 + 65 + 30)
         }
         let nSelected = orderList.getNumberOfSelectedOptions(inCollection: indexPath.section, forItem: indexPath.row)
-        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * 22 + 65 + 40)
+        return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * 22 + 65 + 30)
         
     }
     
@@ -72,7 +72,7 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(5)
+        return CGFloat(3)
     }
     
 }

@@ -20,10 +20,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
             delegate!.itemVillQuickBill(self)
         }
     }
-    @IBAction func showItemDetailPressed(_ sender: Any) {
-        print("pressed")
-    }
-    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var tenderButton: UIButton!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
@@ -44,7 +40,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         itemNumberLabel.textColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         self.item = item
-        quantityLabel.text = "\(item.quantity) × \(Scheme.Util.twoDecimalPriceText(item.unitPrice))"
         tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
         itemNumberLabel.text = "\(item.number)"
         
