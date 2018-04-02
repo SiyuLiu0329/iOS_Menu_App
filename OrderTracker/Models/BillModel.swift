@@ -66,4 +66,17 @@ class BillModel {
         }
         return res
     }
+    
+    func appendUnselected() {
+        selected.append(false)
+    }
+    
+    func removeLast() {
+        guard numberOfSplits > 0 else { return }
+        let last = selected.last!
+        selected.removeLast()
+        if last {
+            numSelected -= 1
+        }
+    }
 }

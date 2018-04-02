@@ -13,8 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillItemViewController" customModule="OrderTracker" customModuleProvider="target">
             <connections>
                 <outlet property="billingOptionCollectionView" destination="wuk-FU-z5m" id="wBd-cq-Xfl"/>
+                <outlet property="minusSplit" destination="Lf5-t2-J6i" id="3Ri-on-CUP"/>
                 <outlet property="numberOfItemsLabel" destination="lEA-mq-3A1" id="PZQ-uV-BQd"/>
+                <outlet property="plusSplit" destination="gTL-vu-nf1" id="eAh-Jc-585"/>
                 <outlet property="segmentedControl" destination="zIa-dl-0iz" id="CW4-Sh-3H9"/>
+                <outlet property="splitStackView" destination="dYM-eQ-C8Y" id="oLS-G2-RxQ"/>
                 <outlet property="toolbar" destination="PJV-J4-onK" id="axI-qY-1B8"/>
                 <outlet property="totalPriceLabel" destination="Qo7-j9-gqz" id="OH9-iY-Lv6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,16 +40,60 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEA-mq-3A1">
-                            <rect key="frame" x="241" y="131" width="58" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <rect key="frame" x="233.5" y="128.5" width="74" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYM-eQ-C8Y">
+                            <rect key="frame" x="200" y="128" width="140" height="25"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf5-t2-J6i">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="R6t-3r-Jnf"/>
+                                    </constraints>
+                                    <state key="normal" title="−" image="minus">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="minusSplitAction:" destination="-1" eventType="touchUpInside" id="pda-XT-1mP"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11 Splits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-QB-Quq">
+                                    <rect key="frame" x="25" y="0.0" width="90" height="25"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTL-vu-nf1">
+                                    <rect key="frame" x="115" y="0.0" width="25" height="25"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="jio-7I-qXm"/>
+                                    </constraints>
+                                    <state key="normal" title="+" image="plus">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="plusSplitAction:" destination="-1" eventType="touchUpInside" id="zkl-uy-ib8"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="140" id="UFV-xo-r5v"/>
+                                <constraint firstAttribute="height" constant="25" id="epp-8v-IoI"/>
+                            </constraints>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="160" id="Gjv-NS-cRJ"/>
+                        <constraint firstItem="dYM-eQ-C8Y" firstAttribute="centerX" secondItem="v85-aF-tTU" secondAttribute="centerX" id="OBY-uT-HxO"/>
                         <constraint firstItem="lEA-mq-3A1" firstAttribute="centerY" secondItem="v85-aF-tTU" secondAttribute="centerY" constant="60" id="Ue7-oC-bp4"/>
+                        <constraint firstItem="dYM-eQ-C8Y" firstAttribute="centerY" secondItem="v85-aF-tTU" secondAttribute="centerY" constant="60" id="aUe-tb-QMy"/>
                         <constraint firstItem="lEA-mq-3A1" firstAttribute="centerX" secondItem="v85-aF-tTU" secondAttribute="centerX" id="ehP-i0-qfc"/>
                     </constraints>
                 </view>
@@ -121,4 +168,8 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="minus" width="256" height="256"/>
+        <image name="plus" width="256" height="256"/>
+    </resources>
 </document>

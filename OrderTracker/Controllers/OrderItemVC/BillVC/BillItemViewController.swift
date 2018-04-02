@@ -32,13 +32,31 @@ class BillItemViewController: UIViewController {
     var billingMode: BillingMode!
     weak var delegate: BillItemViewControllerDelegate?
     private var collectionViewDataSource: BillCollectionViewDataSource!
-    
+    @IBOutlet weak var minusSplit: UIButton!
+    @IBOutlet weak var plusSplit: UIButton!
+    @IBOutlet weak var splitStackView: UIStackView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var numberOfItemsLabel: UILabel!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var billingOptionCollectionView: UICollectionView!
     
+    @IBAction func plusSplitAction(_ sender: Any) {
+        model.appendUnselected()
+        let cell = billingOptionCollectionView.cellForItem(at: IndexPath(item: 1, section: 0)) as! SplitBillCollectionViewCell
+        let collectionView = cell.collectionView
+        collectionView?.reloadData()
+        cell.price = model.priceForSelected
+    }
+    @IBAction func minusSplitAction(_ sender: Any) {
+        guard model.numberOfSplits > 1 else { return }
+        model.removeLast()
+        let cell = billingOptionCollectionView.cellForItem(at: IndexPath(item: 1, section: 0)) as! SplitBillCollectionViewCell
+        let collectionView = cell.collectionView
+        collectionView?.reloadData()
+        cell.price = model.priceForSelected
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +73,7 @@ class BillItemViewController: UIViewController {
         self.billingOptionCollectionView.bounces = false
         // instanciate model here
 //        billingOptionCollectionView.isScrollEnabled = false
+        splitStackView.alpha = 0
     }
     
     
@@ -63,6 +82,7 @@ class BillItemViewController: UIViewController {
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
+        splitStackView.alpha = segmentedControl.selectedSegmentIndex == 1 ? 1 : 0
         billingOptionCollectionView.scrollToItem(at: IndexPath(row: segmentedControl.selectedSegmentIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
     
@@ -71,6 +91,7 @@ class BillItemViewController: UIViewController {
 extension BillItemViewController: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         segmentedControl.selectedSegmentIndex = scrollView.contentOffset.x == 0 ? 0 : 1
+        splitStackView.alpha = segmentedControl.selectedSegmentIndex == 1 ? 1 : 0
     }
 }
 
@@ -86,7 +107,6 @@ extension BillItemViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension BillItemViewController: BillCellDelegate {
-    
     // this functions are called by two types of cells ( they are for split bill and bill all)
     func splitBillDidConfirm(_ collectionView: UICollectionView, paymentMethod method: PaymentMethod) {
         // function called by split bill cell when confirm is pressed
@@ -96,7 +116,7 @@ extension BillItemViewController: BillCellDelegate {
             indexPaths.append(IndexPath(item: i, section: 0))
         }
         collectionView.deleteItems(at: indexPaths)
-        
+        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(model.totalPrice)
         if model.selected.isEmpty {
             // all items billed
             delegate!.billItemViewControllerDidReturn(withBillReturnType: .splitBill(model.cashSales, model.cardSales), paymentMethod: .mix, billingMode: billingMode)
