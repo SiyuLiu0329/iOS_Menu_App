@@ -40,6 +40,7 @@ class BillItemViewController: UIViewController {
     @IBOutlet weak var numberOfItemsLabel: UILabel!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var billingOptionCollectionView: UICollectionView!
+    @IBOutlet weak var numberOfSplitsLabel: UILabel!
     
     @IBAction func plusSplitAction(_ sender: Any) {
         model.appendUnselected()
@@ -47,6 +48,8 @@ class BillItemViewController: UIViewController {
         let collectionView = cell.collectionView
         collectionView?.reloadData()
         cell.price = model.priceForSelected
+        updateNumberOfSplits()
+        
     }
     @IBAction func minusSplitAction(_ sender: Any) {
         guard model.numberOfSplits > 1 else { return }
@@ -55,7 +58,12 @@ class BillItemViewController: UIViewController {
         let collectionView = cell.collectionView
         collectionView?.reloadData()
         cell.price = model.priceForSelected
+        updateNumberOfSplits()
         
+    }
+    
+    private func updateNumberOfSplits() {
+        numberOfSplitsLabel.text = "\(model.numberOfSplits) " + (model.numberOfSplits == 1 ? "Split" : "Splits")
     }
     
     override func viewDidLoad() {
@@ -65,15 +73,14 @@ class BillItemViewController: UIViewController {
         billingOptionCollectionView.dataSource = collectionViewDataSource
         billingOptionCollectionView.delegate = self
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
-        let unit = numberOfItems == 1 ? "item" : "items"
+        let unit = numberOfItems == 1 ? "Item" : "Items"
         numberOfItemsLabel.text =  "\(numberOfItems!) " + unit
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         billingOptionCollectionView.showsHorizontalScrollIndicator = false
         self.billingOptionCollectionView.bounces = false
-        // instanciate model here
-//        billingOptionCollectionView.isScrollEnabled = false
         splitStackView.alpha = 0
+        updateNumberOfSplits()
     }
     
     

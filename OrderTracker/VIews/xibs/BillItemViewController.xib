@@ -15,6 +15,7 @@
                 <outlet property="billingOptionCollectionView" destination="wuk-FU-z5m" id="wBd-cq-Xfl"/>
                 <outlet property="minusSplit" destination="Lf5-t2-J6i" id="3Ri-on-CUP"/>
                 <outlet property="numberOfItemsLabel" destination="lEA-mq-3A1" id="PZQ-uV-BQd"/>
+                <outlet property="numberOfSplitsLabel" destination="p4Y-QB-Quq" id="A2I-au-sRi"/>
                 <outlet property="plusSplit" destination="gTL-vu-nf1" id="eAh-Jc-585"/>
                 <outlet property="segmentedControl" destination="zIa-dl-0iz" id="CW4-Sh-3H9"/>
                 <outlet property="splitStackView" destination="dYM-eQ-C8Y" id="oLS-G2-RxQ"/>
