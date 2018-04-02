@@ -31,6 +31,8 @@ extension SplitBillCellCollectionViewDataSource: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         model.toggleSelected(atIndex: indexPath.row)
         collectionView.reloadItems(at: [indexPath])
+        let parentCell = collectionView.superview!.superview!.superview! as! SplitBillCollectionViewCell
+        parentCell.price = model.priceForSelected
     }
 }
 

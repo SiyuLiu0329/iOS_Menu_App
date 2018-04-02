@@ -43,8 +43,7 @@ class BillItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         model = BillModel(totalPrice: totalPrice, numberOfItems: numberOfItems)
-        collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView, billModel: model)
-        collectionViewDataSource.cellDelegate = self
+        collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView, billModel: model, withDelegate: self)
         billingOptionCollectionView.dataSource = collectionViewDataSource
         billingOptionCollectionView.delegate = self
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
@@ -87,6 +86,7 @@ extension BillItemViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension BillItemViewController: BillCellDelegate {
+    
     // this functions are called by two types of cells ( they are for split bill and bill all)
     func splitBillDidConfirm(_ collectionView: UICollectionView, paymentMethod method: PaymentMethod) {
         // function called by split bill cell when confirm is pressed

@@ -19,6 +19,8 @@ class BillAllCollectionViewCell: UICollectionViewCell {
         cancelButton.isEnabled = false
         cashLabel.textColor = .darkGray
         cardLabel.textColor = .darkGray
+        cardLabel.text = "Card"
+        cashLabel.text = "Cash"
         cardViewWidth.constant = fullWidth / 2
         UIView.animate(withDuration: 0.3) {
             self.cashView.alpha = 1
@@ -49,6 +51,7 @@ class BillAllCollectionViewCell: UICollectionViewCell {
     private var cardViewTapGestureRecogniser: UITapGestureRecognizer!
     private var cashSelected = true
     private var fullWidth: CGFloat!
+    var price: Double!
     weak var delegate: BillCellDelegate? // this delegate is passed in through the data source
     
     private func addRoundedCorner(toSubview view: UIView, withRadius radius: CGFloat) {
@@ -86,6 +89,7 @@ class BillAllCollectionViewCell: UICollectionViewCell {
             cardViewWidth.constant = 0 // expand the view to the right
             UIView.animate(withDuration: 0.3) {
                 self.cardView.alpha = 0
+                self.cashLabel.text = Scheme.Util.twoDecimalPriceText(self.price)
                 self.cashView.backgroundColor = Scheme.billViewCashSelectedColour
                 self.cardView.backgroundColor = .white
                 self.contentView.layoutIfNeeded() // animate the expansion
@@ -100,6 +104,7 @@ class BillAllCollectionViewCell: UICollectionViewCell {
             cardViewWidth.constant = fullWidth
             UIView.animate(withDuration: 0.3) {
                 self.cashView.alpha = 0
+                self.cardLabel.text = Scheme.Util.twoDecimalPriceText(self.price)
                 self.cardView.backgroundColor = Scheme.billViewCardSelectedColour
                 self.cashView.backgroundColor = .white
                 self.contentView.layoutIfNeeded()

@@ -22,6 +22,10 @@ class BillModel {
         return totalPrice / Double(numberOfSplits)
     }
     
+    var priceForSelected: Double {
+        return totalPrice * Double(numSelected) / Double(numberOfSplits)
+    }
+    
     init(totalPrice price: Double, numberOfItems number: Int) {
         selected = Array(repeating: false, count: number)
         totalPrice = price

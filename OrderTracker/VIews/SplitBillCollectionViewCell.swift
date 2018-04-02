@@ -15,6 +15,8 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
         cancelButton.isEnabled = false
         cashLabel.textColor = .darkGray
         cardLabel.textColor = .darkGray
+        cardLabel.text = "Card"
+        cashLabel.text = "Cash"
         cardViewWidth.constant = fullWidth / 2
         UIView.animate(withDuration: 0.3) {
             self.cashView.alpha = 1
@@ -27,9 +29,12 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
         CancelButtonPressed(self)
+        
         if delegate != nil {
             delegate!.splitBillDidConfirm(collectionView, paymentMethod: cashSelected ? PaymentMethod.cash : PaymentMethod.card)
         }
+        
+        price = 0
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,6 +51,18 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
     private var cardViewTapGestureRecogniser: UITapGestureRecognizer!
     private var cashSelected = true
     private var fullWidth: CGFloat!
+    var price: Double = 0.0 {
+        willSet {
+            if confirmButton.isEnabled {
+                // check if expanded
+                if cashSelected {
+                    cashLabel.text = Scheme.Util.twoDecimalPriceText(newValue)
+                } else {
+                    cardLabel.text = Scheme.Util.twoDecimalPriceText(newValue)
+                }
+            }
+        }
+    }
     weak var delegate: BillCellDelegate? // this delegate is passed in through the data source
     
     private func addRoundedCorner(toSubview view: UIView, withRadius radius: CGFloat) {
@@ -89,6 +106,7 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
                 self.cardView.alpha = 0
                 self.cashView.backgroundColor = Scheme.billViewCashSelectedColour
                 self.cardView.backgroundColor = .white
+                self.cashLabel.text = Scheme.Util.twoDecimalPriceText(self.price)
                 self.contentView.layoutIfNeeded() // animate the expansion
             }
             // restore labels
@@ -103,6 +121,7 @@ class SplitBillCollectionViewCell: UICollectionViewCell {
                 self.cashView.alpha = 0
                 self.cardView.backgroundColor = Scheme.billViewCardSelectedColour
                 self.cashView.backgroundColor = .white
+                self.cardLabel.text = Scheme.Util.twoDecimalPriceText(self.price)
                 self.contentView.layoutIfNeeded()
             }
             

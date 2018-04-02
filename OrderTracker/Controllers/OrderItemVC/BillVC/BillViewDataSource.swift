@@ -16,9 +16,10 @@ class BillCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var model: BillModel
     
-    init(forCollectionView collectionView: UICollectionView, billModel model: BillModel) {
+    init(forCollectionView collectionView: UICollectionView, billModel model: BillModel, withDelegate delegate: BillCellDelegate?) {
         self.model = model
         sBCVCCDataSource = SplitBillCellCollectionViewDataSource(billModel: model)
+        cellDelegate = delegate
         super.init()
         let billAllCellNib = UINib(nibName: "BillAllCollectionViewCell", bundle: Bundle.main)
         collectionView.register(billAllCellNib, forCellWithReuseIdentifier: "billAllCell")
@@ -36,6 +37,7 @@ class BillCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "billAllCell", for: indexPath) as! BillAllCollectionViewCell
             cell.delegate = cellDelegate
+            cell.price = model.totalPrice
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "splitBillCell", for: indexPath) as! SplitBillCollectionViewCell

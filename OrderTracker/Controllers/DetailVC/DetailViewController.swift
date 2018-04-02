@@ -107,12 +107,12 @@ extension DetailViewController: ItemCellDelegate {
 
 extension DetailViewController: MenuItemExpandedViewControllerDismissedDelegate {
     func popoverDidDisappear() {
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.2) {
             self.dimView.alpha = 0
         }
     }
     func popoverWillAppear() {
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.2) {
             self.dimView.alpha = 0.6
         }
     }
