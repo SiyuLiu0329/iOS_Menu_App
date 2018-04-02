@@ -19,11 +19,11 @@ class OrderViewController: UIViewController {
     }
     
     @IBOutlet weak var orderCollectionView: UICollectionView!
-    var orderList: OrderList?
+    var orderModel: OrderModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionViewDataSource = OrderViewControllerDataSource(data: orderList!)
+        collectionViewDataSource = OrderViewControllerDataSource(data: orderModel!)
         orderCollectionView.dataSource = collectionViewDataSource
         orderCollectionView.alwaysBounceVertical = true
         orderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
@@ -43,18 +43,18 @@ class OrderViewController: UIViewController {
         let orderItemVC = navVc.viewControllers.first as! OrderItemViewController
         let indexPath = orderCollectionView.indexPath(for: sender as! UICollectionViewCell)
         
-        orderItemVC.orderList = orderList
+        orderItemVC.orderModel = orderModel
         orderItemVC.orderId = indexPath!.row
-        if indexPath!.row == orderList!.allOrders.count {
-            orderList!.newOrder()
+        if indexPath!.row == orderModel!.allOrders.count {
+            orderModel!.newOrder()
             orderItemVC.isNewOrder = true
         }
-        orderList!.loadOrder(withIndex: indexPath!.row)
+        orderModel!.loadOrder(withIndex: indexPath!.row)
         
         let tbC = splitVC.viewControllers.last as! UITabBarController
         let detailNavVC = tbC.viewControllers?.first  as! UINavigationController
         let detailVC = detailNavVC.viewControllers.first as! DetailViewController
-        detailVC.orderList = orderList
+        detailVC.orderModel = orderModel
         detailVC.delegate = orderItemVC
     }
 }

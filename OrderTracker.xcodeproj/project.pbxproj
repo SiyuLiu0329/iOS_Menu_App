@@ -24,7 +24,7 @@
 		222AEA342040014200F81074 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AEA332040014200F81074 /* Utils.swift */; };
 		22D4194A203EE58800674660 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D41949203EE58800674660 /* Option.swift */; };
 		22F6E9F6203BD9E5001F78CA /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F5203BD9E5001F78CA /* MenuItem.swift */; };
-		22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F7203BEA4B001F78CA /* OrderList.swift */; };
+		22F6E9F8203BEA4B001F78CA /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F6E9F7203BEA4B001F78CA /* OrderModel.swift */; };
 		DC06E2A1206F27330063642A /* BillAllCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E29F206F27330063642A /* BillAllCollectionViewCell.swift */; };
 		DC06E2A2206F27330063642A /* BillAllCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC06E2A0206F27330063642A /* BillAllCollectionViewCell.xib */; };
 		DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */; };
@@ -87,7 +87,7 @@
 		222AEA332040014200F81074 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		22D41949203EE58800674660 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		22F6E9F5203BD9E5001F78CA /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		22F6E9F7203BEA4B001F78CA /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
+		22F6E9F7203BEA4B001F78CA /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		DC06E29F206F27330063642A /* BillAllCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAllCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC06E2A0206F27330063642A /* BillAllCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillAllCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +196,9 @@
 		222AEA36204044C700F81074 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				22F6E9F5203BD9E5001F78CA /* MenuItem.swift */,
+				DC4F70F5206FC02000A00FA1 /* Order.swift */,
+				22D41949203EE58800674660 /* Option.swift */,
 				222AEA332040014200F81074 /* Utils.swift */,
 			);
 			path = Data;
@@ -213,11 +216,8 @@
 		22D4194B203EE59500674660 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				22F6E9F5203BD9E5001F78CA /* MenuItem.swift */,
 				DC4F71072070788A00A00FA1 /* BillModel.swift */,
-				22F6E9F7203BEA4B001F78CA /* OrderList.swift */,
-				DC4F70F5206FC02000A00FA1 /* Order.swift */,
-				22D41949203EE58800674660 /* Option.swift */,
+				22F6E9F7203BEA4B001F78CA /* OrderModel.swift */,
 				222AEA36204044C700F81074 /* Data */,
 			);
 			path = Models;
@@ -443,7 +443,7 @@
 				DC4F71082070788A00A00FA1 /* BillModel.swift in Sources */,
 				04C101C12054CCB400255361 /* DetailViewController.swift in Sources */,
 				22D4194A203EE58800674660 /* Option.swift in Sources */,
-				22F6E9F8203BEA4B001F78CA /* OrderList.swift in Sources */,
+				22F6E9F8203BEA4B001F78CA /* OrderModel.swift in Sources */,
 				DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */,
 				DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */,
 				04481F18205572E700C2CB09 /* RootViewController.swift in Sources */,

@@ -22,12 +22,12 @@ class DetailViewController: UIViewController {
 
 
     @IBOutlet weak var itemsCollectionView: UICollectionView!
-    var orderList: OrderList?
+    var orderModel: OrderModel?
     weak var delegate: DetailViewControllerDelegate?
     var collectionViewDataSource: DetailCollectionViewDataSource!
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionViewDataSource = DetailCollectionViewDataSource(data: orderList!, delegate: self)
+        collectionViewDataSource = DetailCollectionViewDataSource(data: orderModel!, delegate: self)
         
         // load order from list of orders so changes can be made to the order
         
@@ -76,7 +76,7 @@ extension DetailViewController: ItemCellDelegate {
     func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         let destinationVC = MenuItemExpandedViewController()
-        destinationVC.orderList = orderList
+        destinationVC.orderModel = orderModel
         destinationVC.itemId = indexPath.row + 1
         destinationVC.modalPresentationStyle = .overCurrentContext
         destinationVC.view.backgroundColor = .clear
@@ -97,7 +97,7 @@ extension DetailViewController: ItemCellDelegate {
     
     func itemAdded(atCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
-        let number = orderList?.pendItemToLoadedOrder(number: indexPath.row + 1)
+        let number = orderModel?.pendItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
             delegate!.itemAddedToPendingList(toIndex: number!)
         }

@@ -22,13 +22,13 @@ class MenuItemExpandedViewController: UIViewController {
     weak var delegate: DetailViewControllerDelegate? // will perform similar actions to buttons in detailVC
     weak var popoverDelegate: MenuItemExpandedViewControllerDismissedDelegate? // used to dim / light background view
     private var item: MenuItem?
-    var orderList: OrderList?
+    var orderModel: OrderModel?
     var itemId: Int?
     var themeColour: UIColor?
     var optionDataSource: OptionaTableViewDataSource!
     
     @IBAction func addButtonAction(_ sender: Any) {
-        let number = orderList?.pendItemToLoadedOrder(number: itemId!)
+        let number = orderModel?.pendItemToLoadedOrder(number: itemId!)
         if delegate != nil {
             delegate!.itemAddedToPendingList(toIndex: number!)
         }
@@ -37,7 +37,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        orderList?.resetTamplateItem(itemNumber: itemId!)
+        orderModel?.resetTamplateItem(itemNumber: itemId!)
         if popoverDelegate != nil {
             popoverDelegate!.popoverDidDisappear()
         }
@@ -52,7 +52,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        optionDataSource = OptionaTableViewDataSource(data: orderList!, itemId: itemId!)
+        optionDataSource = OptionaTableViewDataSource(data: orderModel!, itemId: itemId!)
         optionTableView.delegate = self
         optionTableView.dataSource = optionDataSource
         quickTender.tintColor = .white
@@ -61,7 +61,7 @@ class MenuItemExpandedViewController: UIViewController {
         quickTender.clipsToBounds = true
         quickTender.layer.maskedCorners = [.layerMinXMinYCorner]
         quickTender.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
-        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(orderList!.menuItems[itemId!]!.unitPrice), for: .normal)
+        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(orderModel!.menuItems[itemId!]!.unitPrice), for: .normal)
         
         
         addButton.tintColor = .white
@@ -113,8 +113,8 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        orderList?.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
+        orderModel?.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
         tableView.reloadRows(at: [indexPath], with: .automatic)
-        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(orderList!.menuItems[itemId!]!.unitPrice), for: .normal)
+        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(orderModel!.menuItems[itemId!]!.unitPrice), for: .normal)
     }
 }

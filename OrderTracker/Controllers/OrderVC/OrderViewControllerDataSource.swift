@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
-    var orderList: OrderList
-    init(data orderList: OrderList) {
+    var orderModel: OrderModel
+    init(data orderModel: OrderModel) {
         
-        self.orderList = orderList
+        self.orderModel = orderModel
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return orderList.allOrders.count + 1
+        return orderModel.allOrders.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -24,10 +24,10 @@ class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
         let cell: OrderCollectionViewCell
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderCollectionViewCell
         cell.configure()
-        if indexPath.row == orderList.allOrders.count {
+        if indexPath.row == orderModel.allOrders.count {
             cell.label.text = "New Cell"
         } else {
-            cell.label.text = "\(orderList.allOrders[indexPath.row].orderNumber)"
+            cell.label.text = "\(orderModel.allOrders[indexPath.row].orderNumber)"
         }
         
         

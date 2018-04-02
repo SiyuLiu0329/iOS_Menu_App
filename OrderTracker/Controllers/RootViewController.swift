@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 class RootViewController: UIViewController {
-    let orderList = OrderList()
+    let orderModel = OrderModel()
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rootSegue1" {
             UIBarButtonItem.appearance().setTitleTextAttributes(Scheme.AttributedText.navigationControllerTitleAttributes, for: .normal) // this affects all bar buttons
             let navVC = segue.destination as! UINavigationController
             navVC.navigationBar.barTintColor = Scheme.navigationBarColour
             let orderVC = navVC.viewControllers.first as! OrderViewController
-            orderVC.orderList = orderList
+            orderVC.orderModel = orderModel
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  OrderList.swift
+//  orderModel.swift
 //  OrderTracker
 //
 //  Created by macOS on 20/2/18.
@@ -14,7 +14,7 @@ enum PaymentMethod {
     case mix
 }
 
-class OrderList {
+class OrderModel {
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
     }
