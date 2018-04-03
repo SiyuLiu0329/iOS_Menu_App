@@ -9,8 +9,8 @@
 import UIKit
 
 protocol DetailViewControllerDelegate: class {
-    func itemAddedToPendingList(toIndex number: Int)
-    func willBillTemplateItem(itemNumber number: Int)
+    func addItemToOrder(_ item: MenuItem)
+    func quickBillItem(_ item: MenuItem)
 }
 
 class DetailViewController: UIViewController {
@@ -22,12 +22,12 @@ class DetailViewController: UIViewController {
 
 
     @IBOutlet weak var itemsCollectionView: UICollectionView!
-    var orderModel: OrderModel?
+    var menuModel = MenuModel()
     weak var delegate: DetailViewControllerDelegate?
     var collectionViewDataSource: DetailCollectionViewDataSource!
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionViewDataSource = DetailCollectionViewDataSource(data: orderModel!, delegate: self)
+        collectionViewDataSource = DetailCollectionViewDataSource(data: menuModel, delegate: self)
         
         // load order from list of orders so changes can be made to the order
         
@@ -76,7 +76,7 @@ extension DetailViewController: ItemCellDelegate {
     func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         let destinationVC = MenuItemExpandedViewController()
-        destinationVC.orderModel = orderModel
+        destinationVC.menuModel = menuModel
         destinationVC.itemId = indexPath.row + 1
         destinationVC.modalPresentationStyle = .overCurrentContext
         destinationVC.view.backgroundColor = .clear
@@ -84,24 +84,20 @@ extension DetailViewController: ItemCellDelegate {
         destinationVC.popoverDelegate = self // to animate dim
         destinationVC.modalTransitionStyle = .crossDissolve
         present(destinationVC, animated: true, completion: nil)
-        
-        
     }
     
-    func quickTenderItem(atCell cell: MenuItemCollectionViewCell) {
+    func quickBillItem(atCell cell: MenuItemCollectionViewCell) {
         guard let indexPath = itemsCollectionView.indexPath(for: cell) else { return }
         if delegate != nil {
-            delegate!.willBillTemplateItem(itemNumber: indexPath.row + 1)
+            delegate!.quickBillItem(menuModel.menuItems[indexPath.row + 1]!)
         }
     }
     
     func itemAdded(atCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
-        let number = orderModel?.pendItemToLoadedOrder(number: indexPath.row + 1)
         if delegate != nil {
-            delegate!.itemAddedToPendingList(toIndex: number!)
+            delegate!.addItemToOrder(menuModel.menuItems[indexPath.row + 1]!)
         }
-
     }
 }
 

@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 
 class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    var orderModel: OrderModel
+    var menuModel: MenuModel
     var delegateVC: ItemCellDelegate?
-    init(data orderModel: OrderModel, delegate delegateVC: ItemCellDelegate) {
-        self.orderModel = orderModel
+    init(data menuModel: MenuModel, delegate delegateVC: ItemCellDelegate) {
+        self.menuModel = menuModel
         self.delegateVC = delegateVC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return orderModel.menuItems.count
+        return menuModel.menuItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = orderModel.menuItems[indexPath.row + 1] else { fatalError() }
+        guard let item = menuModel.menuItems[indexPath.row + 1] else { fatalError() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuItemCollectionViewCell
         cell.delegate = delegateVC!
         cell.configure(withItem: item)

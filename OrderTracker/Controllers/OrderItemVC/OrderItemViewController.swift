@@ -30,8 +30,7 @@ class OrderItemViewController: UIViewController {
         itemCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
-        billVC.totalPrice = orderModel!.getTotalPriceOfPendingItemsInLoadedOrder()
-        billVC.numberOfItems = orderModel!.getNumberOfPendingItemsInLoadedOrder()
+        billVC.items = orderModel!.getPendingItemsInLoadedOrder()
         billVC.delegate = self // get billing info when this VC is dismissed
         billVC.billingMode = .normal
         present(billVC, animated: true, completion: nil)
@@ -98,7 +97,7 @@ class OrderItemViewController: UIViewController {
             // if the latest(created) order is empty && this order is the latest!
             orderModel!.discardLastestOrder()
         }
-        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
+//        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
         dismiss(animated: true, completion: nil)
         
     }
@@ -106,7 +105,7 @@ class OrderItemViewController: UIViewController {
     @IBAction func saveAndDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         orderModel?.saveLoadedOrder(withIndex: orderId!)
-        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
+//        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
     }
 
     
@@ -122,7 +121,8 @@ class OrderItemViewController: UIViewController {
 
 
 extension OrderItemViewController: DetailViewControllerDelegate {
-    func itemAddedToPendingList(toIndex number: Int) {
+    func addItemToOrder(_ item: MenuItem) {
+        let number = orderModel!.pendItemToLoadedOrder(item)!
         let indexPath = IndexPath.init(row: number, section: 0)
         if orderModel?.getNumberOfPendingItemsInLoadedOrder() == 1 {
             itemCollectionView.reloadItems(at: [indexPath])
@@ -138,13 +138,12 @@ extension OrderItemViewController: DetailViewControllerDelegate {
         }
     }
     
-    func willBillTemplateItem(itemNumber number: Int) {
+    func quickBillItem(_ item: MenuItem) {
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
-        billVC.totalPrice = orderModel!.menuItems[number]!.unitPrice
-        billVC.numberOfItems = 1
         billVC.delegate = self // get billing info when this VC is dismissed
-        billVC.billingMode = BillingMode.template(number)
+        billVC.items = [item]
+        billVC.billingMode = BillingMode.template(item)
         present(billVC, animated: true, completion: nil)
         
     }
@@ -156,8 +155,7 @@ extension OrderItemViewController: OrderItemCollectionViewCellDelegate {
         let indexPath = itemCollectionView.indexPath(for: cell)!
         let billVC = BillItemViewController()
         billVC.modalPresentationStyle = .formSheet
-        billVC.totalPrice = orderModel!.getPriceOfPendingItem(withIndex: indexPath.row)
-        billVC.numberOfItems = orderModel?.getQuantityOfPendingItem(withIndex: indexPath.row)
+        billVC.items = [orderModel!.getPendingItemsInLoadedOrder()[indexPath.row]]
         billVC.delegate = self // get billing info when this VC is dismissed
         billVC.billingMode = BillingMode.pendingItem(indexPath.row)
         present(billVC, animated: true, completion: nil)
@@ -187,36 +185,35 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
             itemCollectionView.reloadSections([0, 1])
             updateBillView()
         case .splitBill(let cash, let card):
-            print(card, card)
             var res: Int
             switch bMode {
             case .pendingItem(let index):
-                res = orderModel!.splitBill(itemIndex: index, cashSales: cash, cardSales: card)
+                res = orderModel!.splitBill(pendingItemIndex: index, cashSales: cash, cardSales: card)
                 let pendingIndexPath = IndexPath(item: index, section: 0)
                 let paidIndexPath = IndexPath(item: res, section: 1)
                 itemCollectionView.performBatchUpdates({
                     removeFromSection0(pendingIndexPath)
                     insertIntoSection1(paidIndexPath)
                 }, completion: nil)
-                
+
                 return
-            case .template(let number):
-                res = orderModel!.splitBill(itemNumber: number, cashSales: cash, cardSales: card)
+            case .template(let item):
+                res = orderModel!.splitBill(templateItem: item, cashSales: cash, cardSales: card)
             default:
                 orderModel!.splitBillAllPendingItems(cashSales: cash, cardSales: card)
                 itemCollectionView.reloadData()
                 updateBillView()
                 return
             }
-            
+
             let paidIndexPath = IndexPath(item: res, section: 1)
             insertIntoSection1(paidIndexPath)
             updateBillView()
         }
     }
     
-    func quickBill(templateItemNumbered number: Int, paymentMethod method: PaymentMethod) {
-        let insertRes = orderModel!.quickBillTemplateItem(withNumber: number, withPaymentMethod: method)
+    func quickBill(templateItem item: MenuItem, paymentMethod method: PaymentMethod) {
+        let insertRes = orderModel!.quickBillTemplateItem(item, withPaymentMethod: method)
         let paidIndexPath = IndexPath(item: insertRes, section: 1)
         itemCollectionView.performBatchUpdates({
             insertIntoSection1(paidIndexPath)

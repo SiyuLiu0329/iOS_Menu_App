@@ -12,7 +12,7 @@ class BillModel {
     var numberOfSplits: Int {
         return selected.count
     }
-    
+    var items: [MenuItem]
     var selected: [Bool]
     var totalPrice: Double
     var numSelected = 0
@@ -26,9 +26,14 @@ class BillModel {
         return totalPrice * Double(numSelected) / Double(numberOfSplits)
     }
     
-    init(totalPrice price: Double, numberOfItems number: Int) {
-        selected = Array(repeating: false, count: number)
-        totalPrice = price
+    init(withItems items: [MenuItem]) {
+        selected = Array(repeating: false, count: items.count)
+        self.items = items
+        var totalPrice: Double = 0
+        for item in items {
+            totalPrice += item.totalPrice
+        }
+        self.totalPrice = totalPrice
     }
     
     private func cellSelected(atIndex index: Int) {

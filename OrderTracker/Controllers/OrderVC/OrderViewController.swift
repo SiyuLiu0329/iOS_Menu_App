@@ -54,7 +54,6 @@ class OrderViewController: UIViewController {
         let tbC = splitVC.viewControllers.last as! UITabBarController
         let detailNavVC = tbC.viewControllers?.first  as! UINavigationController
         let detailVC = detailNavVC.viewControllers.first as! DetailViewController
-        detailVC.orderModel = orderModel
         detailVC.delegate = orderItemVC
     }
 }

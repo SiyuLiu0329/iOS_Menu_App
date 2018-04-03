@@ -10,7 +10,7 @@ import UIKit
 protocol ItemCellDelegate: class {
     func showDetailFor(collectionViewCell cell: MenuItemCollectionViewCell)
     func itemAdded(atCell cell: MenuItemCollectionViewCell)
-    func quickTenderItem(atCell cell: MenuItemCollectionViewCell)
+    func quickBillItem(atCell cell: MenuItemCollectionViewCell)
 }
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
@@ -44,7 +44,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     
     @IBAction func tenderButtonPressed(_ sender: Any) {
         if delegate != nil {
-            delegate?.quickTenderItem(atCell: self)
+            delegate?.quickBillItem(atCell: self)
         }
     }
     

@@ -14,7 +14,7 @@ enum BillReturnType {
 }
 
 enum BillingMode {
-    case template(Int) // item number
+    case template(MenuItem) // item number
     case pendingItem(Int) // index
     case normal
 }
@@ -22,12 +22,11 @@ enum BillingMode {
 protocol BillItemViewControllerDelegate: class {
     func billItemViewControllerDidReturn(withBillReturnType mode: BillReturnType, paymentMethod method: PaymentMethod, billingMode bMode: BillingMode)
     func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod)
-    func quickBill(templateItemNumbered number: Int, paymentMethod method: PaymentMethod)
+    func quickBill(templateItem item: MenuItem, paymentMethod method: PaymentMethod)
 }
 
 class BillItemViewController: UIViewController {
-    var totalPrice: Double!
-    var numberOfItems: Int!
+    var items: [MenuItem]!
     var model: BillModel!
     var billingMode: BillingMode!
     weak var delegate: BillItemViewControllerDelegate?
@@ -68,13 +67,13 @@ class BillItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = BillModel(totalPrice: totalPrice, numberOfItems: numberOfItems)
+        model = BillModel(withItems: items)
         collectionViewDataSource = BillCollectionViewDataSource(forCollectionView: billingOptionCollectionView, billModel: model, withDelegate: self)
         billingOptionCollectionView.dataSource = collectionViewDataSource
         billingOptionCollectionView.delegate = self
-        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(totalPrice!)
-        let unit = numberOfItems == 1 ? "Item" : "Items"
-        numberOfItemsLabel.text =  "\(numberOfItems!) " + unit
+        totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(model.totalPrice)
+        let unit = model.items.count == 1 ? "Item" : "Items"
+        numberOfItemsLabel.text =  "\(model.items.count) " + unit
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         billingOptionCollectionView.showsHorizontalScrollIndicator = false
@@ -139,8 +138,8 @@ extension BillItemViewController: BillCellDelegate {
                 delegate!.billItemViewControllerDidReturn(withBillReturnType: .billAll, paymentMethod: method, billingMode: .normal)
             case .pendingItem(let index):
                 delegate!.quickBill(itemInPendingItems: index, paymentMethod: method)
-            case .template(let number):
-                delegate!.quickBill(templateItemNumbered: number, paymentMethod: method)
+            case .template:
+                delegate!.quickBill(templateItem: model.items.first!, paymentMethod: method)
             }
         }
         dismiss(animated: true, completion: nil)

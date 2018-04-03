@@ -33,16 +33,14 @@ class OrderModel {
         return loadedOrder!.itemCollections[0].isEmpty
     }
     
-    var menuItems: [Int: MenuItem] = [:]
+//    var menuItems: [Int: MenuItem] = [:]
 
     var currentOrderNumber = 1
     private var loadedOrder: Order?
     // Order
     
     init() {
-        resetTamplateItem(itemNumber: 0)
         loadData()
-        
     }
     
     private func loadData() {
@@ -76,21 +74,21 @@ class OrderModel {
         return loadedOrder!.itemCollections[0][index].totalPrice
     }
 
-    func resetTamplateItem(itemNumber number: Int) {
-        menuItems = resetToDefault(forItem: number, in: menuItems)
-    }
+//    func resetTamplateItem(itemNumber number: Int) {
+//        menuItems = resetToDefault(forItem: number, in: menuItems)
+//    }
+//
+//    func toggleOptionValue(at optionIndex: Int, inPendingItem itemNumber: Int) {
+//        menuItems[itemNumber]!.toggleSelectetState(ofOption: optionIndex)
+//    }
     
-    func toggleOptionValue(at optionIndex: Int, inPendingItem itemNumber: Int) {
-        menuItems[itemNumber]!.toggleSelectetState(ofOption: optionIndex)
-    }
+//    func getValue(ofOption optionIndex: Int, inPendingItem itemNumber: Int) -> Bool {
+//        return menuItems[itemNumber]!.options[optionIndex].value
+//    }
     
-    func getValue(ofOption optionIndex: Int, inPendingItem itemNumber: Int) -> Bool {
-        return menuItems[itemNumber]!.options[optionIndex].value
-    }
-    
-    func getOptions(inItem itemNumber: Int) -> [Option] {
-        return menuItems[itemNumber]!.options
-    }
+//    func getOptions(inItem itemNumber: Int) -> [Option] {
+//        return menuItems[itemNumber]!.options
+//    }
     
     func newOrder() {
         allOrders.append(Order(orderNumber: currentOrderNumber))
@@ -132,8 +130,7 @@ class OrderModel {
         return loadedOrder!.numberOfItemsInOrder
     }
     
-    func pendItemToLoadedOrder(number itemNumber: Int) -> Int? {
-        guard let item = menuItems[itemNumber] else { return nil }
+    func pendItemToLoadedOrder(_ item: MenuItem) -> Int? {
         for i in 0..<loadedItemCollections[0].count {
             if item == loadedItemCollections[0][i] {
                 loadedOrder!.itemCollections[0].insert(item, at: i)
@@ -190,8 +187,7 @@ class OrderModel {
         return 0
     }
     
-    func quickBillTemplateItem(withNumber number: Int, withPaymentMethod method: PaymentMethod)  -> Int {
-        let item = menuItems[number]!
+    func quickBillTemplateItem(_ item: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
         return insertItemToPaidItems(item, paymentMethod: method)
     }
     
@@ -200,13 +196,12 @@ class OrderModel {
         currentOrderNumber -= 1
     }
     
-    func splitBill(itemNumber number: Int, cashSales cash: Double, cardSales card: Double) -> Int {
-        let item = menuItems[number]!
+    func splitBill(templateItem item: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
         return splitBill(menuItem: item, cashSales: cash, cardSales: card)
-        
+
     }
     
-    func splitBill(itemIndex index: Int, cashSales cash: Double, cardSales card: Double) -> Int {
+    func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double) -> Int {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
         return splitBill(menuItem: item, cashSales: cash, cardSales: card)
@@ -217,7 +212,7 @@ class OrderModel {
         item.paymentStatus = .paid
         loadedOrder!.cardSales += card
         loadedOrder!.cashSales += cash
-//        print(loadedOrder!.cashSales, loadedOrder!.cardSales)
+        print(loadedOrder!.cashSales, loadedOrder!.cardSales)
         for i in 0..<loadedItemCollections[1].count {
             if item == loadedItemCollections[1][i] {
                 loadedOrder!.itemCollections[1].insert(item, at: i)
