@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 enum MessageType: Int, Codable {
-    case startUpSyn
-    case serverToClientUpdateAfterPayment
+    case serverToClientOrderUpdate
 }
 
 struct CommunicationProtocol: Codable {

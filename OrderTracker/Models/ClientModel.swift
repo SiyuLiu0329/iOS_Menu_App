@@ -13,8 +13,8 @@ class ClientModel {
     var session: MCSession!
     var orders: [Order] = []
     
-    func getIntialOrderFromServer(_ order: Order) {
+    func receiveOrderFromServer(_ order: Order) -> Int {
         orders.append(order)
-        print("got order from server: \(order.orderNumber)")
+        return orders.count - 1
     }
 }

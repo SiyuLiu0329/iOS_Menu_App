@@ -112,19 +112,17 @@ extension RootViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
             let message = try JSONDecoder().decode(CommunicationProtocol.self, from: data)
+            
             switch message.type {
-            case .serverToClientUpdateAfterPayment:
+            case .serverToClientOrderUpdate:
+                // client
+                let index = clientModel.receiveOrderFromServer(message.order)
                 if delegate != nil {
+                    // if client is in order view, this delegate will have been set so UI elements can be updated
                     DispatchQueue.main.async {
-                        self.delegate!.didReceiveOrderFromServerAfterPayment(message.order)
+                        self.delegate!.didReceiveOrderFromServerAfterPayment(insertedAtindex: index)
                     }
-                    
                 }
-            case .startUpSyn:
-                DispatchQueue.main.async {
-                    self.clientModel.getIntialOrderFromServer(message.order)
-                }
-                
             }
             
         } catch {

@@ -10,8 +10,7 @@ import UIKit
 import MultipeerConnectivity
 
 protocol ClientOrderViewDelegate: class {
-    func didReceiveOrderFromServerAfterPayment(_ order: Order)
-    func didReceiveInitialOrdersFromServer()
+    func didReceiveOrderFromServerAfterPayment(insertedAtindex index: Int)
 }
 
 class ClientViewController: UIViewController {
@@ -20,16 +19,11 @@ class ClientViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Scheme.collectionViewBackGroundColour
     }
 }
 
 extension ClientViewController: ClientOrderViewDelegate {
-    func didReceiveOrderFromServerAfterPayment(_ order: Order) {
-        
-        
-    }
-    
-    func didReceiveInitialOrdersFromServer() {
-        
+    func didReceiveOrderFromServerAfterPayment(insertedAtindex index: Int) {
     }
 }
