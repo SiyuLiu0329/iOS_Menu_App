@@ -14,10 +14,6 @@ class OrderViewController: UIViewController {
         return true 
     }
     
-    @IBAction func dismiss(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBOutlet weak var orderCollectionView: UICollectionView!
     var orderModel: OrderModel?
 

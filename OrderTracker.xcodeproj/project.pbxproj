@@ -50,6 +50,8 @@
 		DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */; };
 		DCCE80A920736CFD00EF85A9 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */; };
 		DCCE80AB207378A800EF85A9 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AA207378A800EF85A9 /* ClientViewController.swift */; };
+		DCCE80AD20737B8B00EF85A9 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AC20737B8B00EF85A9 /* ClientModel.swift */; };
+		DCCE80AF2073846B00EF85A9 /* Connection Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AE2073846B00EF85A9 /* Connection Delegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewDataSource.swift; sourceTree = "<group>"; };
 		DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 		DCCE80AA207378A800EF85A9 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
+		DCCE80AC20737B8B00EF85A9 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
+		DCCE80AE2073846B00EF85A9 /* Connection Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection Delegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +229,8 @@
 		22D4194B203EE59500674660 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DCCE80AC20737B8B00EF85A9 /* ClientModel.swift */,
+				DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */,
 				DC4F71072070788A00A00FA1 /* BillModel.swift */,
 				22F6E9F7203BEA4B001F78CA /* OrderModel.swift */,
 				DCC1ADCA2072F88E00C38F9E /* MenuModel.swift */,
@@ -237,7 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				04481F17205572E700C2CB09 /* RootViewController.swift */,
-				DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */,
+				DCCE80AE2073846B00EF85A9 /* Connection Delegate.swift */,
 				DCCE80AA207378A800EF85A9 /* ClientViewController.swift */,
 				04076093205561880002B5E1 /* SplitViewController.swift */,
 				DCCB7F7B2060E45800EA2917 /* OrderVC */,
@@ -472,10 +478,12 @@
 				DCCE80AB207378A800EF85A9 /* ClientViewController.swift in Sources */,
 				DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */,
 				DCCE80A920736CFD00EF85A9 /* ConnectionHandler.swift in Sources */,
+				DCCE80AD20737B8B00EF85A9 /* ClientModel.swift in Sources */,
 				DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */,
 				DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */,
 				04C101C52054D07300255361 /* OrderCollectionViewCell.swift in Sources */,
 				04C101C32054CD9300255361 /* OrderViewController.swift in Sources */,
+				DCCE80AF2073846B00EF85A9 /* Connection Delegate.swift in Sources */,
 				DC06E2A9206F27C90063642A /* BillViewDataSource.swift in Sources */,
 				DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */,
 				0407608E2054DAD50002B5E1 /* ItemCollectionViewCell.swift in Sources */,

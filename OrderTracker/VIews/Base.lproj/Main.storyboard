@@ -67,14 +67,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S7X-HW-iPI"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Wsh-qb-N7l">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="jaj-11-v9H">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="dismiss:" destination="L4m-pT-P3X" id="C0L-dj-NVq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Wsh-qb-N7l"/>
                     <connections>
                         <outlet property="orderCollectionView" destination="5JF-CP-2R4" id="fmS-zm-mrr"/>
                     </connections>

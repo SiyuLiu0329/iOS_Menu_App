@@ -40,6 +40,8 @@ class RootViewController: UIViewController {
     }
     
     @IBAction func hostButtonPressed(_ sender: Any) {
+        joinButton.isUserInteractionEnabled = false
+        hostButton.isUserInteractionEnabled = false
         connectionHandler.isServer = true
         UIView.animate(withDuration: 0.3) {
             self.viewOrdersButton.alpha = 0
@@ -74,10 +76,13 @@ class RootViewController: UIViewController {
         connectionHandler.browser.delegate = self
         self.joinSelected(false)
         self.hostSelected(false)
-        orderModel.serverHandler = connectionHandler
+        orderModel.session = connectionHandler.session
+        clientModel.session = connectionHandler.session
+        connectionHandler.session.delegate = self
     }
     
     let orderModel = OrderModel()
+    let clientModel = ClientModel()
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rootSegue1" {
             UIBarButtonItem.appearance().setTitleTextAttributes(Scheme.AttributedText.navigationControllerTitleAttributes, for: .normal) // this affects all bar buttons
@@ -87,7 +92,7 @@ class RootViewController: UIViewController {
             orderVC.orderModel = orderModel
         } else if segue.identifier == "rootViewSegue2" {
             let clientVC = segue.destination as! ClientViewController
-            clientVC.clientHandler = connectionHandler
+            clientVC.clientModel = clientModel
         }
     }
     
@@ -100,6 +105,8 @@ extension RootViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         self.viewOrdersButton.alpha = 1
         browserViewController.dismiss(animated: true, completion: nil)
+        joinButton.isUserInteractionEnabled = false
+        hostButton.isUserInteractionEnabled = false
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
@@ -107,5 +114,36 @@ extension RootViewController: MCBrowserViewControllerDelegate {
         hostSelected(false)
         joinSelected(false)
         browserViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RootViewController: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        switch state {
+        case .connected:
+            print("Connected: \(peerID.displayName)")
+        case .connecting:
+            print("Connecting: \(peerID.displayName)")
+        case .notConnected:
+            // disconnected
+            fatalError()
+//            print("Not Connected: \(peerID.displayName)")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        // not needed
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        // not needed
     }
 }

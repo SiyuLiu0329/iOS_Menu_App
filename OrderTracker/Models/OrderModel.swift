@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 
 enum PaymentMethod {
     case card
@@ -15,7 +16,7 @@ enum PaymentMethod {
 }
 
 class OrderModel {
-    var serverHandler: ConnectionHandler!
+    var session: MCSession!
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
     }
