@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 class TabBarController: UITabBarController {
-    override func viewDidLoad() {
-        
+    var menuModel = MenuModel()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         tabBar.barTintColor = Scheme.navigationBarColour
         tabBar.tintColor = .white
         tabBar.backgroundImage = UIImage()
@@ -21,5 +22,15 @@ class TabBarController: UITabBarController {
         blurEffectView.frame = tabBar.bounds
         tabBar.addSubview(blurEffectView)
         tabBar.sendSubview(toBack: blurEffectView)
+    }
+    
+    override func viewDidLoad() {
+        
+
+        
+        super.viewDidLoad()
+        let vc1 = viewControllers?.first as! UINavigationController
+        let detailVC = vc1.viewControllers.first as! DetailViewController
+        detailVC.menuModel = menuModel
     }
 }

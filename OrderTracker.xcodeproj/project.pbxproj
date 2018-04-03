@@ -230,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				04481F17205572E700C2CB09 /* RootViewController.swift */,
-				04076095205563AF0002B5E1 /* TabBarController.swift */,
 				04076093205561880002B5E1 /* SplitViewController.swift */,
 				DCCB7F7B2060E45800EA2917 /* OrderVC */,
 				DCCB7F792060E40800EA2917 /* OrderItemVC */,
@@ -263,6 +262,7 @@
 		DCCB7F7A2060E41F00EA2917 /* DetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				04076095205563AF0002B5E1 /* TabBarController.swift */,
 				04C101C02054CCB400255361 /* DetailViewController.swift */,
 				DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */,
 			);

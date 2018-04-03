@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
 
 
     @IBOutlet weak var itemsCollectionView: UICollectionView!
-    var menuModel = MenuModel()
+    var menuModel: MenuModel!
     weak var delegate: DetailViewControllerDelegate?
     var collectionViewDataSource: DetailCollectionViewDataSource!
     override func viewDidLoad() {
