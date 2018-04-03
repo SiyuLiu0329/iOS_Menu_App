@@ -86,7 +86,7 @@
         <!--Item-->
         <scene sceneID="QD7-uP-m5j">
             <objects>
-                <viewController id="5S6-1C-6oN" customClass="DetailViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tabbarItem" id="5S6-1C-6oN" customClass="DetailViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NlK-Ip-U9l">
                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

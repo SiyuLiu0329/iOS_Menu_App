@@ -10,6 +10,7 @@ import Foundation
 
 class MenuModel {
     var menuItems: [Int: MenuItem] = [:]
+    var menuName: String
     
     func resetTamplateItem(itemNumber number: Int) {
         menuItems = resetToDefault(forItem: number, in: menuItems)
@@ -27,7 +28,8 @@ class MenuModel {
         return menuItems[itemNumber]!.options
     }
     
-    init() {
+    init(menuName name: String) {
+        self.menuName = name
         resetTamplateItem(itemNumber: 0)
     }
 }
