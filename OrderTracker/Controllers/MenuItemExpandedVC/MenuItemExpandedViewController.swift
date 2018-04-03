@@ -19,7 +19,7 @@ class MenuItemExpandedViewController: UIViewController {
     @IBOutlet weak var quickTender: UIButton!
     @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var contentView: UIView!
-    weak var delegate: DetailViewControllerDelegate? // will perform similar actions to buttons in detailVC
+    weak var delegate: MenuDelegate? // will perform similar actions to buttons in detailVC
     weak var popoverDelegate: MenuItemExpandedViewControllerDismissedDelegate? // used to dim / light background view
     private var item: MenuItem?
     var menuModel: MenuModel!

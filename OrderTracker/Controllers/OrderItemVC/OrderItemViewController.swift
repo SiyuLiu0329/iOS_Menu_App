@@ -120,7 +120,7 @@ class OrderItemViewController: UIViewController {
 }
 
 
-extension OrderItemViewController: DetailViewControllerDelegate {
+extension OrderItemViewController: MenuDelegate {
     func addItemToOrder(_ item: MenuItem) {
         let number = orderModel!.pendItemToLoadedOrder(item)!
         let indexPath = IndexPath.init(row: number, section: 0)

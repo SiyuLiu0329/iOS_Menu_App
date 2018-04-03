@@ -11,6 +11,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     var menuModel = MenuModel()
+    weak var menuDelegate: MenuDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         tabBar.barTintColor = Scheme.navigationBarColour
@@ -25,12 +26,17 @@ class TabBarController: UITabBarController {
     }
     
     override func viewDidLoad() {
-        
-
-        
         super.viewDidLoad()
-        let vc1 = viewControllers?.first as! UINavigationController
-        let detailVC = vc1.viewControllers.first as! DetailViewController
+        let detailVC = viewControllers?.first as! DetailViewController
         detailVC.menuModel = menuModel
+        detailVC.tabBarItem.title = "Food"
+        detailVC.delegate = menuDelegate
+        
+//        let navVC = storyboard?.instantiateViewController(withIdentifier: "tabbarItem") as! UINavigationController
+//        let drinkVC = navVC.viewControllers.first as! DetailViewController
+//        drinkVC.menuModel = menuModel
+//        drinkVC.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 1)
+//        viewControllers?.append(drinkVC)
+        
     }
 }

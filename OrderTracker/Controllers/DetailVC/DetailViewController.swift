@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol DetailViewControllerDelegate: class {
+protocol MenuDelegate: class {
     func addItemToOrder(_ item: MenuItem)
     func quickBillItem(_ item: MenuItem)
 }
@@ -21,9 +21,10 @@ class DetailViewController: UIViewController {
     }
 
 
+    @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     var menuModel: MenuModel!
-    weak var delegate: DetailViewControllerDelegate?
+    weak var delegate: MenuDelegate?
     var collectionViewDataSource: DetailCollectionViewDataSource!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +36,19 @@ class DetailViewController: UIViewController {
         itemsCollectionView.dataSource = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
-        
         // configure nav bar
-        navigationController?.navigationBar.barTintColor = Scheme.navigationBarColour
-        navigationController?.navigationBar.topItem?.title = "Menu Items"
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.isTranslucent = true
+        
+        toolbar.barTintColor = Scheme.navigationBarColour
+        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        toolbar.isTranslucent = true
         
         // add blur to nav bar
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = (self.navigationController?.navigationBar.bounds)!
-        navigationController?.navigationBar.addSubview(blurEffectView)
-        navigationController?.navigationBar.sendSubview(toBack: blurEffectView)
-        
-        navigationController?.navigationBar.tintColor = Scheme.navigationControllerBackButtonColour
-        navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
-
+        blurEffectView.frame = toolbar.bounds
+        toolbar.addSubview(blurEffectView)
+        toolbar.sendSubview(toBack: blurEffectView)
+        toolbar.tintColor = Scheme.navigationControllerBackButtonColour
     }
     
     
@@ -63,7 +60,7 @@ class DetailViewController: UIViewController {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
         layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) * 1.4)
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 54, left: 10, bottom: 10, right: 10)
         layout.minimumLineSpacing = itemSpacing
         layout.minimumInteritemSpacing = itemSpacing
         itemsCollectionView.collectionViewLayout = layout
