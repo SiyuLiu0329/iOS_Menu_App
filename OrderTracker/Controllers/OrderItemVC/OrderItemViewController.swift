@@ -185,6 +185,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
             itemCollectionView.reloadSections([0, 1])
             updateBillView()
         case .splitBill(let cash, let card):
+            print("\nCash + \(cash), Card + \(card)")
             var res: Int
             switch bMode {
             case .pendingItem(let index):

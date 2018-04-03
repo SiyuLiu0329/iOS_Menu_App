@@ -73,22 +73,6 @@ class OrderModel {
     func getPriceOfPendingItem(withIndex index: Int) -> Double {
         return loadedOrder!.itemCollections[0][index].totalPrice
     }
-
-//    func resetTamplateItem(itemNumber number: Int) {
-//        menuItems = resetToDefault(forItem: number, in: menuItems)
-//    }
-//
-//    func toggleOptionValue(at optionIndex: Int, inPendingItem itemNumber: Int) {
-//        menuItems[itemNumber]!.toggleSelectetState(ofOption: optionIndex)
-//    }
-    
-//    func getValue(ofOption optionIndex: Int, inPendingItem itemNumber: Int) -> Bool {
-//        return menuItems[itemNumber]!.options[optionIndex].value
-//    }
-    
-//    func getOptions(inItem itemNumber: Int) -> [Option] {
-//        return menuItems[itemNumber]!.options
-//    }
     
     func newOrder() {
         allOrders.append(Order(orderNumber: currentOrderNumber))
@@ -212,7 +196,6 @@ class OrderModel {
         item.paymentStatus = .paid
         loadedOrder!.cardSales += card
         loadedOrder!.cashSales += cash
-        print(loadedOrder!.cashSales, loadedOrder!.cardSales)
         for i in 0..<loadedItemCollections[1].count {
             if item == loadedItemCollections[1][i] {
                 loadedOrder!.itemCollections[1].insert(item, at: i)
