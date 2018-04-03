@@ -36,16 +36,19 @@ class DetailViewController: UIViewController {
         itemsCollectionView.dataSource = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
+        // configure nav bar
         
         toolbar.barTintColor = Scheme.navigationBarColour
+        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.isTranslucent = true
-        toolbar.tintColor = Scheme.navigationControllerBackButtonColour
         
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = toolbar.bounds
-        self.toolbar.isTranslucent = true
-        self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        self.toolbar.addSubview(visualEffectView)
+        // add blur to nav bar
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = toolbar.bounds
+        toolbar.addSubview(blurEffectView)
+        toolbar.sendSubview(toBack: blurEffectView)
+        toolbar.tintColor = Scheme.navigationControllerBackButtonColour
     }
     
     
@@ -53,7 +56,6 @@ class DetailViewController: UIViewController {
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 10
         let numberOfItemsPerRow = 3
-        print(itemsCollectionView.frame.size)
         let width = itemsCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)

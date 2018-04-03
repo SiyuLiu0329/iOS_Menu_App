@@ -81,11 +81,11 @@
             <objects>
                 <viewController storyboardIdentifier="tabbarItem" id="5S6-1C-6oN" customClass="DetailViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NlK-Ip-U9l">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8EC-5p-EZ8">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mdq-x5-brc">
                                     <size key="itemSize" width="205" height="282"/>
@@ -192,11 +192,11 @@
                                 </cells>
                             </collectionView>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5y-kz-2Wl">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                                <rect key="frame" x="0.0" y="20" width="703.5" height="748"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-m6-XRO">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4Rj-52-tUD"/>
                                 </constraints>
@@ -223,7 +223,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Yv-EY-8f9"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ogm-w7-ghK"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="Kxb-Db-9ld"/>
                     <navigationItem key="navigationItem" id="OD1-2F-2Zn"/>
                     <connections>
                         <outlet property="dimView" destination="l5y-kz-2Wl" id="W0B-Wz-fUJ"/>
@@ -233,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xni-h8-6Dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1379.8828125" y="1782.8125"/>
+            <point key="canvasLocation" x="1380" y="1734"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="8jK-M3-Zij">
@@ -241,7 +241,7 @@
                 <splitViewController id="JVh-ZX-SBH" customClass="SplitViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="zPe-Sy-0Se" kind="relationship" relationship="masterViewController" id="Z9G-8z-NmL"/>
-                        <segue destination="ZgU-Nb-MF4" kind="relationship" relationship="detailViewController" id="WZ6-f6-fxP"/>
+                        <segue destination="ZgU-Nb-MF4" kind="relationship" relationship="detailViewController" id="PeP-mV-dve"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amd-ee-R8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,11 +253,11 @@
             <objects>
                 <viewController id="HhU-Ko-Zro" customClass="OrderItemViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oIX-Rm-sYy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hwF-ZQ-FoK">
-                                <rect key="frame" x="0.0" y="64" width="320" height="575"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="584"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cWb-85-HZ4">
                                     <size key="itemSize" width="316" height="236"/>
@@ -385,7 +385,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFL-Qg-9Ya">
-                                <rect key="frame" x="0.0" y="639" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="648" width="320" height="120"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="feO-vU-Jx9">
                                         <rect key="frame" x="8" y="8" width="304" height="50"/>
@@ -693,7 +693,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="5S6-1C-6oN" kind="relationship" relationship="viewControllers" id="SYi-sZ-X8U"/>
+                        <segue destination="5S6-1C-6oN" kind="relationship" relationship="viewControllers" id="4k3-oF-nkf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnP-EA-ve0" userLabel="First Responder" sceneMemberID="firstResponder"/>
