@@ -80,9 +80,7 @@ extension RootViewController: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .connected:
-            if connectionHandler.isServer {
-                orderModel.sendInitialOrdersToClient()
-            }
+            print("connected: \(peerID.displayName)")
         case .connecting:
             print("Connecting: \(peerID.displayName)")
         case .notConnected:
@@ -114,6 +112,7 @@ extension RootViewController: MCSessionDelegate {
                     self.joinButton.isUserInteractionEnabled = false
                     self.connectionHandler.browser.dismiss(animated: true, completion: nil)
                 }
+                orderModel.sendInitialOrdersToClient()
                 
             }
             

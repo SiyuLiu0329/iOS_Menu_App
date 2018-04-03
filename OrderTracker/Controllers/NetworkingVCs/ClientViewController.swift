@@ -36,6 +36,7 @@ class ClientViewController: UIViewController {
 
 extension ClientViewController: ClientOrderViewDelegate {
     func didReceiveOrderFromServerAfterPayment(insertedAtindex index: Int) {
+        clientOrderCollectionView.reloadData()
     }
 }
 
