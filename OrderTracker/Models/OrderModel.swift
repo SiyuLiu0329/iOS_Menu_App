@@ -16,7 +16,7 @@ enum PaymentMethod {
 }
 
 class OrderModel {
-    var session: MCSession!
+    var session: MCSession?
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
     }
@@ -143,12 +143,15 @@ class OrderModel {
             let _ = insertItemToPaidItems(item, paymentMethod: method)
         }
         loadedOrder!.itemCollections[0].removeAll()
+        sendOrderThroughSession(loadedOrder!)
     }
     
     func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> Int {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
-        return insertItemToPaidItems(item, paymentMethod: method)
+        let index = insertItemToPaidItems(item, paymentMethod: method)
+        sendOrderThroughSession(loadedOrder!)
+        return index
     }
     
     private func insertItemToPaidItems(_ itemToAdd: MenuItem, paymentMethod method: PaymentMethod) -> Int {
@@ -169,12 +172,14 @@ class OrderModel {
         }
         
         loadedOrder!.itemCollections[1].insert(item, at: 0)
-        
         return 0
     }
     
     func quickBillTemplateItem(_ item: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
-        return insertItemToPaidItems(item, paymentMethod: method)
+        let index = insertItemToPaidItems(item, paymentMethod: method)
+        sendOrderThroughSession(loadedOrder!)
+        return index
+        
     }
     
     func discardLastestOrder() {
@@ -183,14 +188,18 @@ class OrderModel {
     }
     
     func splitBill(templateItem item: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
-        return splitBill(menuItem: item, cashSales: cash, cardSales: card)
+        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card)
+        sendOrderThroughSession(loadedOrder!)
+        return index
 
     }
     
     func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double) -> Int {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
-        return splitBill(menuItem: item, cashSales: cash, cardSales: card)
+        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card)
+        sendOrderThroughSession(loadedOrder!)
+        return index
     }
     
     private func splitBill(menuItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
@@ -207,6 +216,7 @@ class OrderModel {
         
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         
+        sendOrderThroughSession(loadedOrder!)
         return 0
     }
     
@@ -229,11 +239,21 @@ class OrderModel {
             }
         }
         loadedOrder!.itemCollections[0].removeAll()
+        
+        sendOrderThroughSession(loadedOrder!)
     }
     
     func getQuantityOfPendingItem(withIndex index: Int) -> Int {
         return loadedItemCollections[0][index].quantity
     }
-
     
+    private func sendOrderThroughSession(_ order: Order) {
+        guard let sess = session else { return }
+        do {
+            let data = try JSONEncoder().encode(order)
+            try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
+        } catch let error {
+            print(error)
+        }
+    }
 }

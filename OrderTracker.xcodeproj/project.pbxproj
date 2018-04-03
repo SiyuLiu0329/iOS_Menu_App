@@ -230,9 +230,9 @@
 			isa = PBXGroup;
 			children = (
 				DCCE80AC20737B8B00EF85A9 /* ClientModel.swift */,
+				22F6E9F7203BEA4B001F78CA /* OrderModel.swift */,
 				DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */,
 				DC4F71072070788A00A00FA1 /* BillModel.swift */,
-				22F6E9F7203BEA4B001F78CA /* OrderModel.swift */,
 				DCC1ADCA2072F88E00C38F9E /* MenuModel.swift */,
 				222AEA36204044C700F81074 /* Data */,
 			);
