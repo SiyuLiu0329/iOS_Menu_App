@@ -18,10 +18,15 @@ class ClientViewController: UIViewController {
     
     var clientModel: ClientModel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Scheme.collectionViewBackGroundColour
         clientOrderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
+        let billAllCellNib = UINib(nibName: "ClientOrderCollectionViewCell", bundle: Bundle.main)
+        clientOrderCollectionView.register(billAllCellNib, forCellWithReuseIdentifier: "clientOrderCell")
+        clientOrderCollectionView.delegate = self
+        clientOrderCollectionView.dataSource = self
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -32,4 +37,18 @@ class ClientViewController: UIViewController {
 extension ClientViewController: ClientOrderViewDelegate {
     func didReceiveOrderFromServerAfterPayment(insertedAtindex index: Int) {
     }
+}
+
+extension ClientViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return clientModel.orders.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clientOrderCell", for: indexPath) as! ClientOrderCollectionViewCell
+        cell.backgroundColor = .red
+        return cell
+    }
+    
+    
 }

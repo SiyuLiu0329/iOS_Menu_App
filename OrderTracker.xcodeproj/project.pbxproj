@@ -247,10 +247,9 @@
 		22D4194C203EE5B300674660 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DCCE80AE2073846B00EF85A9 /* CommunicationProtocol.swift */,
 				04481F17205572E700C2CB09 /* RootViewController.swift */,
-				DCCE80AA207378A800EF85A9 /* ClientViewController.swift */,
 				04076093205561880002B5E1 /* SplitViewController.swift */,
+				DC9A6F432073EA2600E4E1BD /* NetworkingVCs */,
 				DCCB7F7B2060E45800EA2917 /* OrderVC */,
 				DCCB7F792060E40800EA2917 /* OrderItemVC */,
 				DCCB7F7A2060E41F00EA2917 /* DetailVC */,
@@ -267,6 +266,15 @@
 				DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */,
 			);
 			path = BillVC;
+			sourceTree = "<group>";
+		};
+		DC9A6F432073EA2600E4E1BD /* NetworkingVCs */ = {
+			isa = PBXGroup;
+			children = (
+				DCCE80AE2073846B00EF85A9 /* CommunicationProtocol.swift */,
+				DCCE80AA207378A800EF85A9 /* ClientViewController.swift */,
+			);
+			path = NetworkingVCs;
 			sourceTree = "<group>";
 		};
 		DCCB7F792060E40800EA2917 /* OrderItemVC */ = {
