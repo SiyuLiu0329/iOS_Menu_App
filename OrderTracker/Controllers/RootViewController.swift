@@ -15,46 +15,22 @@ class RootViewController: UIViewController {
     var connectionHandler = ConnectionHandler()
     weak var delegate: ClientOrderViewDelegate?
     @IBOutlet weak var joinButton: UIButton!
-    @IBOutlet weak var viewOrdersButton: UIButton!
-    @IBAction func viewOrdersButton(_ sender: Any) {
-    }
-    
-    private func joinSelected(_ selected: Bool) {
-        if selected {
-            self.joinButton.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
-            self.joinButton.setTitleColor(UIColor.white, for: .normal)
-        } else {
-            self.joinButton.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-            self.joinButton.setTitleColor(UIColor.blue, for: .normal)
-        }
-    }
 
-    
     @IBAction func joinButtonPressed(_ sender: Any) {
-        connectionHandler.isServer = false
-        UIView.animate(withDuration: 0.3) {
-
-            self.joinSelected(true)
-        }
-        if connectionHandler.session.connectedPeers.count == 0 {
-            // nothing is connected
-            self.present(connectionHandler.browser, animated: true, completion: nil)
-        } else {
-            // already connected
-            self.viewOrdersButton.alpha = 1
-        }
+        present(connectionHandler.browser, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewOrdersButton.alpha = 0
         joinButton.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         connectionHandler.browser.delegate = self
-        self.joinSelected(false)
         orderModel.session = connectionHandler.session
         clientModel.session = connectionHandler.session
         connectionHandler.session.delegate = self
+        showOrderButton.alpha = 0
     }
+    
+    @IBOutlet weak var showOrderButton: UIButton!
     
     let orderModel = OrderModel()
     let clientModel = ClientModel()
@@ -79,16 +55,23 @@ class RootViewController: UIViewController {
 
 extension RootViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-        self.viewOrdersButton.alpha = 1
         browserViewController.dismiss(animated: true, completion: nil)
-        joinButton.isUserInteractionEnabled = false
+        connectionHandler.isServer = false
+        // this is the client
+        do {
+            let data = try JSONEncoder().encode(CommunicationProtocol(containingOrder: nil, ofMessageType: .clientReportConnected))
+            try connectionHandler.session.send(data, toPeers: connectionHandler.session.connectedPeers, with: .reliable)
+        } catch {
+            fatalError()
+        }
         
+        joinButton.setTitle("Client", for: .normal)
+        joinButton.isUserInteractionEnabled = false
+        showOrderButton.alpha = 1
         
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-        self.viewOrdersButton.alpha = 0
-        joinSelected(false)
         browserViewController.dismiss(animated: true, completion: nil)
     }
 }
@@ -116,7 +99,7 @@ extension RootViewController: MCSessionDelegate {
             switch message.type {
             case .serverToClientOrderUpdate:
                 // client
-                let index = clientModel.receiveOrderFromServer(message.order)
+                let index = clientModel.receiveOrderFromServer(message.order!)
                 if delegate != nil {
                     // if client is in order view, this delegate will have been set so UI elements can be updated
                     DispatchQueue.main.async {
@@ -124,6 +107,14 @@ extension RootViewController: MCSessionDelegate {
                         self.delegate!.didReceiveOrderFromServerAfterPayment(insertedAtindex: index)
                     }
                 }
+            case .clientReportConnected:
+                DispatchQueue.main.async {
+                    // updating UI elements, need to do it in the main thread
+                    self.joinButton.setTitle("Server", for: .normal)
+                    self.joinButton.isUserInteractionEnabled = false
+                    self.connectionHandler.browser.dismiss(animated: true, completion: nil)
+                }
+                
             }
             
         } catch {

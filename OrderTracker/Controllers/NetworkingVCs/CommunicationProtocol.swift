@@ -11,12 +11,13 @@ import UIKit
 
 enum MessageType: Int, Codable {
     case serverToClientOrderUpdate
+    case clientReportConnected
 }
 
 struct CommunicationProtocol: Codable {
-    var order: Order
+    var order: Order?
     var type: MessageType
-    init(containingOrder order: Order, ofMessageType type: MessageType) {
+    init(containingOrder order: Order?, ofMessageType type: MessageType) {
         self.order = order
         self.type = type
     }

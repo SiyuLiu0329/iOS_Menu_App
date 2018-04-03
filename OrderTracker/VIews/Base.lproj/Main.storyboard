@@ -81,11 +81,11 @@
             <objects>
                 <viewController storyboardIdentifier="tabbarItem" id="5S6-1C-6oN" customClass="DetailViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NlK-Ip-U9l">
-                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8EC-5p-EZ8">
-                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mdq-x5-brc">
                                     <size key="itemSize" width="205" height="282"/>
@@ -192,11 +192,11 @@
                                 </cells>
                             </collectionView>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5y-kz-2Wl">
-                                <rect key="frame" x="0.0" y="20" width="703" height="748"/>
+                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-m6-XRO">
-                                <rect key="frame" x="0.0" y="0.0" width="703" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4Rj-52-tUD"/>
                                 </constraints>
@@ -253,11 +253,11 @@
             <objects>
                 <viewController id="HhU-Ko-Zro" customClass="OrderItemViewController" customModule="OrderTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oIX-Rm-sYy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hwF-ZQ-FoK">
-                                <rect key="frame" x="0.0" y="64" width="320" height="584"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="575"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cWb-85-HZ4">
                                     <size key="itemSize" width="316" height="236"/>
@@ -385,7 +385,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFL-Qg-9Ya">
-                                <rect key="frame" x="0.0" y="648" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="639" width="320" height="120"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="feO-vU-Jx9">
                                         <rect key="frame" x="8" y="8" width="304" height="50"/>
@@ -558,45 +558,44 @@
                                     <segue destination="AC4-HV-nEA" kind="show" identifier="rootSegue1" id="Y81-tp-lmh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAn-7X-rHU">
-                                <rect key="frame" x="427" y="342" width="170" height="84"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
-                                <state key="normal" title="Orders"/>
-                                <connections>
-                                    <action selector="viewOrdersButton:" destination="GW4-nP-vmj" eventType="touchUpInside" id="ayY-LV-Kth"/>
-                                    <segue destination="FK5-Pd-4MF" kind="show" identifier="rootViewSegue2" id="9iH-cj-LNO"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zk7-B8-UVm">
-                                <rect key="frame" x="896" y="28" width="120" height="45"/>
+                                <rect key="frame" x="829" y="28" width="187" height="45"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="HAf-MQ-hmE"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="HAf-MQ-hmE"/>
                                     <constraint firstAttribute="height" constant="45" id="Nyy-B2-sTM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                <state key="normal" title="Join"/>
+                                <state key="normal" title="Connect as Client"/>
                                 <connections>
                                     <action selector="joinButtonPressed:" destination="GW4-nP-vmj" eventType="touchUpInside" id="Yx2-xf-hYd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGl-xv-qIk">
+                                <rect key="frame" x="350" y="342" width="324" height="84"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
+                                <state key="normal" title="Client Orders"/>
+                                <connections>
+                                    <segue destination="FK5-Pd-4MF" kind="show" identifier="rootViewSegue2" id="Xno-Yg-Tqk"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Zk7-B8-UVm" firstAttribute="top" secondItem="OtX-gu-WjI" secondAttribute="top" constant="8" id="6jc-dw-P2W"/>
-                            <constraint firstItem="fAn-7X-rHU" firstAttribute="centerX" secondItem="15Q-qr-8xw" secondAttribute="centerX" id="BpS-Z6-ZES"/>
+                            <constraint firstItem="CGl-xv-qIk" firstAttribute="centerX" secondItem="15Q-qr-8xw" secondAttribute="centerX" id="708-v1-xf8"/>
                             <constraint firstItem="Zk7-B8-UVm" firstAttribute="leading" relation="lessThanOrEqual" secondItem="OtX-gu-WjI" secondAttribute="leading" constant="936" id="CUf-hK-puB"/>
                             <constraint firstItem="OtX-gu-WjI" firstAttribute="trailing" secondItem="Zk7-B8-UVm" secondAttribute="trailing" constant="8" id="EAO-gY-WmP"/>
                             <constraint firstItem="yYC-yo-UJn" firstAttribute="centerY" secondItem="15Q-qr-8xw" secondAttribute="centerY" id="WUL-dG-9H3"/>
-                            <constraint firstItem="fAn-7X-rHU" firstAttribute="centerY" secondItem="15Q-qr-8xw" secondAttribute="centerY" id="fJf-tG-xLV"/>
+                            <constraint firstItem="CGl-xv-qIk" firstAttribute="centerY" secondItem="15Q-qr-8xw" secondAttribute="centerY" id="XEn-DE-xgi"/>
                             <constraint firstItem="yYC-yo-UJn" firstAttribute="centerX" secondItem="15Q-qr-8xw" secondAttribute="centerX" id="vvl-qk-AWm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OtX-gu-WjI"/>
                     </view>
                     <connections>
                         <outlet property="joinButton" destination="Zk7-B8-UVm" id="f6m-hJ-KGT"/>
-                        <outlet property="viewOrdersButton" destination="fAn-7X-rHU" id="A9P-YF-rd6"/>
+                        <outlet property="showOrderButton" destination="CGl-xv-qIk" id="rWG-mt-6Y0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LFR-cM-zPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
