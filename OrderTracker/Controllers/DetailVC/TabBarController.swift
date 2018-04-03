@@ -16,8 +16,8 @@ class TabBarController: UITabBarController {
         tabBar.barTintColor = Scheme.navigationBarColour
         tabBar.tintColor = .white
         
-        let visualEffectView   = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame =  (self.tabBar.bounds.insetBy(dx: -25, dy: 0).offsetBy(dx: 0, dy: 0))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame = tabBar.bounds
         self.tabBar.isTranslucent = true
         self.tabBar.backgroundImage = UIImage()
         self.tabBar.addSubview(visualEffectView)

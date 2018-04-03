@@ -41,8 +41,8 @@ class DetailViewController: UIViewController {
         toolbar.isTranslucent = true
         toolbar.tintColor = Scheme.navigationControllerBackButtonColour
         
-        let visualEffectView   = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame =  (self.toolbar.bounds.insetBy(dx: -100, dy: 0).offsetBy(dx: 0, dy: 0))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame = toolbar.bounds
         self.toolbar.isTranslucent = true
         self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         self.toolbar.addSubview(visualEffectView)
@@ -53,6 +53,7 @@ class DetailViewController: UIViewController {
     private func layoutCollectionView() {
         let itemSpacing: CGFloat = 10
         let numberOfItemsPerRow = 3
+        print(itemsCollectionView.frame.size)
         let width = itemsCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
