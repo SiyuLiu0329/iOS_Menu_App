@@ -82,6 +82,8 @@ extension RootViewController: MCBrowserViewControllerDelegate {
         self.viewOrdersButton.alpha = 1
         browserViewController.dismiss(animated: true, completion: nil)
         joinButton.isUserInteractionEnabled = false
+        
+        
     }
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
@@ -95,7 +97,9 @@ extension RootViewController: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .connected:
-            print("Connected: \(peerID.displayName)")
+            if connectionHandler.isServer {
+                orderModel.sendInitialOrdersToClient()
+            }
         case .connecting:
             print("Connecting: \(peerID.displayName)")
         case .notConnected:
@@ -107,10 +111,22 @@ extension RootViewController: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
-            let order = try JSONDecoder().decode(Order.self, from: data)
-            if delegate != nil {
-                delegate!.didReciveOrderFromServer(order)
+            let message = try JSONDecoder().decode(CommunicationProtocol.self, from: data)
+            switch message.type {
+            case .serverToClientUpdateAfterPayment:
+                if delegate != nil {
+                    DispatchQueue.main.async {
+                        self.delegate!.didReceiveOrderFromServerAfterPayment(message.order)
+                    }
+                    
+                }
+            case .startUpSyn:
+                DispatchQueue.main.async {
+                    self.clientModel.getIntialOrderFromServer(message.order)
+                }
+                
             }
+            
         } catch {
 //            print(error)
         }

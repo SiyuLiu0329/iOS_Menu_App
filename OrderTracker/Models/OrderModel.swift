@@ -45,6 +45,7 @@ class OrderModel {
         loadData()
     }
     
+    
     private func loadData() {
         allOrders.removeAll()
         currentOrderNumber = 1
@@ -56,7 +57,8 @@ class OrderModel {
             for file in files {
 //                print(file)
                 let json = try Data.init(contentsOf: file)
-                allOrders.append(try decoer.decode(Order.self, from: json))
+                let order = try decoer.decode(Order.self, from: json)
+                allOrders.append(order)
                 currentOrderNumber += 1
             }
         } catch let error {
@@ -143,14 +145,14 @@ class OrderModel {
             let _ = insertItemToPaidItems(item, paymentMethod: method)
         }
         loadedOrder!.itemCollections[0].removeAll()
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
     }
     
     func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> Int {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
         let index = insertItemToPaidItems(item, paymentMethod: method)
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
         return index
     }
     
@@ -177,7 +179,7 @@ class OrderModel {
     
     func quickBillTemplateItem(_ item: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
         let index = insertItemToPaidItems(item, paymentMethod: method)
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
         return index
         
     }
@@ -189,7 +191,7 @@ class OrderModel {
     
     func splitBill(templateItem item: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
         let index = splitBill(menuItem: item, cashSales: cash, cardSales: card)
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
         return index
 
     }
@@ -198,7 +200,7 @@ class OrderModel {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
         let index = splitBill(menuItem: item, cashSales: cash, cardSales: card)
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
         return index
     }
     
@@ -216,7 +218,7 @@ class OrderModel {
         
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
         return 0
     }
     
@@ -240,20 +242,35 @@ class OrderModel {
         }
         loadedOrder!.itemCollections[0].removeAll()
         
-        sendOrderThroughSession(loadedOrder!)
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientUpdateAfterPayment)
     }
     
     func getQuantityOfPendingItem(withIndex index: Int) -> Int {
         return loadedItemCollections[0][index].quantity
     }
     
-    private func sendOrderThroughSession(_ order: Order) {
+    
+}
+
+extension OrderModel {
+    private func sendOrderThroughSession(_ order: Order, usingProtocolType type: MessageType) {
         guard let sess = session else { return }
+        print("4")
         do {
-            let data = try JSONEncoder().encode(order)
+            let message =  CommunicationProtocol(containingOrder: order, ofMessageType: type)
+            print("3")
+            let data = try JSONEncoder().encode(message)
+            print("2")
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
+            print("1")
         } catch let error {
             print(error)
+        }
+    }
+    
+    func sendInitialOrdersToClient() {
+        for order in allOrders {
+            sendOrderThroughSession(order, usingProtocolType: .startUpSyn)
         }
     }
 }

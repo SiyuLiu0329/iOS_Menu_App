@@ -9,11 +9,27 @@
 import UIKit
 import MultipeerConnectivity
 
+protocol ClientOrderViewDelegate: class {
+    func didReceiveOrderFromServerAfterPayment(_ order: Order)
+    func didReceiveInitialOrdersFromServer()
+}
+
 class ClientViewController: UIViewController {
     
     var clientModel: ClientModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+}
+
+extension ClientViewController: ClientOrderViewDelegate {
+    func didReceiveOrderFromServerAfterPayment(_ order: Order) {
+        
+        
+    }
+    
+    func didReceiveInitialOrdersFromServer() {
+        
     }
 }

@@ -12,4 +12,9 @@ import MultipeerConnectivity
 class ClientModel {
     var session: MCSession!
     var orders: [Order] = []
+    
+    func getIntialOrderFromServer(_ order: Order) {
+        orders.append(order)
+        print("got order from server: \(order.orderNumber)")
+    }
 }
