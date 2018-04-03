@@ -15,6 +15,7 @@ enum PaymentMethod {
 }
 
 class OrderModel {
+    var serverHandler: ConnectionHandler!
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
     }

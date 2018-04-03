@@ -30,6 +30,7 @@
 		DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */; };
 		DC06E2A6206F27600063642A /* SplitBillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */; };
 		DC06E2A9206F27C90063642A /* BillViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A8206F27C90063642A /* BillViewDataSource.swift */; };
+		DC0AC1B72073571F00327617 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0AC1B62073571F00327617 /* ConnectionViewController.swift */; };
 		DC19272820707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */; };
 		DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */; };
 		DC19272C20707E7B0047C46E /* SBCVCCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */; };
@@ -47,6 +48,8 @@
 		DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */; };
 		DCCB7F762060DB9B00EA2917 /* MenuItemExpandedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */; };
 		DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */; };
+		DCCE80A920736CFD00EF85A9 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */; };
+		DCCE80AB207378A800EF85A9 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AA207378A800EF85A9 /* ClientViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,7 @@
 		DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitBillCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC06E2A8206F27C90063642A /* BillViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewDataSource.swift; sourceTree = "<group>"; };
+		DC0AC1B62073571F00327617 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCellCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBCVCCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SBCVCCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 		DCCB7F732060DB9B00EA2917 /* MenuItemExpandedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemExpandedViewController.swift; sourceTree = "<group>"; };
 		DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemExpandedViewController.xib; sourceTree = "<group>"; };
 		DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewDataSource.swift; sourceTree = "<group>"; };
+		DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
+		DCCE80AA207378A800EF85A9 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 		04BCD83120581744008269A2 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				DC0AC1B62073571F00327617 /* ConnectionViewController.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -149,16 +156,16 @@
 			isa = PBXGroup;
 			children = (
 				0407609120555EBF0002B5E1 /* Scheme.swift */,
-				2223F204203BB8250047E0D9 /* Main.storyboard */,
 				0407608F2055049C0002B5E1 /* menuItemCollectionViewCell.swift */,
 				0407608D2054DAD50002B5E1 /* ItemCollectionViewCell.swift */,
 				DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */,
 				DC06E29F206F27330063642A /* BillAllCollectionViewCell.swift */,
 				DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */,
 				DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */,
-				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				04C101C42054D07300255361 /* OrderCollectionViewCell.swift */,
 				DC25BDBB2063580600B9C8E3 /* OptionTableViewCell.swift */,
+				2223F204203BB8250047E0D9 /* Main.storyboard */,
+				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				DCCB7F7D2060E4F800EA2917 /* xibs */,
 			);
 			path = VIews;
@@ -230,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				04481F17205572E700C2CB09 /* RootViewController.swift */,
+				DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */,
+				DCCE80AA207378A800EF85A9 /* ClientViewController.swift */,
 				04076093205561880002B5E1 /* SplitViewController.swift */,
 				DCCB7F7B2060E45800EA2917 /* OrderVC */,
 				DCCB7F792060E40800EA2917 /* OrderItemVC */,
@@ -449,6 +458,7 @@
 				22F6E9F8203BEA4B001F78CA /* OrderModel.swift in Sources */,
 				DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */,
 				DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */,
+				DC0AC1B72073571F00327617 /* ConnectionViewController.swift in Sources */,
 				04481F18205572E700C2CB09 /* RootViewController.swift in Sources */,
 				040760902055049C0002B5E1 /* menuItemCollectionViewCell.swift in Sources */,
 				DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */,
@@ -459,7 +469,9 @@
 				DC4F70F6206FC02000A00FA1 /* Order.swift in Sources */,
 				222AEA342040014200F81074 /* Utils.swift in Sources */,
 				0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */,
+				DCCE80AB207378A800EF85A9 /* ClientViewController.swift in Sources */,
 				DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */,
+				DCCE80A920736CFD00EF85A9 /* ConnectionHandler.swift in Sources */,
 				DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */,
 				DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */,
 				04C101C52054D07300255361 /* OrderCollectionViewCell.swift in Sources */,
