@@ -559,10 +559,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zk7-B8-UVm">
-                                <rect key="frame" x="829" y="28" width="187" height="45"/>
+                                <rect key="frame" x="796" y="28" width="220" height="45"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="HAf-MQ-hmE"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="HAf-MQ-hmE"/>
                                     <constraint firstAttribute="height" constant="45" id="Nyy-B2-sTM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
