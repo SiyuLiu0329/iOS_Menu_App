@@ -15,13 +15,12 @@ class TabBarController: UITabBarController {
         super.awakeFromNib()
         tabBar.barTintColor = Scheme.navigationBarColour
         tabBar.tintColor = .white
-        tabBar.backgroundImage = UIImage()
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = tabBar.bounds
-        tabBar.addSubview(blurEffectView)
-        tabBar.sendSubview(toBack: blurEffectView)
+        let visualEffectView   = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame =  (self.tabBar.bounds.insetBy(dx: -25, dy: 0).offsetBy(dx: 0, dy: 0))
+        self.tabBar.isTranslucent = true
+        self.tabBar.backgroundImage = UIImage()
+        self.tabBar.addSubview(visualEffectView)
     }
     
     override func viewDidLoad() {
@@ -31,9 +30,10 @@ class TabBarController: UITabBarController {
         detailVC.tabBarItem.title = detailVC.menuModel.menuName
         detailVC.delegate = menuDelegate
         
+        // change model for this one later
         let drinkVC = storyboard?.instantiateViewController(withIdentifier: "tabbarItem") as! DetailViewController
         drinkVC.menuModel = MenuModel(menuName: "Drink")
-        drinkVC.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 1)
+        drinkVC.tabBarItem = UITabBarItem(title: drinkVC.menuModel.menuName, image: nil, selectedImage: nil)
         drinkVC.delegate = menuDelegate
         viewControllers?.append(drinkVC)
         

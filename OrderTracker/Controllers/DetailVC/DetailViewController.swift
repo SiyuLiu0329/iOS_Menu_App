@@ -36,19 +36,16 @@ class DetailViewController: UIViewController {
         itemsCollectionView.dataSource = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
         layoutCollectionView()
-        // configure nav bar
         
         toolbar.barTintColor = Scheme.navigationBarColour
-        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.isTranslucent = true
-        
-        // add blur to nav bar
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = toolbar.bounds
-        toolbar.addSubview(blurEffectView)
-        toolbar.sendSubview(toBack: blurEffectView)
         toolbar.tintColor = Scheme.navigationControllerBackButtonColour
+        
+        let visualEffectView   = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame =  (self.toolbar.bounds.insetBy(dx: -100, dy: 0).offsetBy(dx: 0, dy: 0))
+        self.toolbar.isTranslucent = true
+        self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        self.toolbar.addSubview(visualEffectView)
     }
     
     

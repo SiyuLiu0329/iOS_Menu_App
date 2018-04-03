@@ -14,12 +14,18 @@ protocol ClientOrderViewDelegate: class {
 }
 
 class ClientViewController: UIViewController {
+    @IBOutlet weak var clientOrderCollectionView: UICollectionView!
     
     var clientModel: ClientModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Scheme.collectionViewBackGroundColour
+        clientOrderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 }
 

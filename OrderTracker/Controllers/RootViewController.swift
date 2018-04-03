@@ -120,6 +120,7 @@ extension RootViewController: MCSessionDelegate {
                 if delegate != nil {
                     // if client is in order view, this delegate will have been set so UI elements can be updated
                     DispatchQueue.main.async {
+                        // updating UI elements, need to do it in the main thread
                         self.delegate!.didReceiveOrderFromServerAfterPayment(insertedAtindex: index)
                     }
                 }
