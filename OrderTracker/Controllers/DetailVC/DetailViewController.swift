@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         
         itemsCollectionView.dataSource = collectionViewDataSource
         itemsCollectionView.backgroundColor = Scheme.detailViewControllerBackgoundColour
-        layoutCollectionView()
+        itemsCollectionView.delegate = self
         // configure nav bar
         
         toolbar.barTintColor = Scheme.navigationBarColour
@@ -45,28 +45,25 @@ class DetailViewController: UIViewController {
         // add blur to nav bar
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = toolbar.bounds
+        blurEffectView.frame = toolbar.bounds.insetBy(dx: -125, dy: 0)
         toolbar.addSubview(blurEffectView)
         toolbar.sendSubview(toBack: blurEffectView)
         toolbar.tintColor = Scheme.navigationControllerBackButtonColour
     }
     
-    
-    
-    private func layoutCollectionView() {
-        let itemSpacing: CGFloat = 10
-        let numberOfItemsPerRow = 3
-        let width = itemsCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow) * 1.4)
-        layout.sectionInset = UIEdgeInsets(top: 54, left: 10, bottom: 10, right: 10)
-        layout.minimumLineSpacing = itemSpacing
-        layout.minimumInteritemSpacing = itemSpacing
-        itemsCollectionView.collectionViewLayout = layout
+
+}
+
+extension DetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numItems: CGFloat = 3
+        let width = collectionView.frame.width / numItems - 15
+        return CGSize(width: width, height: width * 1.4)
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 54, left: 10, bottom: 10, right: 10)
+    }
 }
 
 extension DetailViewController: ItemCellDelegate {

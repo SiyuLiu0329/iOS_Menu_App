@@ -22,10 +22,10 @@ class OrderViewController: UIViewController {
         collectionViewDataSource = OrderViewControllerDataSource(data: orderModel!)
         orderCollectionView.dataSource = collectionViewDataSource
         orderCollectionView.alwaysBounceVertical = true
+        orderCollectionView.delegate = self
         orderCollectionView.backgroundColor = Scheme.collectionViewBackGroundColour
         navigationController?.navigationBar.titleTextAttributes = Scheme.AttributedText.navigationControllerTitleAttributes
         navigationController?.navigationBar.topItem?.title = "All Orders"
-        layoutCollectionView()
     }
     
     
@@ -52,18 +52,22 @@ class OrderViewController: UIViewController {
     }
 }
 
-extension OrderViewController:  UICollectionViewDelegateFlowLayout {
-
-    private func layoutCollectionView() {
-        let itemSpacing: CGFloat = 5
-        let numberOfItemsPerRow = 5
-        let width = orderCollectionView.frame.width - CGFloat(numberOfItemsPerRow + 1) * itemSpacing
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
-        layout.itemSize = CGSize(width: width / CGFloat(numberOfItemsPerRow), height: width / CGFloat(numberOfItemsPerRow))
-        layout.minimumLineSpacing = itemSpacing
-        layout.minimumInteritemSpacing = itemSpacing
-        orderCollectionView.collectionViewLayout = layout
+extension OrderViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numItems: CGFloat = 5
+        let width = collectionView.frame.width / numItems - 7
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
     }
 }
-
