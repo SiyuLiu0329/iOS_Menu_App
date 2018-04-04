@@ -102,7 +102,7 @@ class OrderModel {
             fatalError("\(error)")
         }
         
-//        allOrders[index] = order
+        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
         loadData()
     }
     
