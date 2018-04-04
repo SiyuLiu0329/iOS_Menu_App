@@ -23,7 +23,8 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
         backgroundColor = Scheme.clientOrderCollectionViewCellColour
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(ClientItemCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        let billAllCellNib = UINib(nibName: "ClientItemCollectionViewCell", bundle: Bundle.main)
+        collectionView.register(billAllCellNib, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = Scheme.clientOrderCollectionViewCellColour
         headerView.backgroundColor = Scheme.clientOrderCollectionViewCellColour
         

@@ -10,6 +10,7 @@ import UIKit
 
 class ClientItemCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -20,6 +21,7 @@ class ClientItemCollectionViewCell: UICollectionViewCell {
         backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         layer.cornerRadius =  5
         clipsToBounds = true
+        nameLabel.text = item.name
     }
 
 }
