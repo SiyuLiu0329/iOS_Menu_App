@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 
 protocol ClientOrderViewDelegate: class {
-    func didReceiveOrderFromServerAfterPayment(insertedAtindex index: Int)
+    func didReceiveOrderFromServerAfterPayment(newItem index: Int, wasInerted inserted: Bool)
 }
 
 class ClientViewController: UIViewController {
@@ -35,8 +35,16 @@ class ClientViewController: UIViewController {
 }
 
 extension ClientViewController: ClientOrderViewDelegate {
-    func didReceiveOrderFromServerAfterPayment(insertedAtindex index: Int) {
-        clientOrderCollectionView.reloadData()
+    func didReceiveOrderFromServerAfterPayment(newItem index: Int, wasInerted inserted: Bool) {
+        if !inserted {
+            if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? ClientOrderCollectionViewCell {
+                cell.configure(loadingOrder: clientModel.orders[index])
+//                cell.collectionView.reloadData()
+            }
+            clientOrderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+        } else {
+            clientOrderCollectionView.insertItems(at: [IndexPath(item: index, section: 0)])
+        }
     }
 }
 

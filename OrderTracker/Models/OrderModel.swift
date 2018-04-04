@@ -61,6 +61,7 @@ class OrderModel {
                 allOrders.append(order)
                 currentOrderNumber += 1
             }
+            allOrders = allOrders.sorted(by: { $0.orderNumber < $1.orderNumber })
         } catch let error {
             print(error)
         }
