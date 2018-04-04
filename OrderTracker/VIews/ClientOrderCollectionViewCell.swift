@@ -58,7 +58,21 @@ extension ClientOrderCollectionViewCell: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width - 10, height: 120)
+        var base: CGFloat = 60
+        let numberOfPendingItems = order.itemCollections[0].count
+        var item: MenuItem
+        if indexPath.row < numberOfPendingItems {
+            item = order.itemCollections[0][indexPath.row]
+        } else {
+            item = order.itemCollections[1][indexPath.row - numberOfPendingItems]
+        }
+        
+        for option in item.options {
+            if option.value {
+                base += 22
+            }
+        }
+        return CGSize(width: frame.width - 10, height: base + 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
