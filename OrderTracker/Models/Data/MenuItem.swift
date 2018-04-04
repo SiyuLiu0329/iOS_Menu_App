@@ -49,7 +49,7 @@ struct MenuItem: Equatable, Codable {
     var tableNumber: Int?
     var itemType: ItemType
     var paymentStatus: PaymentStatus = .notPaid
-    
+    var served = false
     var quantity: Int
     
     var totalPrice: Double {

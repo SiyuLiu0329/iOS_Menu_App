@@ -12,6 +12,7 @@ import UIKit
 enum MessageType: Int, Codable {
     case serverToClientOrderUpdate
     case clientReportConnected
+    case clientFinishedOrder
 }
 
 struct CommunicationProtocol: Codable {

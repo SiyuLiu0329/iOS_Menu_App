@@ -86,10 +86,12 @@ class OrderModel {
     
     func loadOrder(withIndex index: Int) {
         loadedOrder = allOrders[index]
+        allOrders[index].isBeingEdited = true
     }
     
     func saveLoadedOrder(withIndex index: Int) {
         guard let order = loadedOrder else { return }
+        loadedOrder!.isBeingEdited = false
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let fileManager = FileManager()
@@ -250,10 +252,25 @@ class OrderModel {
         return loadedItemCollections[0][index].quantity
     }
     
-    
 }
 
 extension OrderModel {
+    func sendOrderBeforeChange(withIndex index: Int) {
+        guard index < allOrders.count else { return }
+        allOrders[index].isBeingEdited = false
+        sendOrderThroughSession(allOrders[index], usingProtocolType: .serverToClientOrderUpdate)
+    }
+    
+    func finishOrder(orderIndex index: Int) {
+        if index == loadedOrder!.orderNumber - 1 && allOrders[index].isBeingEdited {
+            loadedOrder!.markAllItemsAsServed()
+            sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
+        } else {
+            allOrders[index].markAllItemsAsServed()
+            sendOrderThroughSession(allOrders[index], usingProtocolType: .serverToClientOrderUpdate)
+        }
+    }
+    
     private func sendOrderThroughSession(_ order: Order, usingProtocolType type: MessageType) {
         guard let sess = session else { return }
         do {

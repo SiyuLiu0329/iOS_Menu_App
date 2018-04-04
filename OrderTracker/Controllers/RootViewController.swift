@@ -113,8 +113,12 @@ extension RootViewController: MCSessionDelegate {
                     self.connectionHandler.browser.dismiss(animated: true, completion: nil)
                 }
                 orderModel.sendInitialOrdersToClient()
-                
+            case .clientFinishedOrder:
+                let orderNumber = message.order!.orderNumber
+                orderModel.finishOrder(orderIndex: orderNumber - 1)
+                // update async after updating model
             }
+            
             
         } catch {
 //            print(error)

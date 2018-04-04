@@ -96,6 +96,8 @@ class OrderItemViewController: UIViewController {
             // if this order was newly created, discard it
             // if the latest(created) order is empty && this order is the latest!
             orderModel!.discardLastestOrder()
+        } else {
+            orderModel?.sendOrderBeforeChange(withIndex: orderId!)
         }
 //        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
         dismiss(animated: true, completion: nil)

@@ -42,18 +42,26 @@
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jid-pQ-PfK">
+                        <rect key="frame" x="0.0" y="0.0" width="373" height="154"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="QZb-VQ-pak" firstAttribute="top" secondItem="lJZ-s4-3Xc" secondAttribute="bottom" constant="8" id="0dp-Q5-l0w"/>
                 <constraint firstAttribute="bottom" secondItem="QZb-VQ-pak" secondAttribute="bottom" constant="8" id="2uh-Zx-SfO"/>
+                <constraint firstItem="jid-pQ-PfK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="37W-pG-LEd"/>
                 <constraint firstItem="lJZ-s4-3Xc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="4e3-0a-v4j"/>
                 <constraint firstItem="5wC-XH-X1A" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="UnY-sr-Ny3"/>
                 <constraint firstItem="QZb-VQ-pak" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="60" id="XB5-cb-998"/>
+                <constraint firstItem="jid-pQ-PfK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YIa-3q-7K5"/>
                 <constraint firstItem="5wC-XH-X1A" firstAttribute="leading" secondItem="lJZ-s4-3Xc" secondAttribute="trailing" constant="8" id="YpR-Vs-CH6"/>
                 <constraint firstAttribute="trailing" secondItem="5wC-XH-X1A" secondAttribute="trailing" constant="8" id="fyt-VS-09P"/>
+                <constraint firstAttribute="bottom" secondItem="jid-pQ-PfK" secondAttribute="bottom" id="mYs-MV-F7f"/>
                 <constraint firstItem="lJZ-s4-3Xc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="p9U-6V-Q6G"/>
                 <constraint firstAttribute="trailing" secondItem="QZb-VQ-pak" secondAttribute="trailing" constant="30" id="qR6-I5-9AS"/>
+                <constraint firstAttribute="trailing" secondItem="jid-pQ-PfK" secondAttribute="trailing" id="ued-pZ-HaN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="373" height="154"/>
@@ -61,6 +69,7 @@
                 <outlet property="itemNumberLabel" destination="lJZ-s4-3Xc" id="ggQ-Ar-vVP"/>
                 <outlet property="nameLabel" destination="5wC-XH-X1A" id="tMx-U5-By8"/>
                 <outlet property="optionTextView" destination="QZb-VQ-pak" id="Ww9-ja-x5I"/>
+                <outlet property="overlay" destination="jid-pQ-PfK" id="v3d-Ti-KiP"/>
             </connections>
             <point key="canvasLocation" x="-173.5" y="66"/>
         </collectionViewCell>

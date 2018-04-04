@@ -26,4 +26,15 @@ class ClientModel {
         orders.append(order)
         return (orders.count - 1, true)
     }
+    
+    func clientReqestFinishOrder(_ orderIndex: Int) {
+        guard let sess = session else { return }
+        do {
+            let message =  CommunicationProtocol(containingOrder: orders[orderIndex], ofMessageType: .clientFinishedOrder)
+            let data = try JSONEncoder().encode(message)
+            try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
+        } catch let error {
+            print(error)
+        }
+    }
 }

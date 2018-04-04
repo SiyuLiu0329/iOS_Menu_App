@@ -8,12 +8,27 @@
 
 import UIKit
 
+protocol ClientOrderCellDelegate: class {
+    func orderDidFinish(_ cell: ClientOrderCollectionViewCell)
+}
+
 class ClientOrderCollectionViewCell: UICollectionViewCell {
-//
+    
+    
+    @IBAction func orderFinishedAction(_ sender: Any) {
+        // send this back to client view controller
+        if delegate != nil {
+            delegate!.orderDidFinish(self)
+        }
+    }
+    
+    @IBOutlet weak var overlay: UIView!
+    @IBOutlet weak var orderFinishedButton: UIButton!
     @IBOutlet weak var headerViewTitle: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     private var order: Order!
+    weak var delegate: ClientOrderCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +48,11 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
     func configure(loadingOrder order: Order) {
         headerViewTitle.text = "Order \(order.orderNumber)"
         self.order = order
+        if order.isOrderFinished {
+            overlay.alpha = 0.5
+        } else {
+            overlay.alpha = 0
+        }
         
     }
 
