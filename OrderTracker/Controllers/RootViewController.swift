@@ -85,8 +85,8 @@ extension RootViewController: MCSessionDelegate {
             print("Connecting: \(peerID.displayName)")
         case .notConnected:
             // disconnected
-            fatalError()
-//            print("Not Connected: \(peerID.displayName)")
+            print("disconnected")
+            // fatal error
         }
     }
     

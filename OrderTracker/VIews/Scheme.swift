@@ -26,7 +26,7 @@ struct Scheme {
         ]
     }
     
-    static let clientOrderCollectionViewCellColour =  UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+    static let clientOrderCollectionViewCellColour =  UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
     static let clientOrderCollectionViewCellHeaderViewColour = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
     
     static func getColour(withSeed number: Int) -> (r: Double, g: Double, b: Double) {
