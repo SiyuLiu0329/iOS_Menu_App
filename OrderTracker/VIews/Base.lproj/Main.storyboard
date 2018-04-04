@@ -610,10 +610,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JWa-Lo-KB4">
-                                <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JWa-Lo-KB4">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8FK-Mq-ymg">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8FK-Mq-ymg">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -621,20 +621,13 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrf-9s-n7o">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
-                                <items/>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JWa-Lo-KB4" firstAttribute="leading" secondItem="2Qn-bA-TbO" secondAttribute="leading" id="7vL-7E-lNL"/>
                             <constraint firstItem="2Qn-bA-TbO" firstAttribute="trailing" secondItem="JWa-Lo-KB4" secondAttribute="trailing" id="GjU-ch-ysB"/>
-                            <constraint firstItem="JWa-Lo-KB4" firstAttribute="top" secondItem="Nrf-9s-n7o" secondAttribute="bottom" id="JTz-3Y-aqk"/>
-                            <constraint firstItem="Nrf-9s-n7o" firstAttribute="top" secondItem="2Qn-bA-TbO" secondAttribute="top" id="euq-F7-oEx"/>
-                            <constraint firstItem="Nrf-9s-n7o" firstAttribute="leading" secondItem="2Qn-bA-TbO" secondAttribute="leading" id="lnR-4y-BSp"/>
+                            <constraint firstItem="JWa-Lo-KB4" firstAttribute="top" secondItem="2Qn-bA-TbO" secondAttribute="top" id="pDS-ep-rTW"/>
                             <constraint firstItem="2Qn-bA-TbO" firstAttribute="bottom" secondItem="JWa-Lo-KB4" secondAttribute="bottom" id="rGP-y5-ofB"/>
-                            <constraint firstAttribute="trailing" secondItem="Nrf-9s-n7o" secondAttribute="trailing" id="rb1-Aw-17w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Qn-bA-TbO"/>
                     </view>

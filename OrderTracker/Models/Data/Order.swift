@@ -15,6 +15,8 @@ struct Order: Codable {
     var orderTotalPrice: Double = 0
     var orderNumber: Int
     var orderFinished = false
+    var isFinished = false
+    var isinProgress = false
     var cardSales: Double = 0 {
         willSet {
             print("card: " + "\(newValue)")
