@@ -39,7 +39,7 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-GU-P7p">
-                        <rect key="frame" x="5" y="44" width="391" height="722"/>
+                        <rect key="frame" x="0.0" y="44" width="401" height="727"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="STf-eB-Eyv">
                             <size key="itemSize" width="50" height="50"/>
@@ -53,11 +53,11 @@
             <constraints>
                 <constraint firstItem="fCg-GU-P7p" firstAttribute="top" secondItem="wMk-g0-7eW" secondAttribute="bottom" id="6mh-Fi-czE"/>
                 <constraint firstAttribute="trailing" secondItem="wMk-g0-7eW" secondAttribute="trailing" id="7uw-7C-hfx"/>
-                <constraint firstItem="fCg-GU-P7p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="L40-2j-Izy"/>
-                <constraint firstAttribute="bottom" secondItem="fCg-GU-P7p" secondAttribute="bottom" constant="5" id="i8Q-c0-AVA"/>
+                <constraint firstAttribute="bottom" secondItem="fCg-GU-P7p" secondAttribute="bottom" id="cFd-14-4Ao"/>
+                <constraint firstItem="fCg-GU-P7p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ek1-Bv-fiI"/>
+                <constraint firstAttribute="trailing" secondItem="fCg-GU-P7p" secondAttribute="trailing" id="ke4-Z3-rOs"/>
                 <constraint firstItem="wMk-g0-7eW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nzp-76-we0"/>
                 <constraint firstItem="wMk-g0-7eW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pc4-y8-zAU"/>
-                <constraint firstAttribute="trailing" secondItem="fCg-GU-P7p" secondAttribute="trailing" constant="5" id="pzN-f1-fTU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="401" height="771"/>

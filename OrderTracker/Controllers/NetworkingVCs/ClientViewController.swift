@@ -39,6 +39,7 @@ extension ClientViewController: ClientOrderViewDelegate {
         if !inserted {
             if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? ClientOrderCollectionViewCell {
                 cell.configure(loadingOrder: clientModel.orders[index])
+                cell.collectionView.reloadSections([0])
             }
             clientOrderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
             
@@ -56,6 +57,7 @@ extension ClientViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clientOrderCell", for: indexPath) as! ClientOrderCollectionViewCell
         cell.configure(loadingOrder: clientModel.orders[indexPath.row])
+        cell.collectionView.reloadData()
         return cell
     }
     

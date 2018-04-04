@@ -32,7 +32,7 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
     func configure(loadingOrder order: Order) {
         headerViewTitle.text = "Order \(order.orderNumber)"
         self.order = order
-        collectionView.reloadSections([0])
+        
     }
 
 }
@@ -47,28 +47,25 @@ extension ClientOrderCollectionViewCell: UICollectionViewDelegate, UICollectionV
         let numberOfPendingItems = order.itemCollections[0].count
         if indexPath.row < numberOfPendingItems {
             let item = order.itemCollections[0][indexPath.row]
-            cell.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
+            cell.configure(withItem: item)
         } else {
             let item = order.itemCollections[1][indexPath.row - numberOfPendingItems]
-            cell.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
+            cell.configure(withItem: item)
             
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 120)
+        return CGSize(width: frame.width - 10, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 5, bottom: 5, right: 5)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
     }
 }
