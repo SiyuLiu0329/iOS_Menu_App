@@ -11,6 +11,7 @@ import MultipeerConnectivity
 
 protocol ClientOrderViewDelegate: class {
     func didReceiveOrderFromServerAfterPayment(newItem index: Int, wasInerted inserted: Bool)
+    func didRemoveLastOrder()
 }
 
 class ClientViewController: UIViewController {
@@ -90,5 +91,9 @@ extension ClientViewController: ClientOrderCellDelegate {
         if let indexPath = clientOrderCollectionView.indexPath(for: cell) {
             clientModel.clientReqestFinishOrder(indexPath.row)
         }
+    }
+    
+    func didRemoveLastOrder() {
+        clientOrderCollectionView.deleteItems(at: [IndexPath(item: clientModel.orders.count, section: 0)])
     }
 }

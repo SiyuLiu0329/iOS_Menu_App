@@ -117,6 +117,14 @@ extension RootViewController: MCSessionDelegate {
                 let orderNumber = message.order!.orderNumber
                 orderModel.finishOrder(orderIndex: orderNumber - 1)
                 // update async after updating model
+            case .discardLastOrder:
+                // client
+                if delegate != nil {
+                    clientModel.discardLastOrder()
+                    DispatchQueue.main.async {
+                        self.delegate!.didRemoveLastOrder()
+                    }
+                }
             }
             
             

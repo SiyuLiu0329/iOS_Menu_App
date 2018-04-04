@@ -13,6 +13,7 @@ enum MessageType: Int, Codable {
     case serverToClientOrderUpdate
     case clientReportConnected
     case clientFinishedOrder
+    case discardLastOrder
 }
 
 struct CommunicationProtocol: Codable {

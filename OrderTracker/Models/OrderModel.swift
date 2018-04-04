@@ -189,6 +189,7 @@ class OrderModel {
     
     func discardLastestOrder() {
         allOrders.removeLast()
+        sendOrderThroughSession(nil, usingProtocolType: .discardLastOrder)
         currentOrderNumber -= 1
     }
     
@@ -262,16 +263,21 @@ extension OrderModel {
     }
     
     func finishOrder(orderIndex index: Int) {
-        if index == loadedOrder!.orderNumber - 1 && allOrders[index].isBeingEdited {
-            loadedOrder!.markAllItemsAsServed()
-            sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
-        } else {
-            allOrders[index].markAllItemsAsServed()
-            sendOrderThroughSession(allOrders[index], usingProtocolType: .serverToClientOrderUpdate)
+        allOrders[index].markAllItemsAsServed()
+        if let loadedOrderNumber = loadedOrder?.orderNumber {
+            if index == loadedOrderNumber - 1 && allOrders[index].isBeingEdited {
+                // if this order happens to be open for editin, change that copy as well
+                loadedOrder!.markAllItemsAsServed()
+                sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
+                return
+            }
         }
+        
+        sendOrderThroughSession(allOrders[index], usingProtocolType: .serverToClientOrderUpdate)
+        
     }
     
-    private func sendOrderThroughSession(_ order: Order, usingProtocolType type: MessageType) {
+    private func sendOrderThroughSession(_ order: Order?, usingProtocolType type: MessageType) {
         guard let sess = session else { return }
         do {
             let message =  CommunicationProtocol(containingOrder: order, ofMessageType: type)

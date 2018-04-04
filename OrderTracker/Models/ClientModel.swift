@@ -37,4 +37,8 @@ class ClientModel {
             print(error)
         }
     }
+    
+    func discardLastOrder() {
+        orders.removeLast()
+    }
 }
