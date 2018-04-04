@@ -46,20 +46,25 @@ extension ClientOrderCollectionViewCell: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ClientItemCollectionViewCell
         let numberOfPendingItems = order.itemCollections[0].count
         if indexPath.row < numberOfPendingItems {
-            cell.backgroundColor = .blue
+            let item = order.itemCollections[0][indexPath.row]
+            cell.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         } else {
-            let fetchIndexOfPaidItem = indexPath.row - numberOfPendingItems
-            cell.backgroundColor = .red
+            let item = order.itemCollections[1][indexPath.row - numberOfPendingItems]
+            cell.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
             
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 10, height: 120)
+        return CGSize(width: collectionView.frame.width, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
     

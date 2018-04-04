@@ -39,9 +39,9 @@ extension ClientViewController: ClientOrderViewDelegate {
         if !inserted {
             if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? ClientOrderCollectionViewCell {
                 cell.configure(loadingOrder: clientModel.orders[index])
-//                cell.collectionView.reloadData()
             }
             clientOrderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+            
         } else {
             clientOrderCollectionView.insertItems(at: [IndexPath(item: index, section: 0)])
         }
