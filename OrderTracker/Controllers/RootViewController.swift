@@ -81,6 +81,9 @@ extension RootViewController: MCSessionDelegate {
         switch state {
         case .connected:
             print("connected: \(peerID.displayName)")
+            if connectionHandler.isServer {
+                orderModel.sendInitalOrders()
+            }
         case .connecting:
             print("Connecting: \(peerID.displayName)")
         case .notConnected:

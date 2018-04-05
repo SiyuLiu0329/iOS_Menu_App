@@ -167,7 +167,6 @@ class OrderModel {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
         let index = insertItemToPaidItems(item, paymentMethod: method)
-        sendItemsToClient(menuItems: [item]) // send
         return index
     }
     
@@ -183,6 +182,7 @@ class OrderModel {
         item.orderIndex = loadedOrder!.orderNumber - 1
         item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
         let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
+        sendItemsToClient(menuItems: [item])
         return index
 
     }
@@ -199,7 +199,6 @@ class OrderModel {
         item.paymentStatus = .paid
         loadedOrder!.cardSales += card
         loadedOrder!.cashSales += cash
-        sendItemsToClient(menuItems: [itemToAdd]) // only one item needs to be sent?
         for i in 0..<loadedItemCollections[1].count {
             if item == loadedItemCollections[1][i] {
                 loadedOrder!.itemCollections[1].insert(item, at: i)
@@ -269,6 +268,10 @@ class OrderModel {
 }
 
 extension OrderModel {
+    
+    func sendInitalOrders() {
+//        sendItemsToClient(menuItems:  compile(allOrders))
+    }
     
     func sendAllItems(inOrder order: Order) {
         var items: [MenuItem] = []

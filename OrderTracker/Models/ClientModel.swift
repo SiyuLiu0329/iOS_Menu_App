@@ -26,26 +26,28 @@ class ClientModel {
             for _ in 0..<nOrders - orders.count {
                 orders.append(ClientOrder()) // empty order
                 isNewOrder = true
-                
             }
         }
         
         if items.count == 1 {
-            let index = insertOrUpdateItem(items.first!)
+            let index = insert(items.first!)
             return (index, isNewOrder)
         }
         
         for item in items {
-            _ = insertOrUpdateItem(item)
+            _ = insert(item)
         }
         // multiple items inserted ... return nil
         return nil
     }
     
-    private func insertOrUpdateItem(_ item: MenuItem) -> Int {
+    private func insert(_ item: MenuItem) -> Int {
         // return insertion index
         for i in 0..<orders[item.orderIndex!].items.count {
             if item == orders[item.orderIndex!].items[i] {
+                if item.indexInOrder == orders[item.orderIndex!].items[i].indexInOrder {
+                    fatalError()
+                }
                 orders[item.orderIndex!].items.insert(item, at: i)
                 return (i)
             }
