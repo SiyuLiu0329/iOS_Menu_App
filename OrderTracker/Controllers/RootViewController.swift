@@ -104,7 +104,15 @@ extension RootViewController: MCSessionDelegate {
                         self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult.isNewOrder)
                     }
                 }
-                
+                break
+            case .serverDidDeleteItem:
+                let item = message.items!.first!
+                guard let deleteIndex = clientModel.deleteItem(item) else { fatalError() }
+                if delegate != nil {
+                    DispatchQueue.main.async {
+                        self.delegate!.didDeleteItem(inOrderwithIndex: item.orderIndex!, itemWithIndex: deleteIndex)
+                    }
+                }
             default:
                 break
             }

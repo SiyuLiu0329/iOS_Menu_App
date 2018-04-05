@@ -12,6 +12,7 @@ import UIKit
 enum MessageType: Int, Codable {
     case serverToClientItemUpdate
     case clientReportConnected
+    case serverDidDeleteItem
     case newEmptyOrderCreatedByServer
 }
 

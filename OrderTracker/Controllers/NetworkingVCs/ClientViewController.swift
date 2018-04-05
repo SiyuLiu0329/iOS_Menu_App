@@ -11,6 +11,7 @@ import MultipeerConnectivity
 
 protocol ClientOrderViewDelegate: class {
     func didUpdateItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int, shouldAddNewOrder newOrder: Bool)
+    func didDeleteItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int)
 }
 
 class ClientViewController: UIViewController {
@@ -43,10 +44,20 @@ extension ClientViewController: ClientOrderViewDelegate {
                 // if cell is visible
                 cell.configure(loadingOrder: clientModel.orders[orderIndex])
                 cell.collectionView.insertItems(at: [IndexPath(item: itemIndex, section: 0)])
+            } else {
+                clientOrderCollectionView.reloadItems(at: [IndexPath(item: orderIndex, section: 0)])
             }
-            
         }
-        
+    }
+    
+    func didDeleteItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int) {
+        if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: orderIndex, section: 0)) as? ClientOrderCollectionViewCell {
+            // if cell is visible
+            cell.configure(loadingOrder: clientModel.orders[orderIndex])
+            cell.collectionView.deleteItems(at: [IndexPath(item: itemIndex, section: 0)])
+        } else {
+            clientOrderCollectionView.reloadItems(at: [IndexPath(item: orderIndex, section: 0)])
+        }
     }
 }
 

@@ -54,4 +54,15 @@ class ClientModel {
         orders[item.orderIndex!].items.insert(item, at: 0)
         return (0)
     }
+    
+    func deleteItem(_ item: MenuItem) -> Int? {
+//        orders[item.orderIndex!].items.remove(at: item.indexInOrder!)
+        for i in 0..<orders[item.orderIndex!].items.count {
+            if item.indexInOrder == orders[item.orderIndex!].items[i].indexInOrder {
+                orders[item.orderIndex!].items.remove(at: i)
+                return i
+            }
+        }
+        return nil
+    }
 }

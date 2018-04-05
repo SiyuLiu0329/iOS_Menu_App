@@ -90,7 +90,10 @@ class OrderModel {
     }
     
     func deletePendingItemInLoadedOrder(withIndex index: Int) {
+        let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
+        notifyClientOfItemDeletion(item)
+        
     }
     
     func clearPendingItemsLoadedOrder() {
@@ -273,10 +276,10 @@ extension OrderModel {
         sendItemsToClient(menuItems: items)
     }
 
-    private func sendItemsToClient(menuItems items: [MenuItem]) {
+    private func sendItemsToClient(menuItems items: [MenuItem], withMessage message: MessageType = MessageType.serverToClientItemUpdate) {
         guard let sess = session else { return }
         do {
-            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: items, numberOfOrders: currentOrderNumber - 1, ofMessageType: .serverToClientItemUpdate))
+            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: items, numberOfOrders: currentOrderNumber - 1, ofMessageType: message))
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
         } catch {}
     }
@@ -302,5 +305,9 @@ extension OrderModel {
     func sendInitialOrdersToClient() {
         let items = compile(allOrders)
         sendItemsToClient(menuItems: items)
+    }
+    
+    private func notifyClientOfItemDeletion(_ item: MenuItem) {
+        sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
     }
 }
