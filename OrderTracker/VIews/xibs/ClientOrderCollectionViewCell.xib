@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,14 +59,9 @@
                             <action selector="orderFinishedAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="a0Z-Qg-YiQ"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obB-dU-Jux">
-                        <rect key="frame" x="0.0" y="44" width="456" height="626"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="obB-dU-Jux" secondAttribute="bottom" id="3FX-Iw-ziC"/>
                 <constraint firstItem="fCg-GU-P7p" firstAttribute="top" secondItem="wMk-g0-7eW" secondAttribute="bottom" id="6mh-Fi-czE"/>
                 <constraint firstAttribute="trailing" secondItem="wMk-g0-7eW" secondAttribute="trailing" id="7uw-7C-hfx"/>
                 <constraint firstAttribute="bottom" secondItem="fCg-GU-P7p" secondAttribute="bottom" constant="60" id="KMM-El-voY"/>
@@ -74,13 +69,10 @@
                 <constraint firstItem="8HQ-13-bK9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dPk-5t-SoE"/>
                 <constraint firstAttribute="bottom" secondItem="8HQ-13-bK9" secondAttribute="bottom" constant="8" id="dgf-Ni-XjM"/>
                 <constraint firstItem="fCg-GU-P7p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ek1-Bv-fiI"/>
-                <constraint firstItem="obB-dU-Jux" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hoz-KU-pjb"/>
-                <constraint firstAttribute="trailing" secondItem="obB-dU-Jux" secondAttribute="trailing" id="kEZ-cA-YmN"/>
                 <constraint firstAttribute="trailing" secondItem="fCg-GU-P7p" secondAttribute="trailing" id="ke4-Z3-rOs"/>
                 <constraint firstItem="wMk-g0-7eW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nzp-76-we0"/>
                 <constraint firstItem="8HQ-13-bK9" firstAttribute="top" secondItem="fCg-GU-P7p" secondAttribute="bottom" constant="8" id="pH4-ct-NeA"/>
                 <constraint firstItem="wMk-g0-7eW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pc4-y8-zAU"/>
-                <constraint firstItem="obB-dU-Jux" firstAttribute="top" secondItem="wMk-g0-7eW" secondAttribute="bottom" id="unS-A7-Gl7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="456" height="670"/>
@@ -89,7 +81,6 @@
                 <outlet property="headerView" destination="wMk-g0-7eW" id="Yss-DV-Ix6"/>
                 <outlet property="headerViewTitle" destination="dHG-Cz-coh" id="yfI-8D-gVw"/>
                 <outlet property="orderFinishedButton" destination="8HQ-13-bK9" id="5Gd-ZP-gn7"/>
-                <outlet property="overlay" destination="obB-dU-Jux" id="eU9-0u-zYl"/>
             </connections>
             <point key="canvasLocation" x="43" y="123"/>
         </collectionViewCell>

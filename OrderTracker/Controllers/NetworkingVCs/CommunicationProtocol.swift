@@ -10,17 +10,18 @@ import Foundation
 import UIKit
 
 enum MessageType: Int, Codable {
-    case serverToClientOrderUpdate
+    case serverToClientItemUpdate
     case clientReportConnected
-    case clientFinishedOrder
-    case discardLastOrder
+    case newEmptyOrderCreatedByServer
 }
 
 struct CommunicationProtocol: Codable {
-    var order: Order?
+    var items: [MenuItem]?
     var type: MessageType
-    init(containingOrder order: Order?, ofMessageType type: MessageType) {
-        self.order = order
+    var numberOfOrders: Int?
+    init(containingItems items: [MenuItem]?, numberOfOrders nOrders: Int?, ofMessageType type: MessageType) {
+        self.items = items
         self.type = type
+        self.numberOfOrders = nOrders
     }
 }

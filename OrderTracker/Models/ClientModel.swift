@@ -9,36 +9,49 @@
 import Foundation
 import MultipeerConnectivity
 
+struct ClientOrder {
+    var items: [MenuItem] = []
+    var tableNumber = 0
+    var orderNumber = 0
+}
+
 class ClientModel {
     var session: MCSession!
-    var orders: [Order] = []
+    var orders: [ClientOrder] = []
     
-    func receiveOrderFromServer(_ order: Order) -> (index: Int, inserted: Bool) {
-//        print(order.itemCollections[0].count, order.itemCollections[1].count)
-        for i in 0..<orders.count {
-            let od = orders[i]
-            if od.orderNumber == order.orderNumber {
-                orders.remove(at: i)
-                orders.insert(order, at: i)
-                return (i, false)
+    func reciveItemsFromServer(_ items: [MenuItem], numberOfOrders nOrders: Int) -> (insertionIndex: Int, isNewOrder: Bool)? {
+        var isNewOrder = false
+        if nOrders > orders.count {
+            // create empty orders
+            for _ in 0..<nOrders - orders.count {
+                orders.append(ClientOrder()) // empty order
+                isNewOrder = true
+                
             }
         }
-        orders.append(order)
-        return (orders.count - 1, true)
-    }
-    
-    func clientReqestFinishOrder(_ orderIndex: Int) {
-        guard let sess = session else { return }
-        do {
-            let message =  CommunicationProtocol(containingOrder: orders[orderIndex], ofMessageType: .clientFinishedOrder)
-            let data = try JSONEncoder().encode(message)
-            try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
-        } catch let error {
-            print(error)
+        
+        if items.count == 1 {
+            let index = insertOrUpdateItem(items.first!)
+            return (index, isNewOrder)
         }
+        
+        for item in items {
+            _ = insertOrUpdateItem(item)
+        }
+        // multiple items inserted ... return nil
+        return nil
     }
     
-    func discardLastOrder() {
-        orders.removeLast()
+    private func insertOrUpdateItem(_ item: MenuItem) -> Int {
+        // return insertion index
+        for i in 0..<orders[item.orderIndex!].items.count {
+            if item == orders[item.orderIndex!].items[i] {
+                orders[item.orderIndex!].items.insert(item, at: i)
+                return (i)
+            }
+        }
+        orders[item.orderIndex!].orderNumber = item.orderIndex! + 1
+        orders[item.orderIndex!].items.insert(item, at: 0)
+        return (0)
     }
 }

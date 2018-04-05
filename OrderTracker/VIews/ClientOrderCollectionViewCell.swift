@@ -8,27 +8,17 @@
 
 import UIKit
 
-protocol ClientOrderCellDelegate: class {
-    func orderDidFinish(_ cell: ClientOrderCollectionViewCell)
-}
-
 class ClientOrderCollectionViewCell: UICollectionViewCell {
     
     
     @IBAction func orderFinishedAction(_ sender: Any) {
-        // send this back to client view controller
-        if delegate != nil {
-            delegate!.orderDidFinish(self)
-        }
     }
     
-    @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var orderFinishedButton: UIButton!
     @IBOutlet weak var headerViewTitle: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    private var order: Order!
-    weak var delegate: ClientOrderCellDelegate?
+    private var order: ClientOrder!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,48 +35,27 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configure(loadingOrder order: Order) {
+    func configure(loadingOrder order: ClientOrder) {
         headerViewTitle.text = "Order \(order.orderNumber)"
         self.order = order
-        if order.isOrderFinished {
-            overlay.alpha = 0.5
-        } else {
-            overlay.alpha = 0
-        }
-        
     }
 
 }
 
 extension ClientOrderCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return order.itemCollections[0].count + order.itemCollections[1].count
+        return order.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ClientItemCollectionViewCell
-        let numberOfPendingItems = order.itemCollections[0].count
-        if indexPath.row < numberOfPendingItems {
-            let item = order.itemCollections[0][indexPath.row]
-            cell.configure(withItem: item)
-        } else {
-            let item = order.itemCollections[1][indexPath.row - numberOfPendingItems]
-            cell.configure(withItem: item)
-            
-        }
+        cell.configure(withItem: order.items[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var base: CGFloat = 60
-        let numberOfPendingItems = order.itemCollections[0].count
-        var item: MenuItem
-        if indexPath.row < numberOfPendingItems {
-            item = order.itemCollections[0][indexPath.row]
-        } else {
-            item = order.itemCollections[1][indexPath.row - numberOfPendingItems]
-        }
-        
+        let item = order.items[indexPath.row]
         for option in item.options {
             if option.value {
                 base += 22

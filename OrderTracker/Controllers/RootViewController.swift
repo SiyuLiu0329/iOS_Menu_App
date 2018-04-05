@@ -59,7 +59,7 @@ extension RootViewController: MCBrowserViewControllerDelegate {
         connectionHandler.isServer = false
         // this is the client
         do {
-            let data = try JSONEncoder().encode(CommunicationProtocol(containingOrder: nil, ofMessageType: .clientReportConnected))
+            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: nil, ofMessageType: .clientReportConnected))
             try connectionHandler.session.send(data, toPeers: connectionHandler.session.connectedPeers, with: .reliable)
         } catch {
             fatalError()
@@ -93,41 +93,22 @@ extension RootViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
             let message = try JSONDecoder().decode(CommunicationProtocol.self, from: data)
-            
             switch message.type {
-            case .serverToClientOrderUpdate:
-                // client
-                let insertResult = clientModel.receiveOrderFromServer(message.order!)
+            case .serverToClientItemUpdate:
+                let items = message.items!
+                let insertionResult = clientModel.reciveItemsFromServer(items, numberOfOrders: message.numberOfOrders!)!
+                let insertionIndex = insertionResult.insertionIndex
+                let insertedOrderIndex = items.first!.orderIndex
                 if delegate != nil {
-                    // if client is in order view, this delegate will have been set so UI elements can be updated
                     DispatchQueue.main.async {
-                        // updating UI elements, need to do it in the main thread
-                        self.delegate!.didReceiveOrderFromServerAfterPayment(newItem: insertResult.index, wasInerted: insertResult.inserted)
+                        self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult.isNewOrder)
                     }
                 }
-            case .clientReportConnected:
-                DispatchQueue.main.async {
-                    // updating UI elements, need to do it in the main thread
-                    self.joinButton.setTitle("Server", for: .normal)
-                    self.joinButton.isUserInteractionEnabled = false
-                    self.connectionHandler.browser.dismiss(animated: true, completion: nil)
-                }
-                orderModel.sendInitialOrdersToClient()
-            case .clientFinishedOrder:
-                let orderNumber = message.order!.orderNumber
-                orderModel.finishOrder(orderIndex: orderNumber - 1)
-                // update async after updating model
-            case .discardLastOrder:
-                // client
-                if delegate != nil {
-                    clientModel.discardLastOrder()
-                    DispatchQueue.main.async {
-                        self.delegate!.didRemoveLastOrder()
-                    }
-                }
+                
+            default:
+                break
             }
-            
-            
+
         } catch {
 //            print(error)
         }

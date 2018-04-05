@@ -55,7 +55,6 @@ class OrderModel {
         do {
             let files = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             for file in files {
-//                print(file)
                 let json = try Data.init(contentsOf: file)
                 let order = try decoer.decode(Order.self, from: json)
                 allOrders.append(order)
@@ -82,32 +81,13 @@ class OrderModel {
     func newOrder() {
         allOrders.append(Order(orderNumber: currentOrderNumber))
         currentOrderNumber += 1
+        sendMessageToClient(type: .newEmptyOrderCreatedByServer) // notify client an order has be created
     }
     
     func loadOrder(withIndex index: Int) {
         loadedOrder = allOrders[index]
         allOrders[index].isBeingEdited = true
     }
-    
-    func saveLoadedOrder(withIndex index: Int) {
-        guard let order = loadedOrder else { return }
-        loadedOrder!.isBeingEdited = false
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        let fileManager = FileManager()
-        var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        do {
-            url = url.appendingPathComponent("\(order.orderNumber)" + ".json")
-            let data = try encoder.encode(order)
-            try data.write(to: url)
-        } catch let error {
-            fatalError("\(error)")
-        }
-        
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
-        loadData()
-    }
-    
     
     func deletePendingItemInLoadedOrder(withIndex index: Int) {
         loadedOrder!.itemCollections[0].remove(at: index)
@@ -121,7 +101,11 @@ class OrderModel {
         return loadedOrder!.numberOfItemsInOrder
     }
     
-    func pendItemToLoadedOrder(_ item: MenuItem) -> Int? {
+    func pendItemToLoadedOrder(_ itemToAdd: MenuItem) -> Int? {
+        var item = itemToAdd
+        item.orderIndex = loadedOrder!.orderNumber - 1
+        item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
+        sendItemsToClient(menuItems: [item]) // send when an item is added
         for i in 0..<loadedItemCollections[0].count {
             if item == loadedItemCollections[0][i] {
                 loadedOrder!.itemCollections[0].insert(item, at: i)
@@ -129,6 +113,7 @@ class OrderModel {
             }
         }
         loadedOrder!.itemCollections[0].insert(item, at: 0)
+        
         return 0
     }
     
@@ -141,22 +126,6 @@ class OrderModel {
             }
         }
         return nSelected
-    }
-    
-    func billAllPendingItems(withPaymentMethod method: PaymentMethod) {
-        for item in loadedOrder!.itemCollections[0] {
-            let _ = insertItemToPaidItems(item, paymentMethod: method)
-        }
-        loadedOrder!.itemCollections[0].removeAll()
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
-    }
-    
-    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> Int {
-        let item = loadedOrder!.itemCollections[0][index]
-        loadedOrder!.itemCollections[0].remove(at: index)
-        let index = insertItemToPaidItems(item, paymentMethod: method)
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
-        return index
     }
     
     private func insertItemToPaidItems(_ itemToAdd: MenuItem, paymentMethod method: PaymentMethod) -> Int {
@@ -175,27 +144,41 @@ class OrderModel {
                 return i
             }
         }
-        
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         return 0
     }
     
-    func quickBillTemplateItem(_ item: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
+    // billing single items
+    func quickBillTemplateItem(_ itemToAdd: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
+        var item = itemToAdd
+        item.orderIndex = loadedOrder!.orderNumber - 1
+        item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
+        sendItemsToClient(menuItems: [item]) // send
         let index = insertItemToPaidItems(item, paymentMethod: method)
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
         return index
         
     }
     
+    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> Int {
+        let item = loadedOrder!.itemCollections[0][index]
+        loadedOrder!.itemCollections[0].remove(at: index)
+        let index = insertItemToPaidItems(item, paymentMethod: method)
+        sendItemsToClient(menuItems: [item]) // send
+        return index
+    }
+    
     func discardLastestOrder() {
         allOrders.removeLast()
-        sendOrderThroughSession(nil, usingProtocolType: .discardLastOrder)
+//        sendOrderThroughSession(nil, usingProtocolType: .discardLastOrder)
         currentOrderNumber -= 1
     }
     
-    func splitBill(templateItem item: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
-        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card)
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
+    
+    func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
+        var item = itemToAdd
+        item.orderIndex = loadedOrder!.orderNumber - 1
+        item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
+        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
         return index
 
     }
@@ -203,8 +186,7 @@ class OrderModel {
     func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double) -> Int {
         let item = loadedOrder!.itemCollections[0][index]
         loadedOrder!.itemCollections[0].remove(at: index)
-        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card)
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
+        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
         return index
     }
     
@@ -213,6 +195,7 @@ class OrderModel {
         item.paymentStatus = .paid
         loadedOrder!.cardSales += card
         loadedOrder!.cashSales += cash
+        sendItemsToClient(menuItems: [itemToAdd]) // only one item needs to be sent?
         for i in 0..<loadedItemCollections[1].count {
             if item == loadedItemCollections[1][i] {
                 loadedOrder!.itemCollections[1].insert(item, at: i)
@@ -222,8 +205,16 @@ class OrderModel {
         
         loadedOrder!.itemCollections[1].insert(item, at: 0)
         
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
         return 0
+    }
+    
+    // all pending items
+    func billAllPendingItems(withPaymentMethod method: PaymentMethod) {
+        for item in loadedOrder!.itemCollections[0] {
+            let _ = insertItemToPaidItems(item, paymentMethod: method)
+        }
+        loadedOrder!.itemCollections[0].removeAll()
+//        sendAllItems(inOrder: loadedOrder!) // update all
     }
     
     func splitBillAllPendingItems(cashSales cash: Double, cardSales card: Double) {
@@ -246,7 +237,25 @@ class OrderModel {
         }
         loadedOrder!.itemCollections[0].removeAll()
         
-        sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
+//        sendAllItems(inOrder: loadedOrder!) // send order
+    }
+    
+    func saveLoadedOrder(withIndex index: Int) {
+        guard let order = loadedOrder else { return }
+        loadedOrder!.isBeingEdited = false
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let fileManager = FileManager()
+        var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            url = url.appendingPathComponent("\(order.orderNumber)" + ".json")
+            let data = try encoder.encode(order)
+            try data.write(to: url)
+        } catch let error {
+            fatalError("\(error)")
+        }
+//        sendAllItems(inOrder: loadedOrder!) // send all
+        loadData()
     }
     
     func getQuantityOfPendingItem(withIndex index: Int) -> Int {
@@ -256,41 +265,42 @@ class OrderModel {
 }
 
 extension OrderModel {
-    func sendOrderBeforeChange(withIndex index: Int) {
-        guard index < allOrders.count else { return }
-        allOrders[index].isBeingEdited = false
-        sendOrderThroughSession(allOrders[index], usingProtocolType: .serverToClientOrderUpdate)
-    }
     
-    func finishOrder(orderIndex index: Int) {
-        allOrders[index].markAllItemsAsServed()
-        if let loadedOrderNumber = loadedOrder?.orderNumber {
-            if index == loadedOrderNumber - 1 && allOrders[index].isBeingEdited {
-                // if this order happens to be open for editin, change that copy as well
-                loadedOrder!.markAllItemsAsServed()
-                sendOrderThroughSession(loadedOrder!, usingProtocolType: .serverToClientOrderUpdate)
-                return
-            }
-        }
-        
-        sendOrderThroughSession(allOrders[index], usingProtocolType: .serverToClientOrderUpdate)
-        
+    func sendAllItems(inOrder order: Order) {
+        var items: [MenuItem] = []
+        items.append(contentsOf: order.itemCollections[0])
+        items.append(contentsOf: order.itemCollections[1])
+        sendItemsToClient(menuItems: items)
     }
-    
-    private func sendOrderThroughSession(_ order: Order?, usingProtocolType type: MessageType) {
+
+    private func sendItemsToClient(menuItems items: [MenuItem]) {
         guard let sess = session else { return }
         do {
-            let message =  CommunicationProtocol(containingOrder: order, ofMessageType: type)
-            let data = try JSONEncoder().encode(message)
+            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: items, numberOfOrders: currentOrderNumber - 1, ofMessageType: .serverToClientItemUpdate))
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
-        } catch let error {
-            print(error)
+        } catch {}
+    }
+    
+    func sendMessageToClient(type messageType: MessageType) {
+        guard let sess = session else { return }
+        do {
+            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: nil, ofMessageType: messageType))
+                
+            try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
+        } catch {}
+    }
+    
+    private func compile(_ orders: [Order]) -> [MenuItem] {
+        var items: [MenuItem] = []
+        for order in orders {
+            items.append(contentsOf: order.itemCollections[0])
+            items.append(contentsOf: order.itemCollections[1])
         }
+        return items
     }
     
     func sendInitialOrdersToClient() {
-        for order in allOrders {
-            sendOrderThroughSession(order, usingProtocolType: .serverToClientOrderUpdate)
-        }
+        let items = compile(allOrders)
+        sendItemsToClient(menuItems: items)
     }
 }
