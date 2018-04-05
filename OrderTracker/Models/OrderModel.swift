@@ -270,22 +270,19 @@ class OrderModel {
 extension OrderModel {
     
     func sendInitalOrders() {
-//        sendItemsToClient(menuItems:  compile(allOrders))
-    }
-    
-    func sendAllItems(inOrder order: Order) {
-        var items: [MenuItem] = []
-        items.append(contentsOf: order.itemCollections[0])
-        items.append(contentsOf: order.itemCollections[1])
-        sendItemsToClient(menuItems: items)
+        sendItemsToClient(menuItems:  compile(allOrders))
     }
 
     private func sendItemsToClient(menuItems items: [MenuItem], withMessage message: MessageType = MessageType.serverToClientItemUpdate) {
         guard let sess = session else { return }
         do {
+//            print(items)
             let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: items, numberOfOrders: currentOrderNumber - 1, ofMessageType: message))
+            print(data)
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
-        } catch {}
+        } catch let error {
+            print(error)
+        }
     }
     
     func sendMessageToClient(type messageType: MessageType) {
@@ -304,11 +301,6 @@ extension OrderModel {
             items.append(contentsOf: order.itemCollections[1])
         }
         return items
-    }
-    
-    func sendInitialOrdersToClient() {
-        let items = compile(allOrders)
-        sendItemsToClient(menuItems: items)
     }
     
     

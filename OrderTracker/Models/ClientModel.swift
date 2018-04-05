@@ -21,6 +21,7 @@ class ClientModel {
     
     func reciveItemsFromServer(_ items: [MenuItem], numberOfOrders nOrders: Int) -> (insertionIndex: Int, isNewOrder: Bool)? {
         var isNewOrder = false
+//        print(nOrders, items)
         if nOrders > orders.count {
             // create empty orders
             for _ in 0..<nOrders - orders.count {

@@ -81,9 +81,7 @@ extension RootViewController: MCSessionDelegate {
         switch state {
         case .connected:
             print("connected: \(peerID.displayName)")
-            if connectionHandler.isServer {
-                orderModel.sendInitalOrders()
-            }
+            
         case .connecting:
             print("Connecting: \(peerID.displayName)")
         case .notConnected:
@@ -97,17 +95,23 @@ extension RootViewController: MCSessionDelegate {
         do {
             let message = try JSONDecoder().decode(CommunicationProtocol.self, from: data)
             DispatchQueue.main.async {
+                print(message)
                 switch message.type {
+                    
                 case .serverToClientItemUpdate:
                     let items = message.items!
-                    let insertionResult =  self.clientModel.reciveItemsFromServer(items, numberOfOrders: message.numberOfOrders!)!
-                    let insertionIndex = insertionResult.insertionIndex
+                    print(message)
+                    let insertionResult =  self.clientModel.reciveItemsFromServer(items, numberOfOrders: message.numberOfOrders!)
+                    if insertionResult == nil {
+                        return
+                    }
+                    let insertionIndex = insertionResult!.insertionIndex
                     let insertedOrderIndex = items.first!.orderIndex
                     if  self.delegate != nil {
                         
-                        self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult.isNewOrder)
-                        
+                        self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult!.isNewOrder)
                     }
+                    
                 case .serverDidDeleteItem:
                     let item = message.items!.first!
                     guard let deleteIndex =  self.clientModel.deleteItem(item) else { fatalError() }
@@ -128,6 +132,11 @@ extension RootViewController: MCSessionDelegate {
                     self.clientModel.addEmptyOrder(numbered: message.numberOfOrders! + 1)
                     if self.delegate != nil {
                         self.delegate!.didAddEmptyOrder(indexed: self.clientModel.orders.count - 1)
+                    }
+                    
+                case .clientReportConnected:
+                    if self.connectionHandler.isServer {
+                        self.orderModel.sendInitalOrders()
                     }
                 default:
                     break
