@@ -65,4 +65,14 @@ class ClientModel {
         }
         return nil
     }
+    
+    func deleteLatestOrder() {
+        orders.removeLast()
+    }
+    
+    func addEmptyOrder(numbered number: Int) {
+        var newOrder = ClientOrder()
+        newOrder.orderNumber = number
+        orders.append(newOrder)
+    }
 }

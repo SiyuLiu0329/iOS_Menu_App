@@ -80,6 +80,7 @@ class OrderModel {
     
     func newOrder() {
         allOrders.append(Order(orderNumber: currentOrderNumber))
+        sendMessageToClient(type: .addEmptyOrder)
         currentOrderNumber += 1
         sendMessageToClient(type: .newEmptyOrderCreatedByServer) // notify client an order has be created
     }
@@ -172,7 +173,7 @@ class OrderModel {
     
     func discardLastestOrder() {
         allOrders.removeLast()
-//        sendOrderThroughSession(nil, usingProtocolType: .discardLastOrder)
+        sendMessageToClient(type: .deleteLastestOrder)
         currentOrderNumber -= 1
     }
     
@@ -287,7 +288,7 @@ extension OrderModel {
     func sendMessageToClient(type messageType: MessageType) {
         guard let sess = session else { return }
         do {
-            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: nil, ofMessageType: messageType))
+            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: currentOrderNumber - 1, ofMessageType: messageType))
                 
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
         } catch {}
@@ -306,6 +307,7 @@ extension OrderModel {
         let items = compile(allOrders)
         sendItemsToClient(menuItems: items)
     }
+    
     
     private func notifyClientOfItemDeletion(_ item: MenuItem) {
         sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)

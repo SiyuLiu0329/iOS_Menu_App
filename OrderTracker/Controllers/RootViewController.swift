@@ -15,7 +15,7 @@ class RootViewController: UIViewController {
     var connectionHandler = ConnectionHandler()
     weak var delegate: ClientOrderViewDelegate?
     @IBOutlet weak var joinButton: UIButton!
-
+    
     @IBAction func joinButtonPressed(_ sender: Any) {
         present(connectionHandler.browser, animated: true, completion: nil)
     }
@@ -93,32 +93,46 @@ extension RootViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
             let message = try JSONDecoder().decode(CommunicationProtocol.self, from: data)
-            switch message.type {
-            case .serverToClientItemUpdate:
-                let items = message.items!
-                let insertionResult = clientModel.reciveItemsFromServer(items, numberOfOrders: message.numberOfOrders!)!
-                let insertionIndex = insertionResult.insertionIndex
-                let insertedOrderIndex = items.first!.orderIndex
-                if delegate != nil {
-                    DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch message.type {
+                case .serverToClientItemUpdate:
+                    let items = message.items!
+                    let insertionResult =  self.clientModel.reciveItemsFromServer(items, numberOfOrders: message.numberOfOrders!)!
+                    let insertionIndex = insertionResult.insertionIndex
+                    let insertedOrderIndex = items.first!.orderIndex
+                    if  self.delegate != nil {
+                        
                         self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult.isNewOrder)
+                        
                     }
-                }
-                break
-            case .serverDidDeleteItem:
-                let item = message.items!.first!
-                guard let deleteIndex = clientModel.deleteItem(item) else { fatalError() }
-                if delegate != nil {
-                    DispatchQueue.main.async {
+                case .serverDidDeleteItem:
+                    let item = message.items!.first!
+                    guard let deleteIndex =  self.clientModel.deleteItem(item) else { fatalError() }
+                    if  self.delegate != nil {
+                        
                         self.delegate!.didDeleteItem(inOrderwithIndex: item.orderIndex!, itemWithIndex: deleteIndex)
+                        
                     }
+                    
+                case .deleteLastestOrder:
+                    self.clientModel.deleteLatestOrder()
+                    if  self.delegate != nil {
+                        self.delegate!.didDeleteLastestOrder(indexed: self.clientModel.orders.count)
+                        
+                    }
+                    
+                case .addEmptyOrder:
+                    self.clientModel.addEmptyOrder(numbered: message.numberOfOrders! + 1)
+                    if self.delegate != nil {
+                        self.delegate!.didAddEmptyOrder(indexed: self.clientModel.orders.count - 1)
+                    }
+                default:
+                    break
                 }
-            default:
-                break
             }
-
+            
         } catch {
-//            print(error)
+            //            print(error)
         }
         
     }
