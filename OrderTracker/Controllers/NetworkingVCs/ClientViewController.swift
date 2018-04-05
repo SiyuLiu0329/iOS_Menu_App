@@ -39,9 +39,12 @@ extension ClientViewController: ClientOrderViewDelegate {
         if newOrder {
             clientOrderCollectionView.insertItems(at: [IndexPath(item: orderIndex, section: 0)])
         } else {
-            let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: orderIndex, section: 0)) as! ClientOrderCollectionViewCell
-            cell.configure(loadingOrder: clientModel.orders[orderIndex])
-            cell.collectionView.insertItems(at: [IndexPath(item: itemIndex, section: 0)])
+            if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: orderIndex, section: 0)) as? ClientOrderCollectionViewCell {
+                // if cell is visible
+                cell.configure(loadingOrder: clientModel.orders[orderIndex])
+                cell.collectionView.insertItems(at: [IndexPath(item: itemIndex, section: 0)])
+            }
+            
         }
         
     }
@@ -56,7 +59,7 @@ extension ClientViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clientOrderCell", for: indexPath) as! ClientOrderCollectionViewCell
         cell.configure(loadingOrder: clientModel.orders[indexPath.row])
-        cell.collectionView.reloadData()
+        cell.collectionView.reloadData() // refresh data when cell becomes visible again
         return cell
     }
     
