@@ -25,7 +25,9 @@ class ClientModel {
         if nOrders > orders.count {
             // create empty orders
             for _ in 0..<nOrders - orders.count {
-                orders.append(ClientOrder()) // empty order
+                var order = ClientOrder()
+                order.orderNumber = orders.count
+                orders.append(order) // empty order
                 isNewOrder = true
             }
         }
@@ -46,7 +48,7 @@ class ClientModel {
         // return insertion index
         for i in 0..<orders[item.orderIndex!].items.count {
             if item == orders[item.orderIndex!].items[i] {
-                if item.indexInOrder == orders[item.orderIndex!].items[i].indexInOrder {
+                if item.itemId == orders[item.orderIndex!].items[i].itemId {
                     fatalError()
                 }
                 orders[item.orderIndex!].items.insert(item, at: i)
@@ -61,7 +63,7 @@ class ClientModel {
     func deleteItem(_ item: MenuItem) -> Int? {
 //        orders[item.orderIndex!].items.remove(at: item.indexInOrder!)
         for i in 0..<orders[item.orderIndex!].items.count {
-            if item.indexInOrder == orders[item.orderIndex!].items[i].indexInOrder {
+            if item.itemId == orders[item.orderIndex!].items[i].itemId {
                 orders[item.orderIndex!].items.remove(at: i)
                 return i
             }

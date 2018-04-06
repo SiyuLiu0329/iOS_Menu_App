@@ -16,6 +16,7 @@ enum PaymentMethod {
 }
 
 class OrderModel {
+    private var globalCounter: Int = 0
     var session: MCSession?
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
@@ -98,6 +99,9 @@ class OrderModel {
     }
     
     func clearPendingItemsLoadedOrder() {
+        for item in loadedOrder!.itemCollections[0] {
+            sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
+        }
         loadedOrder!.itemCollections[0] = []
     }
     
@@ -108,7 +112,8 @@ class OrderModel {
     func pendItemToLoadedOrder(_ itemToAdd: MenuItem) -> Int? {
         var item = itemToAdd
         item.orderIndex = loadedOrder!.orderNumber - 1
-        item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
+        item.itemId = globalCounter
+        globalCounter += 1
         sendItemsToClient(menuItems: [item]) // send when an item is added
         for i in 0..<loadedItemCollections[0].count {
             if item == loadedItemCollections[0][i] {
@@ -156,7 +161,8 @@ class OrderModel {
     func quickBillTemplateItem(_ itemToAdd: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
         var item = itemToAdd
         item.orderIndex = loadedOrder!.orderNumber - 1
-        item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
+        item.itemId = globalCounter
+        globalCounter += 1
         sendItemsToClient(menuItems: [item]) // send
         let index = insertItemToPaidItems(item, paymentMethod: method)
         return index
@@ -180,7 +186,8 @@ class OrderModel {
     func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
         var item = itemToAdd
         item.orderIndex = loadedOrder!.orderNumber - 1
-        item.indexInOrder = loadedOrder!.itemCollections[0].count + loadedOrder!.itemCollections[1].count //arrival index
+        item.itemId = globalCounter
+        globalCounter += 1
         let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
         sendItemsToClient(menuItems: [item])
         return index
@@ -270,7 +277,13 @@ class OrderModel {
 extension OrderModel {
     
     func sendInitalOrders() {
-        sendItemsToClient(menuItems:  compile(allOrders))
+        for order in allOrders {
+            if order.isBeingEdited {
+                sendItemsToClient(menuItems: compile(loadedOrder!))
+            } else {
+                sendItemsToClient(menuItems: compile(order))
+            }
+        }
     }
 
     private func sendItemsToClient(menuItems items: [MenuItem], withMessage message: MessageType = MessageType.serverToClientItemUpdate) {
@@ -294,12 +307,12 @@ extension OrderModel {
         } catch {}
     }
     
-    private func compile(_ orders: [Order]) -> [MenuItem] {
+    private func compile(_ order: Order) -> [MenuItem] {
         var items: [MenuItem] = []
-        for order in orders {
-            items.append(contentsOf: order.itemCollections[0])
-            items.append(contentsOf: order.itemCollections[1])
-        }
+        
+        items.append(contentsOf: order.itemCollections[0])
+        items.append(contentsOf: order.itemCollections[1])
+        
         return items
     }
     

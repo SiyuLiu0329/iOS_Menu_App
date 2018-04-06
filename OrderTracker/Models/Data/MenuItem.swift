@@ -48,7 +48,7 @@ struct MenuItem: Equatable, Codable {
     var imageURL: String
     var orderIndex: Int?
     var tableNumber: Int?
-    var indexInOrder: Int?
+    var itemId: Int?
     var itemType: ItemType
     var paymentStatus: PaymentStatus = .notPaid
     var served = false
