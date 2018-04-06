@@ -338,6 +338,5 @@ extension OrderModel {
         } catch let error {
             fatalError("\(error)")
         }
-        loadData()
     }
 }

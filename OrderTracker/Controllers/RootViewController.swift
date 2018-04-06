@@ -55,8 +55,6 @@ class RootViewController: UIViewController {
 extension RootViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         browserViewController.dismiss(animated: true, completion: nil)
-        
-        
         joinButton.setTitle("Client", for: .normal)
         joinButton.isUserInteractionEnabled = false
         showOrderButton.alpha = 1
@@ -129,6 +127,8 @@ extension RootViewController: MCSessionDelegate {
                     if self.connectionHandler.isServer {
                         self.orderModel.session = self.connectionHandler.session
                         self.orderModel.sendInitalOrders()
+                        self.joinButton.setTitle("Sever", for: .normal)
+                        self.joinButton.isUserInteractionEnabled = false
                     }
                     
                 case .clientRequestItemFinish:
