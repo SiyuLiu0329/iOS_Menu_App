@@ -145,7 +145,13 @@ extension RootViewController: MCSessionDelegate {
                 case .revertToOriginal:
                     self.clientModel.revertToOriginal(usingItems: message.items!)
                     if self.delegate != nil {
-                        self.delegate!.didReverToOriginal(orderIndex: message.items!.first!.orderIndex!)
+                        self.delegate!.reloadOrder(orderIndex: message.items!.first!.orderIndex!)
+                    }
+                    
+                case .clearOrder:
+                    self.clientModel.clearOrder(indexed: message.orderToModify!)
+                    if self.delegate != nil {
+                        self.delegate!.reloadOrder(orderIndex: message.orderToModify!)
                     }
                 default:
                     break

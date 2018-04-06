@@ -14,7 +14,7 @@ protocol ClientOrderViewDelegate: class {
     func didDeleteItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int)
     func didDeleteLastestOrder(indexed index: Int)
     func didAddEmptyOrder(indexed index: Int)
-    func didReverToOriginal(orderIndex index: Int)
+    func reloadOrder(orderIndex index: Int)
 }
 
 class ClientViewController: UIViewController {
@@ -53,7 +53,7 @@ extension ClientViewController: ClientOrderViewDelegate {
         }
     }
     
-    func didReverToOriginal(orderIndex index: Int) {
+    func reloadOrder(orderIndex index: Int) {
         clientOrderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
     }
     

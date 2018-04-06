@@ -81,7 +81,14 @@ class ClientModel {
         orders.append(newOrder)
     }
     
+    func clearOrder(indexed index: Int) {
+        orders[index].items.removeAll()
+    }
+    
     func revertToOriginal(usingItems items: [MenuItem]) {
+        if items.isEmpty {
+            fatalError()
+        }
         let orderIndex = items.first!.orderIndex!
         orders[orderIndex].items.removeAll()
         for item in items {

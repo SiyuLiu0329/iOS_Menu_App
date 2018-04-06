@@ -274,7 +274,16 @@ class OrderModel {
     
     func closeOrderForEditing(orderIndex index: Int) {
         allOrders[index].isBeingEdited = false
-        sendOriginalToClient(orderIndex: index)
+        if allOrders[index].itemCollections[0].count + allOrders[index].itemCollections[1].count == 0 {
+            guard let sess = session else { return }
+            do {
+                let data = try JSONEncoder().encode(CommunicationProtocol(orderToModify: index, messageType: .clearOrder))
+                try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
+            } catch {}
+        } else {
+            sendOriginalToClient(orderIndex: index)
+        }
+        
         // send
     }
     
