@@ -47,20 +47,21 @@ class ClientModel {
         // return insertion index
         
         for i in 0..<orders[item.orderIndex!].items.count {
+            // check if there is an item with the same hash value, if so replace it
             if item.itemHash! == orders[item.orderIndex!].items[i].itemHash! {
-                // match found, change it ...
                 orders[item.orderIndex!].items[i] = item
                 return (i, false)
             }
         }
-        
+        // no match found... this item is brand new
         for i in 0..<orders[item.orderIndex!].items.count {
-            
+            // check where this item should be inserted (with the same type)
             if item == orders[item.orderIndex!].items[i] {
                 orders[item.orderIndex!].items.insert(item, at: i)
                 return (i, true)
             }
         }
+        // no matching type found... insert this item at the start
         orders[item.orderIndex!].orderNumber = item.orderIndex! + 1
         orders[item.orderIndex!].items.insert(item, at: 0)
         return (0, true)
@@ -105,6 +106,11 @@ class ClientModel {
     func requestFinishItem(indexed itemIndex: Int, inOrder orderIndex: Int) {
         let item = orders[orderIndex].items[itemIndex]
         sendItemsToServer([item], withMessage: .clientRequestItemFinish)
+    }
+    
+    func requestFinishOrder(indexed orderIndex: Int) {
+        let itemsTofinish = orders[orderIndex].items
+        sendItemsToServer(itemsTofinish, withMessage: .clientRequestItemFinish)
     }
     
     func sendItemsToServer(_ items: [MenuItem], withMessage message: MessageType) {

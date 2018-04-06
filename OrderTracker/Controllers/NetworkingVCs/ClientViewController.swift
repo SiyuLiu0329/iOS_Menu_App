@@ -42,7 +42,7 @@ extension ClientViewController: ClientOrderViewDelegate {
     func didUpdateItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int, shouldAddNewOrder newOrder: Bool, isItemInserted inserted: Bool) {
         if newOrder {
             clientOrderCollectionView.insertItems(at: [IndexPath(item: orderIndex, section: 0)])
-            
+            // deprecate this later
         } else {
             if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: orderIndex, section: 0)) as? ClientOrderCollectionViewCell {
                 // if cell is visible
@@ -50,7 +50,6 @@ extension ClientViewController: ClientOrderViewDelegate {
                 if inserted {
                     cell.collectionView.insertItems(at: [IndexPath(item: itemIndex, section: 0)])
                 } else {
-                    print("modified: \(itemIndex)")
                     cell.collectionView.reloadItems(at: [IndexPath(item: itemIndex, section: 0)])
                 }
                 
@@ -59,6 +58,7 @@ extension ClientViewController: ClientOrderViewDelegate {
             }
         }
     }
+    
     
     func reloadOrder(orderIndex index: Int) {
         clientOrderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])

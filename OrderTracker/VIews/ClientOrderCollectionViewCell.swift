@@ -13,10 +13,6 @@ protocol ClientItemCollectionViewCellDelegate: class {
 
 class ClientOrderCollectionViewCell: UICollectionViewCell {
     
-    
-    @IBAction func orderFinishedAction(_ sender: Any) {
-    }
-    
     @IBOutlet weak var orderFinishedButton: UIButton!
     @IBOutlet weak var headerViewTitle: UILabel!
     @IBOutlet weak var headerView: UIView!
