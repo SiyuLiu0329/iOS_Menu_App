@@ -17,29 +17,22 @@ enum PaymentMethod {
 
 class OrderModel {
     var session: MCSession?
-
+    var currentOrderNumber = 1
+    var allOrders: [Order] = []
     
     func getPendingItemsIn(order orderIndex: Int) -> [MenuItem] {
         return allOrders[orderIndex].itemCollections[0]
     }
     
-    var allOrders: [Order] = []
-    
     var isLatestOrderEmpty: Bool {
         return allOrders.last!.itemCollections[0].isEmpty
     }
-    
-    
-//    var menuItems: [Int: MenuItem] = [:]
 
-    var currentOrderNumber = 1
-    // Order
+    
     
     init() {
         loadData()
     }
-    
-    //------------------------
     private func loadData() {
         allOrders.removeAll()
         currentOrderNumber = 1
@@ -246,7 +239,21 @@ class OrderModel {
         }
         loadData()
     }
-
+    
+    
+    func deleteOrder(atIndex index: Int) {
+        let orderNumber = allOrders[index].orderNumber
+        allOrders.remove(at: index)
+        let fileManager = FileManager()
+        var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            url = url.appendingPathComponent("\(orderNumber)" + ".json")
+            try fileManager.removeItem(at: url)
+        } catch let error {
+            fatalError("\(error)")
+        }
+        loadData()
+    }
     
 }
 

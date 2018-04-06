@@ -20,6 +20,7 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewDataSource = OrderViewControllerDataSource(data: orderModel!)
+        collectionViewDataSource.collectionView = orderCollectionView
         orderCollectionView.dataSource = collectionViewDataSource
         orderCollectionView.alwaysBounceVertical = true
         orderCollectionView.delegate = self
@@ -40,7 +41,7 @@ class OrderViewController: UIViewController {
         let indexPath = orderCollectionView.indexPath(for: sender as! UICollectionViewCell)
         
         orderItemVC.orderModel = orderModel
-        orderItemVC.orderId = indexPath!.row
+        orderItemVC.orderIndex = indexPath!.row
         if indexPath!.row == orderModel!.allOrders.count {
             orderModel!.newOrder()
             orderItemVC.isNewOrder = true
@@ -71,3 +72,4 @@ extension OrderViewController: UICollectionViewDelegateFlowLayout {
         return 5
     }
 }
+

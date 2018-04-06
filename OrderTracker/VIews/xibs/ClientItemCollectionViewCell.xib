@@ -46,7 +46,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="373" height="102"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Served" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-iz-cGB">
-                                <rect key="frame" x="250" y="25" width="113" height="52"/>
+                                <rect key="frame" x="273" y="31" width="90" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="V1i-VI-aq5"/>
+                                    <constraint firstAttribute="height" constant="40" id="ZMe-dp-xqS"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -54,10 +58,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fnF-iz-cGB" firstAttribute="leading" secondItem="74T-WO-qIg" secondAttribute="leading" constant="250" id="Due-Tg-q4o"/>
                             <constraint firstAttribute="trailing" secondItem="fnF-iz-cGB" secondAttribute="trailing" constant="10" id="HQE-AQ-LIo"/>
-                            <constraint firstItem="fnF-iz-cGB" firstAttribute="top" secondItem="74T-WO-qIg" secondAttribute="top" constant="25" id="e9L-Nq-3Zh"/>
-                            <constraint firstAttribute="bottom" secondItem="fnF-iz-cGB" secondAttribute="bottom" constant="25" id="rFf-OW-bhg"/>
+                            <constraint firstItem="fnF-iz-cGB" firstAttribute="centerY" secondItem="74T-WO-qIg" secondAttribute="centerY" id="n54-1R-C5B"/>
                         </constraints>
                     </view>
                 </subviews>

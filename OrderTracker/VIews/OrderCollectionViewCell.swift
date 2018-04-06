@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol OrderCollectionViewCellDelegate: class {
+    func deleteOrder(_ sender: OrderCollectionViewCell)
+}
+
 class OrderCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        if delegate != nil {
+            delegate!.deleteOrder(self)
+        }
+    }
     
     @IBOutlet weak var label: UILabel!
+    weak var delegate: OrderCollectionViewCellDelegate?
     func configure() {
         layer.cornerRadius = 5
         clipsToBounds = true

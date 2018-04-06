@@ -11,6 +11,7 @@ import UIKit
 
 class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
     var orderModel: OrderModel
+    var collectionView: UICollectionView!
     init(data orderModel: OrderModel) {
         
         self.orderModel = orderModel
@@ -25,12 +26,13 @@ class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderCollectionViewCell
         cell.configure()
         if indexPath.row == orderModel.allOrders.count {
-            cell.label.text = "New Cell"
+            cell.label.text = "New Order"
+            cell.deleteButton.alpha = 0
         } else {
             cell.label.text = "\(orderModel.allOrders[indexPath.row].orderNumber)"
+            cell.deleteButton.alpha = 1
         }
-        
-        
+        cell.delegate = self
         return cell
         
     }
@@ -39,6 +41,13 @@ class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
-    
+}
 
+extension OrderViewControllerDataSource: OrderCollectionViewCellDelegate {
+    func deleteOrder(_ sender: OrderCollectionViewCell) {
+        if let indexPath = collectionView.indexPath(for: sender) {
+            orderModel.deleteOrder(atIndex: indexPath.row)
+            collectionView.deleteItems(at: [indexPath])
+        }
+    }
 }
