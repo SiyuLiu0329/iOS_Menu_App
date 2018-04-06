@@ -241,9 +241,9 @@ class OrderModel {
     }
     
     
-    func deleteOrder(atIndex index: Int) {
-        let orderNumber = allOrders[index].orderNumber
-        allOrders.remove(at: index)
+    func deleteOrderLastestOrder() {
+        let orderNumber = allOrders.last!.orderNumber
+        allOrders.removeLast()
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
@@ -252,6 +252,8 @@ class OrderModel {
         } catch let error {
             fatalError("\(error)")
         }
+        
+        sendMessageToClient(type: .deleteLastedOrder)
         loadData()
     }
     

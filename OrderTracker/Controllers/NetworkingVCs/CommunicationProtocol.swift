@@ -16,6 +16,7 @@ enum MessageType: Int, Codable {
     case newEmptyOrderCreatedByServer
     case addEmptyOrder
     case clearOrder
+    case deleteLastedOrder
     case clientRequestItemFinish
 }
 

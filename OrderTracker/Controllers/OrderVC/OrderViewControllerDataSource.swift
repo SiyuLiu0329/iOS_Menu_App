@@ -28,9 +28,12 @@ class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
         if indexPath.row == orderModel.allOrders.count {
             cell.label.text = "New Order"
             cell.deleteButton.alpha = 0
-        } else {
+        } else if indexPath.row == orderModel.allOrders.count - 1 {
             cell.label.text = "\(orderModel.allOrders[indexPath.row].orderNumber)"
             cell.deleteButton.alpha = 1
+        } else {
+            cell.label.text = "\(orderModel.allOrders[indexPath.row].orderNumber)"
+            cell.deleteButton.alpha = 0
         }
         cell.delegate = self
         return cell
@@ -45,9 +48,10 @@ class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
 
 extension OrderViewControllerDataSource: OrderCollectionViewCellDelegate {
     func deleteOrder(_ sender: OrderCollectionViewCell) {
-        if let indexPath = collectionView.indexPath(for: sender) {
-            orderModel.deleteOrder(atIndex: indexPath.row)
-            collectionView.deleteItems(at: [indexPath])
+        orderModel.deleteOrderLastestOrder()
+        collectionView.deleteItems(at: [IndexPath(item: orderModel.allOrders.count, section: 0)])
+        if orderModel.allOrders.count > 0 {
+            collectionView.reloadItems(at: [IndexPath(item: orderModel.allOrders.count - 1, section: 0)])
         }
     }
 }

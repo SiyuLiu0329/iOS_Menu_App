@@ -139,6 +139,12 @@ extension RootViewController: MCSessionDelegate {
                     if self.delegate != nil {
                         self.delegate!.reloadOrder(orderIndex: message.orderToModify!)
                     }
+                    
+                case .deleteLastedOrder:
+                    self.clientModel.deleteLastestOrder()
+                    if self.delegate != nil {
+                        self.delegate!.didDeleteLastestOrder(indexed: self.clientModel.orders.count)
+                    }
                 default:
                     break
                 }

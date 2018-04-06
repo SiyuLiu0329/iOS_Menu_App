@@ -84,6 +84,10 @@ class ClientModel {
         orders.append(newOrder)
     }
     
+    func deleteLastestOrder() {
+        orders.removeLast()
+    }
+    
     func clearOrder(indexed index: Int) {
         orders[index].items.removeAll()
     }
