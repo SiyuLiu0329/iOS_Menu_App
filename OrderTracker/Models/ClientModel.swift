@@ -78,10 +78,6 @@ class ClientModel {
         return nil
     }
     
-    func deleteLatestOrder() {
-        orders.removeLast()
-    }
-    
     func addEmptyOrder(numbered number: Int) {
         var newOrder = ClientOrder()
         newOrder.orderNumber = number
@@ -92,16 +88,6 @@ class ClientModel {
         orders[index].items.removeAll()
     }
     
-    func revertToOriginal(usingItems items: [MenuItem]) {
-        if items.isEmpty {
-            fatalError()
-        }
-        let orderIndex = items.first!.orderIndex!
-        orders[orderIndex].items.removeAll()
-        for item in items {
-            _ = insert(item)
-        }
-    }
     
     func requestFinishItem(indexed itemIndex: Int, inOrder orderIndex: Int) {
         let item = orders[orderIndex].items[itemIndex]

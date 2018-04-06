@@ -119,13 +119,6 @@ extension RootViewController: MCSessionDelegate {
                         
                     }
                     
-                case .deleteLastestOrder:
-                    self.clientModel.deleteLatestOrder()
-                    if  self.delegate != nil {
-                        self.delegate!.didDeleteLastestOrder(indexed: self.clientModel.orders.count)
-                        
-                    }
-                    
                 case .addEmptyOrder:
                     self.clientModel.addEmptyOrder(numbered: message.numberOfOrders! + 1)
                     if self.delegate != nil {
@@ -140,12 +133,6 @@ extension RootViewController: MCSessionDelegate {
                     
                 case .clientRequestItemFinish:
                     _ = self.orderModel.markItemsAsServed(message.items!)
-                    
-                case .revertToOriginal:
-                    self.clientModel.revertToOriginal(usingItems: message.items!)
-                    if self.delegate != nil {
-                        self.delegate!.reloadOrder(orderIndex: message.items!.first!.orderIndex!)
-                    }
                     
                 case .clearOrder:
                     self.clientModel.clearOrder(indexed: message.orderToModify!)

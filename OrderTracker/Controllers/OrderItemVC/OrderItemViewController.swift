@@ -92,21 +92,10 @@ class OrderItemViewController: UIViewController {
     }
     
     @IBAction func dismiss(_ sender: Any) {
-        if orderModel!.isLatestOrderEmpty && orderId == orderModel!.allOrders.count - 1 && isNewOrder {
-            orderModel!.discardLastestOrder()
-        } else {
-            orderModel!.closeOrderForEditing(orderIndex: orderId!)
-        }
-        dismiss(animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func saveAndDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         orderModel?.saveLoadedOrder(withIndex: orderId!)
-//        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
+        
     }
-
     
     func updateBillView() {
         let numItems = orderModel!.loadedItemCollections[0].count

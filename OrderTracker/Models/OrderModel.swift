@@ -173,12 +173,6 @@ class OrderModel {
         return index
     }
     
-    func discardLastestOrder() {
-        allOrders.removeLast()
-        sendMessageToClient(type: .deleteLastestOrder)
-        currentOrderNumber -= 1
-    }
-    
     
     func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
         var item = itemToAdd
@@ -268,20 +262,6 @@ class OrderModel {
         return loadedItemCollections[0][index].quantity
     }
     
-    func closeOrderForEditing(orderIndex index: Int) {
-        allOrders[index].isBeingEdited = false
-        if allOrders[index].itemCollections[0].count + allOrders[index].itemCollections[1].count == 0 {
-            guard let sess = session else { return }
-            do {
-                let data = try JSONEncoder().encode(CommunicationProtocol(orderToModify: index, messageType: .clearOrder))
-                try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
-            } catch {}
-        } else {
-            sendOriginalToClient(orderIndex: index)
-        }
-        
-        // send
-    }
     
 }
 
@@ -332,10 +312,7 @@ extension OrderModel {
     private func notifyClientOfItemDeletion(_ item: MenuItem) {
         sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
     }
-    
-    private func sendOriginalToClient(orderIndex index: Int) {
-        sendItemsToClient(menuItems: compile(allOrders[index]), withMessage: .revertToOriginal)
-    }
+
     
     func markItemsAsServed(_ items: [MenuItem]) -> Int? {
         for item in items {
