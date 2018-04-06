@@ -45,13 +45,18 @@ class ClientModel {
     
     private func insert(_ item: MenuItem) -> (index: Int, inserted: Bool) {
         // return insertion index
+        
         for i in 0..<orders[item.orderIndex!].items.count {
+            if item.itemHash! == orders[item.orderIndex!].items[i].itemHash! {
+                // match found, change it ...
+                orders[item.orderIndex!].items[i] = item
+                return (i, false)
+            }
+        }
+        
+        for i in 0..<orders[item.orderIndex!].items.count {
+            
             if item == orders[item.orderIndex!].items[i] {
-                if item.itemHash == orders[item.orderIndex!].items[i].itemHash {
-                    // match found, change it ...
-                    orders[item.orderIndex!].items[i] = item
-                    return (i, false)
-                }
                 orders[item.orderIndex!].items.insert(item, at: i)
                 return (i, true)
             }

@@ -337,9 +337,46 @@ extension OrderModel {
         sendItemsToClient(menuItems: compile(allOrders[index]), withMessage: .revertToOriginal)
     }
     
-    func markItemsAsServed(_ itemsToMark: [MenuItem]) -> Int? {
-        var items = itemsToMark
-        print(items.first!.itemHash)
+    func markItemsAsServed(_ items: [MenuItem]) -> Int? {
+        for item in items {
+            
+            if item.orderIndex! == loadedOrder!.orderNumber - 1 {
+                for i in 0..<loadedOrder!.itemCollections[0].count {
+                    if item.itemHash == loadedOrder!.itemCollections[0][i].itemHash {
+                        loadedOrder!.itemCollections[0][i].served = !loadedOrder!.itemCollections[0][i].served
+                        sendItemsToClient(menuItems: [loadedOrder!.itemCollections[0][i]])
+                        return i
+                    }
+                    
+                }
+                
+                for i in 0..<loadedOrder!.itemCollections[1].count {
+                    if item.itemHash == loadedOrder!.itemCollections[1][i].itemHash {
+                        loadedOrder!.itemCollections[1][i].served = !loadedOrder!.itemCollections[1][i].served
+                        sendItemsToClient(menuItems: [loadedOrder!.itemCollections[1][i]])
+                        return i
+                    }
+                    
+                }
+            }
+            
+            for i in 0..<allOrders[item.orderIndex!].itemCollections[0].count {
+                if item.itemHash == allOrders[item.orderIndex!].itemCollections[0][i].itemHash {
+                    allOrders[item.orderIndex!].itemCollections[0][i].served = !allOrders[item.orderIndex!].itemCollections[0][i].served
+                    sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[0][i]])
+                    return i
+                }
+                
+            }
+            for i in 0..<allOrders[item.orderIndex!].itemCollections[1].count {
+                if item.itemHash == allOrders[item.orderIndex!].itemCollections[1][i].itemHash {
+                    allOrders[item.orderIndex!].itemCollections[1][i].served = !allOrders[item.orderIndex!].itemCollections[1][i].served
+                    sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[1][i]])
+                    return i
+                }
+                
+            }
+        }
         return nil
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 class ClientItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var optionTextView: UITextView!
     @IBOutlet weak var itemNumberLabel: UILabel!
+    @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,12 @@ class ClientItemCollectionViewCell: UICollectionViewCell {
         itemNumberLabel.textColor = colour
         nameLabel.text = item.name
         itemNumberLabel.text = "\(item.number)"
+        
+        if item.served {
+            overlay.alpha = 0.7
+        } else {
+            overlay.alpha = 0
+        }
         
         var optionText = ""
         for option in item.options {
