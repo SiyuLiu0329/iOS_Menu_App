@@ -141,6 +141,12 @@ extension RootViewController: MCSessionDelegate {
                         self.orderModel.session = self.connectionHandler.session
                         self.orderModel.sendInitalOrders()
                     }
+                    
+                case .revertToOriginal:
+                    self.clientModel.revertToOriginal(usingItems: message.items!)
+                    if self.delegate != nil {
+                        self.delegate!.didReverToOriginal(orderIndex: message.items!.first!.orderIndex!)
+                    }
                 default:
                     break
                 }

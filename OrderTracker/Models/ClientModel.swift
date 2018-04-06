@@ -80,4 +80,12 @@ class ClientModel {
         newOrder.orderNumber = number
         orders.append(newOrder)
     }
+    
+    func revertToOriginal(usingItems items: [MenuItem]) {
+        let orderIndex = items.first!.orderIndex!
+        orders[orderIndex].items.removeAll()
+        for item in items {
+            _ = insert(item)
+        }
+    }
 }

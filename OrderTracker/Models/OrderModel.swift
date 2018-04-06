@@ -274,6 +274,7 @@ class OrderModel {
     
     func closeOrderForEditing(orderIndex index: Int) {
         allOrders[index].isBeingEdited = false
+        sendOriginalToClient(orderIndex: index)
         // send
     }
     
@@ -324,5 +325,9 @@ extension OrderModel {
     
     private func notifyClientOfItemDeletion(_ item: MenuItem) {
         sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
+    }
+    
+    private func sendOriginalToClient(orderIndex index: Int) {
+        sendItemsToClient(menuItems: compile(allOrders[index]), withMessage: .revertToOriginal)
     }
 }

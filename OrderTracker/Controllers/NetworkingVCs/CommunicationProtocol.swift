@@ -16,6 +16,7 @@ enum MessageType: Int, Codable {
     case newEmptyOrderCreatedByServer
     case deleteLastestOrder
     case addEmptyOrder
+    case revertToOriginal
 }
 
 struct CommunicationProtocol: Codable {

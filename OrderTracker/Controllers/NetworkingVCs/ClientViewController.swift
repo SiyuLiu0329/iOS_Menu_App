@@ -14,6 +14,7 @@ protocol ClientOrderViewDelegate: class {
     func didDeleteItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int)
     func didDeleteLastestOrder(indexed index: Int)
     func didAddEmptyOrder(indexed index: Int)
+    func didReverToOriginal(orderIndex index: Int)
 }
 
 class ClientViewController: UIViewController {
@@ -52,6 +53,10 @@ extension ClientViewController: ClientOrderViewDelegate {
         }
     }
     
+    func didReverToOriginal(orderIndex index: Int) {
+        clientOrderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+    }
+    
     func didDeleteItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int) {
         if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: orderIndex, section: 0)) as? ClientOrderCollectionViewCell {
             // if cell is visible
@@ -69,6 +74,7 @@ extension ClientViewController: ClientOrderViewDelegate {
     func didAddEmptyOrder(indexed index: Int) {
         clientOrderCollectionView.insertItems(at: [IndexPath(item: index, section: 0)])
     }
+    
 }
 
 extension ClientViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

@@ -95,7 +95,7 @@ class OrderItemViewController: UIViewController {
         if orderModel!.isLatestOrderEmpty && orderId == orderModel!.allOrders.count - 1 && isNewOrder {
             orderModel!.discardLastestOrder()
         } else {
-            orderModel!.closeOrderForEditing(orderIndex: orderId! )
+            orderModel!.closeOrderForEditing(orderIndex: orderId!)
         }
         dismiss(animated: true, completion: nil)
         
