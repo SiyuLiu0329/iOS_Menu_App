@@ -18,6 +18,7 @@ enum MessageType: Int, Codable {
     case addEmptyOrder
     case revertToOriginal
     case clearOrder
+    case clientRequestItemFinish
 }
 
 struct CommunicationProtocol: Codable {

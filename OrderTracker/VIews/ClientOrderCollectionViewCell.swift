@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol ClientItemCollectionViewCellDelegate: class {
+    func didSelectItem(atIndex index: Int, inOrder orderIndex: Int)
+}
 
 class ClientOrderCollectionViewCell: UICollectionViewCell {
     
@@ -19,6 +22,7 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     private var order: ClientOrder!
+    weak var delegate: ClientItemCollectionViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +47,13 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
 }
 
 extension ClientOrderCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if delegate != nil {
+            delegate!.didSelectItem(atIndex: indexPath.row, inOrder: order.orderNumber - 1)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return order.items.count
     }

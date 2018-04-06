@@ -16,7 +16,6 @@ enum PaymentMethod {
 }
 
 class OrderModel {
-    private var globalCounter: Int = 0
     var session: MCSession?
     var loadedItemCollections: [[MenuItem]] {
         return loadedOrder!.itemCollections
@@ -112,8 +111,7 @@ class OrderModel {
     func pendItemToLoadedOrder(_ itemToAdd: MenuItem) -> Int? {
         var item = itemToAdd
         item.orderIndex = loadedOrder!.orderNumber - 1
-        item.itemId = globalCounter
-        globalCounter += 1
+        item.itemHash = Scheme.Util.randomString(length: 8)
         sendItemsToClient(menuItems: [item]) // send when an item is added
         for i in 0..<loadedItemCollections[0].count {
             if item == loadedItemCollections[0][i] {
@@ -161,8 +159,7 @@ class OrderModel {
     func quickBillTemplateItem(_ itemToAdd: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
         var item = itemToAdd
         item.orderIndex = loadedOrder!.orderNumber - 1
-        item.itemId = globalCounter
-        globalCounter += 1
+        item.itemHash = Scheme.Util.randomString(length: 8)
         sendItemsToClient(menuItems: [item]) // send
         let index = insertItemToPaidItems(item, paymentMethod: method)
         return index
@@ -186,8 +183,7 @@ class OrderModel {
     func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
         var item = itemToAdd
         item.orderIndex = loadedOrder!.orderNumber - 1
-        item.itemId = globalCounter
-        globalCounter += 1
+        item.itemHash = Scheme.Util.randomString(length: 8)
         let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
         sendItemsToClient(menuItems: [item])
         return index
@@ -294,9 +290,11 @@ extension OrderModel {
     func sendInitalOrders() {
         for order in allOrders {
             if order.isBeingEdited {
-                sendItemsToClient(menuItems: compile(loadedOrder!))
+                let items = compile(loadedOrder!)
+                sendItemsToClient(menuItems: items)
             } else {
-                sendItemsToClient(menuItems: compile(order))
+                let items = compile(order)
+                sendItemsToClient(menuItems: items)
             }
         }
     }
@@ -306,7 +304,6 @@ extension OrderModel {
         do {
 //            print(items)
             let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: items, numberOfOrders: currentOrderNumber - 1, ofMessageType: message))
-            print(data)
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
         } catch let error {
             print(error)
@@ -338,5 +335,11 @@ extension OrderModel {
     
     private func sendOriginalToClient(orderIndex index: Int) {
         sendItemsToClient(menuItems: compile(allOrders[index]), withMessage: .revertToOriginal)
+    }
+    
+    func markItemsAsServed(_ itemsToMark: [MenuItem]) -> Int? {
+        var items = itemsToMark
+        print(items.first!.itemHash)
+        return nil
     }
 }

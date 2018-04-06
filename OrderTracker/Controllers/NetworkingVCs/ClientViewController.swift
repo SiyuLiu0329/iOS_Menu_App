@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 
 protocol ClientOrderViewDelegate: class {
-    func didUpdateItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int, shouldAddNewOrder newOrder: Bool)
+    func didUpdateItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int, shouldAddNewOrder newOrder: Bool, isItemInserted inserted: Bool)
     func didDeleteItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int)
     func didDeleteLastestOrder(indexed index: Int)
     func didAddEmptyOrder(indexed index: Int)
@@ -39,14 +39,21 @@ class ClientViewController: UIViewController {
 }
 
 extension ClientViewController: ClientOrderViewDelegate {
-    func didUpdateItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int, shouldAddNewOrder newOrder: Bool) {
+    func didUpdateItem(inOrderwithIndex orderIndex: Int, itemWithIndex itemIndex: Int, shouldAddNewOrder newOrder: Bool, isItemInserted inserted: Bool) {
         if newOrder {
             clientOrderCollectionView.insertItems(at: [IndexPath(item: orderIndex, section: 0)])
+            
         } else {
             if let cell = clientOrderCollectionView.cellForItem(at: IndexPath(item: orderIndex, section: 0)) as? ClientOrderCollectionViewCell {
                 // if cell is visible
                 cell.configure(loadingOrder: clientModel.orders[orderIndex])
-                cell.collectionView.insertItems(at: [IndexPath(item: itemIndex, section: 0)])
+                if inserted {
+                    cell.collectionView.insertItems(at: [IndexPath(item: itemIndex, section: 0)])
+                } else {
+                    print("modified: \(itemIndex)")
+                    cell.collectionView.reloadItems(at: [IndexPath(item: itemIndex, section: 0)])
+                }
+                
             } else {
                 clientOrderCollectionView.reloadItems(at: [IndexPath(item: orderIndex, section: 0)])
             }
@@ -86,6 +93,7 @@ extension ClientViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clientOrderCell", for: indexPath) as! ClientOrderCollectionViewCell
         cell.configure(loadingOrder: clientModel.orders[indexPath.row])
+        cell.delegate = self
         cell.collectionView.reloadData() // refresh data when cell becomes visible again
         return cell
     }
@@ -110,6 +118,12 @@ extension ClientViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+}
+
+extension ClientViewController: ClientItemCollectionViewCellDelegate {
+    func didSelectItem(atIndex index: Int, inOrder orderIndex: Int) {
+        clientModel.requestFinishItem(indexed: index, inOrder: orderIndex)
     }
 }
 

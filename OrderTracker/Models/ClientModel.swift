@@ -19,9 +19,8 @@ class ClientModel {
     var session: MCSession!
     var orders: [ClientOrder] = []
     
-    func reciveItemsFromServer(_ items: [MenuItem], numberOfOrders nOrders: Int) -> (insertionIndex: Int, isNewOrder: Bool)? {
+    func reciveItemsFromServer(_ items: [MenuItem], numberOfOrders nOrders: Int) -> (insertionIndex: Int, isNewOrder: Bool, isItemInserted: Bool)? {
         var isNewOrder = false
-//        print(nOrders, items)
         if nOrders > orders.count {
             // create empty orders
             for _ in 0..<nOrders - orders.count {
@@ -33,8 +32,8 @@ class ClientModel {
         }
         
         if items.count == 1 {
-            let index = insert(items.first!)
-            return (index, isNewOrder)
+            let res = insert(items.first!)
+            return (res.index, isNewOrder, res.inserted)
         }
         
         for item in items {
@@ -44,26 +43,28 @@ class ClientModel {
         return nil
     }
     
-    private func insert(_ item: MenuItem) -> Int {
+    private func insert(_ item: MenuItem) -> (index: Int, inserted: Bool) {
         // return insertion index
         for i in 0..<orders[item.orderIndex!].items.count {
             if item == orders[item.orderIndex!].items[i] {
-                if item.itemId == orders[item.orderIndex!].items[i].itemId {
-                    fatalError()
+                if item.itemHash == orders[item.orderIndex!].items[i].itemHash {
+                    // match found, change it ...
+                    orders[item.orderIndex!].items[i] = item
+                    return (i, false)
                 }
                 orders[item.orderIndex!].items.insert(item, at: i)
-                return (i)
+                return (i, true)
             }
         }
         orders[item.orderIndex!].orderNumber = item.orderIndex! + 1
         orders[item.orderIndex!].items.insert(item, at: 0)
-        return (0)
+        return (0, true)
     }
     
     func deleteItem(_ item: MenuItem) -> Int? {
 //        orders[item.orderIndex!].items.remove(at: item.indexInOrder!)
         for i in 0..<orders[item.orderIndex!].items.count {
-            if item.itemId == orders[item.orderIndex!].items[i].itemId {
+            if item.itemHash == orders[item.orderIndex!].items[i].itemHash {
                 orders[item.orderIndex!].items.remove(at: i)
                 return i
             }
@@ -94,5 +95,19 @@ class ClientModel {
         for item in items {
             _ = insert(item)
         }
+    }
+    
+    func requestFinishItem(indexed itemIndex: Int, inOrder orderIndex: Int) {
+        let item = orders[orderIndex].items[itemIndex]
+        sendItemsToServer([item], withMessage: .clientRequestItemFinish)
+    }
+    
+    func sendItemsToServer(_ items: [MenuItem], withMessage message: MessageType) {
+        guard let sess = session else { return }
+        do {
+            let data = CommunicationProtocol(containingItems: items, numberOfOrders: nil, ofMessageType: message)
+            let jsonData = try JSONEncoder().encode(data)
+            try sess.send(jsonData, toPeers: sess.connectedPeers, with: .reliable)
+        } catch {}
     }
 }

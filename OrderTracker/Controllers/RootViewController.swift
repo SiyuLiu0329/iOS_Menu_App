@@ -97,12 +97,9 @@ extension RootViewController: MCSessionDelegate {
         do {
             let message = try JSONDecoder().decode(CommunicationProtocol.self, from: data)
             DispatchQueue.main.async {
-                print(message)
                 switch message.type {
-                    
                 case .serverToClientItemUpdate:
                     let items = message.items!
-                    print(message)
                     let insertionResult =  self.clientModel.reciveItemsFromServer(items, numberOfOrders: message.numberOfOrders!)
                     if insertionResult == nil {
                         return
@@ -110,8 +107,7 @@ extension RootViewController: MCSessionDelegate {
                     let insertionIndex = insertionResult!.insertionIndex
                     let insertedOrderIndex = items.first!.orderIndex
                     if  self.delegate != nil {
-                        
-                        self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult!.isNewOrder)
+                        self.delegate!.didUpdateItem(inOrderwithIndex: insertedOrderIndex!, itemWithIndex: insertionIndex, shouldAddNewOrder: insertionResult!.isNewOrder, isItemInserted: insertionResult!.isItemInserted)
                     }
                     
                 case .serverDidDeleteItem:
@@ -141,6 +137,9 @@ extension RootViewController: MCSessionDelegate {
                         self.orderModel.session = self.connectionHandler.session
                         self.orderModel.sendInitalOrders()
                     }
+                    
+                case .clientRequestItemFinish:
+                    _ = self.orderModel.markItemsAsServed(message.items!)
                     
                 case .revertToOriginal:
                     self.clientModel.revertToOriginal(usingItems: message.items!)
