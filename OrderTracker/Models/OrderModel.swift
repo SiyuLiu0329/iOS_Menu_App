@@ -241,7 +241,7 @@ class OrderModel {
     }
     
     
-    func deleteOrderLastestOrder() {
+    func deleteLastestOrder() {
         let orderNumber = allOrders.last!.orderNumber
         allOrders.removeLast()
         let fileManager = FileManager()
@@ -308,6 +308,7 @@ extension OrderModel {
             for i in 0..<allOrders[item.orderIndex!].itemCollections[0].count {
                 if item.itemHash == allOrders[item.orderIndex!].itemCollections[0][i].itemHash {
                     allOrders[item.orderIndex!].itemCollections[0][i].served = !allOrders[item.orderIndex!].itemCollections[0][i].served
+                    saveOrderToFile(item.orderIndex!)
                     sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[0][i]])
                     return i
                 }
@@ -316,6 +317,7 @@ extension OrderModel {
             for i in 0..<allOrders[item.orderIndex!].itemCollections[1].count {
                 if item.itemHash == allOrders[item.orderIndex!].itemCollections[1][i].itemHash {
                     allOrders[item.orderIndex!].itemCollections[1][i].served = !allOrders[item.orderIndex!].itemCollections[1][i].served
+                    saveOrderToFile(item.orderIndex!)
                     sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[1][i]])
                     return i
                 }
@@ -323,5 +325,19 @@ extension OrderModel {
             }
         }
         return nil
+    }
+    
+    private func saveOrderToFile(_ index: Int) {
+        let order = allOrders[index]
+        let fileManager = FileManager()
+        var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            url = url.appendingPathComponent("\(order.orderNumber)" + ".json")
+            let data = try JSONEncoder().encode(allOrders[index])
+            try data.write(to: url)
+        } catch let error {
+            fatalError("\(error)")
+        }
+        loadData()
     }
 }

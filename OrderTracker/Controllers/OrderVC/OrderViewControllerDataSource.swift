@@ -48,7 +48,7 @@ class OrderViewControllerDataSource: NSObject, UICollectionViewDataSource {
 
 extension OrderViewControllerDataSource: OrderCollectionViewCellDelegate {
     func deleteOrder(_ sender: OrderCollectionViewCell) {
-        orderModel.deleteOrderLastestOrder()
+        orderModel.deleteLastestOrder()
         collectionView.deleteItems(at: [IndexPath(item: orderModel.allOrders.count, section: 0)])
         if orderModel.allOrders.count > 0 {
             collectionView.reloadItems(at: [IndexPath(item: orderModel.allOrders.count - 1, section: 0)])
