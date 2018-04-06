@@ -9,6 +9,7 @@
 import UIKit
 
 class ClientItemCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var servedLabel: UILabel!
     @IBOutlet weak var optionTextView: UITextView!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var overlay: UIView!
@@ -23,6 +24,12 @@ class ClientItemCollectionViewCell: UICollectionViewCell {
         optionTextView.backgroundColor = .clear
         optionTextView.textColor = .white
         optionTextView.isUserInteractionEnabled = false
+        servedLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+        servedLabel.layer.cornerRadius = 5
+        servedLabel.layer.borderColor = UIColor.green.cgColor
+        servedLabel.layer.borderWidth = 2
+        servedLabel.clipsToBounds = true
+        servedLabel.textColor = .green
     }
     
     func configure(withItem item: MenuItem) {
@@ -33,7 +40,7 @@ class ClientItemCollectionViewCell: UICollectionViewCell {
         itemNumberLabel.text = "\(item.number)"
         
         if item.served {
-            overlay.alpha = 0.7
+            overlay.alpha = 0.6
         } else {
             overlay.alpha = 0
         }

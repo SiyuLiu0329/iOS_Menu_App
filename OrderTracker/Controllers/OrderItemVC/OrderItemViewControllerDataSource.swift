@@ -18,22 +18,23 @@ protocol OrderItemCollectionViewCellDelegate: class {
 class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var orderModel: OrderModel
+    var orderId: Int!
     weak var delegate: OrderItemCollectionViewCellDelegate?
     init(data orderModel: OrderModel) {
         self.orderModel = orderModel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let num = orderModel.loadedItemCollections[section].count
+        let num = orderModel.allOrders[orderId].itemCollections[section].count
         if num == 0 {
             return 1 // this is for a place holder cell
         }
-        return orderModel.loadedItemCollections[section].count
+        return num
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let items = orderModel.loadedItemCollections[indexPath.section]
+        let items = orderModel.allOrders[orderId!].itemCollections[indexPath.section]
         if items.isEmpty {
             let cell: OrderItemPlaceHolderCell
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "placeholder", for: indexPath) as! OrderItemPlaceHolderCell
@@ -58,17 +59,17 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let rowHeight: CGFloat = 22
-        if orderModel.loadedItemCollections[indexPath.section].isEmpty {
+        if orderModel.allOrders[orderId!].itemCollections[indexPath.section].isEmpty {
             // if the list is empty, use the placeholder cell
             return CGSize(width: collectionView.frame.width - 10, height: 0 * rowHeight + 65 + 25)
         }
-        let nSelected = orderModel.getNumberOfSelectedOptions(inCollection: indexPath.section, forItem: indexPath.row)
+        let nSelected = orderModel.getNumberOfSelectionOptions(ofItem: indexPath.row, inCollection: indexPath.section, inOrder: orderId)
         return CGSize(width: collectionView.frame.width - 10, height: CGFloat(nSelected) * rowHeight + 65 + 30)
         
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return orderModel.loadedItemCollections.count
+        return orderModel.allOrders[orderId].itemCollections.count
     }
     
     

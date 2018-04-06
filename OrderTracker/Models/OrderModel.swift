@@ -17,12 +17,10 @@ enum PaymentMethod {
 
 class OrderModel {
     var session: MCSession?
-    var loadedItemCollections: [[MenuItem]] {
-        return loadedOrder!.itemCollections
-    }
+
     
-    func getPendingItemsInLoadedOrder() -> [MenuItem] {
-        return loadedOrder!.itemCollections[0]
+    func getPendingItemsIn(order orderIndex: Int) -> [MenuItem] {
+        return allOrders[orderIndex].itemCollections[0]
     }
     
     var allOrders: [Order] = []
@@ -31,21 +29,17 @@ class OrderModel {
         return allOrders.last!.itemCollections[0].isEmpty
     }
     
-    var isLoadedOrderEmpty: Bool {
-        return loadedOrder!.itemCollections[0].isEmpty
-    }
     
 //    var menuItems: [Int: MenuItem] = [:]
 
     var currentOrderNumber = 1
-    private var loadedOrder: Order?
     // Order
     
     init() {
         loadData()
     }
     
-    
+    //------------------------
     private func loadData() {
         allOrders.removeAll()
         currentOrderNumber = 1
@@ -58,24 +52,24 @@ class OrderModel {
                 let json = try Data.init(contentsOf: file)
                 let order = try decoer.decode(Order.self, from: json)
                 allOrders.append(order)
-                currentOrderNumber += 1
+                
             }
             allOrders = allOrders.sorted(by: { $0.orderNumber < $1.orderNumber })
+            if !allOrders.isEmpty {
+                currentOrderNumber = allOrders.last!.orderNumber + 1
+            }
         } catch let error {
             print(error)
         }
     }
     
-    func getTotalPriceOfPendingItemsInLoadedOrder() -> Double {
+    
+    func getTotalPriceOfPendingItems(inOrder orderIndex: Int) -> Double {
         var totalPrice: Double = 0
-        for item in loadedOrder!.itemCollections[0] {
+        for item in allOrders[orderIndex].itemCollections[0] {
             totalPrice += item.totalPrice
         }
         return totalPrice
-    }
-    
-    func getPriceOfPendingItem(withIndex index: Int) -> Double {
-        return loadedOrder!.itemCollections[0][index].totalPrice
     }
     
     func newOrder() {
@@ -85,48 +79,48 @@ class OrderModel {
         sendMessageToClient(type: .newEmptyOrderCreatedByServer) // notify client an order has be created
     }
     
+    
     func loadOrder(withIndex index: Int) {
-        loadedOrder = allOrders[index]
         allOrders[index].isBeingEdited = true
     }
     
-    func deletePendingItemInLoadedOrder(withIndex index: Int) {
-        let item = loadedOrder!.itemCollections[0][index]
-        loadedOrder!.itemCollections[0].remove(at: index)
+    func deletePendingItem(inOrder orderIndex: Int, item itemIndex: Int) {
+        let item = allOrders[orderIndex].itemCollections[0][itemIndex]
+        allOrders[orderIndex].itemCollections[0].remove(at: itemIndex)
         notifyClientOfItemDeletion(item)
         
     }
     
-    func clearPendingItemsLoadedOrder() {
-        for item in loadedOrder!.itemCollections[0] {
+    func clearPendingItems(inOrder orderIndex: Int) {
+        for item in allOrders[orderIndex].itemCollections[0] {
             sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
         }
-        loadedOrder!.itemCollections[0] = []
+        allOrders[orderIndex].itemCollections[0] = []
     }
     
-    func getNumberOfPendingItemsInLoadedOrder() -> Int {
-        return loadedOrder!.numberOfItemsInOrder
+    func getNumberOfPendingItems(inOrder orderIndex: Int) -> Int {
+        return allOrders[orderIndex].numberOfItemsInOrder
     }
     
-    func pendItemToLoadedOrder(_ itemToAdd: MenuItem) -> Int? {
+    func pendItemToOrder(_ orderIndex: Int, item itemToAdd: MenuItem) -> Int {
         var item = itemToAdd
-        item.orderIndex = loadedOrder!.orderNumber - 1
+        item.orderIndex = allOrders[orderIndex].orderNumber - 1
         item.itemHash = Scheme.Util.randomString(length: 8)
         sendItemsToClient(menuItems: [item]) // send when an item is added
-        for i in 0..<loadedItemCollections[0].count {
-            if item == loadedItemCollections[0][i] {
-                loadedOrder!.itemCollections[0].insert(item, at: i)
+        for i in 0..<allOrders[orderIndex].itemCollections[0].count {
+            if item == allOrders[orderIndex].itemCollections[0][i] {
+                allOrders[orderIndex].itemCollections[0].insert(item, at: i)
                 return i
             }
         }
-        loadedOrder!.itemCollections[0].insert(item, at: 0)
+        allOrders[orderIndex].itemCollections[0].insert(item, at: 0)
         
         return 0
     }
     
-    func getNumberOfSelectedOptions(inCollection collectionIndex: Int, forItem index: Int) -> Int {
+    func getNumberOfSelectionOptions(ofItem itemIndex: Int, inCollection collectionIndex: Int, inOrder orderIndex: Int)  -> Int {
         var nSelected = 0
-        let item = loadedOrder!.itemCollections[collectionIndex][index]
+        let item = allOrders[orderIndex].itemCollections[collectionIndex][itemIndex]
         for option in item.options {
             if option.value {
                 nSelected += 1
@@ -135,133 +129,124 @@ class OrderModel {
         return nSelected
     }
     
-    private func insertItemToPaidItems(_ itemToAdd: MenuItem, paymentMethod method: PaymentMethod) -> Int {
+    private func insertItemToPaidCollection(_ itemToAdd: MenuItem, paymentMethod method: PaymentMethod, order orderIndex: Int) -> Int {
         var item = itemToAdd
         item.paymentStatus = .paid
         if method == .card {
-            loadedOrder!.cardSales += item.totalPrice
+            allOrders[orderIndex].cardSales += item.totalPrice
         } else if method == .cash {
-            loadedOrder!.cashSales += item.totalPrice
+            allOrders[orderIndex].cashSales += item.totalPrice
         } else {
             fatalError()
         }
-        for i in 0..<loadedItemCollections[1].count {
-            if item == loadedItemCollections[1][i] {
-                loadedOrder!.itemCollections[1].insert(item, at: i)
+        for i in 0..<allOrders[orderIndex].itemCollections[1].count {
+            if item == allOrders[orderIndex].itemCollections[1][i] {
+                allOrders[orderIndex].itemCollections[1].insert(item, at: i)
                 return i
             }
         }
-        loadedOrder!.itemCollections[1].insert(item, at: 0)
+        allOrders[orderIndex].itemCollections[1].insert(item, at: 0)
         return 0
     }
     
     // billing single items
-    func quickBillTemplateItem(_ itemToAdd: MenuItem, withPaymentMethod method: PaymentMethod)  -> Int {
+    func quickBillTemplateItem(_ itemToAdd: MenuItem, withPaymentMethod method: PaymentMethod, order orderIndex: Int)  -> Int {
         var item = itemToAdd
-        item.orderIndex = loadedOrder!.orderNumber - 1
+        item.orderIndex = allOrders[orderIndex].orderNumber - 1
         item.itemHash = Scheme.Util.randomString(length: 8)
         sendItemsToClient(menuItems: [item]) // send
-        let index = insertItemToPaidItems(item, paymentMethod: method)
+        let index = insertItemToPaidCollection(item, paymentMethod: method, order: orderIndex)
         return index
         
     }
     
-    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod) -> Int {
-        let item = loadedOrder!.itemCollections[0][index]
-        loadedOrder!.itemCollections[0].remove(at: index)
-        let index = insertItemToPaidItems(item, paymentMethod: method)
+    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod, order orderIndex: Int) -> Int {
+        let item = allOrders[orderIndex].itemCollections[0][index]
+        allOrders[orderIndex].itemCollections[0].remove(at: index)
+        let index = insertItemToPaidCollection(item, paymentMethod: method, order: orderIndex)
         return index
     }
     
     
-    func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
+    func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double, order orderIndex: Int) -> Int {
         var item = itemToAdd
-        item.orderIndex = loadedOrder!.orderNumber - 1
+        item.orderIndex = allOrders[orderIndex].orderNumber - 1
         item.itemHash = Scheme.Util.randomString(length: 8)
-        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
+        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card, order: orderIndex) // send
         sendItemsToClient(menuItems: [item])
         return index
 
     }
     
-    func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double) -> Int {
-        let item = loadedOrder!.itemCollections[0][index]
-        loadedOrder!.itemCollections[0].remove(at: index)
-        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card) // send
+    func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double, order orderIndex: Int) -> Int {
+        let item = allOrders[orderIndex].itemCollections[0][index]
+        allOrders[orderIndex].itemCollections[0].remove(at: index)
+        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card, order: orderIndex) // send
         return index
     }
     
-    private func splitBill(menuItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double) -> Int {
+    
+    
+    private func splitBill(menuItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double, order orderIndex: Int) -> Int {
         var item = itemToAdd
         item.paymentStatus = .paid
-        loadedOrder!.cardSales += card
-        loadedOrder!.cashSales += cash
-        for i in 0..<loadedItemCollections[1].count {
-            if item == loadedItemCollections[1][i] {
-                loadedOrder!.itemCollections[1].insert(item, at: i)
+        allOrders[orderIndex].cardSales += card
+        allOrders[orderIndex].cashSales += cash
+        for i in 0..<allOrders[orderIndex].itemCollections[1].count {
+            if item == allOrders[orderIndex].itemCollections[1][i] {
+                allOrders[orderIndex].itemCollections[1].insert(item, at: i)
                 return i
             }
         }
-        
-        loadedOrder!.itemCollections[1].insert(item, at: 0)
-        
+        allOrders[orderIndex].itemCollections[1].insert(item, at: 0)
         return 0
     }
     
     // all pending items
-    func billAllPendingItems(withPaymentMethod method: PaymentMethod) {
-        for item in loadedOrder!.itemCollections[0] {
-            let _ = insertItemToPaidItems(item, paymentMethod: method)
+    func billAllPendingItems(inOrder orderIndex: Int, withPaymentMethod method: PaymentMethod) {
+        for item in allOrders[orderIndex].itemCollections[0] {
+            let _ = insertItemToPaidCollection(item, paymentMethod: method, order: orderIndex)
         }
-        loadedOrder!.itemCollections[0].removeAll()
-//        sendAllItems(inOrder: loadedOrder!) // update all
+        allOrders[orderIndex].itemCollections[0].removeAll()
     }
     
-    func splitBillAllPendingItems(cashSales cash: Double, cardSales card: Double) {
-        loadedOrder!.cashSales += cash
-        loadedOrder!.cardSales += card
+    
+    func splitBillAllPendingItems(cashSales cash: Double, cardSales card: Double, order orderIndex: Int) {
+        allOrders[orderIndex].cashSales += cash
+        allOrders[orderIndex].cardSales += card
         var matchFound = false
-        for var item in loadedOrder!.itemCollections[0] {
+        for var item in allOrders[orderIndex].itemCollections[0] {
             matchFound = false
             item.paymentStatus = .paid
-            for i in 0..<loadedItemCollections[1].count {
-                if item == loadedItemCollections[1][i] {
-                    loadedOrder!.itemCollections[1].insert(item, at: i)
+            for i in 0..<allOrders[orderIndex].itemCollections[1].count {
+                if item == allOrders[orderIndex].itemCollections[1][i] {
+                    allOrders[orderIndex].itemCollections[1].insert(item, at: i)
                     matchFound = true
                     break
                 }
             }
             if !matchFound {
-                loadedOrder!.itemCollections[1].insert(item, at: 0)
+                allOrders[orderIndex].itemCollections[1].insert(item, at: 0)
             }
         }
-        loadedOrder!.itemCollections[0].removeAll()
-        
-//        sendAllItems(inOrder: loadedOrder!) // send order
+        allOrders[orderIndex].itemCollections[0].removeAll()
     }
     
-    func saveLoadedOrder(withIndex index: Int) {
-        guard let order = loadedOrder else { return }
-        loadedOrder!.isBeingEdited = false
+    func saveLoadedOrder(orderIndex index: Int) {
+        allOrders[index].isBeingEdited = false
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
-            url = url.appendingPathComponent("\(order.orderNumber)" + ".json")
-            let data = try encoder.encode(order)
+            url = url.appendingPathComponent("\(allOrders[index].orderNumber)" + ".json")
+            let data = try encoder.encode(allOrders[index])
             try data.write(to: url)
         } catch let error {
             fatalError("\(error)")
         }
-//        sendAllItems(inOrder: loadedOrder!) // send all
         loadData()
     }
-    
-    func getQuantityOfPendingItem(withIndex index: Int) -> Int {
-        return loadedItemCollections[0][index].quantity
-    }
-    
+
     
 }
 
@@ -269,13 +254,8 @@ extension OrderModel {
     
     func sendInitalOrders() {
         for order in allOrders {
-            if order.isBeingEdited {
-                let items = compile(loadedOrder!)
-                sendItemsToClient(menuItems: items)
-            } else {
-                let items = compile(order)
-                sendItemsToClient(menuItems: items)
-            }
+            let items = compile(order)
+            sendItemsToClient(menuItems: items)
         }
     }
 
@@ -316,27 +296,6 @@ extension OrderModel {
     
     func markItemsAsServed(_ items: [MenuItem]) -> Int? {
         for item in items {
-            
-            if item.orderIndex! == loadedOrder!.orderNumber - 1 {
-                for i in 0..<loadedOrder!.itemCollections[0].count {
-                    if item.itemHash == loadedOrder!.itemCollections[0][i].itemHash {
-                        loadedOrder!.itemCollections[0][i].served = !loadedOrder!.itemCollections[0][i].served
-                        sendItemsToClient(menuItems: [loadedOrder!.itemCollections[0][i]])
-                        return i
-                    }
-                    
-                }
-                
-                for i in 0..<loadedOrder!.itemCollections[1].count {
-                    if item.itemHash == loadedOrder!.itemCollections[1][i].itemHash {
-                        loadedOrder!.itemCollections[1][i].served = !loadedOrder!.itemCollections[1][i].served
-                        sendItemsToClient(menuItems: [loadedOrder!.itemCollections[1][i]])
-                        return i
-                    }
-                    
-                }
-            }
-            
             for i in 0..<allOrders[item.orderIndex!].itemCollections[0].count {
                 if item.itemHash == allOrders[item.orderIndex!].itemCollections[0][i].itemHash {
                     allOrders[item.orderIndex!].itemCollections[0][i].served = !allOrders[item.orderIndex!].itemCollections[0][i].served
