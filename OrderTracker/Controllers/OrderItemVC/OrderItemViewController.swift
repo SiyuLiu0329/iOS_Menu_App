@@ -93,13 +93,10 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         if orderModel!.isLatestOrderEmpty && orderId == orderModel!.allOrders.count - 1 && isNewOrder {
-            // if this order was newly created, discard it
-            // if the latest(created) order is empty && this order is the latest!
             orderModel!.discardLastestOrder()
         } else {
-//            orderModel?.sendOrderBeforeChange(withIndex: orderId!)
+            orderModel!.closeOrderForEditing(orderIndex: orderId! )
         }
-//        orderModel!.resetTamplateItem(itemNumber: 0) // reset template items so options are reset
         dismiss(animated: true, completion: nil)
         
     }

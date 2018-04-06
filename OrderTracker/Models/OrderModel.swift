@@ -272,6 +272,11 @@ class OrderModel {
         return loadedItemCollections[0][index].quantity
     }
     
+    func closeOrderForEditing(orderIndex index: Int) {
+        allOrders[index].isBeingEdited = false
+        // send
+    }
+    
 }
 
 extension OrderModel {

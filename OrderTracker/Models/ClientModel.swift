@@ -26,7 +26,7 @@ class ClientModel {
             // create empty orders
             for _ in 0..<nOrders - orders.count {
                 var order = ClientOrder()
-                order.orderNumber = orders.count
+                order.orderNumber = orders.count + 1
                 orders.append(order) // empty order
                 isNewOrder = true
             }

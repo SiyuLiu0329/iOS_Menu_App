@@ -18,14 +18,13 @@ class RootViewController: UIViewController {
     
     @IBAction func joinButtonPressed(_ sender: Any) {
         present(connectionHandler.browser, animated: true, completion: nil)
+        connectionHandler.isServer = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         joinButton.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         connectionHandler.browser.delegate = self
-        orderModel.session = connectionHandler.session
-        clientModel.session = connectionHandler.session
         connectionHandler.session.delegate = self
         showOrderButton.alpha = 0
     }
@@ -56,14 +55,7 @@ class RootViewController: UIViewController {
 extension RootViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         browserViewController.dismiss(animated: true, completion: nil)
-        connectionHandler.isServer = false
-        // this is the client
-        do {
-            let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: nil, ofMessageType: .clientReportConnected))
-            try connectionHandler.session.send(data, toPeers: connectionHandler.session.connectedPeers, with: .reliable)
-        } catch {
-            fatalError()
-        }
+        
         
         joinButton.setTitle("Client", for: .normal)
         joinButton.isUserInteractionEnabled = false
@@ -73,6 +65,7 @@ extension RootViewController: MCBrowserViewControllerDelegate {
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         browserViewController.dismiss(animated: true, completion: nil)
+        connectionHandler.isServer = true
     }
 }
 
@@ -81,7 +74,16 @@ extension RootViewController: MCSessionDelegate {
         switch state {
         case .connected:
             print("connected: \(peerID.displayName)")
-            
+            if !connectionHandler.isServer {
+                clientModel.session = connectionHandler.session
+                // this is the client
+                do {
+                    let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: nil, ofMessageType: .clientReportConnected))
+                    try connectionHandler.session.send(data, toPeers: connectionHandler.session.connectedPeers, with: .reliable)
+                } catch let error {
+                    print(error)
+                }
+            }
         case .connecting:
             print("Connecting: \(peerID.displayName)")
         case .notConnected:
@@ -136,6 +138,7 @@ extension RootViewController: MCSessionDelegate {
                     
                 case .clientReportConnected:
                     if self.connectionHandler.isServer {
+                        self.orderModel.session = self.connectionHandler.session
                         self.orderModel.sendInitalOrders()
                     }
                 default:
