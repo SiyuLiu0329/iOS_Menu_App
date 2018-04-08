@@ -32,7 +32,6 @@ class ClientOrderCollectionViewCell: UICollectionViewCell {
         collectionView.register(billAllCellNib, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = Scheme.clientOrderCollectionViewCellColour
         headerView.backgroundColor = Scheme.clientOrderCollectionViewCellColour
-        
     }
     
     func configure(loadingOrder order: ClientOrder) {

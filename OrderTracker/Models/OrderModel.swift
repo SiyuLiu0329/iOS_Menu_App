@@ -276,6 +276,7 @@ extension OrderModel {
     func sendInitalOrders() {
         for order in allOrders {
             let items = compile(order)
+            
             sendItemsToClient(menuItems: items)
         }
     }
@@ -302,10 +303,16 @@ extension OrderModel {
     
     private func compile(_ order: Order) -> [MenuItem] {
         var items: [MenuItem] = []
-        
-        items.append(contentsOf: order.itemCollections[0])
-        items.append(contentsOf: order.itemCollections[1])
-        
+        for item in order.itemCollections[0] {
+            if !item.refunded {
+                items.append(item)
+            }
+        }
+        for item in order.itemCollections[1] {
+            if !item.refunded {
+                items.append(item)
+            }
+        }
         return items
     }
     

@@ -344,7 +344,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="zI7-h1-eKR"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

@@ -46,12 +46,13 @@ class ItemCollectionViewCell: UICollectionViewCell {
         itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.7 : 0
         
         if item.refunded {
-            paidLabel.textColor = .yellow
-            paidLabel.layer.borderColor = UIColor.yellow.cgColor
+            paidLabel.textColor = .red
+            paidLabel.backgroundColor = .clear
             paidLabel.text = "Ref'd"
         } else {
-            paidLabel.layer.borderColor = UIColor.red.cgColor
-            paidLabel.textColor = .red
+            
+            paidLabel.textColor = .black
+            paidLabel.backgroundColor = .red
             paidLabel.text = "Paid"
         }
         
@@ -110,7 +111,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         
         paidLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
         paidLabel.layer.cornerRadius = 5
-       
+        paidLabel.layer.borderColor = UIColor.red.cgColor
         paidLabel.layer.borderWidth = 2
         paidLabel.clipsToBounds = true
         paidLabel.alpha = 0.7
@@ -126,7 +127,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         checkboxLabel.font = UIFont.systemFont(ofSize: 25, weight: .medium)
         checkboxLabel.text = "✓"
         checkboxLabel.textAlignment = .center
-        
         tapToRefundLabel.textColor = UIColor.white.withAlphaComponent(0.5)
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.refund))
         itemStatusOverlay.addGestureRecognizer(tap2)
