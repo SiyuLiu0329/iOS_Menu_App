@@ -95,7 +95,7 @@ class OrderItemViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        orderModel?.saveOrderToFile(orderIndex!)
+        orderModel!.closeAndSave(order: orderIndex!)
         
     }
     
@@ -188,6 +188,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
                 insertIntoSection1(IndexPath(item: index, section: 1))
             }
         }
+        updateBillView()
     }
     
     func quickBill(templateItem item: MenuItem, paymentMethod method: PaymentMethod) {

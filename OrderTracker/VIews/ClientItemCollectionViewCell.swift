@@ -26,10 +26,9 @@ class ClientItemCollectionViewCell: UICollectionViewCell {
         optionTextView.isUserInteractionEnabled = false
         servedLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
         servedLabel.layer.cornerRadius = 5
-        servedLabel.layer.borderColor = UIColor.green.cgColor
-        servedLabel.layer.borderWidth = 2
+        servedLabel.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        servedLabel.textColor = .black
         servedLabel.clipsToBounds = true
-        servedLabel.textColor = .green
     }
     
     func configure(withItem item: MenuItem) {

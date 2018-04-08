@@ -50,7 +50,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
             paidLabel.backgroundColor = .clear
             paidLabel.text = "Ref'd"
         } else {
-            
             paidLabel.textColor = .black
             paidLabel.backgroundColor = .red
             paidLabel.text = "Paid"

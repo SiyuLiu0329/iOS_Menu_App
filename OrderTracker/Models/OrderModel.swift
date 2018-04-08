@@ -20,6 +20,7 @@ class OrderModel {
     var currentOrderNumber = 1
     var allOrders: [Order] = []
     var billBuffer: [MenuItem] = []
+    
     var billBufferPrice: Double {
         var price: Double = 0
         for item in billBuffer {
@@ -353,10 +354,16 @@ extension OrderModel {
         return nil
     }
     
-    func saveOrderToFile(_ index: Int) {
+    func closeAndSave(order index: Int) {
         for i in 0..<allOrders[index].itemCollections[0].count {
             allOrders[index].itemCollections[0][i].isInBuffer = true
         }
+        saveOrderToFile(index)
+    }
+    
+    
+    func saveOrderToFile(_ index: Int) {
+        
         let order = allOrders[index]
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
