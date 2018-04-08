@@ -18,6 +18,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tapToRefundLabel: UILabel!
     @IBOutlet weak var itemStatusOverlay: UIView!
 
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var checkboxLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
@@ -41,7 +42,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         itemNumberLabel.textColor = themeColour
         self.item = item
         itemNumberLabel.text = "\(item.number)"
-        
+        priceLabel.text = Scheme.Util.twoDecimalPriceText(item.unitPrice)
         itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.7 : 0
         
         if item.refunded {
@@ -121,6 +122,10 @@ class ItemCollectionViewCell: UICollectionViewCell {
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.selectItem))
         checkboxLabel.addGestureRecognizer(tap1)
         checkboxLabel.isUserInteractionEnabled = true
+        checkboxLabel.textColor = .white
+        checkboxLabel.font = UIFont.systemFont(ofSize: 25, weight: .medium)
+        checkboxLabel.text = "✓"
+        checkboxLabel.textAlignment = .center
         
         tapToRefundLabel.textColor = UIColor.white.withAlphaComponent(0.5)
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.refund))

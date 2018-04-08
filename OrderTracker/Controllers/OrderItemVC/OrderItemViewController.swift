@@ -103,6 +103,7 @@ class OrderItemViewController: UIViewController {
         let numItems = orderModel!.allOrders[orderIndex!].itemCollections[0].count
         totalQuantityLabel.text = "\(orderModel!.billBuffer.count)"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderModel!.billBufferPrice)
+        billButton.setTitle("Bill: \(Scheme.Util.twoDecimalPriceText(orderModel!.billBufferPrice))", for: .normal)
         UIView.animate(withDuration: 0.3) {
             self.buttonDisabledBackgroundView.alpha = numItems == 0 ? 1 : 0
         }
@@ -164,7 +165,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
             switch bMode {
             case .normal(let items):
                 orderModel!.bill(itemsInBuffer: items, paymentMethod: method, inOrder: orderIndex!)
-                itemCollectionView.reloadData()
+                itemCollectionView.reloadSections([0,1])
             case .template(let item):
                 let index = orderModel!.quickBillTemplateItem(item, withPaymentMethod: method, order: orderIndex!)
                 insertIntoSection1(IndexPath(item: index, section: 1))
@@ -173,7 +174,7 @@ extension OrderItemViewController: BillItemViewControllerDelegate {
             switch bMode {
             case .normal(let items):
                 orderModel!.splitBill(itemsInBuffer: items, cash: cash, card: card, inOrder: orderIndex!)
-                itemCollectionView.reloadData()
+                itemCollectionView.reloadSections([0,1])
             case .template(let item):
                 let index = orderModel!.splitBill(templateItem: item, cashSales: cash, cardSales: card, order: orderIndex!)
                 insertIntoSection1(IndexPath(item: index, section: 1))

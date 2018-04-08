@@ -113,7 +113,7 @@ class OrderModel {
     
     
     func loadOrder(withIndex index: Int) {
-        allOrders[index].isBeingEdited = true
+        billBuffer = allOrders[index].itemCollections[0]
     }
     
     func deletePendingItem(inOrder orderIndex: Int, item itemIndex: Int) {
@@ -127,6 +127,7 @@ class OrderModel {
         for item in allOrders[orderIndex].itemCollections[0] {
             sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
         }
+        billBuffer = []
         allOrders[orderIndex].itemCollections[0] = []
     }
     
@@ -139,6 +140,7 @@ class OrderModel {
         item.orderIndex = allOrders[orderIndex].orderNumber - 1
         item.itemHash = Scheme.Util.randomString(length: 8)
         sendItemsToClient(menuItems: [item]) // send when an item is added
+        billBuffer.append(item)
         for i in 0..<allOrders[orderIndex].itemCollections[0].count {
             if item == allOrders[orderIndex].itemCollections[0][i] {
                 allOrders[orderIndex].itemCollections[0].insert(item, at: i)
@@ -339,9 +341,8 @@ extension OrderModel {
     }
     
     func saveOrderToFile(_ index: Int) {
-        billBuffer = []
         for i in 0..<allOrders[index].itemCollections[0].count {
-            allOrders[index].itemCollections[0][i].isInBuffer = false
+            allOrders[index].itemCollections[0][i].isInBuffer = true
         }
         let order = allOrders[index]
         let fileManager = FileManager()
