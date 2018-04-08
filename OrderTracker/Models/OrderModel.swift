@@ -30,12 +30,15 @@ class OrderModel {
     
     func refund(paidItem itemIndex: Int, inOrder orderIndex: Int) {
         allOrders[orderIndex].itemCollections[1][itemIndex].refunded = !allOrders[orderIndex].itemCollections[1][itemIndex].refunded
+        // ask client to remove this item since its no longer needed
+        sendItemsToClient(menuItems: [allOrders[orderIndex].itemCollections[1][itemIndex]], withMessage: .serverDidDeleteItem)
     }
     
     
     init() {
         loadData()
     }
+    
     private func loadData() {
         allOrders.removeAll()
         currentOrderNumber = 1
@@ -171,7 +174,7 @@ class OrderModel {
         let index = splitBill(menuItem: item, cashSales: cash, cardSales: card, order: orderIndex) // send
         sendItemsToClient(menuItems: [item])
         return index
-
+        
     }
     
     func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double, order orderIndex: Int) -> Int {
@@ -228,22 +231,6 @@ class OrderModel {
         allOrders[orderIndex].itemCollections[0].removeAll()
     }
     
-    func saveLoadedOrder(orderIndex index: Int) {
-        allOrders[index].isBeingEdited = false
-        let encoder = JSONEncoder()
-        let fileManager = FileManager()
-        var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        do {
-            url = url.appendingPathComponent("\(allOrders[index].orderNumber)" + ".json")
-            let data = try encoder.encode(allOrders[index])
-            try data.write(to: url)
-        } catch let error {
-            fatalError("\(error)")
-        }
-        loadData()
-    }
-    
-    
     func deleteLastestOrder() {
         let orderNumber = allOrders.last!.orderNumber
         allOrders.removeLast()
@@ -270,11 +257,11 @@ extension OrderModel {
             sendItemsToClient(menuItems: items)
         }
     }
-
+    
     private func sendItemsToClient(menuItems items: [MenuItem], withMessage message: MessageType = MessageType.serverToClientItemUpdate) {
         guard let sess = session else { return }
         do {
-//            print(items)
+            //            print(items)
             let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: items, numberOfOrders: currentOrderNumber - 1, ofMessageType: message))
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
         } catch let error {
@@ -286,7 +273,7 @@ extension OrderModel {
         guard let sess = session else { return }
         do {
             let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: currentOrderNumber - 1, ofMessageType: messageType))
-                
+            
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
         } catch {}
     }
@@ -304,33 +291,34 @@ extension OrderModel {
     private func notifyClientOfItemDeletion(_ item: MenuItem) {
         sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
     }
-
     
-    func markItemsAsServed(_ items: [MenuItem]) -> Int? {
-        for item in items {
-            for i in 0..<allOrders[item.orderIndex!].itemCollections[0].count {
-                if item.itemHash == allOrders[item.orderIndex!].itemCollections[0][i].itemHash {
-                    allOrders[item.orderIndex!].itemCollections[0][i].served = !allOrders[item.orderIndex!].itemCollections[0][i].served
-                    saveOrderToFile(item.orderIndex!)
-                    sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[0][i]])
-                    return i
-                }
-                
+    
+    func markItemAsServed(_ item: MenuItem) -> Int? {
+        // find the item match the hash and return its index after action
+        for i in 0..<allOrders[item.orderIndex!].itemCollections[0].count {
+            if item.itemHash == allOrders[item.orderIndex!].itemCollections[0][i].itemHash {
+                // matching hash...
+                allOrders[item.orderIndex!].itemCollections[0][i].served = !allOrders[item.orderIndex!].itemCollections[0][i].served
+                saveOrderToFile(item.orderIndex!)
+                sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[0][i]])
+                return i
             }
-            for i in 0..<allOrders[item.orderIndex!].itemCollections[1].count {
-                if item.itemHash == allOrders[item.orderIndex!].itemCollections[1][i].itemHash {
-                    allOrders[item.orderIndex!].itemCollections[1][i].served = !allOrders[item.orderIndex!].itemCollections[1][i].served
-                    saveOrderToFile(item.orderIndex!)
-                    sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[1][i]])
-                    return i
-                }
-                
-            }
+            
         }
+        for i in 0..<allOrders[item.orderIndex!].itemCollections[1].count {
+            if item.itemHash == allOrders[item.orderIndex!].itemCollections[1][i].itemHash {
+                allOrders[item.orderIndex!].itemCollections[1][i].served = !allOrders[item.orderIndex!].itemCollections[1][i].served
+                saveOrderToFile(item.orderIndex!)
+                sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[1][i]])
+                return i
+            }
+            
+        }
+        // no match found, should not happen.
         return nil
     }
     
-    private func saveOrderToFile(_ index: Int) {
+    func saveOrderToFile(_ index: Int) {
         let order = allOrders[index]
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]

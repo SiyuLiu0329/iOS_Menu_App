@@ -132,7 +132,7 @@ extension RootViewController: MCSessionDelegate {
                     }
                     
                 case .clientRequestItemFinish:
-                    _ = self.orderModel.markItemsAsServed(message.items!)
+                    _ = self.orderModel.markItemAsServed(message.items!.first!)
                     
                 case .clearOrder:
                     self.clientModel.clearOrder(indexed: message.orderToModify!)
