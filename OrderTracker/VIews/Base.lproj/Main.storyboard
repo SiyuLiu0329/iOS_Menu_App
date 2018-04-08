@@ -295,7 +295,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="options" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrk-kg-95c">
-                                                    <rect key="frame" x="0.0" y="60" width="316" height="21.5"/>
+                                                    <rect key="frame" x="80" y="60" width="236" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                                     <color key="textColor" red="0.83393377590673579" green="0.83393377590673579" blue="0.83393377590673579" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -328,19 +328,31 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="316" height="236"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBA-dF-VBF">
-                                                            <rect key="frame" x="228" y="156" width="80" height="40"/>
+                                                            <rect key="frame" x="228" y="98" width="80" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="aM8-Du-0c4"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="vqg-T9-1VJ"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to refund" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyN-wS-4tp">
+                                                            <rect key="frame" x="10" y="196" width="286" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="zI7-h1-eKR"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="lBA-dF-VBF" secondAttribute="bottom" constant="40" id="HRP-cR-tA2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="PyN-wS-4tp" secondAttribute="trailing" constant="20" id="3Pi-bY-YMO"/>
+                                                        <constraint firstItem="PyN-wS-4tp" firstAttribute="leading" secondItem="pXb-bY-8WO" secondAttribute="leading" constant="10" id="G1T-Ic-dlk"/>
+                                                        <constraint firstItem="lBA-dF-VBF" firstAttribute="centerY" secondItem="pXb-bY-8WO" secondAttribute="centerY" id="WfV-gH-lig"/>
                                                         <constraint firstItem="lBA-dF-VBF" firstAttribute="centerX" secondItem="pXb-bY-8WO" secondAttribute="centerX" constant="110" id="hHE-J1-5Zv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="PyN-wS-4tp" secondAttribute="bottom" constant="10" id="mj2-i7-Tvw"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -357,9 +369,9 @@
                                             <constraint firstAttribute="trailing" secondItem="pXb-bY-8WO" secondAttribute="trailing" id="KKb-ks-hGl"/>
                                             <constraint firstItem="1at-r5-B0f" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" constant="10" id="L92-t3-jin"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lrk-kg-95c" secondAttribute="bottom" constant="35" id="SHL-5F-Gh1"/>
+                                            <constraint firstItem="lrk-kg-95c" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" constant="80" id="VNt-bn-3kd"/>
                                             <constraint firstItem="1at-r5-B0f" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leadingMargin" id="dpc-L4-z4B"/>
                                             <constraint firstItem="lrk-kg-95c" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" constant="60" id="iAw-0u-Ykh"/>
-                                            <constraint firstItem="lrk-kg-95c" firstAttribute="leading" secondItem="LmP-F6-jdw" secondAttribute="leading" id="pWZ-BC-KC8"/>
                                             <constraint firstItem="pXb-bY-8WO" firstAttribute="top" secondItem="LmP-F6-jdw" secondAttribute="top" id="wHu-nN-t1L"/>
                                             <constraint firstAttribute="bottom" secondItem="168-E5-DZP" secondAttribute="bottom" id="wRG-65-xVx"/>
                                             <constraint firstAttribute="trailing" secondItem="168-E5-DZP" secondAttribute="trailing" id="x72-Uk-f0o"/>
@@ -371,6 +383,7 @@
                                             <outlet property="label" destination="3fr-yg-xyg" id="HAV-YM-IxO"/>
                                             <outlet property="optionLabel" destination="lrk-kg-95c" id="QG1-Nc-YhM"/>
                                             <outlet property="paidLabel" destination="lBA-dF-VBF" id="ePb-qU-O3Q"/>
+                                            <outlet property="tapToRefundLabel" destination="PyN-wS-4tp" id="pVC-zD-NsL"/>
                                             <outlet property="tenderButton" destination="168-E5-DZP" id="dVu-9k-o5c"/>
                                         </connections>
                                     </collectionViewCell>
@@ -547,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6t-Nn-wZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2069" y="88"/>
+            <point key="canvasLocation" x="2068.9453125" y="87.5"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="i9A-L1-UwA">

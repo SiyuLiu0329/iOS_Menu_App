@@ -21,6 +21,7 @@ class ClientModel {
     
     func reciveItemsFromServer(_ items: [MenuItem], numberOfOrders nOrders: Int) -> (insertionIndex: Int, isNewOrder: Bool, isItemInserted: Bool)? {
         var isNewOrder = false
+        // since only items are sent here, need to check if the order the item should be added to already exists, if not create it
         if nOrders > orders.count {
             // create empty orders
             for _ in 0..<nOrders - orders.count {

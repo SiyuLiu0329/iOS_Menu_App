@@ -50,6 +50,7 @@ struct MenuItem: Equatable, Codable {
     var tableNumber: Int?
     var itemHash: String?
     var itemType: ItemType
+    var refunded = false
     var paymentStatus: PaymentStatus = .notPaid
     var served = false
     var quantity: Int

@@ -27,7 +27,10 @@ class OrderModel {
     var isLatestOrderEmpty: Bool {
         return allOrders.last!.itemCollections[0].isEmpty
     }
-
+    
+    func refund(paidItem itemIndex: Int, inOrder orderIndex: Int) {
+        allOrders[orderIndex].itemCollections[1][itemIndex].refunded = !allOrders[orderIndex].itemCollections[1][itemIndex].refunded
+    }
     
     
     init() {

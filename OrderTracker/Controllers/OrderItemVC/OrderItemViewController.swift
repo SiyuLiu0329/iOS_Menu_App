@@ -61,8 +61,9 @@ class OrderItemViewController: UIViewController {
         super.viewDidLoad()
         
         collectionViewDataSource = OrderItemViewControllerDataSource(data: orderModel!)
-        collectionViewDataSource.orderId = orderIndex!
+        collectionViewDataSource.orderIndex = orderIndex!
         collectionViewDataSource.delegate = self
+        collectionViewDataSource.collectionView = itemCollectionView
         itemCollectionView.dataSource = collectionViewDataSource
         itemCollectionView.delegate = collectionViewDataSource
         itemCollectionView.alwaysBounceVertical = true

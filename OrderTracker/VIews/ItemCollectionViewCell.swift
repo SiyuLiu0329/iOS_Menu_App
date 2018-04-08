@@ -11,9 +11,11 @@ import UIKit
 protocol ItemCollectionViewCellDelegate: class {
     func itemWillBeRemoved(_ cell: ItemCollectionViewCell)
     func itemVillQuickBill(_ cell: ItemCollectionViewCell)
+    func refundReqested(_ sender: ItemCollectionViewCell)
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var tapToRefundLabel: UILabel!
     @IBOutlet weak var itemStatusOverlay: UIView!
     @IBAction func tenderButtonPressed(_ sender: Any) {
         if delegate != nil {
@@ -32,6 +34,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private var delete = false // flag to determine if the cell should be deletec
     private var displacement: CGFloat = 0 // distance the view has been slid
     private var item: MenuItem! // item used to configure the view
+    var pan: UIGestureRecognizer!
     
     @IBOutlet weak var paidLabel: UILabel!
     func configure(usingItem item: MenuItem) {
@@ -45,16 +48,26 @@ class ItemCollectionViewCell: UICollectionViewCell {
         
         itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.7 : 0
         
+        if item.refunded {
+            paidLabel.textColor = .yellow
+            paidLabel.layer.borderColor = UIColor.yellow.cgColor
+            paidLabel.text = "Ref'd"
+        } else {
+            paidLabel.layer.borderColor = UIColor.red.cgColor
+            paidLabel.textColor = .red
+            paidLabel.text = "Paid"
+        }
+        
         var optionText = ""
         for option in item.options {
             if option.value {
-                optionText += "      · " + option.description + "\n"
+                optionText += "• " + option.description + "\n"
             }
         }
         
         if !optionText.isEmpty {
             optionText.removeLast()
-            
+            paidLabel.layer.borderColor = UIColor.red.cgColor
         }
         
         optionLabel.text = optionText
@@ -97,12 +110,21 @@ class ItemCollectionViewCell: UICollectionViewCell {
         
         paidLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
         paidLabel.layer.cornerRadius = 5
-        paidLabel.layer.borderColor = UIColor.red.cgColor
+       
         paidLabel.layer.borderWidth = 2
         paidLabel.clipsToBounds = true
         paidLabel.alpha = 0.7
-        paidLabel.textColor = .red
         
+        
+        tapToRefundLabel.textColor = UIColor.white.withAlphaComponent(0.5)
+        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.refund))
+        itemStatusOverlay.addGestureRecognizer(gestureRecogniser)
+    }
+    
+    @objc func refund() {
+        if delegate != nil {
+            delegate!.refundReqested(self)
+        }
     }
     
     override func layoutSubviews() {
@@ -114,7 +136,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
 
 extension ItemCollectionViewCell: UIGestureRecognizerDelegate {
     private func addPanGesutre() {
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.pan(_:)))
+        pan = UIPanGestureRecognizer(target: self, action: #selector(self.pan(_:)))
         pan.delegate = self
         addGestureRecognizer(pan)
     }
