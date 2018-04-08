@@ -104,8 +104,16 @@ class OrderItemViewController: UIViewController {
         totalQuantityLabel.text = "\(orderModel!.billBuffer.count)"
         totalPriceLabel.text = Scheme.Util.twoDecimalPriceText(orderModel!.billBufferPrice)
         billButton.setTitle("Bill: \(Scheme.Util.twoDecimalPriceText(orderModel!.billBufferPrice))", for: .normal)
+        
         UIView.animate(withDuration: 0.3) {
             self.buttonDisabledBackgroundView.alpha = numItems == 0 ? 1 : 0
+            if self.orderModel!.billBuffer.count == 0 {
+                self.billButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+                self.billButton.isEnabled = false
+            } else {
+                self.billButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+                self.billButton.isEnabled = true
+            }
         }
     }
 }

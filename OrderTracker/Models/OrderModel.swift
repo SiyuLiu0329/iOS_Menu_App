@@ -118,6 +118,12 @@ class OrderModel {
     
     func deletePendingItem(inOrder orderIndex: Int, item itemIndex: Int) {
         let item = allOrders[orderIndex].itemCollections[0][itemIndex]
+        for i in 0..<billBuffer.count {
+            if billBuffer[i].itemHash == item.itemHash {
+                billBuffer.remove(at: i)
+                break
+            }
+        }
         allOrders[orderIndex].itemCollections[0].remove(at: itemIndex)
         notifyClientOfItemDeletion(item)
         
