@@ -54,6 +54,7 @@ struct MenuItem: Equatable, Codable {
     var paymentStatus: PaymentStatus = .notPaid
     var served = false
     var quantity: Int
+    var isInBuffer = false
     
     var totalPrice: Double {
         return unitPrice * Double(quantity)

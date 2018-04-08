@@ -11,7 +11,7 @@ import UIKit
 
 protocol OrderItemCollectionViewCellDelegate: class {
     func itemWillDelete(sender cell: ItemCollectionViewCell)
-    func willBillPendingItem(sender cell: ItemCollectionViewCell)
+    func updateBillView()
 }
 
 
@@ -81,13 +81,6 @@ class OrderItemViewControllerDataSource: NSObject, UICollectionViewDelegateFlowL
 }
 
 extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {
-    func itemVillQuickBill(_ cell: ItemCollectionViewCell) {
-        if delegate != nil {
-            delegate!.willBillPendingItem(sender: cell)
-        }
-    }
-
-    
     func itemWillBeRemoved(_ cell: ItemCollectionViewCell) {
         if delegate != nil {
             delegate!.itemWillDelete(sender: cell)
@@ -98,6 +91,16 @@ extension OrderItemViewControllerDataSource: ItemCollectionViewCellDelegate {
         if let indexPath = collectionView.indexPath(for: sender) {
             orderModel.refund(paidItem: indexPath.row, inOrder: orderIndex)
             collectionView.reloadItems(at: [indexPath])
+        }
+    }
+    
+    func selectItem(_ sender: ItemCollectionViewCell) {
+        if let indexPath = collectionView.indexPath(for: sender) {
+            orderModel.select(item: indexPath.row, inOrder: orderIndex)
+            collectionView.reloadItems(at: [indexPath])
+            if delegate != nil {
+                delegate!.updateBillView()
+            }
         }
     }
 }

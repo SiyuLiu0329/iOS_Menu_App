@@ -15,13 +15,11 @@ enum BillReturnType {
 
 enum BillingMode {
     case template(MenuItem) // item number
-    case pendingItem(Int) // index
-    case normal
+    case normal([MenuItem])
 }
 
 protocol BillItemViewControllerDelegate: class {
     func billItemViewControllerDidReturn(withBillReturnType mode: BillReturnType, paymentMethod method: PaymentMethod, billingMode bMode: BillingMode)
-    func quickBill(itemInPendingItems index: Int, paymentMethod method: PaymentMethod)
     func quickBill(templateItem item: MenuItem, paymentMethod method: PaymentMethod)
 }
 
@@ -134,10 +132,8 @@ extension BillItemViewController: BillCellDelegate {
         if delegate != nil {
             // get information from cell and pass it onto orderItemVC
             switch billingMode! {
-            case .normal:
-                delegate!.billItemViewControllerDidReturn(withBillReturnType: .billAll, paymentMethod: method, billingMode: .normal)
-            case .pendingItem(let index):
-                delegate!.quickBill(itemInPendingItems: index, paymentMethod: method)
+            case .normal( _):
+                delegate!.billItemViewControllerDidReturn(withBillReturnType: .billAll, paymentMethod: method, billingMode: billingMode)
             case .template:
                 delegate!.quickBill(templateItem: model.items.first!, paymentMethod: method)
             }

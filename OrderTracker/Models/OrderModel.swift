@@ -19,6 +19,30 @@ class OrderModel {
     var session: MCSession?
     var currentOrderNumber = 1
     var allOrders: [Order] = []
+    var billBuffer: [MenuItem] = []
+    var billBufferPrice: Double {
+        var price: Double = 0
+        for item in billBuffer {
+            price += item.totalPrice
+        }
+        return price
+    }
+    
+    func select(item itemIndex: Int, inOrder orderIndex: Int) {
+        allOrders[orderIndex].itemCollections[0][itemIndex].isInBuffer = !allOrders[orderIndex].itemCollections[0][itemIndex].isInBuffer
+        let item = allOrders[orderIndex].itemCollections[0][itemIndex]
+        if item.isInBuffer {
+            billBuffer.append(item)
+        } else {
+            for i in 0..<billBuffer.count {
+                if billBuffer[i].itemHash == item.itemHash {
+                    billBuffer.remove(at: i)
+                    return
+                }
+            }
+        }
+        
+    }
     
     func getPendingItemsIn(order orderIndex: Int) -> [MenuItem] {
         return allOrders[orderIndex].itemCollections[0]
@@ -30,8 +54,17 @@ class OrderModel {
     
     func refund(paidItem itemIndex: Int, inOrder orderIndex: Int) {
         allOrders[orderIndex].itemCollections[1][itemIndex].refunded = !allOrders[orderIndex].itemCollections[1][itemIndex].refunded
-        // ask client to remove this item since its no longer needed
-        sendItemsToClient(menuItems: [allOrders[orderIndex].itemCollections[1][itemIndex]], withMessage: .serverDidDeleteItem)
+        let item = allOrders[orderIndex].itemCollections[1][itemIndex]
+        if allOrders[orderIndex].itemCollections[1][itemIndex].refunded {
+            // ask client to remove this item since its no longer needed
+            sendItemsToClient(menuItems: [item], withMessage: .serverDidDeleteItem)
+            allOrders[orderIndex].refundedAmount += item.totalPrice
+        } else {
+            // make the item reappear on client side again
+            sendItemsToClient(menuItems: [item])
+            allOrders[orderIndex].refundedAmount -= item.totalPrice
+        }
+        
     }
     
     
@@ -135,8 +168,6 @@ class OrderModel {
             allOrders[orderIndex].cardSales += item.totalPrice
         } else if method == .cash {
             allOrders[orderIndex].cashSales += item.totalPrice
-        } else {
-            fatalError()
         }
         for i in 0..<allOrders[orderIndex].itemCollections[1].count {
             if item == allOrders[orderIndex].itemCollections[1][i] {
@@ -159,14 +190,6 @@ class OrderModel {
         
     }
     
-    func quickBillPendingItem(withIndex index: Int, withPaymentMethod method: PaymentMethod, order orderIndex: Int) -> Int {
-        let item = allOrders[orderIndex].itemCollections[0][index]
-        allOrders[orderIndex].itemCollections[0].remove(at: index)
-        let index = insertItemToPaidCollection(item, paymentMethod: method, order: orderIndex)
-        return index
-    }
-    
-    
     func splitBill(templateItem itemToAdd: MenuItem, cashSales cash: Double, cardSales card: Double, order orderIndex: Int) -> Int {
         var item = itemToAdd
         item.orderIndex = allOrders[orderIndex].orderNumber - 1
@@ -177,11 +200,37 @@ class OrderModel {
         
     }
     
-    func splitBill(pendingItemIndex index: Int, cashSales cash: Double, cardSales card: Double, order orderIndex: Int) -> Int {
-        let item = allOrders[orderIndex].itemCollections[0][index]
-        allOrders[orderIndex].itemCollections[0].remove(at: index)
-        let index = splitBill(menuItem: item, cashSales: cash, cardSales: card, order: orderIndex) // send
-        return index
+    func bill(itemsInBuffer items: [MenuItem], paymentMethod method: PaymentMethod, inOrder orderIndex: Int) {
+        for item in items {
+            _ = insertItemToPaidCollection(item, paymentMethod: method, order: orderIndex)
+             cleanUpAfterBilling(forItem: item, inOrder: orderIndex)
+        }
+    }
+    
+    func splitBill(itemsInBuffer items: [MenuItem], cash cashSales: Double, card cardSales: Double, inOrder orderIndex: Int) {
+        allOrders[orderIndex].cashSales += cashSales
+        allOrders[orderIndex].cardSales += cardSales
+        for item in items {
+            _ = insertItemToPaidCollection(item, paymentMethod: .mix, order: orderIndex)
+            cleanUpAfterBilling(forItem: item, inOrder: orderIndex)
+            
+        }
+    }
+    
+    private func cleanUpAfterBilling(forItem item: MenuItem, inOrder orderIndex: Int) {
+        for i in 0..<billBuffer.count {
+            if item.itemHash == billBuffer[i].itemHash {
+                billBuffer.remove(at: i)
+                break
+            }
+        }
+        
+        for i in 0..<allOrders[orderIndex].itemCollections[0].count {
+            if item.itemHash == allOrders[orderIndex].itemCollections[0][i].itemHash {
+                allOrders[orderIndex].itemCollections[0].remove(at: i)
+                break
+            }
+        }
     }
     
     
@@ -201,35 +250,6 @@ class OrderModel {
         return 0
     }
     
-    // all pending items
-    func billAllPendingItems(inOrder orderIndex: Int, withPaymentMethod method: PaymentMethod) {
-        for item in allOrders[orderIndex].itemCollections[0] {
-            let _ = insertItemToPaidCollection(item, paymentMethod: method, order: orderIndex)
-        }
-        allOrders[orderIndex].itemCollections[0].removeAll()
-    }
-    
-    
-    func splitBillAllPendingItems(cashSales cash: Double, cardSales card: Double, order orderIndex: Int) {
-        allOrders[orderIndex].cashSales += cash
-        allOrders[orderIndex].cardSales += card
-        var matchFound = false
-        for var item in allOrders[orderIndex].itemCollections[0] {
-            matchFound = false
-            item.paymentStatus = .paid
-            for i in 0..<allOrders[orderIndex].itemCollections[1].count {
-                if item == allOrders[orderIndex].itemCollections[1][i] {
-                    allOrders[orderIndex].itemCollections[1].insert(item, at: i)
-                    matchFound = true
-                    break
-                }
-            }
-            if !matchFound {
-                allOrders[orderIndex].itemCollections[1].insert(item, at: 0)
-            }
-        }
-        allOrders[orderIndex].itemCollections[0].removeAll()
-    }
     
     func deleteLastestOrder() {
         let orderNumber = allOrders.last!.orderNumber
@@ -319,6 +339,10 @@ extension OrderModel {
     }
     
     func saveOrderToFile(_ index: Int) {
+        billBuffer = []
+        for i in 0..<allOrders[index].itemCollections[0].count {
+            allOrders[index].itemCollections[0][i].isInBuffer = false
+        }
         let order = allOrders[index]
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]

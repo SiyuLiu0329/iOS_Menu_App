@@ -10,19 +10,15 @@ import UIKit
 
 protocol ItemCollectionViewCellDelegate: class {
     func itemWillBeRemoved(_ cell: ItemCollectionViewCell)
-    func itemVillQuickBill(_ cell: ItemCollectionViewCell)
     func refundReqested(_ sender: ItemCollectionViewCell)
+    func selectItem(_ sender: ItemCollectionViewCell)
 }
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tapToRefundLabel: UILabel!
     @IBOutlet weak var itemStatusOverlay: UIView!
-    @IBAction func tenderButtonPressed(_ sender: Any) {
-        if delegate != nil {
-            delegate!.itemVillQuickBill(self)
-        }
-    }
-    @IBOutlet weak var tenderButton: UIButton!
+
+    @IBOutlet weak var checkboxLabel: UILabel!
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var label: UILabel!
@@ -40,10 +36,10 @@ class ItemCollectionViewCell: UICollectionViewCell {
     func configure(usingItem item: MenuItem) {
         contentView.frame = bounds
         label.text = item.name
-        contentView.backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
-        itemNumberLabel.textColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
+        let themeColour = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
+        contentView.backgroundColor = themeColour
+        itemNumberLabel.textColor = themeColour
         self.item = item
-        tenderButton.setTitle("\(Scheme.Util.twoDecimalPriceText(item.totalPrice))", for: .normal)
         itemNumberLabel.text = "\(item.number)"
         
         itemStatusOverlay.alpha = item.paymentStatus != .notPaid ? 0.7 : 0
@@ -57,6 +53,13 @@ class ItemCollectionViewCell: UICollectionViewCell {
             paidLabel.textColor = .red
             paidLabel.text = "Paid"
         }
+        
+        if item.isInBuffer {
+            checkboxLabel.backgroundColor = themeColour
+        } else {
+            checkboxLabel.backgroundColor = UIColor.white
+        }
+    
         
         var optionText = ""
         for option in item.options {
@@ -96,10 +99,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         originalCenterX = center.x
         contentView.frame = bounds
         addPanGesutre()
-        tenderButton.layer.cornerRadius = 5
-        tenderButton.clipsToBounds = true
-        tenderButton.layer.maskedCorners = [.layerMinXMinYCorner]
-        tenderButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         optionLabel.isUserInteractionEnabled = false
         itemStatusOverlay.backgroundColor = UIColor.black
         layer.cornerRadius = 5
@@ -115,10 +114,23 @@ class ItemCollectionViewCell: UICollectionViewCell {
         paidLabel.clipsToBounds = true
         paidLabel.alpha = 0.7
         
+        checkboxLabel.layer.cornerRadius = 20
+        checkboxLabel.clipsToBounds = true
+        checkboxLabel.layer.borderWidth = 3
+        checkboxLabel.layer.borderColor = UIColor.white.cgColor
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.selectItem))
+        checkboxLabel.addGestureRecognizer(tap1)
+        checkboxLabel.isUserInteractionEnabled = true
         
         tapToRefundLabel.textColor = UIColor.white.withAlphaComponent(0.5)
-        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.refund))
-        itemStatusOverlay.addGestureRecognizer(gestureRecogniser)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.refund))
+        itemStatusOverlay.addGestureRecognizer(tap2)
+    }
+    
+    @objc func selectItem() {
+        if delegate != nil {
+            delegate!.selectItem(self)
+        }
     }
     
     @objc func refund() {

@@ -33,6 +33,9 @@ struct Order: Codable {
     }
     
     var isinProgress = false
+    
+    var refundedAmount: Double = 0
+    
     var cardSales: Double = 0 {
         willSet {
             print("card: " + "\(newValue)")
