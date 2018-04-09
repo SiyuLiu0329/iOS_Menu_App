@@ -35,12 +35,9 @@ class OrderModel {
         if item.isInBuffer {
             billBuffer.append(item)
         } else {
-            for i in 0..<billBuffer.count {
-                if billBuffer[i].itemHash == item.itemHash {
-                    billBuffer.remove(at: i)
-                    return
-                }
-            }
+            // remove item with matching hash
+            billBuffer = billBuffer.filter({$0.itemHash != item.itemHash})
+            
         }
         
     }
@@ -119,12 +116,7 @@ class OrderModel {
     
     func deletePendingItem(inOrder orderIndex: Int, item itemIndex: Int) {
         let item = allOrders[orderIndex].itemCollections[0][itemIndex]
-        for i in 0..<billBuffer.count {
-            if billBuffer[i].itemHash == item.itemHash {
-                billBuffer.remove(at: i)
-                break
-            }
-        }
+        billBuffer = billBuffer.filter({$0.itemHash != item.itemHash})
         allOrders[orderIndex].itemCollections[0].remove(at: itemIndex)
         notifyClientOfItemDeletion(item)
         
@@ -148,11 +140,9 @@ class OrderModel {
         item.itemHash = Scheme.Util.randomString(length: 8)
         sendItemsToClient(menuItems: [item]) // send when an item is added
         billBuffer.append(item)
-        for i in 0..<allOrders[orderIndex].itemCollections[0].count {
-            if item == allOrders[orderIndex].itemCollections[0][i] {
-                allOrders[orderIndex].itemCollections[0].insert(item, at: i)
-                return i
-            }
+        if let index = allOrders[orderIndex].itemCollections[0].index(where: {$0 == item}) {
+            allOrders[orderIndex].itemCollections[0].insert(item, at: index)
+            return index
         }
         allOrders[orderIndex].itemCollections[0].insert(item, at: 0)
         
@@ -160,14 +150,8 @@ class OrderModel {
     }
     
     func getNumberOfSelectionOptions(ofItem itemIndex: Int, inCollection collectionIndex: Int, inOrder orderIndex: Int)  -> Int {
-        var nSelected = 0
         let item = allOrders[orderIndex].itemCollections[collectionIndex][itemIndex]
-        for option in item.options {
-            if option.value {
-                nSelected += 1
-            }
-        }
-        return nSelected
+        return item.options.filter({$0.value}).count
     }
     
     private func insertItemToPaidCollection(_ itemToAdd: MenuItem, paymentMethod method: PaymentMethod, order orderIndex: Int) -> Int {
@@ -178,11 +162,9 @@ class OrderModel {
         } else if method == .cash {
             allOrders[orderIndex].cashSales += item.totalPrice
         }
-        for i in 0..<allOrders[orderIndex].itemCollections[1].count {
-            if item == allOrders[orderIndex].itemCollections[1][i] {
-                allOrders[orderIndex].itemCollections[1].insert(item, at: i)
-                return i
-            }
+        if let index = allOrders[orderIndex].itemCollections[1].index(where: {$0 == item}) {
+            allOrders[orderIndex].itemCollections[1].insert(item, at: index)
+            return index
         }
         allOrders[orderIndex].itemCollections[1].insert(item, at: 0)
         return 0
@@ -227,19 +209,8 @@ class OrderModel {
     }
     
     private func cleanUpAfterBilling(forItem item: MenuItem, inOrder orderIndex: Int) {
-        for i in 0..<billBuffer.count {
-            if item.itemHash == billBuffer[i].itemHash {
-                billBuffer.remove(at: i)
-                break
-            }
-        }
-        
-        for i in 0..<allOrders[orderIndex].itemCollections[0].count {
-            if item.itemHash == allOrders[orderIndex].itemCollections[0][i].itemHash {
-                allOrders[orderIndex].itemCollections[0].remove(at: i)
-                break
-            }
-        }
+        billBuffer = billBuffer.filter({$0.itemHash != item.itemHash})
+        allOrders[orderIndex].itemCollections[0] = allOrders[orderIndex].itemCollections[0].filter({$0.itemHash != item.itemHash})
     }
     
     
@@ -249,11 +220,9 @@ class OrderModel {
         item.paymentStatus = .paid
         allOrders[orderIndex].cardSales += card
         allOrders[orderIndex].cashSales += cash
-        for i in 0..<allOrders[orderIndex].itemCollections[1].count {
-            if item == allOrders[orderIndex].itemCollections[1][i] {
-                allOrders[orderIndex].itemCollections[1].insert(item, at: i)
-                return i
-            }
+        if let index = allOrders[orderIndex].itemCollections[1].index(where: {$0 == item}) {
+            allOrders[orderIndex].itemCollections[1].insert(item, at: index)
+            return index
         }
         allOrders[orderIndex].itemCollections[1].insert(item, at: 0)
         return 0
@@ -283,7 +252,6 @@ extension OrderModel {
     func sendInitalOrders() {
         for order in allOrders {
             let items = compile(order)
-            
             sendItemsToClient(menuItems: items)
         }
     }
@@ -303,7 +271,6 @@ extension OrderModel {
         guard let sess = session else { return }
         do {
             let data = try JSONEncoder().encode(CommunicationProtocol(containingItems: nil, numberOfOrders: currentOrderNumber - 1, ofMessageType: messageType))
-            
             try sess.send(data, toPeers: sess.connectedPeers, with: .reliable)
         } catch {}
     }
@@ -339,8 +306,8 @@ extension OrderModel {
                 sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[0][i]])
                 return i
             }
-            
         }
+        
         for i in 0..<allOrders[item.orderIndex!].itemCollections[1].count {
             if item.itemHash == allOrders[item.orderIndex!].itemCollections[1][i].itemHash {
                 allOrders[item.orderIndex!].itemCollections[1][i].served = !allOrders[item.orderIndex!].itemCollections[1][i].served
@@ -348,8 +315,8 @@ extension OrderModel {
                 sendItemsToClient(menuItems: [allOrders[item.orderIndex!].itemCollections[1][i]])
                 return i
             }
-            
         }
+            
         // no match found, should not happen.
         return nil
     }

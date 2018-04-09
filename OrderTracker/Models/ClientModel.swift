@@ -46,21 +46,14 @@ class ClientModel {
     
     private func insert(_ item: MenuItem) -> (index: Int, inserted: Bool) {
         // return insertion index
-        
-        for i in 0..<orders[item.orderIndex!].items.count {
-            // check if there is an item with the same hash value, if so replace it
-            if item.itemHash! == orders[item.orderIndex!].items[i].itemHash! {
-                orders[item.orderIndex!].items[i] = item
-                return (i, false)
-            }
+        if let index = orders[item.orderIndex!].items.index(where: {$0.itemHash! == item.itemHash!}) {
+            orders[item.orderIndex!].items[index] = item
+            return (index, false)
         }
         // no match found... this item is brand new
-        for i in 0..<orders[item.orderIndex!].items.count {
-            // check where this item should be inserted (with the same type)
-            if item == orders[item.orderIndex!].items[i] {
-                orders[item.orderIndex!].items.insert(item, at: i)
-                return (i, true)
-            }
+        if let index = orders[item.orderIndex!].items.index(where: {$0 == item}) {
+            orders[item.orderIndex!].items.insert(item, at: index)
+            return(index, true)
         }
         // no matching type found... insert this item at the start
         orders[item.orderIndex!].orderNumber = item.orderIndex! + 1
@@ -69,12 +62,9 @@ class ClientModel {
     }
     
     func deleteItem(_ item: MenuItem) -> Int? {
-//        orders[item.orderIndex!].items.remove(at: item.indexInOrder!)
-        for i in 0..<orders[item.orderIndex!].items.count {
-            if item.itemHash == orders[item.orderIndex!].items[i].itemHash {
-                orders[item.orderIndex!].items.remove(at: i)
-                return i
-            }
+        if let index = orders[item.orderIndex!].items.index(where: {$0.itemHash! == item.itemHash!}) {
+            orders[item.orderIndex!].items.remove(at: index)
+            return index
         }
         return nil
     }
