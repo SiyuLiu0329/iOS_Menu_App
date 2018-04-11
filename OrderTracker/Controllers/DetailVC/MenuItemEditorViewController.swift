@@ -8,28 +8,63 @@
 
 import UIKit
 
+enum ItemEditorOperationType {
+    case editExisting(itemIndex: Int)
+    case addNew
+}
+
 class MenuItemEditorViewController: UIViewController {
+    var menuModel: MenuModel!
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorColor = .clear
+        setupBarButtons()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func setupBarButtons() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPressed(_:)))
+        addButton.tintColor = .darkGray
+        self.navigationItem.rightBarButtonItem = addButton
+        navigationController?.topViewController?.title = menuModel.menuName
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.onCloseButtonPressed(_:)))
+        self.navigationItem.leftBarButtonItem = closeButton
+        closeButton.tintColor = .darkGray
     }
-    */
+    
+    @objc func onCloseButtonPressed(_ sender: Any?) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func onAddButtonPressed(_ sender: Any?) {
+        pushItemEditor(itemEditorOperationType: .addNew)
+    }
 
+    func pushItemEditor(itemEditorOperationType type: ItemEditorOperationType) {
+        let editor = ItemEditorViewController()
+        editor.menuModel = menuModel
+        editor.type = type
+        navigationController?.pushViewController(editor, animated: true)
+    }
+}
+
+extension MenuItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuModel.menuItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = menuModel.menuItems[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pushItemEditor(itemEditorOperationType: .editExisting(itemIndex: indexPath.row))
+    }
 }

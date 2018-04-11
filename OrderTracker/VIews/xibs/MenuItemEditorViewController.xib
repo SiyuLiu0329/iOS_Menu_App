@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuItemEditorViewController" customModule="OrderTracker" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="FSG-kq-CvW" id="au4-1n-Ljn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FSG-kq-CvW">
+                    <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FSG-kq-CvW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Qa4-AX-Arn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FSG-kq-CvW" secondAttribute="trailing" id="exU-If-8sU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FSG-kq-CvW" secondAttribute="bottom" id="iJM-sz-hoh"/>
+                <constraint firstItem="FSG-kq-CvW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mN0-Ex-grp"/>
+            </constraints>
             <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

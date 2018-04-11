@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
         let viewControler = MenuItemEditorViewController()
         navController.viewControllers.append(viewControler)
         navController.modalPresentationStyle = .formSheet
+        viewControler.menuModel = menuModel
         self.present(navController, animated: true, completion: nil)
     }
     

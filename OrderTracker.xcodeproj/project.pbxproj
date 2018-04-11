@@ -38,6 +38,8 @@
 		DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6741206DD30A0071F026 /* BillItemViewController.swift */; };
 		DC2B6744206DD30A0071F026 /* BillItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC2B6742206DD30A0071F026 /* BillItemViewController.xib */; };
 		DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */; };
+		DC3478A5207E71FD00A6362B /* ItemEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3478A3207E71FD00A6362B /* ItemEditorViewController.swift */; };
+		DC3478A6207E71FD00A6362B /* ItemEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */; };
 		DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */; };
 		DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */; };
 		DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */; };
@@ -112,6 +114,8 @@
 		DC2B6741206DD30A0071F026 /* BillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemViewController.swift; sourceTree = "<group>"; };
 		DC2B6742206DD30A0071F026 /* BillItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillItemViewController.xib; sourceTree = "<group>"; };
 		DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemPlaceHolderCell.swift; sourceTree = "<group>"; };
+		DC3478A3207E71FD00A6362B /* ItemEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorViewController.swift; sourceTree = "<group>"; };
+		DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemEditorViewController.xib; sourceTree = "<group>"; };
 		DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 				04076095205563AF0002B5E1 /* TabBarController.swift */,
 				04C101C02054CCB400255361 /* DetailViewController.swift */,
 				DCFDE1E4207E5FF500848FB0 /* MenuItemEditorViewController.swift */,
+				DC3478A3207E71FD00A6362B /* ItemEditorViewController.swift */,
 				DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */,
 			);
 			path = DetailVC;
@@ -333,6 +338,7 @@
 				DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */,
 				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
 				DCFDE1E5207E5FF500848FB0 /* MenuItemEditorViewController.xib */,
+				DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */,
 				DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */,
 			);
 			path = xibs;
@@ -448,6 +454,7 @@
 			files = (
 				DC06E2A2206F27330063642A /* BillAllCollectionViewCell.xib in Resources */,
 				2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */,
+				DC3478A6207E71FD00A6362B /* ItemEditorViewController.xib in Resources */,
 				2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */,
 				2223F206203BB8250047E0D9 /* Main.storyboard in Resources */,
 				DCFDE1E7207E5FF500848FB0 /* MenuItemEditorViewController.xib in Resources */,
@@ -515,6 +522,7 @@
 				DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */,
 				0407608E2054DAD50002B5E1 /* ItemCollectionViewCell.swift in Sources */,
 				04076096205563AF0002B5E1 /* TabBarController.swift in Sources */,
+				DC3478A5207E71FD00A6362B /* ItemEditorViewController.swift in Sources */,
 				DC9A6F072073DC4600E4E1BD /* ClientOrderCollectionViewCell.swift in Sources */,
 				0407609220555EBF0002B5E1 /* Scheme.swift in Sources */,
 				DC25BDBD2063580600B9C8E3 /* OptionTableViewCell.swift in Sources */,
