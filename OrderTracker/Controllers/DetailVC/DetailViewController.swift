@@ -14,6 +14,13 @@ protocol MenuDelegate: class {
 }
 
 class DetailViewController: UIViewController {
+    @IBAction func onEditMenuButtonPressed(_ sender: Any) {
+        let navController = UINavigationController()
+        let viewControler = MenuItemEditorViewController()
+        navController.viewControllers.append(viewControler)
+        navController.modalPresentationStyle = .formSheet
+        self.present(navController, animated: true, completion: nil)
+    }
     
     @IBOutlet weak var dimView: UIView!
     override var prefersStatusBarHidden: Bool {

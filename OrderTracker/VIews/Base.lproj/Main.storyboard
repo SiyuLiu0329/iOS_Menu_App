@@ -215,7 +215,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4Rj-52-tUD"/>
                                 </constraints>
-                                <items/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7iG-Yo-SRj"/>
+                                    <barButtonItem systemItem="organize" id="X1y-MG-q81">
+                                        <connections>
+                                            <action selector="onEditMenuButtonPressed:" destination="5S6-1C-6oN" id="rOG-6s-W2x"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
