@@ -71,7 +71,7 @@ extension DetailViewController: ItemCellDelegate {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         let destinationVC = MenuItemExpandedViewController()
         destinationVC.menuModel = menuModel
-        destinationVC.itemId = indexPath.row + 1
+        destinationVC.itemId = indexPath.row
         destinationVC.modalPresentationStyle = .overCurrentContext
         destinationVC.view.backgroundColor = .clear
         destinationVC.delegate = delegate
@@ -83,14 +83,14 @@ extension DetailViewController: ItemCellDelegate {
     func quickBillItem(atCell cell: MenuItemCollectionViewCell) {
         guard let indexPath = itemsCollectionView.indexPath(for: cell) else { return }
         if delegate != nil {
-            delegate!.quickBillItem(menuModel.menuItems[indexPath.row + 1]!)
+            delegate!.quickBillItem(menuModel.menuItems[indexPath.row])
         }
     }
     
     func itemAdded(atCell cell: MenuItemCollectionViewCell) {
         let indexPath = itemsCollectionView.indexPath(for: cell)!
         if delegate != nil {
-            delegate!.addItemToOrder(menuModel.menuItems[indexPath.row + 1]!)
+            delegate!.addItemToOrder(menuModel.menuItems[indexPath.row])
         }
     }
 }

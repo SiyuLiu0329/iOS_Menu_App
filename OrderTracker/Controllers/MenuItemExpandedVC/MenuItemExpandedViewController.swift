@@ -29,14 +29,13 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func addButtonAction(_ sender: Any) {
         if delegate != nil {
-            delegate!.addItemToOrder(menuModel.menuItems[itemId!]!)
+            delegate!.addItemToOrder(menuModel.menuItems[itemId!])
         }
     }
     
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        menuModel.resetTamplateItem(itemNumber: itemId!)
         if popoverDelegate != nil {
             popoverDelegate!.popoverDidDisappear()
         }
@@ -44,7 +43,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func quickTenderAction(_ sender: Any) {
         if delegate != nil {
-            delegate!.quickBillItem(menuModel.menuItems[itemId!]!)
+            delegate!.quickBillItem(menuModel.menuItems[itemId!])
         }
     }
     
@@ -60,7 +59,7 @@ class MenuItemExpandedViewController: UIViewController {
         quickTender.clipsToBounds = true
         quickTender.layer.maskedCorners = [.layerMinXMinYCorner]
         quickTender.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
-        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(menuModel!.menuItems[itemId!]!.unitPrice), for: .normal)
+        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(menuModel!.menuItems[itemId!].unitPrice), for: .normal)
         
         
         addButton.tintColor = .white
@@ -114,6 +113,6 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         menuModel.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
         tableView.reloadRows(at: [indexPath], with: .automatic)
-        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(menuModel.menuItems[itemId!]!.unitPrice), for: .normal)
+        quickTender.setTitle(Scheme.Util.twoDecimalPriceText(menuModel.menuItems[itemId!].unitPrice), for: .normal)
     }
 }

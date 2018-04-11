@@ -22,7 +22,7 @@ class DetailCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = menuModel.menuItems[indexPath.row + 1] else { fatalError() }
+        let item = menuModel.menuItems[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuItemCollectionViewCell
         cell.delegate = delegateVC!
         cell.configure(withItem: item)

@@ -9,28 +9,31 @@
 import Foundation
 
 class MenuModel {
-    var menuItems: [Int: MenuItem] = [:]
+    var savePath: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("menu")
+    }
+    
+    var menuItems: [MenuItem] = []
     var menuName: String
     
-    func resetTamplateItem(itemNumber number: Int) {
-        menuItems = resetToDefault(forItem: number, in: menuItems)
+    func toggleOptionValue(at optionIndex: Int, inPendingItem index: Int) {
+        menuItems[index].toggleSelectetState(ofOption: optionIndex)
     }
     
-    func toggleOptionValue(at optionIndex: Int, inPendingItem itemNumber: Int) {
-        menuItems[itemNumber]!.toggleSelectetState(ofOption: optionIndex)
+    func getValue(ofOption optionIndex: Int, inPendingItem index: Int) -> Bool {
+        return menuItems[index].options[optionIndex].value
     }
     
-    func getValue(ofOption optionIndex: Int, inPendingItem itemNumber: Int) -> Bool {
-        return menuItems[itemNumber]!.options[optionIndex].value
-    }
-    
-    func getOptions(inItem itemNumber: Int) -> [Option] {
-        return menuItems[itemNumber]!.options
+    func getOptions(inItem index: Int) -> [Option] {
+        return menuItems[index].options
     }
     
     init(menuName name: String) {
         self.menuName = name
-        resetTamplateItem(itemNumber: 0)
+        menuItems.append(MenuItem(named: "Rice Noodle Soup with Sliced Pork", numbered: 1, itemType: .type1, pricedAt: 11.95, image: "1.png"))
+        menuItems.append(MenuItem(named: "Rice Noodle Soup with Slow Cooked Pork", numbered: 2, itemType: .type1, pricedAt: 11.95, image: "2.png"))
+        menuItems.append(MenuItem(named: "Signature Rice Noodle Soup", numbered: 3, itemType: .type1veg, pricedAt: 11.95, image: "3.jpg"))
     }
+
 }
 

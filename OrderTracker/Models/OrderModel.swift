@@ -77,7 +77,7 @@ class OrderModel {
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let decoer = JSONDecoder()
         do {
-            let files = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            let files = try fileManager.contentsOfDirectory(at: documentsURL.appendingPathComponent("orders"), includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             for file in files {
                 let json = try Data.init(contentsOf: file)
                 let order = try decoer.decode(Order.self, from: json)
@@ -335,6 +335,8 @@ extension OrderModel {
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
+            url = url.appendingPathComponent("orders")
+            try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             url = url.appendingPathComponent("\(order.orderNumber)" + ".json")
             let data = try JSONEncoder().encode(allOrders[index])
             try data.write(to: url)

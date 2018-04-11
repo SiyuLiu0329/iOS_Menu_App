@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = .white
         
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = tabBar.bounds.insetBy(dx: -25, dy: 0)
+        visualEffectView.frame = tabBar.bounds.insetBy(dx: -500, dy: 0)
         self.tabBar.isTranslucent = true
         self.tabBar.backgroundImage = UIImage()
         self.tabBar.addSubview(visualEffectView)
@@ -36,6 +36,5 @@ class TabBarController: UITabBarController {
         drinkVC.tabBarItem = UITabBarItem(title: drinkVC.menuModel.menuName, image: nil, selectedImage: nil)
         drinkVC.delegate = menuDelegate
         viewControllers?.append(drinkVC)
-        
     }
 }
