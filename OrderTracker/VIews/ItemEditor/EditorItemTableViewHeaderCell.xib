@@ -34,32 +34,29 @@
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WgZ-r0-fus" customClass="CustomTextField" customModule="OrderTracker" customModuleProvider="target">
-                        <rect key="frame" x="259" y="15" width="186" height="30"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wg3-9q-K3p" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
+                        <rect key="frame" x="264" y="15" width="181" height="44"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="rtD-CF-rIg"/>
+                            <constraint firstAttribute="height" constant="44" id="98s-PR-LU9"/>
                         </constraints>
-                        <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="WgZ-r0-fus" secondAttribute="trailing" constant="15" id="4Cc-UJ-fkN"/>
-                    <constraint firstItem="WgZ-r0-fus" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="A3V-MX-Zkr"/>
                     <constraint firstAttribute="bottom" secondItem="7cp-sk-IOD" secondAttribute="bottom" constant="15" id="Ej0-wK-5eJ"/>
+                    <constraint firstAttribute="trailing" secondItem="wg3-9q-K3p" secondAttribute="trailing" constant="15" id="GWL-Dn-fsd"/>
                     <constraint firstItem="7cp-sk-IOD" firstAttribute="width" secondItem="XY3-UL-HVf" secondAttribute="width" id="Kg3-Di-XR5"/>
                     <constraint firstItem="XY3-UL-HVf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="MTW-1Y-vLY"/>
                     <constraint firstItem="7cp-sk-IOD" firstAttribute="centerX" secondItem="XY3-UL-HVf" secondAttribute="centerX" id="PKy-ZG-S1J"/>
                     <constraint firstAttribute="bottom" secondItem="XY3-UL-HVf" secondAttribute="bottom" constant="15" id="XaR-xe-Bhy"/>
+                    <constraint firstItem="wg3-9q-K3p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="p49-Mr-w5i"/>
+                    <constraint firstItem="wg3-9q-K3p" firstAttribute="leading" secondItem="XY3-UL-HVf" secondAttribute="trailing" constant="15" id="sar-wg-HlO"/>
                     <constraint firstItem="XY3-UL-HVf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="tUx-K5-rNc"/>
-                    <constraint firstItem="WgZ-r0-fus" firstAttribute="leading" secondItem="XY3-UL-HVf" secondAttribute="trailing" constant="10" id="yh2-cK-nOV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="itemImageView" destination="XY3-UL-HVf" id="ply-6I-9TD"/>
-                <outlet property="nameField" destination="WgZ-r0-fus" id="SE0-Jy-BwV"/>
             </connections>
             <point key="canvasLocation" x="-36" y="135"/>
         </tableViewCell>

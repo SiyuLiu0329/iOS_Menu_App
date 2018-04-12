@@ -30,6 +30,7 @@
 		DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */; };
 		DC06E2A6206F27600063642A /* SplitBillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */; };
 		DC06E2A9206F27C90063642A /* BillViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06E2A8206F27C90063642A /* BillViewDataSource.swift */; };
+		DC1153EF207F31AE00250AA7 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1153EE207F31AE00250AA7 /* TextInputView.swift */; };
 		DC19272820707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */; };
 		DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */; };
 		DC19272C20707E7B0047C46E /* SBCVCCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */; };
@@ -44,7 +45,6 @@
 		DC3478AA207EF8C200A6362B /* MenuEditorItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */; };
 		DC3478AD207F0E2E00A6362B /* EditorItemTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3478AB207F0E2E00A6362B /* EditorItemTableViewHeaderCell.swift */; };
 		DC3478AE207F0E2E00A6362B /* EditorItemTableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3478AC207F0E2E00A6362B /* EditorItemTableViewHeaderCell.xib */; };
-		DC3478B0207F299400A6362B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3478AF207F299400A6362B /* CustomTextField.swift */; };
 		DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */; };
 		DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */; };
 		DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */; };
@@ -111,6 +111,7 @@
 		DC06E2A3206F27600063642A /* SplitBillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC06E2A4206F27600063642A /* SplitBillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitBillCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC06E2A8206F27C90063642A /* BillViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewDataSource.swift; sourceTree = "<group>"; };
+		DC1153EE207F31AE00250AA7 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		DC19272720707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillCellCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		DC19272920707E7B0047C46E /* SBCVCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBCVCCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SBCVCCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuEditorItemTableViewCell.xib; sourceTree = "<group>"; };
 		DC3478AB207F0E2E00A6362B /* EditorItemTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorItemTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		DC3478AC207F0E2E00A6362B /* EditorItemTableViewHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditorItemTableViewHeaderCell.xib; sourceTree = "<group>"; };
-		DC3478AF207F299400A6362B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -195,7 +195,6 @@
 				DC1153ED207F2FD800250AA7 /* ItemEditor */,
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				2223F204203BB8250047E0D9 /* Main.storyboard */,
-				DCCB7F7D2060E4F800EA2917 /* xibs */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -318,7 +317,7 @@
 			children = (
 				DC3478A7207EF8C200A6362B /* MenuEditorItemTableViewCell.swift */,
 				DC3478AB207F0E2E00A6362B /* EditorItemTableViewHeaderCell.swift */,
-				DC3478AF207F299400A6362B /* CustomTextField.swift */,
+				DC1153EE207F31AE00250AA7 /* TextInputView.swift */,
 				DCFDE1E5207E5FF500848FB0 /* MenuItemEditorViewController.xib */,
 				DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */,
 				DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */,
@@ -374,13 +373,6 @@
 				DCCB7F7E2060E54E00EA2917 /* OptionTableViewDataSource.swift */,
 			);
 			path = MenuItemExpandedVC;
-			sourceTree = "<group>";
-		};
-		DCCB7F7D2060E4F800EA2917 /* xibs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -540,11 +532,11 @@
 				DC19272B20707E7B0047C46E /* SBCVCCollectionViewCell.swift in Sources */,
 				DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */,
 				04481F18205572E700C2CB09 /* RootViewController.swift in Sources */,
+				DC1153EF207F31AE00250AA7 /* TextInputView.swift in Sources */,
 				DC9A5FE920748730009E328E /* ClientItemCollectionViewCell.swift in Sources */,
 				040760902055049C0002B5E1 /* menuItemCollectionViewCell.swift in Sources */,
 				DCCB7F7F2060E54E00EA2917 /* OptionTableViewDataSource.swift in Sources */,
 				DC2B6743206DD30A0071F026 /* BillItemViewController.swift in Sources */,
-				DC3478B0207F299400A6362B /* CustomTextField.swift in Sources */,
 				2223F201203BB8250047E0D9 /* AppDelegate.swift in Sources */,
 				DC06E2A1206F27330063642A /* BillAllCollectionViewCell.swift in Sources */,
 				DC19272820707DD80047C46E /* SplitBillCellCollectionViewDataSource.swift in Sources */,
