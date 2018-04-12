@@ -34,7 +34,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     func configure(withItem item: MenuItem) {
         layer.cornerRadius = 5
         clipsToBounds = true
-        itemImageView.image = UIImage(named: item.imageURL)
+        itemImageView.image = item.getImage()
         backgroundColor = UIColor(red: CGFloat(item.colour.r), green: CGFloat(item.colour.g), blue: CGFloat(item.colour.b), alpha: 1)
         itemName.text = item.name
         itemNumber.text = "\(item.number)"

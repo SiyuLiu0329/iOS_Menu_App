@@ -10,7 +10,6 @@ import UIKit
 
 class ItemEditorInputCell: UITableViewCell {
     @IBOutlet weak var colourPreview: UIView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         colourPreview.layer.cornerRadius = 5

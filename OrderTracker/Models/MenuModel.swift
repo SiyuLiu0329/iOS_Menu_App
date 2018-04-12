@@ -30,9 +30,9 @@ class MenuModel {
     
     init(menuName name: String) {
         self.menuName = name
-        menuItems.append(MenuItem(named: "Rice Noodle Soup with Sliced Pork", numbered: 1, itemType: .type1, pricedAt: 11.95, image: "1.png"))
-        menuItems.append(MenuItem(named: "Rice Noodle Soup with Slow Cooked Pork", numbered: 2, itemType: .type1, pricedAt: 11.95, image: "2.png"))
-        menuItems.append(MenuItem(named: "Signature Rice Noodle Soup", numbered: 3, itemType: .type1veg, pricedAt: 11.95, image: "3.jpg"))
+        menuItems.append(MenuItem(named: "Rice Noodle Soup with Sliced Pork", numbered: 1, itemType: .type1, pricedAt: 11.95))
+        menuItems.append(MenuItem(named: "Rice Noodle Soup with Slow Cooked Pork", numbered: 2, itemType: .type1, pricedAt: 11.95))
+        menuItems.append(MenuItem(named: "Signature Rice Noodle Soup", numbered: 3, itemType: .type1veg, pricedAt: 11.95))
     }
 
 }

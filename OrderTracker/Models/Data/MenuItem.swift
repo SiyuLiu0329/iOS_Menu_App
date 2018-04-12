@@ -45,7 +45,6 @@ struct MenuItem: Equatable, Codable {
     var unitPrice: Double
     var name: String
     var comment: String?
-    var imageURL: String
     var orderIndex: Int?
     var tableNumber: Int?
     var itemHash: String?
@@ -61,16 +60,19 @@ struct MenuItem: Equatable, Codable {
     }
     var options: [Option] = []
     
-    init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double, image imageName: String) {
+    init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double) {
         self.name = name
         self.number = number
         self.unitPrice =  price
-        self.imageURL = imageName
         self.quantity = 1
         self.itemType = type
         let rgb = Scheme.getColour(withSeed: number)
         colour = themeColour(red: rgb.r, green: rgb.g, blue: rgb.b)
         addDefaultOptions()
+    }
+    
+    func getImage() -> UIImage {
+        return #imageLiteral(resourceName: "placeholder")
     }
     
     mutating private func addDefaultOptions() {

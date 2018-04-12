@@ -21,6 +21,7 @@ class ItemEditorViewController: UIViewController {
         setUpView()
         let cell = UINib(nibName: "ItemEditorInputCell", bundle: Bundle.main)
         tableView.register(cell, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "opCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
@@ -50,7 +51,7 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
         } else if section == 1 {
             return 1
         } else {
-            return itemEditorModel.options.count
+            return itemEditorModel.options.count + 1
         }
     }
     
@@ -59,7 +60,7 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
             let header = Bundle.main.loadNibNamed("EditorItemTableViewHeaderCell", owner: self, options: nil)!.first as! EditorItemTableViewHeaderCell
             header.selectionStyle = .none
             if let index = itemIndex {
-                header.itemImageView.image = UIImage(named: menuModel.menuItems[index].imageURL)
+                header.itemImageView.image = menuModel.menuItems[index].getImage()
             } else {
                 // new item, use place holder image
             }
@@ -81,13 +82,23 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             // section for options
-            let cell = UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "opCell", for: indexPath)
             cell.selectionStyle = .none
             cell.clipsToBounds = true
             if indexPath.row == 0 {
+                cell.textLabel?.text = "Add Option"
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.textColor = Scheme.editorThemeColour
+            } else {
+                cell.textLabel?.text = itemEditorModel.options[indexPath.row - 1].description
+                cell.accessoryType = .none
+                cell.textLabel?.tintColor = .black
+            }
+            
+            if indexPath.row == 0 {
                 cell.layer.cornerRadius = 10
                 cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            } else if indexPath.row == itemEditorModel.options.count - 1 {
+            } else if indexPath.row == itemEditorModel.options.count {
                 cell.layer.cornerRadius = 10
                 cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
             } else {

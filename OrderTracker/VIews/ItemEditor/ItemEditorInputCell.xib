@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,27 +20,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ho-Yp-gS2">
-                        <rect key="frame" x="92" y="8" width="188" height="49.5"/>
+                        <rect key="frame" x="8" y="8" width="304" height="50"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.092869963400000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="FoB-JC-ABU"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Colour:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g30-0X-B0X">
-                        <rect key="frame" x="16" y="19" width="56" height="28"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="1Ho-Yp-gS2" secondAttribute="trailing" constant="40" id="263-Fp-1Tv"/>
-                    <constraint firstItem="g30-0X-B0X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="3sg-GB-oZp"/>
+                    <constraint firstAttribute="trailing" secondItem="1Ho-Yp-gS2" secondAttribute="trailing" constant="8" id="263-Fp-1Tv"/>
                     <constraint firstAttribute="bottom" secondItem="1Ho-Yp-gS2" secondAttribute="bottom" constant="8" id="4FN-UH-b9A"/>
                     <constraint firstItem="1Ho-Yp-gS2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="8BH-hq-wlC"/>
-                    <constraint firstItem="1Ho-Yp-gS2" firstAttribute="leading" secondItem="g30-0X-B0X" secondAttribute="trailing" constant="20" id="GAg-cD-ast"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="g30-0X-B0X" secondAttribute="bottom" constant="8" id="H1V-yZ-2ZL"/>
-                    <constraint firstItem="g30-0X-B0X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="IX9-7h-TOF"/>
+                    <constraint firstItem="1Ho-Yp-gS2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="idU-NO-jeZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
