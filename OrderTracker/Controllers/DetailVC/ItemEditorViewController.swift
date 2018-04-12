@@ -14,15 +14,14 @@ class ItemEditorViewController: UIViewController {
     var type: ItemEditorOperationType!
     var menuModel: MenuModel!
     var itemIndex: Int?
-    let itemEditorModel = ItemEditorModel()
+    
     private var dataSource: ItemEditorViewControllerDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
         let cell = UINib(nibName: "ItemEditorInputCell", bundle: Bundle.main)
         tableView.register(cell, forCellReuseIdentifier: "cell")
-        dataSource = ItemEditorViewControllerDataSource(editorModel: itemEditorModel, itemIndex: itemIndex!)
+        setUpView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "opCell")
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -39,10 +38,12 @@ class ItemEditorViewController: UIViewController {
         case .addNew(let newIndex):
             navigationController?.topViewController?.title = "New Item"
             itemIndex = newIndex
+            dataSource = ItemEditorViewControllerDataSource(itemIndex: itemIndex!)
         case .editExisting(itemIndex: let index):
             itemIndex = index
             navigationController?.topViewController?.title = menuModel.menuItems[index].name
-            itemEditorModel.unpackItem(menuModel.menuItems[itemIndex!])
+            dataSource = ItemEditorViewControllerDataSource(itemIndex: itemIndex!)
+            dataSource.itemEditorModel.unpackItem(menuModel.menuItems[itemIndex!])
         }
     }
 }
@@ -87,10 +88,14 @@ extension ItemEditorViewController: UITableViewDelegate {
             navCtrl.popoverPresentationController?.sourceRect = sender.bounds
             
             colorSelectionController.delegate = self
-            colorSelectionController.color = itemEditorModel.colour ?? UIColor.red
+            colorSelectionController.color = dataSource.itemEditorModel.colour ?? UIColor.red
             
             self.present(navCtrl, animated: true, completion: nil)
-            
+            return
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 0 {
+            print("add")
         }
         
     }
@@ -98,7 +103,7 @@ extension ItemEditorViewController: UITableViewDelegate {
 
 extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
     func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        itemEditorModel.colour = color
+        dataSource.itemEditorModel.colour = color
         tableView.reloadSections([1], with: .none)
     }
 }

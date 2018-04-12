@@ -73,6 +73,16 @@ struct MenuItem: Equatable, Codable {
         addDefaultOptions()
     }
     
+    mutating func deselectAllOptions() {
+        var newOptions: [Option] = []
+        options.forEach { (option) in
+            var op = option
+            op.value = false
+            newOptions.append(op)
+        }
+        options = newOptions
+    }
+    
     func getImage() -> UIImage {
         return #imageLiteral(resourceName: "placeholder")
     }

@@ -35,6 +35,7 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        menuModel.menuItems[itemId!].deselectAllOptions()
         if popoverDelegate != nil {
             popoverDelegate!.popoverDidDisappear()
         }
@@ -54,7 +55,7 @@ class MenuItemExpandedViewController: UIViewController {
         optionTableView.dataSource = optionDataSource
         quickTender.tintColor = .white
         quickTender.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        quickTender.layer.cornerRadius = 5
+        quickTender.layer.cornerRadius = 10
         quickTender.clipsToBounds = true
         quickTender.layer.maskedCorners = [.layerMinXMinYCorner]
         quickTender.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
@@ -63,11 +64,11 @@ class MenuItemExpandedViewController: UIViewController {
         
         addButton.tintColor = .white
         addButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        addButton.layer.cornerRadius = 5
+        addButton.layer.cornerRadius = 10
         addButton.clipsToBounds = true
         addButton.layer.maskedCorners = [.layerMaxXMinYCorner]
         // rounded window
-        contentView.layer.cornerRadius = 5
+        contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
         
         let rgb = menuModel.menuItems[itemId!].colour

@@ -9,10 +9,9 @@
 import UIKit
 
 class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
-    var itemEditorModel: ItemEditorModel
+    let itemEditorModel = ItemEditorModel()
     var itemIndex: Int
-    init(editorModel model: ItemEditorModel, itemIndex index: Int) {
-        itemEditorModel = model
+    init(itemIndex index: Int) {
         itemIndex = index
     }
     
