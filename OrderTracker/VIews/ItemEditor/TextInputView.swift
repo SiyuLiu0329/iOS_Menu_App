@@ -24,6 +24,7 @@ class TextInputView: UIView {
         textField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         textField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        textField.font = UIFont.systemFont(ofSize: 17)
 //        textField.textAlignment = .center
         self.inputTextFiled = textField
         
@@ -31,7 +32,7 @@ class TextInputView: UIView {
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = 0.25
         self.layer.shadowRadius = 0.0
         
         let title = UILabel()
@@ -41,6 +42,7 @@ class TextInputView: UIView {
         title.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
         title.textColor = Scheme.editorThemeColour
+        title.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         self.titleLabel = title
         
     }

@@ -21,59 +21,57 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XY3-UL-HVf">
-                        <rect key="frame" x="15" y="15" width="234" height="175.5"/>
+                        <rect key="frame" x="15" y="15.5" width="256" height="192"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="XY3-UL-HVf" secondAttribute="height" multiplier="4:3" id="oH9-fn-eww"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cp-sk-IOD">
-                        <rect key="frame" x="15" y="148.5" width="234" height="42"/>
+                        <rect key="frame" x="15" y="165.5" width="256" height="42"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <state key="normal" title="Edit">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wg3-9q-K3p" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
-                        <rect key="frame" x="264" y="15" width="181" height="44"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="98s-PR-LU9"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTH-Hk-omt" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
-                        <rect key="frame" x="264" y="67" width="181" height="44"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="1mL-bG-MDx"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="cYP-ao-Voj"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RJ-tF-iEQ" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
-                        <rect key="frame" x="264" y="119" width="181" height="44"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="tYe-J9-cSK"/>
-                            <constraint firstAttribute="height" constant="44" id="txo-UR-Zkt"/>
-                        </constraints>
-                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="tAZ-6b-ckB">
+                        <rect key="frame" x="286" y="20.5" width="159" height="182"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wg3-9q-K3p" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="159" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="98s-PR-LU9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTH-Hk-omt" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="69" width="159" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="cYP-ao-Voj"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RJ-tF-iEQ" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="138" width="159" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="tYe-J9-cSK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="tAZ-6b-ckB" firstAttribute="leading" secondItem="XY3-UL-HVf" secondAttribute="trailing" constant="15" id="4Ua-Rv-acn"/>
+                    <constraint firstAttribute="bottom" secondItem="tAZ-6b-ckB" secondAttribute="bottom" constant="20" id="8jf-xP-fig"/>
                     <constraint firstAttribute="bottom" secondItem="7cp-sk-IOD" secondAttribute="bottom" constant="15" id="Ej0-wK-5eJ"/>
-                    <constraint firstAttribute="trailing" secondItem="wg3-9q-K3p" secondAttribute="trailing" constant="15" id="GWL-Dn-fsd"/>
-                    <constraint firstItem="MTH-Hk-omt" firstAttribute="top" secondItem="wg3-9q-K3p" secondAttribute="bottom" constant="8" id="Ha1-yC-wdk"/>
-                    <constraint firstAttribute="trailing" secondItem="MTH-Hk-omt" secondAttribute="trailing" constant="15" id="Iai-Ol-IOg"/>
                     <constraint firstItem="7cp-sk-IOD" firstAttribute="width" secondItem="XY3-UL-HVf" secondAttribute="width" id="Kg3-Di-XR5"/>
                     <constraint firstItem="XY3-UL-HVf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="MTW-1Y-vLY"/>
-                    <constraint firstItem="MTH-Hk-omt" firstAttribute="leading" secondItem="XY3-UL-HVf" secondAttribute="trailing" constant="15" id="PEm-nW-E8a"/>
                     <constraint firstItem="7cp-sk-IOD" firstAttribute="centerX" secondItem="XY3-UL-HVf" secondAttribute="centerX" id="PKy-ZG-S1J"/>
                     <constraint firstAttribute="bottom" secondItem="XY3-UL-HVf" secondAttribute="bottom" constant="15" id="XaR-xe-Bhy"/>
-                    <constraint firstItem="5RJ-tF-iEQ" firstAttribute="top" secondItem="MTH-Hk-omt" secondAttribute="bottom" constant="8" id="f74-Ii-35k"/>
-                    <constraint firstAttribute="trailing" secondItem="5RJ-tF-iEQ" secondAttribute="trailing" constant="15" id="gAU-EO-HeZ"/>
-                    <constraint firstItem="wg3-9q-K3p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="p49-Mr-w5i"/>
-                    <constraint firstItem="5RJ-tF-iEQ" firstAttribute="leading" secondItem="XY3-UL-HVf" secondAttribute="trailing" constant="15" id="raa-3Q-kPl"/>
-                    <constraint firstItem="wg3-9q-K3p" firstAttribute="leading" secondItem="XY3-UL-HVf" secondAttribute="trailing" constant="15" id="sar-wg-HlO"/>
+                    <constraint firstItem="tAZ-6b-ckB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="lJX-Hj-CX4"/>
                     <constraint firstItem="XY3-UL-HVf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="tUx-K5-rNc"/>
+                    <constraint firstAttribute="trailing" secondItem="tAZ-6b-ckB" secondAttribute="trailing" constant="15" id="txO-Kv-xyB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
