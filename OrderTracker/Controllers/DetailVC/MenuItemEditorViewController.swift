@@ -31,7 +31,7 @@ class MenuItemEditorViewController: UIViewController {
     
     private func setupBarButtons() {
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 140/255, blue: 200/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = Scheme.editorThemeColour
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPressed(_:)))
         addButton.tintColor = .white
         self.navigationItem.rightBarButtonItem = addButton

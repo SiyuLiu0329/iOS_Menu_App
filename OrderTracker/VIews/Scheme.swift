@@ -19,6 +19,7 @@ struct Scheme {
     static let billViewCashSelectedColour = UIColor(red: 131/255, green: 37/255, blue: 97/255, alpha: 1)
     static let billViewCardSelectedColour = UIColor(red: 0, green: 51/255, blue: 102/255, alpha: 1)
     static let splitBillSelectedColour = UIColor(red: 37/255, green: 154/255, blue: 67/255, alpha: 1)
+    static let editorThemeColour = UIColor(red: 0/255, green: 140/255, blue: 200/255, alpha: 1)
     struct AttributedText {
         static let navigationControllerTitleAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white,

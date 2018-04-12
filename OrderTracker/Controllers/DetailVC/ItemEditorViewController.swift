@@ -53,6 +53,7 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 // new item, use place holder image
             }
+            header.configure()
             return header
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!

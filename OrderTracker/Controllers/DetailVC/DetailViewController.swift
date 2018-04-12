@@ -84,7 +84,6 @@ extension DetailViewController: ItemCellDelegate {
         destinationVC.view.backgroundColor = .clear
         destinationVC.delegate = delegate
         destinationVC.popoverDelegate = self // to animate dim
-        destinationVC.modalTransitionStyle = .crossDissolve
         present(destinationVC, animated: true, completion: nil)
     }
     
