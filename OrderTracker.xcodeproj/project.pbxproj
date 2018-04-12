@@ -62,6 +62,9 @@
 		DCCE80AB207378A800EF85A9 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AA207378A800EF85A9 /* ClientViewController.swift */; };
 		DCCE80AD20737B8B00EF85A9 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AC20737B8B00EF85A9 /* ClientModel.swift */; };
 		DCCE80AF2073846B00EF85A9 /* CommunicationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE80AE2073846B00EF85A9 /* CommunicationProtocol.swift */; };
+		DCD5AC38207F69A400529890 /* ItemEditorInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD5AC36207F69A400529890 /* ItemEditorInputCell.swift */; };
+		DCD5AC39207F69A400529890 /* ItemEditorInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD5AC37207F69A400529890 /* ItemEditorInputCell.xib */; };
+		DCD5AC3B207F764100529890 /* ItemEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD5AC3A207F764100529890 /* ItemEditorModel.swift */; };
 		DCFDE1E6207E5FF500848FB0 /* MenuItemEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDE1E4207E5FF500848FB0 /* MenuItemEditorViewController.swift */; };
 		DCFDE1E7207E5FF500848FB0 /* MenuItemEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCFDE1E5207E5FF500848FB0 /* MenuItemEditorViewController.xib */; };
 /* End PBXBuildFile section */
@@ -143,6 +146,9 @@
 		DCCE80AA207378A800EF85A9 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		DCCE80AC20737B8B00EF85A9 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
 		DCCE80AE2073846B00EF85A9 /* CommunicationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationProtocol.swift; sourceTree = "<group>"; };
+		DCD5AC36207F69A400529890 /* ItemEditorInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorInputCell.swift; sourceTree = "<group>"; };
+		DCD5AC37207F69A400529890 /* ItemEditorInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemEditorInputCell.xib; sourceTree = "<group>"; };
+		DCD5AC3A207F764100529890 /* ItemEditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorModel.swift; sourceTree = "<group>"; };
 		DCFDE1E4207E5FF500848FB0 /* MenuItemEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEditorViewController.swift; sourceTree = "<group>"; };
 		DCFDE1E5207E5FF500848FB0 /* MenuItemEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemEditorViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +264,7 @@
 				DCCE80A820736CFD00EF85A9 /* ConnectionHandler.swift */,
 				DC4F71072070788A00A00FA1 /* BillModel.swift */,
 				DCC1ADCA2072F88E00C38F9E /* MenuModel.swift */,
+				DCD5AC3A207F764100529890 /* ItemEditorModel.swift */,
 				222AEA36204044C700F81074 /* Data */,
 			);
 			path = Models;
@@ -318,10 +325,12 @@
 				DC3478A7207EF8C200A6362B /* MenuEditorItemTableViewCell.swift */,
 				DC3478AB207F0E2E00A6362B /* EditorItemTableViewHeaderCell.swift */,
 				DC1153EE207F31AE00250AA7 /* TextInputView.swift */,
+				DCD5AC36207F69A400529890 /* ItemEditorInputCell.swift */,
 				DCFDE1E5207E5FF500848FB0 /* MenuItemEditorViewController.xib */,
 				DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */,
 				DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */,
 				DC3478AC207F0E2E00A6362B /* EditorItemTableViewHeaderCell.xib */,
+				DCD5AC37207F69A400529890 /* ItemEditorInputCell.xib */,
 			);
 			path = ItemEditor;
 			sourceTree = "<group>";
@@ -350,9 +359,9 @@
 			children = (
 				04076095205563AF0002B5E1 /* TabBarController.swift */,
 				04C101C02054CCB400255361 /* DetailViewController.swift */,
+				DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */,
 				DCFDE1E4207E5FF500848FB0 /* MenuItemEditorViewController.swift */,
 				DC3478A3207E71FD00A6362B /* ItemEditorViewController.swift */,
-				DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */,
 			);
 			path = DetailVC;
 			sourceTree = "<group>";
@@ -497,6 +506,7 @@
 				DC3478AE207F0E2E00A6362B /* EditorItemTableViewHeaderCell.xib in Resources */,
 				DC9A6F082073DC4600E4E1BD /* ClientOrderCollectionViewCell.xib in Resources */,
 				DC9A5FEA20748730009E328E /* ClientItemCollectionViewCell.xib in Resources */,
+				DCD5AC39207F69A400529890 /* ItemEditorInputCell.xib in Resources */,
 				DC19272C20707E7B0047C46E /* SBCVCCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,11 +565,13 @@
 				04C101C32054CD9300255361 /* OrderViewController.swift in Sources */,
 				DCCE80AF2073846B00EF85A9 /* CommunicationProtocol.swift in Sources */,
 				DC06E2A9206F27C90063642A /* BillViewDataSource.swift in Sources */,
+				DCD5AC38207F69A400529890 /* ItemEditorInputCell.swift in Sources */,
 				DCCB7F752060DB9B00EA2917 /* MenuItemExpandedViewController.swift in Sources */,
 				0407608E2054DAD50002B5E1 /* ItemCollectionViewCell.swift in Sources */,
 				04076096205563AF0002B5E1 /* TabBarController.swift in Sources */,
 				DC3478A5207E71FD00A6362B /* ItemEditorViewController.swift in Sources */,
 				DC9A6F072073DC4600E4E1BD /* ClientOrderCollectionViewCell.swift in Sources */,
+				DCD5AC3B207F764100529890 /* ItemEditorModel.swift in Sources */,
 				0407609220555EBF0002B5E1 /* Scheme.swift in Sources */,
 				DC25BDBD2063580600B9C8E3 /* OptionTableViewCell.swift in Sources */,
 				DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */,
