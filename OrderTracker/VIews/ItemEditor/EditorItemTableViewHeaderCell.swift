@@ -10,6 +10,7 @@ import UIKit
 
 class EditorItemTableViewHeaderCell: UITableViewCell {
 
+    @IBOutlet weak var numberField: TextInputView!
     @IBOutlet weak var nameField: TextInputView!
     @IBOutlet weak var itemImageView: UIImageView!
     override func awakeFromNib() {
@@ -17,7 +18,6 @@ class EditorItemTableViewHeaderCell: UITableViewCell {
         layer.cornerRadius = 10
         itemImageView.layer.cornerRadius = 5
         itemImageView.clipsToBounds = true
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,6 +25,8 @@ class EditorItemTableViewHeaderCell: UITableViewCell {
     }
     
     func configure() {
-        nameField.setTitle("Item name:")
+        nameField.setTitle("Item Name:")
+        numberField.setTitle("Number:")
+        numberField.inputTextFiled.keyboardType = .numberPad
     }
 }
