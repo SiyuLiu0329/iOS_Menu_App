@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EFColorPicker
 
 class ItemEditorViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -67,9 +68,16 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             // section for colours
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemEditorInputCell
+            cell.selectionStyle = .none
             cell.clipsToBounds = true
             cell.accessoryType = .disclosureIndicator
             cell.layer.cornerRadius = 10
+            if let colour = itemEditorModel.colour {
+                cell.setColour(colour)
+            } else {
+                cell.setColour(UIColor(red: 1, green: 0, blue: 0, alpha: 1))
+            }
+            
             return cell
         } else {
             // section for options
@@ -90,7 +98,22 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.section == 1 else { return }
+        if indexPath.section == 1 {
+            let pickerVC = EFColorSelectionViewController()
+            pickerVC.delegate = self
+            if let colour = itemEditorModel.colour {
+                pickerVC.color = colour
+            } else {
+                pickerVC.color = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+            }
+            
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            navigationController?.pushViewController(pickerVC, animated: true)
+            
+        }
         
     }
     
@@ -120,4 +143,11 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
         return UIView()
     }
 
+}
+
+extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
+    func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+        itemEditorModel.colour = color
+        tableView.reloadSections([1], with: .automatic)
+    }
 }
