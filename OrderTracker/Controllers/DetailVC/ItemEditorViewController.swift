@@ -102,6 +102,13 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.tintColor = .black
             }
             
+            if itemEditorModel.options.count == 0 {
+                // if this cell is the only cell, all four corners are rounded
+                cell.layer.cornerRadius = 10
+                cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                return cell
+            }
+            
             if indexPath.row == 0 {
                 cell.layer.cornerRadius = 10
                 cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -117,19 +124,19 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let pickerVC = EFColorSelectionViewController()
-            pickerVC.delegate = self
-            if let colour = itemEditorModel.colour {
-                pickerVC.color = colour
-            } else {
-                pickerVC.color = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
-            }
+            let sender = tableView.cellForRow(at: indexPath)!
+            let colorSelectionController = EFColorSelectionViewController()
+            let navCtrl = UINavigationController(rootViewController: colorSelectionController)
+            navCtrl.navigationBar.backgroundColor = UIColor.white
+            navCtrl.navigationBar.isTranslucent = false
+            navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
+            navCtrl.popoverPresentationController?.sourceView = sender
+            navCtrl.popoverPresentationController?.sourceRect = sender.bounds
             
+            colorSelectionController.delegate = self
+            colorSelectionController.color = itemEditorModel.colour ?? UIColor.red
             
-            let backItem = UIBarButtonItem()
-            backItem.title = "Back"
-            navigationItem.backBarButtonItem = backItem
-            navigationController?.pushViewController(pickerVC, animated: true)
+            self.present(navCtrl, animated: true, completion: nil)
             
         }
         
