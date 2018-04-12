@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct ItemEditorModel {
+class ItemEditorModel {
     var name: String?
     var number: Int?
     var price: Double?
@@ -17,7 +17,7 @@ struct ItemEditorModel {
     var colour: UIColor?
     var image: UIImage?
     
-    mutating func unpackItem(_ item: MenuItem) {
+    func unpackItem(_ item: MenuItem) {
         name = item.name
         number = item.number
         price = item.unitPrice

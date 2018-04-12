@@ -14,7 +14,7 @@ class ItemEditorViewController: UIViewController {
     var type: ItemEditorOperationType!
     var menuModel: MenuModel!
     var itemIndex: Int?
-    var itemEditorModel = ItemEditorModel()
+    let itemEditorModel = ItemEditorModel()
     private var dataSource: ItemEditorViewControllerDataSource!
     
     override func viewDidLoad() {
@@ -99,6 +99,6 @@ extension ItemEditorViewController: UITableViewDelegate {
 extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
     func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
         itemEditorModel.colour = color
-        tableView.reloadSections([1], with: .automatic)
+        tableView.reloadSections([1], with: .none)
     }
 }
