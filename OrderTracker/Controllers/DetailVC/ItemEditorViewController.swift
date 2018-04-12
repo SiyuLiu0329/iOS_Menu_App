@@ -14,13 +14,15 @@ class ItemEditorViewController: UIViewController {
     var menuModel: MenuModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUpTitle()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setUpTitle() {
+        switch type! {
+        case .addNew:
+            navigationController?.topViewController?.title = "New Item"
+        case .editExisting(itemIndex: let index):
+            navigationController?.topViewController?.title = menuModel.menuItems[index].name
+        }
     }
-
 }

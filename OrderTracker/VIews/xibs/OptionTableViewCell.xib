@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,47 +20,34 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELs-vn-Uec">
-                        <rect key="frame" x="44" y="0.0" width="250" height="44"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELs-vn-Uec">
+                        <rect key="frame" x="20" y="0.0" width="200" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="250" id="UHf-WE-TWQ"/>
+                            <constraint firstAttribute="width" constant="200" id="zlX-Oc-TtW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erd-er-kdK">
-                        <rect key="frame" x="314" y="11" width="161" height="22"/>
+                        <rect key="frame" x="240" y="11" width="235" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcj-DJ-3gW">
-                        <rect key="frame" x="10" y="10" width="24" height="23.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="24" id="a4C-5T-wyX"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="ELs-vn-Uec" secondAttribute="bottom" id="5bt-gE-LlA"/>
-                    <constraint firstAttribute="bottom" secondItem="jcj-DJ-3gW" secondAttribute="bottom" constant="10" id="5sn-zg-asx"/>
                     <constraint firstItem="Erd-er-kdK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="8CU-RJ-Z8R"/>
                     <constraint firstItem="Erd-er-kdK" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="9gD-IK-cbR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Erd-er-kdK" secondAttribute="trailing" constant="5" id="JGP-YR-m2G"/>
+                    <constraint firstItem="ELs-vn-Uec" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="cJn-cw-mul"/>
                     <constraint firstItem="Erd-er-kdK" firstAttribute="leading" secondItem="ELs-vn-Uec" secondAttribute="trailing" constant="20" id="eHX-5X-aNi"/>
-                    <constraint firstItem="jcj-DJ-3gW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="p8D-Td-HWA"/>
-                    <constraint firstItem="ELs-vn-Uec" firstAttribute="leading" secondItem="jcj-DJ-3gW" secondAttribute="trailing" constant="10" id="qUU-dw-vYj"/>
                     <constraint firstItem="ELs-vn-Uec" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vcd-K7-Bc7"/>
-                    <constraint firstItem="jcj-DJ-3gW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="xMY-FU-UL5"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="checkmark" destination="jcj-DJ-3gW" id="tLB-wD-KMZ"/>
                 <outlet property="optionName" destination="ELs-vn-Uec" id="loh-rn-S9J"/>
                 <outlet property="priceLabel" destination="Erd-er-kdK" id="5lb-ge-YCp"/>
             </connections>

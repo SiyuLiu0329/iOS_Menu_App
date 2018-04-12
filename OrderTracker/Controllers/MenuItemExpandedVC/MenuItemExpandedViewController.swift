@@ -21,7 +21,6 @@ class MenuItemExpandedViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     weak var delegate: MenuDelegate? // will perform similar actions to buttons in detailVC
     weak var popoverDelegate: MenuItemExpandedViewControllerDismissedDelegate? // used to dim / light background view
-    private var item: MenuItem?
     var menuModel: MenuModel!
     var itemId: Int?
     var themeColour: UIColor?
@@ -71,7 +70,7 @@ class MenuItemExpandedViewController: UIViewController {
         contentView.layer.cornerRadius = 5
         contentView.clipsToBounds = true
         
-        let rgb = Scheme.getColour(withSeed: itemId!)
+        let rgb = menuModel.menuItems[itemId!].colour
         themeColour = UIColor(red: CGFloat(rgb.r), green:  CGFloat(rgb.g), blue:  CGFloat(rgb.b), alpha: 1)
         
         // configure nav bar (tint, text and text colour)
@@ -92,9 +91,7 @@ class MenuItemExpandedViewController: UIViewController {
         
         optionTableView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         optionTableView.separatorColor = UIColor.clear
-        
-        guard item != nil else { return }
-        navBar.topItem?.title = item!.name
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {

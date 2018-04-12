@@ -12,7 +12,6 @@ class OptionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var optionName: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var checkmark: UILabel!
     var value: Bool! {
         willSet {
             if newValue {
@@ -26,16 +25,11 @@ class OptionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         optionName.textColor = .white
         priceLabel.textColor = .white
+        tintColor = .white
         
         backgroundColor = .clear
         optionName.font = UIFont.systemFont(ofSize: 17, weight: .light)
         priceLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
-        checkmark.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        
-        checkmark.layer.cornerRadius = 5
-        checkmark.layer.borderColor = UIColor.white.cgColor
-        checkmark.layer.borderWidth = 1
-        checkmark.clipsToBounds = true
         selectedBackgroundView = UIView()
         
         // Initialization code
@@ -48,12 +42,12 @@ class OptionTableViewCell: UITableViewCell {
     }
     
     func select() {
-        checkmark.textColor = .white
+        accessoryType = .checkmark
         backgroundColor = UIColor.white.withAlphaComponent(0.3)
     }
     
     func deselecte() {
-        checkmark.textColor = .clear
+        accessoryType = .none
         backgroundColor = .clear
     }
     

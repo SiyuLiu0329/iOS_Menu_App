@@ -40,6 +40,8 @@
 		DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */; };
 		DC3478A5207E71FD00A6362B /* ItemEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3478A3207E71FD00A6362B /* ItemEditorViewController.swift */; };
 		DC3478A6207E71FD00A6362B /* ItemEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */; };
+		DC3478A9207EF8C200A6362B /* MenuEditorItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3478A7207EF8C200A6362B /* MenuEditorItemTableViewCell.swift */; };
+		DC3478AA207EF8C200A6362B /* MenuEditorItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */; };
 		DC37FA91205EB073004DC594 /* OrderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */; };
 		DC37FA94205EB39D004DC594 /* OrderItemViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */; };
 		DC37FA96205EBA52004DC594 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */; };
@@ -116,6 +118,8 @@
 		DC2CE391206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemPlaceHolderCell.swift; sourceTree = "<group>"; };
 		DC3478A3207E71FD00A6362B /* ItemEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorViewController.swift; sourceTree = "<group>"; };
 		DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemEditorViewController.xib; sourceTree = "<group>"; };
+		DC3478A7207EF8C200A6362B /* MenuEditorItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEditorItemTableViewCell.swift; sourceTree = "<group>"; };
+		DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuEditorItemTableViewCell.xib; sourceTree = "<group>"; };
 		DC37FA90205EB073004DC594 /* OrderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA93205EB39D004DC594 /* OrderItemViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewControllerDataSource.swift; sourceTree = "<group>"; };
 		DC37FA95205EBA52004DC594 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				2223F204203BB8250047E0D9 /* Main.storyboard */,
 				DC9A6F052073DC4600E4E1BD /* ClientOrderCollectionViewCell.swift */,
 				DC9A5FE720748730009E328E /* ClientItemCollectionViewCell.swift */,
+				DC3478A7207EF8C200A6362B /* MenuEditorItemTableViewCell.swift */,
 				2223F209203BB8250047E0D9 /* LaunchScreen.storyboard */,
 				DCCB7F7D2060E4F800EA2917 /* xibs */,
 			);
@@ -338,6 +343,7 @@
 				DC19272A20707E7B0047C46E /* SBCVCCollectionViewCell.xib */,
 				DCCB7F742060DB9B00EA2917 /* MenuItemExpandedViewController.xib */,
 				DCFDE1E5207E5FF500848FB0 /* MenuItemEditorViewController.xib */,
+				DC3478A8207EF8C200A6362B /* MenuEditorItemTableViewCell.xib */,
 				DC3478A4207E71FD00A6362B /* ItemEditorViewController.xib */,
 				DC25BDBC2063580600B9C8E3 /* OptionTableViewCell.xib */,
 			);
@@ -456,6 +462,7 @@
 				2223F20B203BB8250047E0D9 /* LaunchScreen.storyboard in Resources */,
 				DC3478A6207E71FD00A6362B /* ItemEditorViewController.xib in Resources */,
 				2223F208203BB8250047E0D9 /* Assets.xcassets in Resources */,
+				DC3478AA207EF8C200A6362B /* MenuEditorItemTableViewCell.xib in Resources */,
 				2223F206203BB8250047E0D9 /* Main.storyboard in Resources */,
 				DCFDE1E7207E5FF500848FB0 /* MenuItemEditorViewController.xib in Resources */,
 				DC2B6744206DD30A0071F026 /* BillItemViewController.xib in Resources */,
@@ -511,6 +518,7 @@
 				0407608A2054DA3B0002B5E1 /* OrderItemViewController.swift in Sources */,
 				DCCE80AB207378A800EF85A9 /* ClientViewController.swift in Sources */,
 				DC2CE392206BC3F4005A8997 /* OrderItemPlaceHolderCell.swift in Sources */,
+				DC3478A9207EF8C200A6362B /* MenuEditorItemTableViewCell.swift in Sources */,
 				DCCE80A920736CFD00EF85A9 /* ConnectionHandler.swift in Sources */,
 				DCCE80AD20737B8B00EF85A9 /* ClientModel.swift in Sources */,
 				DC06E2A5206F27600063642A /* SplitBillCollectionViewCell.swift in Sources */,

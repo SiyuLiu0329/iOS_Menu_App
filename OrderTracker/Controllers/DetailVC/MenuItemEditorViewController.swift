@@ -19,22 +19,28 @@ class MenuItemEditorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let cell = UINib(nibName: "MenuEditorItemTableViewCell", bundle: Bundle.main)
+        tableView.register(cell, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clear
+        
         setupBarButtons()
         
     }
     
     private func setupBarButtons() {
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 140/255, blue: 200/255, alpha: 1)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddButtonPressed(_:)))
-        addButton.tintColor = .darkGray
+        addButton.tintColor = .white
         self.navigationItem.rightBarButtonItem = addButton
         navigationController?.topViewController?.title = menuModel.menuName
+//        navigationController?.navigationBar.titleTextAttributes = [Foregra: UIColor.white]
+        navigationController?.navigationBar.barStyle = .blackTranslucent
         let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.onCloseButtonPressed(_:)))
         self.navigationItem.leftBarButtonItem = closeButton
-        closeButton.tintColor = .darkGray
+        closeButton.tintColor = .white
     }
     
     @objc func onCloseButtonPressed(_ sender: Any?) {
@@ -59,9 +65,14 @@ extension MenuItemEditorViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuEditorItemTableViewCell
         cell.textLabel?.text = menuModel.menuItems[indexPath.row].name
+        cell.accessoryType = .disclosureIndicator
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
