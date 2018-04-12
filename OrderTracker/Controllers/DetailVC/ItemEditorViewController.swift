@@ -86,7 +86,6 @@ extension ItemEditorViewController: UITableViewDelegate {
             navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
             navCtrl.popoverPresentationController?.sourceView = sender
             navCtrl.popoverPresentationController?.sourceRect = sender.bounds
-            
             colorSelectionController.delegate = self
             colorSelectionController.color = dataSource.itemEditorModel.colour ?? UIColor.red
             
@@ -95,7 +94,10 @@ extension ItemEditorViewController: UITableViewDelegate {
         }
         
         if indexPath.section == 2 && indexPath.row == 0 {
-            print("add")
+            let newOptionVC = NewOptionViewController(nibName: "NewOptionViewController", bundle: Bundle.main)
+            newOptionVC.delegate = self
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+            navigationController?.pushViewController(newOptionVC, animated: true)
         }
         
     }
@@ -105,5 +107,11 @@ extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
     func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
         dataSource.itemEditorModel.colour = color
         tableView.reloadSections([1], with: .none)
+    }
+}
+
+extension ItemEditorViewController: NewOptionViewControllerDelegate {
+    func didCreateNewOption(named name: String, pricedAt price: Double) {
+        print(name, price)
     }
 }

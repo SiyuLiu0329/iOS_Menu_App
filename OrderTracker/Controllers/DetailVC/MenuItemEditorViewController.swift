@@ -55,6 +55,7 @@ class MenuItemEditorViewController: UIViewController {
         let editor = ItemEditorViewController()
         editor.menuModel = menuModel
         editor.type = type
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(editor, animated: true)
     }
 }

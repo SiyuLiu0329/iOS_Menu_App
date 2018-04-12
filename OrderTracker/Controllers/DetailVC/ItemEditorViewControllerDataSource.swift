@@ -89,7 +89,4 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
             return cell
         }
     }
-    
-
-    
 }
