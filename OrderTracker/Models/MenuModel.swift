@@ -10,7 +10,7 @@ import Foundation
 
 class MenuModel {
     var savePath: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("menu")
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("menu").appendingPathComponent(menuName)
     }
     
     var menuItems: [MenuItem] = []
@@ -30,9 +30,9 @@ class MenuModel {
     
     init(menuName name: String) {
         self.menuName = name
-        menuItems.append(MenuItem(named: "Rice Noodle Soup with Sliced Pork", numbered: 1, itemType: .type1, pricedAt: 11.95))
-        menuItems.append(MenuItem(named: "Rice Noodle Soup with Slow Cooked Pork", numbered: 2, itemType: .type1, pricedAt: 11.95))
-        menuItems.append(MenuItem(named: "Signature Rice Noodle Soup", numbered: 3, itemType: .type1veg, pricedAt: 11.95))
+        menuItems.append(MenuItem(named: "Rice Noodle Soup with Sliced Pork", numbered: 1, itemType: .type1, pricedAt: 11.95, hash: Scheme.Util.randomString(length: 8)))
+        menuItems.append(MenuItem(named: "Rice Noodle Soup with Slow Cooked Pork", numbered: 2, itemType: .type1, pricedAt: 11.95, hash: Scheme.Util.randomString(length: 8)))
+        menuItems.append(MenuItem(named: "Signature Rice Noodle Soup", numbered: 3, itemType: .type1veg, pricedAt: 11.95, hash: Scheme.Util.randomString(length: 8)))
     }
 
 }

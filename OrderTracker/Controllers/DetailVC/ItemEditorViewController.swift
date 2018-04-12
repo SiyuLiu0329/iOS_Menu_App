@@ -25,12 +25,18 @@ class ItemEditorViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onDoneButtonPressed(_:)))
+    }
+    
+    @objc func onDoneButtonPressed(_ sender: Any?) {
+        print("done")
     }
     
     func setUpView() {
         switch type! {
-        case .addNew:
+        case .addNew(let newIndex):
             navigationController?.topViewController?.title = "New Item"
+            itemIndex = newIndex
         case .editExisting(itemIndex: let index):
             itemIndex = index
             navigationController?.topViewController?.title = menuModel.menuItems[index].name
@@ -59,12 +65,13 @@ extension ItemEditorViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let header = Bundle.main.loadNibNamed("EditorItemTableViewHeaderCell", owner: self, options: nil)!.first as! EditorItemTableViewHeaderCell
             header.selectionStyle = .none
-            if let index = itemIndex {
-                header.itemImageView.image = menuModel.menuItems[index].getImage()
+            if let image = itemEditorModel.image {
+                header.itemImageView.image = image
             } else {
                 // new item, use place holder image
+                header.itemImageView.image = #imageLiteral(resourceName: "placeholder")
             }
-            header.configure(itemName: itemEditorModel.name, itemNumber: itemEditorModel.number, itemPrice: itemEditorModel.price)
+            header.configure(itemName: itemEditorModel.name, itemNumber: itemIndex! + 1, itemPrice: itemEditorModel.price)
             return header
         } else if indexPath.section == 1 {
             // section for colours

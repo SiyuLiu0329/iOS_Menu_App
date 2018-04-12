@@ -25,7 +25,7 @@ enum PaymentStatus: Int, Codable {
 
 struct MenuItem: Equatable, Codable {
     static func ==(lhs: MenuItem, rhs: MenuItem) -> Bool {
-        guard lhs.number == rhs.number else { return false }
+        guard lhs.hash == rhs.hash else { return false }
         return true
     }
     
@@ -40,6 +40,7 @@ struct MenuItem: Equatable, Codable {
         }
     }
     
+    var hash: String
     var colour: themeColour
     var number: Int
     var unitPrice: Double
@@ -60,12 +61,13 @@ struct MenuItem: Equatable, Codable {
     }
     var options: [Option] = []
     
-    init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double) {
+    init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double, hash hashString: String) {
         self.name = name
         self.number = number
         self.unitPrice =  price
         self.quantity = 1
         self.itemType = type
+        self.hash = hashString
         let rgb = Scheme.getColour(withSeed: number)
         colour = themeColour(red: rgb.r, green: rgb.g, blue: rgb.b)
         addDefaultOptions()

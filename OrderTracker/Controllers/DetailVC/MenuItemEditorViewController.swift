@@ -10,7 +10,7 @@ import UIKit
 
 enum ItemEditorOperationType {
     case editExisting(itemIndex: Int)
-    case addNew
+    case addNew(newIndex: Int)
 }
 
 class MenuItemEditorViewController: UIViewController {
@@ -48,7 +48,7 @@ class MenuItemEditorViewController: UIViewController {
     }
     
     @objc func onAddButtonPressed(_ sender: Any?) {
-        pushItemEditor(itemEditorOperationType: .addNew)
+        pushItemEditor(itemEditorOperationType: .addNew(newIndex: menuModel.menuItems.count))
     }
 
     func pushItemEditor(itemEditorOperationType type: ItemEditorOperationType) {

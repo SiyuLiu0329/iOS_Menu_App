@@ -15,6 +15,7 @@ struct ItemEditorModel {
     var price: Double?
     var options: [Option] = []
     var colour: UIColor?
+    var image: UIImage?
     
     mutating func unpackItem(_ item: MenuItem) {
         name = item.name
@@ -22,6 +23,7 @@ struct ItemEditorModel {
         price = item.unitPrice
         options = item.options
         let rgb = item.colour
+        image = item.getImage()
         colour = UIColor(red: CGFloat(rgb.r), green:  CGFloat(rgb.g), blue:  CGFloat(rgb.b), alpha: 1)
     }
 }

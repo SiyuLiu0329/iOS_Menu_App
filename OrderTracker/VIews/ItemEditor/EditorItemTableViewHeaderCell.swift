@@ -23,6 +23,8 @@ class EditorItemTableViewHeaderCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        numberField.isUserInteractionEnabled = false
+        numberField.inputTextFiled.alpha = 0.3
     }
     
     func configure(itemName name: String?, itemNumber number: Int?, itemPrice price: Double?) {
