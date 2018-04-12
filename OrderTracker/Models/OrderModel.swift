@@ -235,6 +235,7 @@ class OrderModel {
         let fileManager = FileManager()
         var url = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
+            url = url.appendingPathComponent("orders")
             url = url.appendingPathComponent("\(orderNumber)" + ".json")
             try fileManager.removeItem(at: url)
         } catch let error {
