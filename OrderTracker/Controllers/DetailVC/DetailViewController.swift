@@ -30,6 +30,12 @@ class DetailViewController: UIViewController {
     }
 
 
+    @IBAction func debugLoadExampleItems(_ sender: Any) {
+        //debug!!!
+        menuModel.loadDefaultItems()
+        itemsCollectionView.reloadData()
+    }
+    
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     var menuModel: MenuModel!

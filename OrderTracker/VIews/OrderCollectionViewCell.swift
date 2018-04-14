@@ -23,7 +23,7 @@ class OrderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
     weak var delegate: OrderCollectionViewCellDelegate?
     func configure() {
-        layer.cornerRadius = 5
+        layer.cornerRadius = 10
         clipsToBounds = true
     }
 }

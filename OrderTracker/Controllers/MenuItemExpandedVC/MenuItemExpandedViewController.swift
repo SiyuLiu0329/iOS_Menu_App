@@ -113,6 +113,6 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         menuModel.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
         tableView.reloadRows(at: [indexPath], with: .automatic)
-        quickBill.setTitle(Scheme.Util.twoDecimalPriceText(menuModel.menuItems[itemId!].unitPrice), for: .normal)
+        priceLabel.text = Scheme.Util.twoDecimalPriceText(menuModel.menuItems[itemId!].unitPrice)
     }
 }

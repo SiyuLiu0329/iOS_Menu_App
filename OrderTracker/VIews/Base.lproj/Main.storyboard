@@ -139,12 +139,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-B3-wUT">
-                                                    <rect key="frame" x="165" y="242" width="40" height="40"/>
+                                                    <rect key="frame" x="155" y="232" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="EPP-nt-lrX"/>
-                                                        <constraint firstAttribute="height" constant="40" id="WHY-ML-fx8"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="EPP-nt-lrX"/>
+                                                        <constraint firstAttribute="height" constant="50" id="WHY-ML-fx8"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                                                     <state key="normal" title="$">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -153,12 +153,12 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqP-yb-KDw">
-                                                    <rect key="frame" x="0.0" y="242" width="40" height="40"/>
+                                                    <rect key="frame" x="0.0" y="232" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="3D4-de-Dhx"/>
-                                                        <constraint firstAttribute="height" constant="40" id="9Wr-D7-rcD"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="3D4-de-Dhx"/>
+                                                        <constraint firstAttribute="height" constant="50" id="9Wr-D7-rcD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
                                                     <state key="normal" title="+">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -167,9 +167,9 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivs-sj-cqX">
-                                                    <rect key="frame" x="79" y="242" width="47" height="40"/>
+                                                    <rect key="frame" x="79" y="232" width="47" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="31t-rp-m0d"/>
+                                                        <constraint firstAttribute="height" constant="50" id="31t-rp-m0d"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -218,6 +218,11 @@
                                     <constraint firstAttribute="height" constant="44" id="4Rj-52-tUD"/>
                                 </constraints>
                                 <items>
+                                    <barButtonItem systemItem="refresh" id="ec3-Ct-xgI">
+                                        <connections>
+                                            <action selector="debugLoadExampleItems:" destination="5S6-1C-6oN" id="1Os-Qb-Egb"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7iG-Yo-SRj"/>
                                     <barButtonItem systemItem="organize" id="X1y-MG-q81">
                                         <connections>

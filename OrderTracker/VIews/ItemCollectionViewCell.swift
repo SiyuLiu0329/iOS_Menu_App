@@ -102,7 +102,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         addPanGesutre()
         optionLabel.isUserInteractionEnabled = false
         itemStatusOverlay.backgroundColor = UIColor.black
-        layer.cornerRadius = 5
+        layer.cornerRadius = 10
         clipsToBounds = true
         itemNumberLabel.backgroundColor = .white
         itemNumberLabel.layer.cornerRadius = 20

@@ -25,13 +25,6 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
-//    @IBAction func showItemDetail(_ sender: Any) {
-//        // item added -> update parent view
-//        if delegate != nil {
-//            delegate!.showDetailFor(collectionViewCell: self)
-//        }
-//    }
-    
     func configure(withItem item: MenuItem) {
         layer.cornerRadius = 10
         clipsToBounds = true

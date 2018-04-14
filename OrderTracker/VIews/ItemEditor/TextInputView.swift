@@ -30,7 +30,6 @@ class TextInputView: UIView, UITextFieldDelegate {
         textField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.font = UIFont.systemFont(ofSize: 20, weight: .light)
-//        textField.textAlignment = .center
         self.inputTextField = textField
         self.inputTextField.delegate = self
         
@@ -45,11 +44,10 @@ class TextInputView: UIView, UITextFieldDelegate {
         addSubview(title)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        title.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
         title.bottomAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         title.textColor = Scheme.editorThemeColour
-        title.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        title.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         self.titleLabel = title
         
         inputTextField.addTarget(self, action: #selector(self.textDidChange), for: UIControlEvents.editingChanged)
