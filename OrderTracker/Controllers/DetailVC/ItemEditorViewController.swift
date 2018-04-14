@@ -9,12 +9,14 @@
 import UIKit
 import EFColorPicker
 
+protocol ItemEditorViewControllerDelegate: class {
+    func itemEdited(item: MenuItem)
+}
+
 class ItemEditorViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var type: ItemEditorOperationType!
-    var menuModel: MenuModel!
-    var itemIndex: Int?
-    
+    weak var delegate: ItemEditorViewControllerDelegate?
     private var dataSource: ItemEditorViewControllerDataSource!
     
     override func viewDidLoad() {
@@ -31,8 +33,11 @@ class ItemEditorViewController: UIViewController {
     
     @objc func onDoneButtonPressed(_ sender: Any?) {
         if let item = dataSource.itemEditorModel.pack() {
-            menuModel.addItemToMenu(item: item)
+            if delegate != nil {
+                delegate!.itemEdited(item: item)
+            }
             navigationController?.popViewController(animated: true)
+
         }
     }
     
@@ -40,14 +45,12 @@ class ItemEditorViewController: UIViewController {
         switch type! {
         case .addNew(let newIndex):
             navigationController?.topViewController?.title = "New Item"
-            itemIndex = newIndex
-            dataSource = ItemEditorViewControllerDataSource(itemIndex: itemIndex!)
+            dataSource = ItemEditorViewControllerDataSource()
             dataSource.itemEditorModel.number = newIndex + 1
-        case .editExisting(itemIndex: let index):
-            itemIndex = index
-            navigationController?.topViewController?.title = menuModel.menuItems[index].name
-            dataSource = ItemEditorViewControllerDataSource(itemIndex: itemIndex!)
-            dataSource.itemEditorModel.unpackItem(menuModel.menuItems[itemIndex!])
+        case .editExisting(item: let item):
+            navigationController?.topViewController?.title = item.name
+            dataSource = ItemEditorViewControllerDataSource()
+            dataSource.itemEditorModel.unpackItem(item)
         }
     }
 }

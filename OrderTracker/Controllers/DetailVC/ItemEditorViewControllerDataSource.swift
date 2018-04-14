@@ -11,10 +11,6 @@ import UIKit
 class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
     let itemEditorModel = ItemEditorModel()
     let headers = ["Basic", "Colour", "Options"]
-    var itemIndex: Int
-    init(itemIndex index: Int) {
-        itemIndex = index
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3

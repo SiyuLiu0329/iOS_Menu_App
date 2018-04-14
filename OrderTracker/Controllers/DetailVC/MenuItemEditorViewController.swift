@@ -9,7 +9,7 @@
 import UIKit
 
 enum ItemEditorOperationType {
-    case editExisting(itemIndex: Int)
+    case editExisting(item: MenuItem)
     case addNew(newIndex: Int)
 }
 
@@ -64,9 +64,8 @@ class MenuItemEditorViewController: UIViewController {
 
     func pushItemEditor(itemEditorOperationType type: ItemEditorOperationType) {
         let editor = ItemEditorViewController()
-        editor.menuModel = menuModel
         editor.type = type
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        editor.delegate = self
         navigationController?.pushViewController(editor, animated: true)
     }
 }
@@ -88,7 +87,7 @@ extension MenuItemEditorViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pushItemEditor(itemEditorOperationType: .editExisting(itemIndex: indexPath.row))
+        pushItemEditor(itemEditorOperationType: .editExisting(item: menuModel.menuItems[indexPath.row]))
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -103,5 +102,12 @@ extension MenuItemEditorViewController: UITableViewDelegate, UITableViewDataSour
                 delegate!.menuDidChange()
             }
         }
+    }
+}
+
+extension MenuItemEditorViewController: ItemEditorViewControllerDelegate {
+    func itemEdited(item: MenuItem) {
+        menuModel.addItemToMenu(item: item)
+        tableView.reloadData()
     }
 }
