@@ -49,6 +49,6 @@ class ItemEditorModel {
         guard number != nil else { return nil }
         guard price != nil else { return nil }
         // deal with images later
-        return MenuItem(named: name!, numbered: number!, pricedAt: price!, typeHash: hash, options: options)
+        return MenuItem(named: name!, numbered: number!, pricedAt: price!, typeHash: hash, options: options, colour: colour)
     }
 }

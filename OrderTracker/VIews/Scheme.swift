@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 struct Scheme {
     static let collectionViewBackGroundColour = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
     static let navigationBarColour = UIColor.clear

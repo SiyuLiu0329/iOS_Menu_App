@@ -29,7 +29,7 @@ struct MenuItem: Equatable, Codable {
         return true
     }
     
-    struct themeColour: Codable {
+    struct ThemeColour: Codable {
         var r: Double
         var g: Double
         var b: Double
@@ -40,7 +40,7 @@ struct MenuItem: Equatable, Codable {
         }
     }
     
-    var colour: themeColour
+    var colour: ThemeColour
     var number: Int
     var unitPrice: Double
     var name: String
@@ -59,15 +59,18 @@ struct MenuItem: Equatable, Codable {
     }
     var options: [Option] = []
     
-    init(named name: String, numbered number: Int, pricedAt price: Double, typeHash hashString: String, options: [Option]) {
+    init(named name: String, numbered number: Int, pricedAt price: Double, typeHash hashString: String, options: [Option], colour: UIColor) {
         self.name = name
         self.number = number
         self.unitPrice =  price
         self.quantity = 1
         self.typeHash = hashString
         self.options = options
-        let rgb = Scheme.getColour(withSeed: number)
-        colour = themeColour(red: rgb.r, green: rgb.g, blue: rgb.b)
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        colour.getRed(&r, green: &g, blue: &b, alpha: nil)
+        self.colour = ThemeColour(red: Double(r), green: Double(g), blue: Double(b))
     }
     
     mutating func deselectAllOptions() {
