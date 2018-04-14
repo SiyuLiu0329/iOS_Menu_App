@@ -27,22 +27,22 @@ class NewOptionViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "New Option"
         optionNameField.setTitle("Option Description:")
-        optionNameField.inputTextFiled.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        optionNameField.inputTextField.font = UIFont.systemFont(ofSize: 20, weight: .light)
         optionNameField.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         
         optionPriceField.setTitle("Price:")
-        optionPriceField.inputTextFiled.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        optionPriceField.inputTextField.font = UIFont.systemFont(ofSize: 20, weight: .light)
         optionPriceField.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        optionNameField.inputTextFiled.keyboardType = .numberPad
+        optionPriceField.inputTextField.keyboardType = .numberPad
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onDoneButtonPressed(_:)))
         
         if let name = initialName {
-            optionNameField.inputTextFiled.text = name
+            optionNameField.inputTextField.text = name
         }
         
         if let price = initialPrice {
-            optionPriceField.inputTextFiled.text = price
+            optionPriceField.inputTextField.text = price
         }
     }
     

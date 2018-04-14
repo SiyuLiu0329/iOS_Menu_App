@@ -8,11 +8,16 @@
 
 import UIKit
 
-class TextInputView: UIView {
-    var inputTextFiled: UITextField!
+protocol TextFieldDelegate: class {
+    func textDidChange(sender: TextInputView)
+}
+
+class TextInputView: UIView, UITextFieldDelegate {
+    var inputTextField: UITextField!
     var titleLabel: UILabel!
+    weak var delegate: TextFieldDelegate?
     var text: String {
-        return inputTextFiled.text!
+        return inputTextField.text!
     }
     
     override func awakeFromNib() {
@@ -26,7 +31,8 @@ class TextInputView: UIView {
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.font = UIFont.systemFont(ofSize: 20, weight: .light)
 //        textField.textAlignment = .center
-        self.inputTextFiled = textField
+        self.inputTextField = textField
+        self.inputTextField.delegate = self
         
         self.layer.backgroundColor = UIColor.white.cgColor
         self.layer.masksToBounds = false
@@ -42,13 +48,35 @@ class TextInputView: UIView {
         title.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
         title.textColor = Scheme.editorThemeColour
-        title.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        title.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         self.titleLabel = title
+        
+        inputTextField.addTarget(self, action: #selector(self.textDidChange), for: UIControlEvents.editingChanged)
         
     }
     
+    @objc func textDidChange() {
+        if delegate != nil {
+            delegate!.textDidChange(sender: self)
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.count == 0 {
+            // back space
+            return true
+        }
+        
+        if inputTextField.keyboardType == .numberPad {
+            return Double(textField.text! + string) != nil
+        }
+        
+        return true
+    }
+    
+    
     func setPlaceholderText(_ text: String) {
-        inputTextFiled.placeholder = text
+        inputTextField.placeholder = text
     }
     
     func setTitle(_ text: String) {

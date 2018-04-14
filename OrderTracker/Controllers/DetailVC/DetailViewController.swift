@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
         navController.viewControllers.append(viewControler)
         navController.modalPresentationStyle = .formSheet
         viewControler.menuModel = menuModel
+        viewControler.delegate = self
         self.present(navController, animated: true, completion: nil)
     }
     
@@ -115,3 +116,8 @@ extension DetailViewController: MenuItemExpandedViewControllerDismissedDelegate 
     }
 }
 
+extension DetailViewController: MenuEditorDelegate {
+    func menuDidChange() {
+        itemsCollectionView.reloadData()
+    }
+}

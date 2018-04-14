@@ -25,7 +25,7 @@ enum PaymentStatus: Int, Codable {
 
 struct MenuItem: Equatable, Codable {
     static func ==(lhs: MenuItem, rhs: MenuItem) -> Bool {
-        guard lhs.hash == rhs.hash else { return false }
+        guard lhs.typeHash! == rhs.typeHash! else { return false }
         return true
     }
     
@@ -40,7 +40,6 @@ struct MenuItem: Equatable, Codable {
         }
     }
     
-    var hash: String
     var colour: themeColour
     var number: Int
     var unitPrice: Double
@@ -49,28 +48,26 @@ struct MenuItem: Equatable, Codable {
     var orderIndex: Int?
     var tableNumber: Int?
     var itemHash: String?
-    var itemType: ItemType
     var refunded = false
     var paymentStatus: PaymentStatus = .notPaid
     var served = false
     var quantity: Int
     var isInBuffer = true
-    
+    var typeHash: String?
     var totalPrice: Double {
         return unitPrice * Double(quantity)
     }
     var options: [Option] = []
     
-    init(named name: String, numbered number: Int, itemType type: ItemType, pricedAt price: Double, hash hashString: String) {
+    init(named name: String, numbered number: Int, pricedAt price: Double, typeHash hashString: String, options: [Option]) {
         self.name = name
         self.number = number
         self.unitPrice =  price
         self.quantity = 1
-        self.itemType = type
-        self.hash = hashString
+        self.typeHash = hashString
+        self.options = options
         let rgb = Scheme.getColour(withSeed: number)
         colour = themeColour(red: rgb.r, green: rgb.g, blue: rgb.b)
-        addDefaultOptions()
     }
     
     mutating func deselectAllOptions() {
@@ -85,10 +82,6 @@ struct MenuItem: Equatable, Codable {
     
     func getImage() -> UIImage {
         return #imageLiteral(resourceName: "placeholder")
-    }
-    
-    mutating private func addDefaultOptions() {
-        options = addDefaultOptionsUtl(for: itemType)
     }
     
     mutating func addOption(_ option: Option) {

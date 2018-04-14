@@ -30,9 +30,14 @@ class MenuModel {
     
     init(menuName name: String) {
         self.menuName = name
-        menuItems.append(MenuItem(named: "Rice Noodle Soup with Sliced Pork", numbered: 1, itemType: .type1, pricedAt: 11.95, hash: Scheme.Util.randomString(length: 8)))
-        menuItems.append(MenuItem(named: "Rice Noodle Soup with Slow Cooked Pork", numbered: 2, itemType: .type1, pricedAt: 11.95, hash: Scheme.Util.randomString(length: 8)))
-        menuItems.append(MenuItem(named: "Signature Rice Noodle Soup", numbered: 3, itemType: .type1veg, pricedAt: 11.95, hash: Scheme.Util.randomString(length: 8)))
+    }
+    
+    func addItemToMenu(item: MenuItem) {
+        if let index = menuItems.index(where: {$0.typeHash == item.typeHash}) {
+            menuItems[index] = item
+        } else {
+            menuItems.append(item)
+        }
     }
 
 }

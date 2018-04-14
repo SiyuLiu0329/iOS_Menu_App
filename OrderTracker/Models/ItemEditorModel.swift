@@ -14,14 +14,16 @@ class ItemEditorModel {
     var number: Int?
     var price: Double?
     var options: [Option] = []
-    var colour: UIColor?
+    var colour = UIColor.red
     var image: UIImage?
+    var hash = Scheme.Util.randomString(length: 8)
     
     func unpackItem(_ item: MenuItem) {
         name = item.name
         number = item.number
         price = item.unitPrice
         options = item.options
+        hash = item.typeHash!
         let rgb = item.colour
         image = item.getImage()
         colour = UIColor(red: CGFloat(rgb.r), green:  CGFloat(rgb.g), blue:  CGFloat(rgb.b), alpha: 1)
@@ -40,5 +42,13 @@ class ItemEditorModel {
         option.description = name
         option.price = price
         options[index] = option
+    }
+    
+    func pack() -> MenuItem? {
+        guard name != nil else { return nil }
+        guard number != nil else { return nil }
+        guard price != nil else { return nil }
+        // deal with images later
+        return MenuItem(named: name!, numbered: number!, pricedAt: price!, typeHash: hash, options: options)
     }
 }

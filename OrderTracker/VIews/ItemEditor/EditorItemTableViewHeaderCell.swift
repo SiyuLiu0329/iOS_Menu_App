@@ -24,19 +24,22 @@ class EditorItemTableViewHeaderCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         numberField.isUserInteractionEnabled = false
-        numberField.inputTextFiled.alpha = 0.3
+        numberField.inputTextField.alpha = 0.3
     }
     
-    func configure(itemName name: String?, itemNumber number: Int?, itemPrice price: Double?) {
+    func configure(itemName name: String?, itemNumber number: Int?, itemPrice price: Double?, textInputViewDelegate: TextFieldDelegate?) {
         nameField.setTitle("Item Name:")
         numberField.setTitle("Number (#):")
-        numberField.inputTextFiled.keyboardType = .numberPad
+        numberField.inputTextField.keyboardType = .numberPad
+        priceField.delegate = textInputViewDelegate
+        numberField.delegate = textInputViewDelegate
+        nameField.delegate = textInputViewDelegate
         priceField.setTitle("Price ($):")
-        priceField.inputTextFiled.keyboardType = .numberPad
+        priceField.inputTextField.keyboardType = .numberPad
         
-        nameField.inputTextFiled.text = (name == nil) ? "" : name!
-        numberField.inputTextFiled.text = (number == nil) ? "" : "\(number!)"
-        priceField.inputTextFiled.text = (price == nil) ? "" : "\(price!)"
+        nameField.inputTextField.text = (name == nil) ? "" : name!
+        numberField.inputTextField.text = (number == nil) ? "" : "\(number!)"
+        priceField.inputTextField.text = (price == nil) ? "" : "\(price!)"
         
     }
 }

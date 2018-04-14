@@ -13,9 +13,14 @@ enum ItemEditorOperationType {
     case addNew(newIndex: Int)
 }
 
+protocol MenuEditorDelegate: class {
+    func menuDidChange()
+}
+
 class MenuItemEditorViewController: UIViewController {
     var menuModel: MenuModel!
     @IBOutlet weak var tableView: UITableView!
+    weak var delegate: MenuEditorDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +29,15 @@ class MenuItemEditorViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clear
-        
         setupBarButtons()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        if delegate != nil {
+            delegate!.menuDidChange()
+        }
     }
     
     private func setupBarButtons() {

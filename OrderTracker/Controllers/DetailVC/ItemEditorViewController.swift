@@ -30,7 +30,10 @@ class ItemEditorViewController: UIViewController {
     }
     
     @objc func onDoneButtonPressed(_ sender: Any?) {
-        print("done")
+        if let item = dataSource.itemEditorModel.pack() {
+            menuModel.addItemToMenu(item: item)
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func setUpView() {
@@ -39,6 +42,7 @@ class ItemEditorViewController: UIViewController {
             navigationController?.topViewController?.title = "New Item"
             itemIndex = newIndex
             dataSource = ItemEditorViewControllerDataSource(itemIndex: itemIndex!)
+            dataSource.itemEditorModel.number = newIndex + 1
         case .editExisting(itemIndex: let index):
             itemIndex = index
             navigationController?.topViewController?.title = menuModel.menuItems[index].name
@@ -68,7 +72,7 @@ extension ItemEditorViewController: UITableViewDelegate {
             navCtrl.popoverPresentationController?.sourceView = sender
             navCtrl.popoverPresentationController?.sourceRect = sender.bounds
             colorSelectionController.delegate = self
-            colorSelectionController.color = dataSource.itemEditorModel.colour ?? UIColor.red
+            colorSelectionController.color = dataSource.itemEditorModel.colour
             
             self.present(navCtrl, animated: true, completion: nil)
             return

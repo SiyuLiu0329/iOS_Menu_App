@@ -53,7 +53,7 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
                 // new item, use place holder image
                 header.itemImageView.image = #imageLiteral(resourceName: "placeholder")
             }
-            header.configure(itemName: itemEditorModel.name, itemNumber: itemIndex + 1, itemPrice: itemEditorModel.price)
+            header.configure(itemName: itemEditorModel.name, itemNumber: itemEditorModel.number!, itemPrice: itemEditorModel.price, textInputViewDelegate: self)
             return header
         } else if indexPath.section == 1 {
             // section for colours
@@ -62,11 +62,7 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
             cell.clipsToBounds = true
             cell.accessoryType = .disclosureIndicator
             cell.layer.cornerRadius = 10
-            if let colour = itemEditorModel.colour {
-                cell.setColour(colour)
-            } else {
-                cell.setColour(UIColor(red: 1, green: 0, blue: 0, alpha: 1))
-            }
+            cell.setColour(itemEditorModel.colour)
             
             return cell
         } else {
@@ -106,5 +102,27 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headers[section]
+    }
+}
+
+extension ItemEditorViewControllerDataSource: TextFieldDelegate {
+    func textDidChange(sender: TextInputView) {
+        switch sender.titleLabel.text! {
+        case "Item Name:":
+            if sender.text.isEmpty {
+                itemEditorModel.name = nil
+            } else {
+                itemEditorModel.name = sender.text
+            }
+        case "Price ($):":
+            if let price = Double(sender.text) {
+                itemEditorModel.price = price
+            } else {
+                itemEditorModel.price = nil
+            }
+        default:
+            // this should never happen
+            fatalError()
+        }
     }
 }
