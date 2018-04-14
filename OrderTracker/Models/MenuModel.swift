@@ -77,6 +77,21 @@ class MenuModel {
         }
         saveItem(item: item)
     }
+    
+    func removeItem(at index: Int) {
+        deleteItem(item: menuItems[index])
+        menuItems.remove(at: index)
+        
+    }
+    
+    private func deleteItem(item: MenuItem) {
+        let url = savePath.appendingPathComponent(item.typeHash! + ".json")
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch let e {
+            print(e)
+        }
+    }
 
 
 }

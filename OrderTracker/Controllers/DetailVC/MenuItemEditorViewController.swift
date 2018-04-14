@@ -90,4 +90,18 @@ extension MenuItemEditorViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pushItemEditor(itemEditorOperationType: .editExisting(itemIndex: indexPath.row))
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            menuModel.removeItem(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            if delegate != nil {
+                delegate!.menuDidChange()
+            }
+        }
+    }
 }
