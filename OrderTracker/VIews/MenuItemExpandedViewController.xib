@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="splitview2_3"/>
     </device>
@@ -16,13 +16,14 @@
                 <outlet property="contentView" destination="6lq-WE-c1B" id="KzF-VW-nOm"/>
                 <outlet property="navBar" destination="5Ld-Qv-3lX" id="z0Q-h8-TVO"/>
                 <outlet property="optionTableView" destination="4MU-3q-0Yd" id="au2-sG-y8K"/>
-                <outlet property="quickTender" destination="Nft-bp-MjY" id="rRw-bn-qd6"/>
+                <outlet property="priceLabel" destination="1k8-7I-79q" id="rGD-uy-z1g"/>
+                <outlet property="quickBill" destination="Nft-bp-MjY" id="rRw-bn-qd6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="mj3-36-BAT">
@@ -34,7 +35,7 @@
                     </tableViewCellContentView>
                 </tableViewCell>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lq-WE-c1B">
-                    <rect key="frame" x="147" y="84" width="400" height="600"/>
+                    <rect key="frame" x="70" y="10" width="400" height="600"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-Qv-3lX">
                             <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -57,47 +58,56 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nft-bp-MjY">
-                            <rect key="frame" x="280" y="550" width="120" height="50"/>
+                            <rect key="frame" x="350" y="550" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="bEa-L0-ee1"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="bEa-L0-ee1"/>
                                 <constraint firstAttribute="height" constant="50" id="caz-vR-YZd"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                            <state key="normal" title="$10.95"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                            <state key="normal" title="$"/>
                             <connections>
                                 <action selector="quickTenderAction:" destination="-1" eventType="touchUpInside" id="mGV-5j-5q5"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-K1-w12">
-                            <rect key="frame" x="0.0" y="550" width="120" height="50"/>
+                            <rect key="frame" x="0.0" y="550" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Ycw-71-7ao"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Ycw-71-7ao"/>
                                 <constraint firstAttribute="height" constant="50" id="rQ7-Cq-QR8"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                             <state key="normal" title="+"/>
                             <connections>
                                 <action selector="addButtonAction:" destination="-1" eventType="touchUpInside" id="NJO-Po-zRa"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k8-7I-79q">
+                            <rect key="frame" x="171" y="550" width="58" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="WDI-oP-sOn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="5Ld-Qv-3lX" firstAttribute="top" secondItem="6lq-WE-c1B" secondAttribute="top" id="8iW-gv-W5a"/>
+                        <constraint firstAttribute="bottom" secondItem="1k8-7I-79q" secondAttribute="bottom" id="9w1-e8-WDk"/>
                         <constraint firstAttribute="bottom" secondItem="Ifa-K1-w12" secondAttribute="bottom" id="ApT-B2-JLD"/>
                         <constraint firstItem="5Ld-Qv-3lX" firstAttribute="leading" secondItem="6lq-WE-c1B" secondAttribute="leading" id="BB5-83-Xsp"/>
                         <constraint firstItem="Ifa-K1-w12" firstAttribute="leading" secondItem="6lq-WE-c1B" secondAttribute="leading" id="BBM-rK-bLe"/>
                         <constraint firstAttribute="trailing" secondItem="5Ld-Qv-3lX" secondAttribute="trailing" id="Dkg-8g-0hR"/>
-                        <constraint firstAttribute="width" constant="400" id="JXG-r3-IDW"/>
+                        <constraint firstAttribute="trailing" secondItem="Nft-bp-MjY" secondAttribute="trailing" id="MXp-p3-lnA"/>
                         <constraint firstAttribute="height" constant="600" id="Mk8-fv-fXF"/>
-                        <constraint firstAttribute="trailing" secondItem="Nft-bp-MjY" secondAttribute="trailing" id="OgA-If-kcG"/>
-                        <constraint firstAttribute="trailing" secondItem="Nft-bp-MjY" secondAttribute="trailing" id="ZGE-yZ-tLk"/>
+                        <constraint firstItem="1k8-7I-79q" firstAttribute="centerX" secondItem="6lq-WE-c1B" secondAttribute="centerX" id="ceo-hK-tSH"/>
+                        <constraint firstAttribute="width" constant="400" id="cfC-41-1aF"/>
                         <constraint firstAttribute="trailing" secondItem="4MU-3q-0Yd" secondAttribute="trailing" id="kIC-1s-LKS"/>
                         <constraint firstAttribute="bottom" secondItem="4MU-3q-0Yd" secondAttribute="bottom" constant="60" id="koI-5E-I2e"/>
                         <constraint firstItem="4MU-3q-0Yd" firstAttribute="leading" secondItem="6lq-WE-c1B" secondAttribute="leading" id="lQ8-VG-258"/>
                         <constraint firstItem="4MU-3q-0Yd" firstAttribute="top" secondItem="5Ld-Qv-3lX" secondAttribute="bottom" id="mjo-Lr-eYZ"/>
-                        <constraint firstAttribute="bottom" secondItem="Nft-bp-MjY" secondAttribute="bottom" id="pZw-zm-RqS"/>
-                        <constraint firstItem="Nft-bp-MjY" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Ifa-K1-w12" secondAttribute="trailing" constant="160" id="tvW-6f-3px"/>
+                        <constraint firstAttribute="bottom" secondItem="Nft-bp-MjY" secondAttribute="bottom" id="rK6-hR-7xj"/>
                     </constraints>
                 </view>
             </subviews>
@@ -107,6 +117,7 @@
                 <constraint firstItem="6lq-WE-c1B" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="yeS-iu-D6I"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
+            <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>

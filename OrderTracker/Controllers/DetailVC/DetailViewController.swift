@@ -39,6 +39,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         collectionViewDataSource = DetailCollectionViewDataSource(data: menuModel, delegate: self)
         
+        
         // load order from list of orders so changes can be made to the order
         
         
@@ -63,15 +64,26 @@ class DetailViewController: UIViewController {
 
 }
 
-extension DetailViewController: UICollectionViewDelegateFlowLayout {
+extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numItems: CGFloat = 3
         let width = collectionView.frame.width / numItems - 15
-        return CGSize(width: width, height: width * 1.4)
+        return CGSize(width: width, height: width * 1.3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 54, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let destinationVC = MenuItemExpandedViewController()
+        destinationVC.menuModel = menuModel
+        destinationVC.itemId = indexPath.row
+        destinationVC.modalPresentationStyle = .overCurrentContext
+        destinationVC.view.backgroundColor = .clear
+        destinationVC.delegate = delegate
+        destinationVC.popoverDelegate = self // to animate dim
+        present(destinationVC, animated: true, completion: nil)
     }
 }
 
