@@ -52,7 +52,7 @@ extension ItemEditorViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 220
+            return 200
         }
         return 44
     }
@@ -93,8 +93,12 @@ extension ItemEditorViewController: UITableViewDelegate {
             return
         }
         
-        if indexPath.section == 2 && indexPath.row == 0 {
+        if indexPath.section == 2 {
             let newOptionVC = NewOptionViewController(nibName: "NewOptionViewController", bundle: Bundle.main)
+            if indexPath.row != 0 {
+                let option = dataSource.itemEditorModel.options[indexPath.row - 1]
+                newOptionVC.loadInitialInfo(name: option.description, price: option.price, index: indexPath.row - 1)
+            }
             newOptionVC.delegate = self
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
             navigationController?.pushViewController(newOptionVC, animated: true)
@@ -112,6 +116,12 @@ extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
 
 extension ItemEditorViewController: NewOptionViewControllerDelegate {
     func didCreateNewOption(named name: String, pricedAt price: Double) {
-        print(name, price)
+        dataSource.itemEditorModel.insertOption(named: name, pricedAt: price)
+        tableView.insertRows(at: [IndexPath(row: 1, section: 2)], with: .automatic)
+    }
+    
+    func didEditOption(at index: Int, name: String, price: Double) {
+        dataSource.itemEditorModel.editItem(at: index, name: name, price: price)
+        tableView.reloadData()
     }
 }

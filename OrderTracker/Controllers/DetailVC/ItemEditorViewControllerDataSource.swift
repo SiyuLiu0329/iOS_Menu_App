@@ -19,6 +19,18 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
         return 3
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard indexPath.section == 2 else { return false }
+        guard indexPath.row != 0 else { return false }
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let indexToDelete = indexPath.row - 1
+        itemEditorModel.deleteOption(at: indexToDelete)
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -62,13 +74,13 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
             cell.clipsToBounds = true
             if indexPath.row == 0 {
                 cell.textLabel?.text = "Add Option"
-                cell.accessoryType = .disclosureIndicator
                 cell.textLabel?.textColor = Scheme.editorThemeColour
             } else {
                 cell.textLabel?.text = itemEditorModel.options[indexPath.row - 1].description
                 cell.accessoryType = .none
                 cell.textLabel?.tintColor = .black
             }
+            cell.accessoryType = .disclosureIndicator
             
             if itemEditorModel.options.count == 0 {
                 // if this cell is the only cell, all four corners are rounded

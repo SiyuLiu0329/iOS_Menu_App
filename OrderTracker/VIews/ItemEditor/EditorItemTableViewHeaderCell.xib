@@ -21,42 +21,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XY3-UL-HVf">
-                        <rect key="frame" x="15" y="15.5" width="256" height="192"/>
+                        <rect key="frame" x="15" y="15.5" width="233.5" height="175"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="XY3-UL-HVf" secondAttribute="height" multiplier="4:3" id="oH9-fn-eww"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cp-sk-IOD">
-                        <rect key="frame" x="15" y="165.5" width="256" height="42"/>
+                        <rect key="frame" x="15" y="148.5" width="233.5" height="42"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <state key="normal" title="Edit">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="tAZ-6b-ckB">
-                        <rect key="frame" x="286" y="20.5" width="159" height="182"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="tAZ-6b-ckB">
+                        <rect key="frame" x="263.5" y="20.5" width="181.5" height="165"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wg3-9q-K3p" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="159" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="98s-PR-LU9"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTH-Hk-omt" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="69" width="159" height="44"/>
+                                <rect key="frame" x="0.0" y="60" width="181.5" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="cYP-ao-Voj"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RJ-tF-iEQ" customClass="TextInputView" customModule="OrderTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="138" width="159" height="44"/>
+                                <rect key="frame" x="0.0" y="120" width="181.5" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="tYe-J9-cSK"/>
-                                </constraints>
                             </view>
                         </subviews>
                     </stackView>

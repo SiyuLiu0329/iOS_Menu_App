@@ -24,7 +24,7 @@ class TextInputView: UIView {
         textField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         textField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        textField.font = UIFont.systemFont(ofSize: 17)
+        textField.font = UIFont.systemFont(ofSize: 20, weight: .light)
 //        textField.textAlignment = .center
         self.inputTextFiled = textField
         
@@ -42,7 +42,7 @@ class TextInputView: UIView {
         title.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
         title.textColor = Scheme.editorThemeColour
-        title.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        title.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         self.titleLabel = title
         
     }
