@@ -118,13 +118,6 @@ extension ItemEditorViewController: UITableViewDelegate {
     
 }
 
-//extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
-//    func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-//        dataSource.itemEditorModel.colour = color
-//        tableView.reloadSections([1], with: .none)
-//    }
-//}
-
 extension ItemEditorViewController: EFColorViewDelegate{
     func colorView(colorView: EFColorView, didChangeColor color: UIColor) {
         dataSource.itemEditorModel.colour = color

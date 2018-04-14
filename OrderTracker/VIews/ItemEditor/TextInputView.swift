@@ -47,8 +47,9 @@ class TextInputView: UIView, UITextFieldDelegate {
         title.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         title.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         title.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        title.bottomAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         title.textColor = Scheme.editorThemeColour
-        title.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        title.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         self.titleLabel = title
         
         inputTextField.addTarget(self, action: #selector(self.textDidChange), for: UIControlEvents.editingChanged)
