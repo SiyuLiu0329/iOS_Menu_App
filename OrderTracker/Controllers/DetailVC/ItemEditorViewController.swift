@@ -67,15 +67,25 @@ extension ItemEditorViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let sender = tableView.cellForRow(at: indexPath)!
-            let colorSelectionController = EFColorSelectionViewController()
-            let navCtrl = UINavigationController(rootViewController: colorSelectionController)
+            let pickerView = EFRGBView()
+            let vc = UIViewController()
+            vc.view.addSubview(pickerView)
+            pickerView.translatesAutoresizingMaskIntoConstraints = false
+            pickerView.leftAnchor.constraint(equalTo: vc.view.leftAnchor).isActive = true
+            pickerView.rightAnchor.constraint(equalTo: vc.view.rightAnchor).isActive = true
+            pickerView.topAnchor.constraint(equalTo: vc.view.topAnchor).isActive = true
+            pickerView.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor).isActive = true
+            pickerView.color = dataSource.itemEditorModel.colour
+            
+            let navCtrl = UINavigationController(rootViewController: vc)
             navCtrl.navigationBar.backgroundColor = UIColor.white
             navCtrl.navigationBar.isTranslucent = false
             navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
             navCtrl.popoverPresentationController?.sourceView = sender
             navCtrl.popoverPresentationController?.sourceRect = sender.bounds
-            colorSelectionController.delegate = self
-            colorSelectionController.color = dataSource.itemEditorModel.colour
+            navCtrl.topViewController?.title = "Colour Picker"
+            pickerView.delegate = self
+            
             
             self.present(navCtrl, animated: true, completion: nil)
             return
@@ -108,8 +118,15 @@ extension ItemEditorViewController: UITableViewDelegate {
     
 }
 
-extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
-    func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+//extension ItemEditorViewController: EFColorSelectionViewControllerDelegate {
+//    func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+//        dataSource.itemEditorModel.colour = color
+//        tableView.reloadSections([1], with: .none)
+//    }
+//}
+
+extension ItemEditorViewController: EFColorViewDelegate{
+    func colorView(colorView: EFColorView, didChangeColor color: UIColor) {
         dataSource.itemEditorModel.colour = color
         tableView.reloadSections([1], with: .none)
     }
