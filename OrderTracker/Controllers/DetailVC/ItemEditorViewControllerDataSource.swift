@@ -10,6 +10,7 @@ import UIKit
 
 class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
     let itemEditorModel = ItemEditorModel()
+    let headers = ["Basic", "Colour", "Options"]
     var itemIndex: Int
     init(itemIndex index: Int) {
         itemIndex = index
@@ -28,6 +29,7 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let indexToDelete = indexPath.row - 1
         itemEditorModel.deleteOption(at: indexToDelete)
+//        tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
     }
     
@@ -100,5 +102,9 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
             }
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headers[section]
     }
 }
