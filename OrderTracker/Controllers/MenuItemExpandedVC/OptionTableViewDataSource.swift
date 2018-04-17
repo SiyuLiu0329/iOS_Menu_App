@@ -12,6 +12,7 @@ import UIKit
 class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
     var menuModel: MenuModel
     var itemId: Int
+    var customOptions: [Option] = []
     
     init(data menuMode: MenuModel, itemId id: Int) {
         self.menuModel = menuMode
@@ -19,22 +20,33 @@ class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return menuModel.getOptions(inItem: itemId).count
+        if section == 0 {
+            return menuModel.getOptions(inItem: itemId).count
+        } else {
+            return customOptions.count
+        }
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // placeholder cells -> xib in the future
         let cell = Bundle.main.loadNibNamed("OptionTableViewCell", owner: self, options: nil)?.first as! OptionTableViewCell // grab the first view
-        let option = menuModel.getOptions(inItem: itemId)[indexPath.row]
-        cell.optionName.text = option.description
-        cell.priceLabel.text = (option.price == 0) ? "" : (Scheme.Util.twoDecimalPriceText(option.price))
-        cell.value = option.value
+        if indexPath.section == 0 {
+            let option = menuModel.getOptions(inItem: itemId)[indexPath.row]
+            cell.optionName.text = option.description
+            cell.priceLabel.text = (option.price == 0) ? "" : (Scheme.Util.twoDecimalPriceText(option.price))
+            cell.value = option.value
+        } else {
+            let option = customOptions[indexPath.row]
+            cell.optionName.text = option.description
+            cell.priceLabel.text = (option.price == 0) ? "" : (Scheme.Util.twoDecimalPriceText(option.price))
+            cell.value = option.value
+        }
+        
         return cell
     }
 }

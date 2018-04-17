@@ -61,16 +61,23 @@ class TextInputView: UIView, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.count == 0 {
-            // back space
-            return true
-        }
+        var result = true
+        let prospectiveText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
-        if inputTextField.keyboardType == .numberPad {
-            return Double(textField.text! + string) != nil
+        if string.count > 0 {
+            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789.").inverted
+            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
+            
+            let resultingStringLengthIsLegal = prospectiveText.count <= 9
+            
+            let scanner = Scanner(string: prospectiveText)
+            let resultingTextIsNumeric = scanner.scanDecimal(nil) && scanner.isAtEnd
+            
+            result = replacementStringIsLegal &&
+                resultingStringLengthIsLegal &&
+            resultingTextIsNumeric
         }
-        
-        return true
+        return result
     }
     
     

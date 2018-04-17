@@ -114,7 +114,11 @@ extension ItemEditorViewControllerDataSource: TextFieldDelegate {
             if let price = Double(sender.text) {
                 itemEditorModel.price = price
             } else {
-                itemEditorModel.price = nil
+                if sender.text == "-" {
+                    itemEditorModel.price = 0
+                } else {
+                    itemEditorModel.price = nil
+                }
             }
         default:
             // this should never happen

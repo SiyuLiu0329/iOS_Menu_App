@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="addButton" destination="Ifa-K1-w12" id="ovd-9M-Qru"/>
                 <outlet property="contentView" destination="6lq-WE-c1B" id="KzF-VW-nOm"/>
+                <outlet property="customOptionButton" destination="Qgi-2B-M7U" id="1rP-I7-5FN"/>
                 <outlet property="navBar" destination="5Ld-Qv-3lX" id="z0Q-h8-TVO"/>
                 <outlet property="optionTableView" destination="4MU-3q-0Yd" id="au2-sG-y8K"/>
                 <outlet property="priceLabel" destination="1k8-7I-79q" id="rGD-uy-z1g"/>
@@ -54,7 +55,7 @@
                             </items>
                         </navigationBar>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4MU-3q-0Yd">
-                            <rect key="frame" x="0.0" y="44" width="400" height="496"/>
+                            <rect key="frame" x="0.0" y="44" width="400" height="456"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nft-bp-MjY">
@@ -90,9 +91,25 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qgi-2B-M7U">
+                            <rect key="frame" x="0.0" y="500" width="400" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="RXJ-7I-mfO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                            <state key="normal" title="Add Custom Option">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onCustomOptionPressed:" destination="-1" eventType="touchUpInside" id="iBc-sb-wWw"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Qgi-2B-M7U" secondAttribute="trailing" id="1jD-Ui-hqg"/>
+                        <constraint firstItem="Qgi-2B-M7U" firstAttribute="top" secondItem="4MU-3q-0Yd" secondAttribute="bottom" id="2Ik-2K-Tn9"/>
                         <constraint firstItem="5Ld-Qv-3lX" firstAttribute="top" secondItem="6lq-WE-c1B" secondAttribute="top" id="8iW-gv-W5a"/>
                         <constraint firstAttribute="bottom" secondItem="1k8-7I-79q" secondAttribute="bottom" id="9w1-e8-WDk"/>
                         <constraint firstAttribute="bottom" secondItem="Ifa-K1-w12" secondAttribute="bottom" id="ApT-B2-JLD"/>
@@ -103,8 +120,9 @@
                         <constraint firstAttribute="height" constant="600" id="Mk8-fv-fXF"/>
                         <constraint firstItem="1k8-7I-79q" firstAttribute="centerX" secondItem="6lq-WE-c1B" secondAttribute="centerX" id="ceo-hK-tSH"/>
                         <constraint firstAttribute="width" constant="400" id="cfC-41-1aF"/>
+                        <constraint firstItem="Qgi-2B-M7U" firstAttribute="leading" secondItem="6lq-WE-c1B" secondAttribute="leading" id="gFD-2W-wXe"/>
                         <constraint firstAttribute="trailing" secondItem="4MU-3q-0Yd" secondAttribute="trailing" id="kIC-1s-LKS"/>
-                        <constraint firstAttribute="bottom" secondItem="4MU-3q-0Yd" secondAttribute="bottom" constant="60" id="koI-5E-I2e"/>
+                        <constraint firstAttribute="bottom" secondItem="4MU-3q-0Yd" secondAttribute="bottom" constant="100" id="koI-5E-I2e"/>
                         <constraint firstItem="4MU-3q-0Yd" firstAttribute="leading" secondItem="6lq-WE-c1B" secondAttribute="leading" id="lQ8-VG-258"/>
                         <constraint firstItem="4MU-3q-0Yd" firstAttribute="top" secondItem="5Ld-Qv-3lX" secondAttribute="bottom" id="mjo-Lr-eYZ"/>
                         <constraint firstAttribute="bottom" secondItem="Nft-bp-MjY" secondAttribute="bottom" id="rK6-hR-7xj"/>

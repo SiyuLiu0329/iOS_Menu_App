@@ -21,5 +21,10 @@ struct Option: Equatable, Codable {
         self.value = value
         self.price = price
     }
-
+    
+    init(of decription: String, selected value: Bool, pricedAt price: Double) {
+         self.description = decription
+        self.value = value
+        self.price = price
+    }
 }
