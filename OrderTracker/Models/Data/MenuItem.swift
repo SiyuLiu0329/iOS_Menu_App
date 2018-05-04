@@ -95,6 +95,11 @@ struct MenuItem: Equatable, Codable {
         paymentStatus = status
     }
     
+    mutating func addCustomOption(option: Option) {
+        options.append(option)
+        unitPrice += option.price
+    }
+    
     mutating func toggleSelectetState(ofOption index: Int) {
         options[index].value = !options[index].value
         unitPrice += (options[index].value) ? options[index].price : -options[index].price

@@ -30,13 +30,18 @@ class MenuItemExpandedViewController: UIViewController {
     
     @IBAction func addButtonAction(_ sender: Any) {
         if delegate != nil {
-            delegate!.addItemToOrder(menuModel.menuItems[itemId!])
+            delegate!.addItemToOrder(optionDataSource.getItemForBilling())
         }
     }
     
     @IBAction func onCustomOptionPressed(_ sender: Any) {
         let alert = UIAlertController(title: "New Custom Option", message: "Give some description and a price.", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: {$0.placeholder = "Option Description"})
+        alert.addTextField(configurationHandler: {
+            $0.placeholder = "Option Description"
+            // limite length here
+            $0.delegate = self
+            
+        })
         alert.addTextField(configurationHandler: {
             $0.placeholder = "Price"
             $0.keyboardType = .numberPad
@@ -50,7 +55,9 @@ class MenuItemExpandedViewController: UIViewController {
             let price = Double(priceField.text!) ?? 0 // cannot be empty
             let name = nameField.text!
             let option = Option(of: name, selected: true, pricedAt: price)
-            print(option)
+            self.optionDataSource.customOptions.append(option)
+            self.optionTableView.insertRows(at: [IndexPath(row: self.optionTableView.numberOfRows(inSection: 1), section: 1)], with: .automatic)
+            self.priceLabel.text = Scheme.Util.twoDecimalPriceText(self.optionDataSource.getDisplayedPrice())
         })
         
         okAction.isEnabled = false
@@ -73,9 +80,9 @@ class MenuItemExpandedViewController: UIViewController {
         }
     }
     
-    @IBAction func quickTenderAction(_ sender: Any) {
+    @IBAction func quickBillPressed(_ sender: Any) {
         if delegate != nil {
-            delegate!.quickBillItem(menuModel.menuItems[itemId!])
+            delegate!.quickBillItem(optionDataSource.getItemForBilling())
         }
     }
     
@@ -141,18 +148,24 @@ extension MenuItemExpandedViewController: UITextFieldDelegate {
         var result = true
         let prospectiveText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
+        
         if string.count > 0 {
-            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789.").inverted
-            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
+            if textField.keyboardType == .numberPad {
+                let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789.").inverted
+                let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
+                
+                let resultingStringLengthIsLegal = prospectiveText.count <= 9
+                
+                let scanner = Scanner(string: prospectiveText)
+                let resultingTextIsNumeric = scanner.scanDecimal(nil) && scanner.isAtEnd
+                
+                result = replacementStringIsLegal &&
+                    resultingStringLengthIsLegal &&
+                resultingTextIsNumeric
+            } else {
+                result = prospectiveText.count <= 20
+            }
             
-            let resultingStringLengthIsLegal = prospectiveText.count <= 9
-            
-            let scanner = Scanner(string: prospectiveText)
-            let resultingTextIsNumeric = scanner.scanDecimal(nil) && scanner.isAtEnd
-            
-            result = replacementStringIsLegal &&
-                resultingStringLengthIsLegal &&
-            resultingTextIsNumeric
         }
         return result
     }
@@ -165,8 +178,16 @@ extension MenuItemExpandedViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        menuModel.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-        priceLabel.text = Scheme.Util.twoDecimalPriceText(menuModel.menuItems[itemId!].unitPrice)
+        if indexPath.section == 0 {
+            menuModel.toggleOptionValue(at: indexPath.row, inPendingItem: itemId!)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        } else {
+//             if this option is a custom option, remove on tap
+            print(indexPath.row)
+            optionDataSource.customOptions.remove(at: indexPath.row)
+            optionTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        priceLabel.text = Scheme.Util.twoDecimalPriceText(optionDataSource.getDisplayedPrice())
+        
     }
 }

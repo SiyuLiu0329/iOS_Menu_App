@@ -31,6 +31,18 @@ class OptionaTableViewDataSource: NSObject, UITableViewDataSource {
         }
     }
     
+    func getDisplayedPrice() -> Double {
+        var price = menuModel.menuItems[itemId].unitPrice
+        customOptions.forEach { (option) in price += option.price }
+        return price
+    }
+    
+    func getItemForBilling() -> MenuItem {
+        var item = menuModel.menuItems[itemId];
+        customOptions.forEach({item.addCustomOption(option: $0)})
+        return item
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // placeholder cells -> xib in the future
