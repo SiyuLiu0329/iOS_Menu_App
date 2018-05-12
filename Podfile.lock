@@ -1,0 +1,16 @@
+PODS:
+  - EFColorPicker (1.1.0)
+
+DEPENDENCIES:
+  - EFColorPicker (from `../frameworks/EFColorPicker-master`)
+
+EXTERNAL SOURCES:
+  EFColorPicker:
+    :path: "../frameworks/EFColorPicker-master"
+
+SPEC CHECKSUMS:
+  EFColorPicker: bcd95d4c97fdb03607c9fcf2bca985c84e8bc554
+
+PODFILE CHECKSUM: 49318b2f994501bd2d1e8d3e8c033c47796c84ab
+
+COCOAPODS: 1.5.0

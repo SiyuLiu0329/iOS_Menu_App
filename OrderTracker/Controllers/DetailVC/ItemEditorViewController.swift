@@ -25,6 +25,7 @@ class ItemEditorViewController: UIViewController {
         tableView.register(cell, forCellReuseIdentifier: "cell")
         setUpView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "opCell")
+        dataSource.delegate = self
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.separatorColor = .clear
@@ -117,6 +118,18 @@ extension ItemEditorViewController: UITableViewDelegate {
     
     
 }
+
+extension ItemEditorViewController: EditorItemTableViewHeaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func onEditImagePressed() {
+//        let vc = UIImagePickerController()
+//        vc.delegate = self
+//        vc.modalPresentationStyle = .pageSheet
+//        
+//        present(vc, animated: true, completion: nil)
+    }
+    
+}
+
 
 extension ItemEditorViewController: EFColorViewDelegate{
     func colorView(colorView: EFColorView, didChangeColor color: UIColor) {

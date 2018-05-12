@@ -1,0 +1,962 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F95113CCCE5E1B6DC6B495694FC4C25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		129440BB9F115E0C87AD58C1A5CE6C24 /* EFColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4680290EDA8C098D89E2F49D7D16440A /* EFColorSelectionView.swift */; };
+		2702503FC70C9F8CE4FAB5D33B1C4FAC /* EFColorPicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B86D6EA4E1C36805B014C1EDEFD6691 /* EFColorPicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		349005182ED8E628440BD45638ED74B9 /* Pods-OrderTrackerTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DEA1557B89AFD7E20F0921E30E042166 /* Pods-OrderTrackerTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37F9C9E018CCA87092CBE2A4552B6A21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		3CD04619A468A8D3CFBB8DCA157ACF8B /* EFColorPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 328E4FF7BDF9ECB4AD035B10591BA073 /* EFColorPicker-dummy.m */; };
+		3E24DA6C7B8C57E9B5FBF8E6F9C1D14C /* Pods-OrderTracker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB902C6662FD54EB528D8BCD41A028E4 /* Pods-OrderTracker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50F488CE06EC366C7D31D382292D096F /* Pods-OrderTracker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B4CB728BB01B782773250443308C91 /* Pods-OrderTracker-dummy.m */; };
+		68D8393BDB0ADC365E5E37C26FA1E5F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		739323DF32643950A32047225485B73F /* EFControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2587D5637DE7B5F7594B9F97650E34C /* EFControl.swift */; };
+		763ACE1864FEF45B41F1D6CB5EE28F8A /* EFColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D44EA06D3C34F1CA2580DB82F56390F /* EFColorUtils.swift */; };
+		77B4B578BC2F689A42FF691E603C75F8 /* EFColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00D2629786DBABAB67CB6E5B5913586 /* EFColorView.swift */; };
+		7F4D294E76C85B286CE07C3B1D769E47 /* EFSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22602791C1B0C3FE3842C00149B2AF19 /* EFSliderView.swift */; };
+		8ABBCEFBCD61FDE8AFE57ACEA63A501B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		9C16BB6B8297E5D8237ABFE2B9A94E47 /* Pods-OrderTrackerUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 439BD43C0651F7D3448D451E75CF350B /* Pods-OrderTrackerUITests-dummy.m */; };
+		9C6E00E0751C87E653B8874190D2AADF /* Pods-OrderTrackerTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F11131BC244458749EE4388C5F9CB69C /* Pods-OrderTrackerTests-dummy.m */; };
+		B420A75046E1D4DD762A44E4208BAD8D /* EFColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F882C0DD29A1ED1B875272AB98193B /* EFColorWheelView.swift */; };
+		BAB4FA1808F8E64BA3929553BD8D1621 /* Pods-OrderTrackerUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F65DF8CF782DD5487979EFD799A019 /* Pods-OrderTrackerUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE671125912C92D6855EB4602AED6C14 /* EFColorSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2E7707DE4A82B0658BF38F608BEDDA /* EFColorSelectionViewController.swift */; };
+		C1A603FBB8B8BD9929411FB062BE8EB3 /* EFHSBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952B58F2C68353056F6BE676CF46F34 /* EFHSBView.swift */; };
+		CF53FBCBF47F239C3B1FA55350335C4A /* EFThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9930C4ABDE3D83606CF7B1E39BE81D5C /* EFThumbView.swift */; };
+		E2A89A25B729C4806D9E293ECCC372A8 /* EFColorComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE53226EA3DEF53AC7B754ED849BA24 /* EFColorComponentView.swift */; };
+		FEE57165C69AA8F6C40A98E7B15FE8DD /* EFRGBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C06E582AB89C45B38C7C7278E59C4BD /* EFRGBView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21C266CFFF63E89C5C914678D250AA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98F5A9BDB0A606C91E2E670A7D8FE3B0;
+			remoteInfo = "Pods-OrderTracker";
+		};
+		5C15A36356D47F1DE80669E8B9AD8A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98F5A9BDB0A606C91E2E670A7D8FE3B0;
+			remoteInfo = "Pods-OrderTracker";
+		};
+		C864B0C0DD22DDE0F527CD637E9A131F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55836A87835996279FBFAAC5350966B7;
+			remoteInfo = EFColorPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		045724FBC1484EAC80AD0FE5E3181385 /* Pods-OrderTracker-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OrderTracker-resources.sh"; sourceTree = "<group>"; };
+		0B718B2120CB587007A9AD91BB16A026 /* Pods-OrderTrackerUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OrderTrackerUITests.modulemap"; sourceTree = "<group>"; };
+		130A2D6E9A9E12D229783E78BCEE54D0 /* EFColorPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EFColorPicker.framework; path = EFColorPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1529FB01FD1F4B9565CFFCC264377EEC /* Pods-OrderTrackerTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OrderTrackerTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		1663761FEF7EC1F05403304ABE27F0C7 /* Pods-OrderTrackerUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OrderTrackerUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		1CE53226EA3DEF53AC7B754ED849BA24 /* EFColorComponentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorComponentView.swift; path = EFColorPicker/Classes/EFColorComponentView.swift; sourceTree = "<group>"; };
+		1E8D3F741510FB493701B08FD8DA9AC8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22602791C1B0C3FE3842C00149B2AF19 /* EFSliderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFSliderView.swift; path = EFColorPicker/Classes/EFSliderView.swift; sourceTree = "<group>"; };
+		241DE5F7F8A0781D8EEA31D9A3176399 /* EFColorPicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = EFColorPicker.modulemap; sourceTree = "<group>"; };
+		26FBD32938470D0C65A1E5E50EC5F5EB /* Pods-OrderTrackerUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OrderTrackerUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2B86D6EA4E1C36805B014C1EDEFD6691 /* EFColorPicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFColorPicker-umbrella.h"; sourceTree = "<group>"; };
+		2BDCF38B68AAD648B8EF6EA81EF07286 /* Pods-OrderTracker-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OrderTracker-acknowledgements.plist"; sourceTree = "<group>"; };
+		30F65DF8CF782DD5487979EFD799A019 /* Pods-OrderTrackerUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OrderTrackerUITests-umbrella.h"; sourceTree = "<group>"; };
+		328E4FF7BDF9ECB4AD035B10591BA073 /* EFColorPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EFColorPicker-dummy.m"; sourceTree = "<group>"; };
+		39B51AD5989FD80397063311B4969E1F /* Pods_OrderTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OrderTracker.framework; path = "Pods-OrderTracker.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A94D4DE8A5AE5D3B4F95E24B631AF6E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B47D2BFBDD71C04B66C9FD9CD2DD227 /* Pods-OrderTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrderTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3D5964A71B019C84FEFC09039DF80024 /* Pods-OrderTrackerUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OrderTrackerUITests-frameworks.sh"; sourceTree = "<group>"; };
+		439BD43C0651F7D3448D451E75CF350B /* Pods-OrderTrackerUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OrderTrackerUITests-dummy.m"; sourceTree = "<group>"; };
+		4680290EDA8C098D89E2F49D7D16440A /* EFColorSelectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorSelectionView.swift; path = EFColorPicker/Classes/EFColorSelectionView.swift; sourceTree = "<group>"; };
+		4A5522059FEE76621A51CC7F8EFBE063 /* Pods-OrderTrackerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OrderTrackerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5158724F1A99D7D61FB5CF50B2D13A1C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58D9E2EDC7DA3E111D45EDFDE40B70A2 /* Pods_OrderTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OrderTrackerTests.framework; path = "Pods-OrderTrackerTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6BD821ACE8752223C6F0D69C651D51FF /* Pods-OrderTracker-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OrderTracker-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7232BB77DCDAD0AF5B547C210AE0E0D8 /* EFColorPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFColorPicker-prefix.pch"; sourceTree = "<group>"; };
+		74D18809479545D995F2070838C2FB9B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D44EA06D3C34F1CA2580DB82F56390F /* EFColorUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorUtils.swift; path = EFColorPicker/Classes/EFColorUtils.swift; sourceTree = "<group>"; };
+		7E2E450A836320A3B41B1A7A91A17710 /* Pods-OrderTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrderTracker.release.xcconfig"; sourceTree = "<group>"; };
+		80B8AA5746099DA968A6168A00E91386 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		81B4CB728BB01B782773250443308C91 /* Pods-OrderTracker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OrderTracker-dummy.m"; sourceTree = "<group>"; };
+		8C06E582AB89C45B38C7C7278E59C4BD /* EFRGBView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFRGBView.swift; path = EFColorPicker/Classes/EFRGBView.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95F882C0DD29A1ED1B875272AB98193B /* EFColorWheelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorWheelView.swift; path = EFColorPicker/Classes/EFColorWheelView.swift; sourceTree = "<group>"; };
+		9930C4ABDE3D83606CF7B1E39BE81D5C /* EFThumbView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFThumbView.swift; path = EFColorPicker/Classes/EFThumbView.swift; sourceTree = "<group>"; };
+		9D853641DDC9C274A51FE6D846AF6A40 /* Pods-OrderTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrderTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		A00D2629786DBABAB67CB6E5B5913586 /* EFColorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorView.swift; path = EFColorPicker/Classes/EFColorView.swift; sourceTree = "<group>"; };
+		A518C0C502D436794AFD4AFA7ECEB977 /* Pods-OrderTrackerUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OrderTrackerUITests-resources.sh"; sourceTree = "<group>"; };
+		A706DA60D99C8A7586234EC6A52655AB /* EFColorPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EFColorPicker.xcconfig; sourceTree = "<group>"; };
+		ABEAD8E56CC5569871E5A3948826A348 /* Pods_OrderTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OrderTrackerUITests.framework; path = "Pods-OrderTrackerUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADEC0BC9B229A345B71614544777630A /* Pods-OrderTracker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OrderTracker.modulemap"; sourceTree = "<group>"; };
+		B1EC1C11315A2FB2F24A8D5515AB8E09 /* Pods-OrderTracker-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OrderTracker-frameworks.sh"; sourceTree = "<group>"; };
+		BA4D7CB18CFF49B114D66CCCA4DB485E /* Pods-OrderTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrderTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB902C6662FD54EB528D8BCD41A028E4 /* Pods-OrderTracker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OrderTracker-umbrella.h"; sourceTree = "<group>"; };
+		C2587D5637DE7B5F7594B9F97650E34C /* EFControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFControl.swift; path = EFColorPicker/Classes/EFControl.swift; sourceTree = "<group>"; };
+		C50DFD789EF907E0DD73258203680BD2 /* Pods-OrderTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrderTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C752D7F1B67DDBC7FBF83C0CA364F0D5 /* Pods-OrderTrackerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OrderTrackerTests.modulemap"; sourceTree = "<group>"; };
+		C94FBBCB5989C4CD10EE984217CE23F1 /* EFColorPicker.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = EFColorPicker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C952B58F2C68353056F6BE676CF46F34 /* EFHSBView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFHSBView.swift; path = EFColorPicker/Classes/EFHSBView.swift; sourceTree = "<group>"; };
+		DC2E7707DE4A82B0658BF38F608BEDDA /* EFColorSelectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorSelectionViewController.swift; path = EFColorPicker/Classes/EFColorSelectionViewController.swift; sourceTree = "<group>"; };
+		DE3943D22FEDA652B23B67AC76620D67 /* Pods-OrderTrackerTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OrderTrackerTests-frameworks.sh"; sourceTree = "<group>"; };
+		DEA1557B89AFD7E20F0921E30E042166 /* Pods-OrderTrackerTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OrderTrackerTests-umbrella.h"; sourceTree = "<group>"; };
+		E9590DDC3C0F5813AC055F86DDB6608D /* Pods-OrderTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrderTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		F11131BC244458749EE4388C5F9CB69C /* Pods-OrderTrackerTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OrderTrackerTests-dummy.m"; sourceTree = "<group>"; };
+		F7D8E4A4DE8799E883ABFC5A66302B54 /* Pods-OrderTrackerTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OrderTrackerTests-resources.sh"; sourceTree = "<group>"; };
+		F7DE190E263AD3969A1B1A5C8F4116C0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36051BECA9D7FB592EBD1080F182D852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F95113CCCE5E1B6DC6B495694FC4C25 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495AB1517808737FBCE41162E37DED65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68D8393BDB0ADC365E5E37C26FA1E5F9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C31A883ED89743A5E6A7761E08DA8F29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37F9C9E018CCA87092CBE2A4552B6A21 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4AE8EC37691C558E86DC4AABE6908DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ABBCEFBCD61FDE8AFE57ACEA63A501B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12A052C02DF003ACC3A007C87D1890D0 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				726F6B29EEFD83ED0CA683F631BB0039 /* Pods-OrderTracker */,
+				4B17E539BC43CAA4EF89ABF13A213D39 /* Pods-OrderTrackerTests */,
+				5430E9ECEFB1E6506841C0C0D76C4190 /* Pods-OrderTrackerUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		28B776846182D4A5AE44BDF718DFBDCF /* EFColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				1CE53226EA3DEF53AC7B754ED849BA24 /* EFColorComponentView.swift */,
+				4680290EDA8C098D89E2F49D7D16440A /* EFColorSelectionView.swift */,
+				DC2E7707DE4A82B0658BF38F608BEDDA /* EFColorSelectionViewController.swift */,
+				7D44EA06D3C34F1CA2580DB82F56390F /* EFColorUtils.swift */,
+				A00D2629786DBABAB67CB6E5B5913586 /* EFColorView.swift */,
+				95F882C0DD29A1ED1B875272AB98193B /* EFColorWheelView.swift */,
+				C2587D5637DE7B5F7594B9F97650E34C /* EFControl.swift */,
+				C952B58F2C68353056F6BE676CF46F34 /* EFHSBView.swift */,
+				8C06E582AB89C45B38C7C7278E59C4BD /* EFRGBView.swift */,
+				22602791C1B0C3FE3842C00149B2AF19 /* EFSliderView.swift */,
+				9930C4ABDE3D83606CF7B1E39BE81D5C /* EFThumbView.swift */,
+				526AA247C148E53085792AB3DA4D1337 /* Pod */,
+				344251BD98C6257D247E65DEC52AD407 /* Support Files */,
+			);
+			name = EFColorPicker;
+			path = "../../frameworks/EFColorPicker-master";
+			sourceTree = "<group>";
+		};
+		344251BD98C6257D247E65DEC52AD407 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				241DE5F7F8A0781D8EEA31D9A3176399 /* EFColorPicker.modulemap */,
+				A706DA60D99C8A7586234EC6A52655AB /* EFColorPicker.xcconfig */,
+				328E4FF7BDF9ECB4AD035B10591BA073 /* EFColorPicker-dummy.m */,
+				7232BB77DCDAD0AF5B547C210AE0E0D8 /* EFColorPicker-prefix.pch */,
+				2B86D6EA4E1C36805B014C1EDEFD6691 /* EFColorPicker-umbrella.h */,
+				5158724F1A99D7D61FB5CF50B2D13A1C /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../../iOS_Menu_App/Pods/Target Support Files/EFColorPicker";
+			sourceTree = "<group>";
+		};
+		4B17E539BC43CAA4EF89ABF13A213D39 /* Pods-OrderTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A94D4DE8A5AE5D3B4F95E24B631AF6E /* Info.plist */,
+				C752D7F1B67DDBC7FBF83C0CA364F0D5 /* Pods-OrderTrackerTests.modulemap */,
+				4A5522059FEE76621A51CC7F8EFBE063 /* Pods-OrderTrackerTests-acknowledgements.markdown */,
+				1529FB01FD1F4B9565CFFCC264377EEC /* Pods-OrderTrackerTests-acknowledgements.plist */,
+				F11131BC244458749EE4388C5F9CB69C /* Pods-OrderTrackerTests-dummy.m */,
+				DE3943D22FEDA652B23B67AC76620D67 /* Pods-OrderTrackerTests-frameworks.sh */,
+				F7D8E4A4DE8799E883ABFC5A66302B54 /* Pods-OrderTrackerTests-resources.sh */,
+				DEA1557B89AFD7E20F0921E30E042166 /* Pods-OrderTrackerTests-umbrella.h */,
+				3B47D2BFBDD71C04B66C9FD9CD2DD227 /* Pods-OrderTrackerTests.debug.xcconfig */,
+				9D853641DDC9C274A51FE6D846AF6A40 /* Pods-OrderTrackerTests.release.xcconfig */,
+			);
+			name = "Pods-OrderTrackerTests";
+			path = "Target Support Files/Pods-OrderTrackerTests";
+			sourceTree = "<group>";
+		};
+		526AA247C148E53085792AB3DA4D1337 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				C94FBBCB5989C4CD10EE984217CE23F1 /* EFColorPicker.podspec */,
+				80B8AA5746099DA968A6168A00E91386 /* LICENSE */,
+				F7DE190E263AD3969A1B1A5C8F4116C0 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		5430E9ECEFB1E6506841C0C0D76C4190 /* Pods-OrderTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				74D18809479545D995F2070838C2FB9B /* Info.plist */,
+				0B718B2120CB587007A9AD91BB16A026 /* Pods-OrderTrackerUITests.modulemap */,
+				26FBD32938470D0C65A1E5E50EC5F5EB /* Pods-OrderTrackerUITests-acknowledgements.markdown */,
+				1663761FEF7EC1F05403304ABE27F0C7 /* Pods-OrderTrackerUITests-acknowledgements.plist */,
+				439BD43C0651F7D3448D451E75CF350B /* Pods-OrderTrackerUITests-dummy.m */,
+				3D5964A71B019C84FEFC09039DF80024 /* Pods-OrderTrackerUITests-frameworks.sh */,
+				A518C0C502D436794AFD4AFA7ECEB977 /* Pods-OrderTrackerUITests-resources.sh */,
+				30F65DF8CF782DD5487979EFD799A019 /* Pods-OrderTrackerUITests-umbrella.h */,
+				BA4D7CB18CFF49B114D66CCCA4DB485E /* Pods-OrderTrackerUITests.debug.xcconfig */,
+				C50DFD789EF907E0DD73258203680BD2 /* Pods-OrderTrackerUITests.release.xcconfig */,
+			);
+			name = "Pods-OrderTrackerUITests";
+			path = "Target Support Files/Pods-OrderTrackerUITests";
+			sourceTree = "<group>";
+		};
+		726F6B29EEFD83ED0CA683F631BB0039 /* Pods-OrderTracker */ = {
+			isa = PBXGroup;
+			children = (
+				1E8D3F741510FB493701B08FD8DA9AC8 /* Info.plist */,
+				ADEC0BC9B229A345B71614544777630A /* Pods-OrderTracker.modulemap */,
+				6BD821ACE8752223C6F0D69C651D51FF /* Pods-OrderTracker-acknowledgements.markdown */,
+				2BDCF38B68AAD648B8EF6EA81EF07286 /* Pods-OrderTracker-acknowledgements.plist */,
+				81B4CB728BB01B782773250443308C91 /* Pods-OrderTracker-dummy.m */,
+				B1EC1C11315A2FB2F24A8D5515AB8E09 /* Pods-OrderTracker-frameworks.sh */,
+				045724FBC1484EAC80AD0FE5E3181385 /* Pods-OrderTracker-resources.sh */,
+				BB902C6662FD54EB528D8BCD41A028E4 /* Pods-OrderTracker-umbrella.h */,
+				E9590DDC3C0F5813AC055F86DDB6608D /* Pods-OrderTracker.debug.xcconfig */,
+				7E2E450A836320A3B41B1A7A91A17710 /* Pods-OrderTracker.release.xcconfig */,
+			);
+			name = "Pods-OrderTracker";
+			path = "Target Support Files/Pods-OrderTracker";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				FB804F048E34052A449DA12985238729 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				F726FCC1F4E79F85B18188FEDB2C8816 /* Products */,
+				12A052C02DF003ACC3A007C87D1890D0 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		F726FCC1F4E79F85B18188FEDB2C8816 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				130A2D6E9A9E12D229783E78BCEE54D0 /* EFColorPicker.framework */,
+				39B51AD5989FD80397063311B4969E1F /* Pods_OrderTracker.framework */,
+				58D9E2EDC7DA3E111D45EDFDE40B70A2 /* Pods_OrderTrackerTests.framework */,
+				ABEAD8E56CC5569871E5A3948826A348 /* Pods_OrderTrackerUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB804F048E34052A449DA12985238729 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				28B776846182D4A5AE44BDF718DFBDCF /* EFColorPicker */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A96B4531654EEF5B58A67BDBD87F58B5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2702503FC70C9F8CE4FAB5D33B1C4FAC /* EFColorPicker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9F24D49CDD41BC4F4EEA4327E2E90EC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAB4FA1808F8E64BA3929553BD8D1621 /* Pods-OrderTrackerUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD09A47160821428C22CE567F454005E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E24DA6C7B8C57E9B5FBF8E6F9C1D14C /* Pods-OrderTracker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9841A8E038B264090CEA56C0BECB7E2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				349005182ED8E628440BD45638ED74B9 /* Pods-OrderTrackerTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		55836A87835996279FBFAAC5350966B7 /* EFColorPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E524D40B2302F2FE070142211DDC5CA3 /* Build configuration list for PBXNativeTarget "EFColorPicker" */;
+			buildPhases = (
+				14EF4A516EE784301AAFCCFF3791EDDD /* Sources */,
+				495AB1517808737FBCE41162E37DED65 /* Frameworks */,
+				A96B4531654EEF5B58A67BDBD87F58B5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EFColorPicker;
+			productName = EFColorPicker;
+			productReference = 130A2D6E9A9E12D229783E78BCEE54D0 /* EFColorPicker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		90667510815E077FE9678462FAE93684 /* Pods-OrderTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4717ACBA3BA0B5FECE9C057A0A765671 /* Build configuration list for PBXNativeTarget "Pods-OrderTrackerTests" */;
+			buildPhases = (
+				763855F785B21A87D292885EB018B76E /* Sources */,
+				36051BECA9D7FB592EBD1080F182D852 /* Frameworks */,
+				E9841A8E038B264090CEA56C0BECB7E2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B76D67389B930CC62A6F83A91B352343 /* PBXTargetDependency */,
+			);
+			name = "Pods-OrderTrackerTests";
+			productName = "Pods-OrderTrackerTests";
+			productReference = 58D9E2EDC7DA3E111D45EDFDE40B70A2 /* Pods_OrderTrackerTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		98F5A9BDB0A606C91E2E670A7D8FE3B0 /* Pods-OrderTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CB34A6CE71BD5D6BB1A558C79EA6FE9 /* Build configuration list for PBXNativeTarget "Pods-OrderTracker" */;
+			buildPhases = (
+				8617A45B3A04FE7570C83C447849291E /* Sources */,
+				D4AE8EC37691C558E86DC4AABE6908DD /* Frameworks */,
+				BD09A47160821428C22CE567F454005E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E3266141634D27B970CAB8D0B52BC87 /* PBXTargetDependency */,
+			);
+			name = "Pods-OrderTracker";
+			productName = "Pods-OrderTracker";
+			productReference = 39B51AD5989FD80397063311B4969E1F /* Pods_OrderTracker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CD0AE65BA025850B4501902E0A7AE748 /* Pods-OrderTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDBBE2AA2BC7DF988D4DF53E2AB2927C /* Build configuration list for PBXNativeTarget "Pods-OrderTrackerUITests" */;
+			buildPhases = (
+				1810C61275E1469EF1140FBF6F534529 /* Sources */,
+				C31A883ED89743A5E6A7761E08DA8F29 /* Frameworks */,
+				A9F24D49CDD41BC4F4EEA4327E2E90EC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F5E848CD15417FE5C5E2190E6BD6CE5 /* PBXTargetDependency */,
+			);
+			name = "Pods-OrderTrackerUITests";
+			productName = "Pods-OrderTrackerUITests";
+			productReference = ABEAD8E56CC5569871E5A3948826A348 /* Pods_OrderTrackerUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = F726FCC1F4E79F85B18188FEDB2C8816 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55836A87835996279FBFAAC5350966B7 /* EFColorPicker */,
+				98F5A9BDB0A606C91E2E670A7D8FE3B0 /* Pods-OrderTracker */,
+				90667510815E077FE9678462FAE93684 /* Pods-OrderTrackerTests */,
+				CD0AE65BA025850B4501902E0A7AE748 /* Pods-OrderTrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14EF4A516EE784301AAFCCFF3791EDDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2A89A25B729C4806D9E293ECCC372A8 /* EFColorComponentView.swift in Sources */,
+				3CD04619A468A8D3CFBB8DCA157ACF8B /* EFColorPicker-dummy.m in Sources */,
+				129440BB9F115E0C87AD58C1A5CE6C24 /* EFColorSelectionView.swift in Sources */,
+				BE671125912C92D6855EB4602AED6C14 /* EFColorSelectionViewController.swift in Sources */,
+				763ACE1864FEF45B41F1D6CB5EE28F8A /* EFColorUtils.swift in Sources */,
+				77B4B578BC2F689A42FF691E603C75F8 /* EFColorView.swift in Sources */,
+				B420A75046E1D4DD762A44E4208BAD8D /* EFColorWheelView.swift in Sources */,
+				739323DF32643950A32047225485B73F /* EFControl.swift in Sources */,
+				C1A603FBB8B8BD9929411FB062BE8EB3 /* EFHSBView.swift in Sources */,
+				FEE57165C69AA8F6C40A98E7B15FE8DD /* EFRGBView.swift in Sources */,
+				7F4D294E76C85B286CE07C3B1D769E47 /* EFSliderView.swift in Sources */,
+				CF53FBCBF47F239C3B1FA55350335C4A /* EFThumbView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1810C61275E1469EF1140FBF6F534529 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C16BB6B8297E5D8237ABFE2B9A94E47 /* Pods-OrderTrackerUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		763855F785B21A87D292885EB018B76E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C6E00E0751C87E653B8874190D2AADF /* Pods-OrderTrackerTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8617A45B3A04FE7570C83C447849291E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50F488CE06EC366C7D31D382292D096F /* Pods-OrderTracker-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0F5E848CD15417FE5C5E2190E6BD6CE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-OrderTracker";
+			target = 98F5A9BDB0A606C91E2E670A7D8FE3B0 /* Pods-OrderTracker */;
+			targetProxy = 21C266CFFF63E89C5C914678D250AA01 /* PBXContainerItemProxy */;
+		};
+		5E3266141634D27B970CAB8D0B52BC87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EFColorPicker;
+			target = 55836A87835996279FBFAAC5350966B7 /* EFColorPicker */;
+			targetProxy = C864B0C0DD22DDE0F527CD637E9A131F /* PBXContainerItemProxy */;
+		};
+		B76D67389B930CC62A6F83A91B352343 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-OrderTracker";
+			target = 98F5A9BDB0A606C91E2E670A7D8FE3B0 /* Pods-OrderTracker */;
+			targetProxy = 5C15A36356D47F1DE80669E8B9AD8A4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		032806F6FF4BAF509FCDC95BAE820253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA4D7CB18CFF49B114D66CCCA4DB485E /* Pods-OrderTrackerUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OrderTrackerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OrderTrackerUITests/Pods-OrderTrackerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		08638A96A528B1EC32DE62F8A728389D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		0C95882956D997A7F4AFAFDF5D8DC65B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A706DA60D99C8A7586234EC6A52655AB /* EFColorPicker.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/EFColorPicker/EFColorPicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EFColorPicker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EFColorPicker/EFColorPicker.modulemap";
+				PRODUCT_MODULE_NAME = EFColorPicker;
+				PRODUCT_NAME = EFColorPicker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		58A9CA4A2B5C41D7BD88C85634BADDE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B47D2BFBDD71C04B66C9FD9CD2DD227 /* Pods-OrderTrackerTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OrderTrackerTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OrderTrackerTests/Pods-OrderTrackerTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8665736277CCD80CAE0A4658C02F0E2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E2E450A836320A3B41B1A7A91A17710 /* Pods-OrderTracker.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OrderTracker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OrderTracker/Pods-OrderTracker.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9D0425DDCFC3A7F8FEE0B8AB8306D68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A706DA60D99C8A7586234EC6A52655AB /* EFColorPicker.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/EFColorPicker/EFColorPicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EFColorPicker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EFColorPicker/EFColorPicker.modulemap";
+				PRODUCT_MODULE_NAME = EFColorPicker;
+				PRODUCT_NAME = EFColorPicker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C7DA8A17E796504D35966B4B34D037D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D853641DDC9C274A51FE6D846AF6A40 /* Pods-OrderTrackerTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OrderTrackerTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OrderTrackerTests/Pods-OrderTrackerTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F9CB37A8A54A5A3B97AA3B7AC0452DC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C50DFD789EF907E0DD73258203680BD2 /* Pods-OrderTrackerUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OrderTrackerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OrderTrackerUITests/Pods-OrderTrackerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA0348DBF17EA5E5679448F220F4B433 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9590DDC3C0F5813AC055F86DDB6608D /* Pods-OrderTracker.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OrderTracker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OrderTracker/Pods-OrderTracker.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2CB34A6CE71BD5D6BB1A558C79EA6FE9 /* Build configuration list for PBXNativeTarget "Pods-OrderTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA0348DBF17EA5E5679448F220F4B433 /* Debug */,
+				8665736277CCD80CAE0A4658C02F0E2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */,
+				08638A96A528B1EC32DE62F8A728389D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4717ACBA3BA0B5FECE9C057A0A765671 /* Build configuration list for PBXNativeTarget "Pods-OrderTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58A9CA4A2B5C41D7BD88C85634BADDE7 /* Debug */,
+				C7DA8A17E796504D35966B4B34D037D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDBBE2AA2BC7DF988D4DF53E2AB2927C /* Build configuration list for PBXNativeTarget "Pods-OrderTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				032806F6FF4BAF509FCDC95BAE820253 /* Debug */,
+				F9CB37A8A54A5A3B97AA3B7AC0452DC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E524D40B2302F2FE070142211DDC5CA3 /* Build configuration list for PBXNativeTarget "EFColorPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D0425DDCFC3A7F8FEE0B8AB8306D68E /* Debug */,
+				0C95882956D997A7F4AFAFDF5D8DC65B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

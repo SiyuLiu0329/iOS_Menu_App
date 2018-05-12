@@ -1,0 +1,6 @@
+framework module Pods_OrderTrackerTests {
+  umbrella header "Pods-OrderTrackerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

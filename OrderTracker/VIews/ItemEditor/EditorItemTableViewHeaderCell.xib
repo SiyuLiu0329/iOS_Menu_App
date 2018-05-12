@@ -33,6 +33,9 @@
                         <state key="normal" title="Edit">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="onEditPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DyN-bP-hM1"/>
+                        </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="tAZ-6b-ckB">
                         <rect key="frame" x="263.5" y="20.5" width="181.5" height="165"/>

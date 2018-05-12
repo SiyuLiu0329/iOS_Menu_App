@@ -8,19 +8,30 @@
 
 import UIKit
 
+protocol EditorItemTableViewHeaderDelegate: class {
+    func onEditImagePressed()
+}
+
 class EditorItemTableViewHeaderCell: UITableViewCell {
 
     @IBOutlet weak var priceField: TextInputView!
     @IBOutlet weak var numberField: TextInputView!
     @IBOutlet weak var nameField: TextInputView!
     @IBOutlet weak var itemImageView: UIImageView!
+    weak var delegate: EditorItemTableViewHeaderDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerRadius = 10
         itemImageView.layer.cornerRadius = 5
         itemImageView.clipsToBounds = true
     }
-
+    
+    @IBAction func onEditPressed(_ sender: Any) {
+        if delegate != nil {
+            delegate?.onEditImagePressed()
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         numberField.isUserInteractionEnabled = false

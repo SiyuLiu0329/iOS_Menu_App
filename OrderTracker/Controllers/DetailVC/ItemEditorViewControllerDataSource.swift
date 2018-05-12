@@ -11,6 +11,7 @@ import UIKit
 class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
     let itemEditorModel = ItemEditorModel()
     let headers = ["Basic", "Colour", "Options"]
+    weak var delegate: EditorItemTableViewHeaderDelegate?
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -43,6 +44,7 @@ class ItemEditorViewControllerDataSource: NSObject, UITableViewDataSource {
         if indexPath.section == 0 {
             let header = Bundle.main.loadNibNamed("EditorItemTableViewHeaderCell", owner: self, options: nil)!.first as! EditorItemTableViewHeaderCell
             header.selectionStyle = .none
+            header.delegate = delegate
             if let image = itemEditorModel.image {
                 header.itemImageView.image = image
             } else {
