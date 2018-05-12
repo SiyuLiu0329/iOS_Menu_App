@@ -6,7 +6,7 @@ target 'OrderTracker' do
   use_frameworks!
 
   # Pods for OrderTracker
-  pod 'EFColorPicker', :path => "../frameworks/EFColorPicker-master"
+  pod 'EFColorPicker', :path => "frameworks/EFColorPicker-master"
 
   target 'OrderTrackerTests' do
     inherit! :search_paths
